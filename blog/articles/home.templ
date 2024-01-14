@@ -1,17 +1,9 @@
 package articles
 
 import (
-	"fmt"
 	"darklab_blog/blog/common"
 )
 
-templ Check(number int) {
-	<div>Check{ fmt.Sprintf("%d",number) }</div>
-}
-
-templ Hello(name string, number int) {
-	<div>Hello, { name }</div>@Check(1)
-}
 
 templ HomeBody() {
 	<h1>This is a Heading</h1>
@@ -20,17 +12,9 @@ templ HomeBody() {
 
 templ HomeT() {
 	@common.Html5(common.Title("Home")) {
-		@common.Menu()
-		@HomeBody()
-		@WhiteSpaceInHTMLIsNormalised()
+		@common.BlogFrame() {
+			@common.Menu()
+			@HomeBody()
+		}
 	}
 }
-
-templ WhiteSpaceInHTMLIsNormalised() {
-	<p>
-		newlines and other whitespace are stripped
-		but it is normalised
-		like HTML.
-	</p>
-}
-

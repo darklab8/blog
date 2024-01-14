@@ -14,11 +14,20 @@ templ Html5(title Title) {
 	@IncludeCSS(CommonCSSURL)
 	</head>
 	<body>
+	
 	{ children... }
 	</body>
-	</html>
+	</html> 
 }
 
 templ IncludeCSS(path string) {
 	<link rel="stylesheet" href={ settings.StaticRoot + path}></link>
+}
+
+templ BlogFrame() {
+	<div class="blog_space">
+		<div class="blog_body">
+		{ children... }
+		</div> 
+	</div>
 }

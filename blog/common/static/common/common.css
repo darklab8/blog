@@ -1,3 +1,14 @@
+.blog_space {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 100%;
+
+    .blog_body {
+        flex-basis: 800px;
+    }
+}
+
 .main_menu {
     display: flex;
     flex-direction: row;

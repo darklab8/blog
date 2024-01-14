@@ -1,7 +1,9 @@
 package main
 
 import (
+	"darklab_blog/blog/about"
 	"darklab_blog/blog/articles"
+	"darklab_blog/blog/pet_projects"
 	"darklab_blog/blog/settings"
 	"flag"
 	"fmt"
@@ -37,6 +39,8 @@ func main() {
 
 		components := []Component{
 			articles.NewHome(),
+			about.NewAbout(),
+			pet_projects.NewPetProjects(),
 		}
 
 		for _, comp := range components {
