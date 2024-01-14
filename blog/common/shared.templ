@@ -1,7 +1,7 @@
 package common
 
 import (
-    	"darklab_blog/blog/highlight"
+    	"darklab_blog/blog/common/highlight"
 		"darklab_blog/blog/settings"
 )
 
@@ -20,5 +20,5 @@ templ Html5(title Title) {
 }
 
 templ IncludeCSS(path string) {
-	<link rel="stylesheet" href={ settings.SiteRoot + path}></link>
+	<link rel="stylesheet" href={ settings.StaticRoot + path}></link>
 }

@@ -10,6 +10,7 @@ import (
 
 var ProjectFolder utils_types.FilePath
 var SiteRoot = ""
+var StaticRoot = ""
 
 func init() {
 	if value, ok := os.LookupEnv("SITE_ROOT"); ok {
@@ -17,6 +18,8 @@ func init() {
 	} else {
 		SiteRoot = "/"
 	}
+
+	StaticRoot = SiteRoot + "static/"
 
 	ProjectFolder = utils_filepath.Dir(utils_filepath.Dir(utils.GetCurrentFolder()))
 }

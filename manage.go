@@ -46,7 +46,7 @@ func main() {
 		folders := utils_os.GetRecursiveDirs(settings.ProjectFolder)
 		for _, folder := range folders {
 			if utils_filepath.Base(folder) == "static" {
-				utils_cp.Dir(folder.ToString(), utils_filepath.Join(settings.ProjectFolder, "build").ToString())
+				utils_cp.Dir(folder.ToString(), utils_filepath.Join(settings.ProjectFolder, "build", "static").ToString())
 			}
 		}
 	}

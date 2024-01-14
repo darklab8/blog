@@ -4,10 +4,22 @@ import (
     	"darklab_blog/blog/settings"
 )
 
+templ NavElem(url string) {
+    <a href={ templ.URL(url) }><div class="nav_elem">
+    { children... }
+    </div></a>
+}
+
 templ Menu() {
     <menu class="main_menu">
-        <a href={ templ.URL(settings.SiteRoot) }><li>Articles</li></a>
-        <a href={ templ.URL(settings.SiteRoot + "pet_projects.html") }><li>Pet projects</li></a>
-        <a href={ templ.URL(settings.SiteRoot + "about.html") }><li>About</li></a>
+        @NavElem(settings.SiteRoot) {
+            Articles
+        }
+        @NavElem(settings.SiteRoot + "pet_projects.html") {
+            Pet projects
+        }
+        @NavElem(settings.SiteRoot + "about.html") {
+            About
+        }
     </menu>
 }

@@ -3,8 +3,8 @@ package articles
 import (
 	"bytes"
 	"context"
-	"darklab_blog/blog/logus"
 	"darklab_blog/blog/settings"
+	"darklab_blog/blog/settings/logus"
 	"os"
 
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"

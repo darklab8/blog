@@ -1,7 +1,7 @@
 package logus
 
 import (
-	"darklab_blog/blog/envs"
+	"darklab_blog/blog/settings/envs"
 
 	"github.com/darklab8/darklab_goutils/goutils/logus_core"
 	"github.com/darklab8/darklab_goutils/goutils/logus_core/logus_types"
