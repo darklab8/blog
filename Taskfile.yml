@@ -1,0 +1,11 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - templ generate
+      - go run . --act=build
+
+  dev:
+    cmds:
+      - templ generate -watch --proxy="http://localhost:8080" --cmd="go run . --act=web"

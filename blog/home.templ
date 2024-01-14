@@ -1,0 +1,43 @@
+package blog
+
+import "fmt"
+
+templ Check(number int) {
+	<div>Check{ fmt.Sprintf("%d",number) }</div>
+}
+
+templ Hello(name string, number int) {
+	<div>Hello, { name }</div>@Check(1)
+}
+
+templ HomeBody() {
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph. 123.</p> 
+}
+
+templ HomeT() {
+	@Html5(Title("Home")) {
+		@HomeBody()
+		@WhiteSpaceInHTMLIsNormalised()
+	}
+}
+
+templ WhiteSpaceInHTMLIsNormalised() {
+	<p>
+		newlines and other whitespace are stripped
+		but it is normalised
+		like HTML.
+	</p>
+}
+
+templ Html5(title Title) {
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<title>{ string(title) }</title>
+	</head>
+	<body>
+	{ children... }
+	</body>
+	</html>
+}
