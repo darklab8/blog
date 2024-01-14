@@ -6,34 +6,38 @@ import (
 
 
 templ AboutT() {
-	@common.Html5(common.Title("Home")) {
+	@common.Html5(common.Title("About")) {
 		@common.BlogFrame() {
 			@common.Menu()
-            <h1> About </h1>
+            @common.PageHeader(){
+                About
+            }
 
-            <h2> Intro </h2>
-            <p>
+            @common.TextHaderMain(){
+                Intro
+            }
+            @common.TextBlock(){
                 Hi there! my name is Andrei Novoselov.
-            </p>
-            <p>
+            }
+            @common.TextBlock(){
                 I am... DevOps engineer / backend developer / software developer. I have interests in at least web dev and minecraft ^_^.
-            </p>
-            <p>
+            }
+            @common.TextBlock(){
                 I travel software development world in search of perfection - how to write easiest to comprehend code,
                 which is at the same time the most documented, easiest to extend, the most quality and not overnengineered at the same time.
-            </p>
-            <p>
+            }
+            @common.TextBlock(){
                 I have fascination with web tech due to it being... cross platform by default ^_^ and requiring not installations from end user.
                 I encountered some bumps on this road due to the state of web development, but looking like finding my path around.
-            </p>
-            <p>
+            }
+            @common.TextBlock(){
                 being fan of Linux OS, taking care of deployment and enjoying to help others made me becoming DevOps engineer.
                 It is important part for me to search perfection in web world, as quality infrastructure is crucial for quality software.
-            </p> 
-            <p>
+            } 
+            @common.TextBlock(){
                 I have few desires i wish to fulfill. Becoming professional of enough level to be able writing a quality book about programming
                 that will benefit future generations and making me immortalized for my impact. And having developed some quality minecraft mods ^_^.
-            </p>
+            }
 		}
 	}
 }
