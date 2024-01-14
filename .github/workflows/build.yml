@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request: {}
+  push:
+    branches: ["master"]
+
+jobs:
+  github-pages:
+    name: Github Pages
+    runs-on: ubuntu-22.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.21
+
+      - name: Install Task
+        run: |
+            sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+    
+      - name: build
+        run: task build
+
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          name: github-pages
+          path: ./build
+
+      - name: Deploy to pages
+        uses: actions/deploy-pages@v1
+        id: deployment

@@ -17,6 +17,7 @@ templ HomeBody() {
 
 templ HomeT() {
 	@Html5(Title("Home")) {
+		@Menu()
 		@HomeBody()
 		@WhiteSpaceInHTMLIsNormalised()
 	}
@@ -30,14 +31,3 @@ templ WhiteSpaceInHTMLIsNormalised() {
 	</p>
 }
 
-templ Html5(title Title) {
-	<!DOCTYPE html>
-	<html>
-	<head>
-	<title>{ string(title) }</title>
-	</head>
-	<body>
-	{ children... }
-	</body>
-	</html>
-}
