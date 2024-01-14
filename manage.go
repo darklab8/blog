@@ -1,12 +1,17 @@
 package main
 
 import (
-	"darklab_blog/blog"
+	"darklab_blog/blog/articles"
+	"darklab_blog/blog/settings"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_cp"
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_os"
 )
 
 type Component interface {
@@ -27,14 +32,22 @@ func main() {
 	fmt.Println("act:", action)
 
 	build := func() {
+		os.RemoveAll("build")
 		os.MkdirAll("build", os.ModePerm)
 
 		components := []Component{
-			blog.NewHome(),
+			articles.NewHome(),
 		}
 
 		for _, comp := range components {
 			comp.Write()
+		}
+
+		folders := utils_os.GetRecursiveDirs(settings.ProjectFolder)
+		for _, folder := range folders {
+			if utils_filepath.Base(folder) == "static" {
+				utils_cp.Dir(folder.ToString(), utils_filepath.Join(settings.ProjectFolder, "build").ToString())
+			}
 		}
 	}
 	web := func() {
@@ -56,8 +69,4 @@ func main() {
 	default:
 		panic("action is not chosen")
 	}
-
-	// component := blog.Hello("John", 123)
-	// component.Render(context.Background(), os.Stdout)
-
 }

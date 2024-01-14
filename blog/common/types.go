@@ -1,3 +1,3 @@
-package blog
+package common
 
 type Title string

@@ -1,0 +1,13 @@
+package common
+
+import (
+    	"darklab_blog/blog/settings"
+)
+
+templ Menu() {
+    <menu class="main_menu">
+        <a href={ templ.URL(settings.SiteRoot) }><li>Articles</li></a>
+        <a href={ templ.URL(settings.SiteRoot + "pet_projects.html") }><li>Pet projects</li></a>
+        <a href={ templ.URL(settings.SiteRoot + "about.html") }><li>About</li></a>
+    </menu>
+}

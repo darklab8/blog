@@ -1,0 +1,29 @@
+package highlight
+
+templ IncludeHighlight() {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+}
+
+templ CodeBlock(language string) {
+    <pre><code class="{language}">
+    { children... }
+    </code></pre>
+}
+
+// Example to use.
+// const GoCode string = `var A string = "123";
+
+//     func init() {
+        
+// }`
+
+// const PyCode string = `def smth():
+//   print(123)`
+
+// @highlight.CodeBlock("python") {
+//     { PyCode }
+// }

@@ -33,6 +33,8 @@ jobs:
 
       - name: build
         run: task build
+        env:
+            SITE_ROOT: "/darklab_blog/"
 
       - uses: actions/upload-pages-artifact@v1
         with:

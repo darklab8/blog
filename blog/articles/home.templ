@@ -1,6 +1,9 @@
-package blog
+package articles
 
-import "fmt"
+import (
+	"fmt"
+	"darklab_blog/blog/common"
+)
 
 templ Check(number int) {
 	<div>Check{ fmt.Sprintf("%d",number) }</div>
@@ -16,8 +19,8 @@ templ HomeBody() {
 }
 
 templ HomeT() {
-	@Html5(Title("Home")) {
-		@Menu()
+	@common.Html5(common.Title("Home")) {
+		@common.Menu()
 		@HomeBody()
 		@WhiteSpaceInHTMLIsNormalised()
 	}
