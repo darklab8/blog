@@ -14,3 +14,15 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.page_header {
+    font-size: 2.2em;
+}
+
+.text_header_1 {
+    font-size: 2em;
+}
+
+body {
+    font: 18px/1.4 Helvetica, Arial, sans-serif;
+}

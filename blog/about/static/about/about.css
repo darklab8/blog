@@ -1,0 +1,6 @@
+.myphoto {
+    width: calc(256px * 0.5);
+    height: calc(357px * 0.5);
+    float: right;
+    margin: 0px 15px 15px 15px;
+}

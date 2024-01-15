@@ -6,6 +6,10 @@ type About struct {
 	compon.Component
 }
 
+const (
+	AboutCSSURL string = "about/about.css"
+)
+
 func NewAbout() *About {
 	return &About{
 		compon.NewComponent(

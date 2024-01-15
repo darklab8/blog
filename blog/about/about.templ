@@ -2,42 +2,70 @@ package about
 
 import (
 	"darklab_blog/blog/common"
+    "darklab_blog/blog/settings"
 )
 
+templ Intro() {
+    @common.TextHeaderMain(){ 
+        Intro
+    } 
+    <img class="myphoto" src={ settings.StaticRoot + "about/myphoto.png" } alt="my photo"/>
+    @common.TextBlock(){
+        Hi there! My name is Andrei Novoselov. I am DevOps engineer / backend developer / software developer.
+        I have interests in web dev and minecraft ^_^.
+    }
+    @common.TextBlock(){
+        I travel software development world in search of perfection - how to write easiest to comprehend code,
+        which is at the same time the most documented, easiest to extend, the most quality and not overnengineered at the same time.
+    }
+    @common.TextBlock(){
+        I like web tech due to it being... cross platform by default ^_^ and requiring no installations from end user.
+        Working in web world I am able to work with the most developer friendly OS known as Linux ^_^. Those interests and opportunities in job duties
+        made me becoming DevOps engineer.
+    }
+    @common.TextBlock(){
+        I have few desires i wish to fulfill.
+        <ul>
+        <li>To improve myself to a level of writing books for other programmers, and having them written.</li>
+        <li>And having developed some quality minecraft mods ^_^.</li>
+        </ul>
+    }
+}
+
+templ WhyThisSiteWasMade() {
+    @common.TextHeaderMain(){
+        Why this site was made
+    }
+    @common.TextBlock(){
+        Any book writing becomes with something smaller, like writing articles ^_^. I accumulated at this point enough of articles written around in different
+        formats around that i wish to start keeping them in cerntralized way in a single place.
+    }
+}
+
+templ Contacts() {
+    @common.TextHeaderMain(){
+        Contacts
+    }
+    @common.TextBlock(){
+        <ul class="contacts">
+            <li><b>Linkedin:</b><a href="https://www.linkedin.com/in/andrei-novoselov-59bb4a175/">here</a></li>
+            <li><b>Github projects profile:</b> <a href="https://github.com/darklab8">here</a></li>
+            <li><b>Github main profile:</b> <a href="https://github.com/dd84ai">here</a></li>
+        </ul>
+    }
+}
 
 templ AboutT() {
 	@common.Html5(common.Title("About")) {
 		@common.BlogFrame() {
+            @common.IncludeCSS(AboutCSSURL)
 			@common.Menu()
             @common.PageHeader(){
                 About
             }
-
-            @common.TextHaderMain(){
-                Intro
-            }
-            @common.TextBlock(){
-                Hi there! my name is Andrei Novoselov.
-            }
-            @common.TextBlock(){
-                I am... DevOps engineer / backend developer / software developer. I have interests in at least web dev and minecraft ^_^.
-            }
-            @common.TextBlock(){
-                I travel software development world in search of perfection - how to write easiest to comprehend code,
-                which is at the same time the most documented, easiest to extend, the most quality and not overnengineered at the same time.
-            }
-            @common.TextBlock(){
-                I have fascination with web tech due to it being... cross platform by default ^_^ and requiring not installations from end user.
-                I encountered some bumps on this road due to the state of web development, but looking like finding my path around.
-            }
-            @common.TextBlock(){
-                being fan of Linux OS, taking care of deployment and enjoying to help others made me becoming DevOps engineer.
-                It is important part for me to search perfection in web world, as quality infrastructure is crucial for quality software.
-            } 
-            @common.TextBlock(){
-                I have few desires i wish to fulfill. Becoming professional of enough level to be able writing a quality book about programming
-                that will benefit future generations and making me immortalized for my impact. And having developed some quality minecraft mods ^_^.
-            }
+            @Intro()
+            @WhyThisSiteWasMade()
+            @Contacts() 
 		}
 	}
 }
