@@ -26,3 +26,12 @@
 body {
     font: 18px/1.4 Helvetica, Arial, sans-serif;
 }
+
+.cool_header {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cool_header:hover {
+    color: #4183C4;
+}

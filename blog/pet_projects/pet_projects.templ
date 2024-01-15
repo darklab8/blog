@@ -5,11 +5,28 @@ import (
 	"darklab_blog/blog/common"
 )
 
+templ pet_project(name string, url string) {
+	<div class="pet_project">
+	<a class="cool_header" href={ templ.URL(url) }><h1>{ name }</h1></a>
+	{ children... }
+	</div>
+}
+
 templ PetProjectsT() {
 	@common.Html5(common.Title("Pet projects")) {
 		@common.BlogFrame() {
 			@common.Menu()
-			123
+			<div class="pet_projects">
+			@pet_project(
+				"Autogit - Git conventional commits linter",
+				"https://github.com/darklab8/darklab_autogit",
+			) {
+				@common.TextBlock(){
+					an instrument to enforce git conventional commits to submitted commits. CI friendly and without any dependencies.
+					Based on submitted commits brings generation of changelogs for releases and suggests next semantic version of a release.
+    			}
+			}
+			</div>
 		} 
 	}
 }
