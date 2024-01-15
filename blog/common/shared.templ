@@ -11,13 +11,14 @@ templ Html5(title Title) {
 	<head>
 	<title>{ string(title) }</title>
     @highlight.IncludeHighlight()
+	@IncludeCSS("common/reset.css")
 	@IncludeCSS(CommonCSSURL)
 	</head>
 	<body>
 	
 	{ children... }
 	</body>
-	</html> 
+	</html>
 }
 
 templ IncludeCSS(path string) {

@@ -1,3 +1,31 @@
+/*Defaults*/
+body {
+    font: 18px/1.4 Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.1em;
+    margin: 10px;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    color: #4183C4;
+}
+/*My custom stuff*/
+
 .blog_space {
     display: flex;
     flex-direction: row;
@@ -13,6 +41,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    .nav_elem {
+        margin: 20px;
+        font-size: 2em;
+    }
 }
 
 .page_header {
@@ -23,15 +56,4 @@
     font-size: 2em;
 }
 
-body {
-    font: 18px/1.4 Helvetica, Arial, sans-serif;
-}
 
-.cool_header {
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.cool_header:hover {
-    color: #4183C4;
-}
