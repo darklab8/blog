@@ -3,10 +3,15 @@ body {
     font: 18px/1.4 Helvetica, Arial, sans-serif;
 }
 
-h1 {
+h1, h2 {
     margin: 10px;
     font-weight: bold;
+}
+h1 {
     font-size: 2em;
+}
+h2 {
+    font-size: 1.7em;
 }
 
 p {
