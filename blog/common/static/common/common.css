@@ -29,6 +29,14 @@ a {
 a:hover {
     color: #4183C4;
 }
+
+b {
+    font-weight: bold;
+}
+
+li {
+    margin: 5px;
+}
 /*My custom stuff*/
 
 .blog_space {

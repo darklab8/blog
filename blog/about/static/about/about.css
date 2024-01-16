@@ -4,3 +4,9 @@
     float: right;
     margin: 0px 15px 15px 15px;
 }
+
+.contacts a {    
+    font-weight: bold;
+    color: #33618E;
+}
+
