@@ -13,8 +13,9 @@ templ pet_project(name string, url string) {
 	<div class="pet_project">
 	<a class="pet_project_header" href={ templ.URL(url) }><h2>{ name }</h2></a>
 	{ children... }
-	</div> 
+	</div>
 }
+
 
 templ PetProjectsT() {
 	@common.Html5(common.Title("Pet projects")) {
@@ -32,6 +33,7 @@ templ PetProjectsT() {
 					Based on submitted commits brings generation of changelogs for releases and suggests next semantic version of a release.
     			}
 			}
+			<hr/>
 			@pet_project_section("Discovery Freelancer community")
 			@pet_project(
 				"Fldarkbot - Discord bot to track game objects",
@@ -44,6 +46,7 @@ templ PetProjectsT() {
     			}
 				<img src="https://github.com/darklab8/darklab_fldarkbot/raw/master/docs/index_assets/base_render2.png" />
 			}
+			<hr/>
 			@pet_project(
 				"Fldarklint - Linter for game configs",
 				"https://github.com/darklab8/darklab_fldarklint",
@@ -54,6 +57,7 @@ templ PetProjectsT() {
     			}
 				<img style="max-width: 100%;" src="https://github.com/darklab8/darklab_fldarklint/raw/master/docs/assets/diff_example.png" />
 			}
+			<hr/>
 			@pet_project(
 				"Flconfigs - ORM to access game data",
 				"https://github.com/darklab8/darklab_fldarklint",
@@ -61,15 +65,6 @@ templ PetProjectsT() {
 				@common.TextBlock(){
 					Static typed way to access game data. Contains features not only to read, but to write data back
 					without need to write code for how to write to files.
-    			}
-			}
-			@pet_project(
-				"FLdarkstat - web site to access game data in an online way",
-				"https://github.com/darklab8/darklab_fldarkstat",
-			) {
-				@common.TextBlock(){
-					It is in development to replace functionality of original <a href="https://discoverygc.com/forums/showthread.php?tid=115254">flstat</a>.
-					As its difference it can contains server side extra data not available for regular flstat.					
     			}
 			}
 			</div> 
