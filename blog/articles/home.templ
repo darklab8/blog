@@ -4,10 +4,17 @@ import (
 	"darklab_blog/blog/common"
 )
 
+templ ArticleHeadline(name string, url string) {
+	<div class="article">
+	<a class="article_header" href={ templ.URL(url) }><h2>{ name }</h2></a>
+	{ children... }
+	</div>
+}
 
 templ HomeBody() {
-	<h1>This is a Heading</h1>
-	<p>This is a paragraph. 123.</p> 
+	@ArticleHeadline("Static typed logging","") {
+		
+	}
 }
 
 templ HomeT() {

@@ -12,10 +12,10 @@ templ Html5(title Title) {
 	<title>{ string(title) }</title>
     @highlight.IncludeHighlight()
 	@IncludeCSS("common/reset.css")
-	@IncludeCSS(CommonCSSURL)
+	@IncludeCSS("common/common.css")
+	@IncludeCSS("common/custom.css")
 	</head>
 	<body>
-	
 	{ children... }
 	</body>
 	</html>

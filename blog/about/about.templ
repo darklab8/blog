@@ -46,16 +46,16 @@ templ Contacts() {
     @common.TextHeaderMain(){
         Contacts
     }
-    @common.TextBlock(){
+    @common.TextBlock(){ 
         <ul class="contacts">
-            <li><b>Linkedin:</b><a href="https://www.linkedin.com/in/andrei-novoselov-59bb4a175/">here</a></li>
-            <li><b>Github projects profile:</b> <a href="https://github.com/darklab8">here</a></li>
-            <li><b>Github main profile:</b> <a href="https://github.com/dd84ai">here</a></li>
+            <li><a href="https://www.linkedin.com/in/andrei-novoselov-59bb4a175/"><b>Linkedin</b></a></li>
+            <li><a href="https://github.com/darklab8"><b>Github projects profile</b></a></li>
+            <li><a href="https://github.com/dd84ai"><b>Github main profile</b></a></li>
         </ul> 
     }
 }
 
-templ AboutT() {
+templ AboutT() { 
 	@common.Html5(common.Title("About")) {
 		@common.BlogFrame() {
             @common.IncludeCSS(AboutCSSURL)
@@ -67,7 +67,7 @@ templ AboutT() {
             <hr/>
             @WhyThisSiteWasMade()
             <hr/>
-            @Contacts() 
+            @Contacts()
 		}
 	}
-}
+} 
