@@ -1,6 +1,9 @@
 package article_git_conventional_commits
 
-import "strings"
+import (
+	"strings"
+	"time"
+)
 
 func init() {
 }
@@ -11,4 +14,5 @@ var (
 	(including future us, who forgot the written code in a year).
 	Software development is a team effort, and therefore it requires communicating
 	what we change and why we change it.`, "\n", "")
+	Date = time.Date(2023, time.December, 11, 0, 0, 0, 0, time.UTC)
 )

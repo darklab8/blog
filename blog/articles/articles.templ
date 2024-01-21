@@ -4,13 +4,18 @@ import (
 	"darklab_blog/blog/common"
 	"darklab_blog/blog/common/urls"
 	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
+	"darklab_blog/blog/articles/article_static"
+	"time"
 )
 
-templ ArticleHeadline(name string, intro string, url string) {
-	<div class="article">
+templ ArticleHeadline(name string, intro string, url string, date time.Time) {
+	<div class="article_headline">
 	<a class="article_header" href={ templ.URL(url) }><h2>{ name }</h2></a>
 	<p>{ intro }</p>
+	<footer>
 	@common.TextLink(url){Read more}
+	<span>{ date.Format("2006 January 02") }</span>
+	</footer>
 	</div>
 }
 
@@ -19,11 +24,13 @@ templ HomeBody() {
 		article_git_conventional_commits.Headline,
 		article_git_conventional_commits.Intro,
 		urls.ArticleGitConventionalCommits,
+		article_git_conventional_commits.Date,
 	)
 }
 
 templ HomeT() {
 	@common.Html5(common.Title("Articles")) {
+		@article_static.ArticleCSS()
 		@common.BlogFrame() {
 			@common.Menu()
 			@HomeBody()
