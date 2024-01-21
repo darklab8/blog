@@ -2,6 +2,7 @@ package common
 
 import (
     	"darklab_blog/blog/settings"
+        "darklab_blog/blog/common/urls"
 )
 
 templ NavElem(url string) {
@@ -15,11 +16,11 @@ templ Menu() {
         @NavElem(settings.SiteRoot) {
             Articles
         }
-        @NavElem(settings.SiteRoot + "pet_projects.html") {
+        @NavElem(settings.SiteRoot + urls.PetProjects) {
             Pet projects
         }
-        @NavElem(settings.SiteRoot + "about.html") {
+        @NavElem(settings.SiteRoot + urls.About) {
             About
-        }
+        } 
     </menu>
 }

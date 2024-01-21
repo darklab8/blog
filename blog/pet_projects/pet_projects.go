@@ -1,6 +1,9 @@
 package pet_projects
 
-import "darklab_blog/blog/common/compon"
+import (
+	"darklab_blog/blog/common/compon"
+	"darklab_blog/blog/common/urls"
+)
 
 type PetProjects struct {
 	compon.Component
@@ -9,7 +12,7 @@ type PetProjects struct {
 func NewPetProjects() *PetProjects {
 	return &PetProjects{
 		compon.NewComponent(
-			"pet_projects.html",
+			urls.PetProjects,
 			PetProjectsT(),
 		),
 	}

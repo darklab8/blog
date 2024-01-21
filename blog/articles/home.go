@@ -1,6 +1,9 @@
 package articles
 
-import "darklab_blog/blog/common/compon"
+import (
+	"darklab_blog/blog/common/compon"
+	"darklab_blog/blog/common/urls"
+)
 
 /*
 Article navigation page
@@ -13,7 +16,7 @@ type Home struct {
 func NewHome() *Home {
 	return &Home{
 		compon.NewComponent(
-			"index.html",
+			urls.Home,
 			HomeT(),
 		),
 	}

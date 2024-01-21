@@ -1,6 +1,9 @@
 package about
 
-import "darklab_blog/blog/common/compon"
+import (
+	"darklab_blog/blog/common/compon"
+	"darklab_blog/blog/common/urls"
+)
 
 type About struct {
 	compon.Component
@@ -9,7 +12,7 @@ type About struct {
 func NewAbout() *About {
 	return &About{
 		compon.NewComponent(
-			"about.html",
+			urls.About,
 			AboutT(),
 		),
 	}
