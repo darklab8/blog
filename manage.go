@@ -1,20 +1,11 @@
 package main
 
 import (
-	"darklab_blog/blog/about"
-	"darklab_blog/blog/articles"
-	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
-	"darklab_blog/blog/pet_projects"
-	"darklab_blog/blog/settings"
+	"darklab_blog/blog"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	"os"
-
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_cp"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_os"
 )
 
 type Component interface {
@@ -34,28 +25,6 @@ func main() {
 
 	fmt.Println("act:", action)
 
-	build := func() {
-		os.RemoveAll("build")
-		os.MkdirAll("build", os.ModePerm)
-
-		components := []Component{
-			articles.NewArticles(),
-			about.NewAbout(),
-			pet_projects.NewPetProjects(),
-			article_git_conventional_commits.NewArticle(),
-		}
-
-		for _, comp := range components {
-			comp.Write()
-		}
-
-		folders := utils_os.GetRecursiveDirs(settings.ProjectFolder)
-		for _, folder := range folders {
-			if utils_filepath.Base(folder) == "static" {
-				utils_cp.Dir(folder.ToString(), utils_filepath.Join(settings.ProjectFolder, "build", "static").ToString())
-			}
-		}
-	}
 	web := func() {
 		fs := http.FileServer(http.Dir("./build"))
 		http.Handle("/", fs)
@@ -68,9 +37,9 @@ func main() {
 	}
 	switch Action(action) {
 	case ActionBuild:
-		build()
+		blog.Builder.BuildAll()
 	case ActionWeb:
-		build()
+		blog.Builder.BuildAll()
 		web()
 	default:
 		panic("action is not chosen")

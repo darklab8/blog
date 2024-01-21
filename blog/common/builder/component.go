@@ -1,4 +1,4 @@
-package compon
+package builder
 
 import (
 	"bytes"
@@ -16,30 +16,26 @@ import (
 )
 
 type Component struct {
-	buildpath  utils_types.FilePath
+	relpath    utils_types.FilePath
 	templ_comp templ.Component
 }
 
 func NewComponent(
-	buildpath utils_types.FilePath,
+	relpath utils_types.FilePath,
 	templ_comp templ.Component,
-) Component {
-	return Component{
-		buildpath:  buildpath,
+) *Component {
+	return &Component{
+		relpath:    relpath,
 		templ_comp: templ_comp,
 	}
 }
 
-const (
-	Build utils_types.FilePath = "build"
-)
-
-func (h *Component) Write() {
+func (h *Component) Write(buildpath utils_types.FilePath) {
 	buf := bytes.NewBuffer([]byte{})
 
 	h.templ_comp.Render(context.Background(), buf)
 
-	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, Build, h.buildpath)
+	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, buildpath, h.relpath)
 	haveParentFoldersCreated(abs_buildpath)
 
 	err := os.WriteFile(abs_buildpath.ToString(), gohtml.FormatBytes(buf.Bytes()), os.ModePerm)
