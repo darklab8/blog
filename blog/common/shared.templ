@@ -3,7 +3,6 @@ package common
 import (
     	"darklab_blog/blog/common/highlight"
 		"darklab_blog/blog/common/common_static"
-		"darklab_blog/blog/settings"
 )
 
 templ Html5(title Title) {
@@ -20,10 +19,6 @@ templ Html5(title Title) {
 	{ children... }
 	</body>
 	</html>
-}
-
-templ IncludeCSS(path string) {
-	<link rel="stylesheet" href={ settings.StaticRoot + path}></link>
 }
 
 templ BlogFrame() {

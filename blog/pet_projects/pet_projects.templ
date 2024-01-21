@@ -21,7 +21,6 @@ templ pet_project(name string, url string) {
 templ PetProjectsT() {
 	@common.Html5(common.Title("Pet projects")) {
 		@common.BlogFrame() {
-			@common.IncludeCSS("pet_projects/pet_projects.css")
 			@pet_projects_static.PetProjectsCSS()
 			@common.Menu()
 			<div class="pet_projects">
