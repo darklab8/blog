@@ -2,6 +2,7 @@ package about
 
 import (
 	"darklab_blog/blog/common"
+    "darklab_blog/blog/about/about_static"
     "darklab_blog/blog/settings"
 )
 
@@ -58,7 +59,7 @@ templ Contacts() {
 templ AboutT() { 
 	@common.Html5(common.Title("About")) {
 		@common.BlogFrame() {
-            @common.IncludeCSS(AboutCSSURL)
+            @about_static.AboutCSS()
 			@common.Menu()
             @common.PageHeader(){
                 About
