@@ -46,3 +46,9 @@ templ TextBlock() {
 	{ children... } 
 	</p>
 }
+
+templ TextLink(url string) {
+	<a class="text_link" href={ templ.URL(url) }>
+	{ children... }
+	</a>
+}

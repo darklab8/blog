@@ -1,0 +1,1 @@
+package article_static_typed_logging

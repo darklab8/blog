@@ -9,14 +9,14 @@ import (
 Article navigation page
 */
 
-type Home struct {
+type Articles struct {
 	compon.Component
 }
 
-func NewHome() *Home {
-	return &Home{
+func NewArticles() *Articles {
+	return &Articles{
 		compon.NewComponent(
-			urls.Home,
+			urls.Articles,
 			HomeT(),
 		),
 	}

@@ -1,7 +1,8 @@
 package urls
 
 const (
-	Home = "index.html"
+	Articles                      = "index.html"
+	ArticleGitConventionalCommits = "article/git_conventional_commits.html"
 
 	About = "about.html"
 

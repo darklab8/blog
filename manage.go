@@ -38,7 +38,7 @@ func main() {
 		os.MkdirAll("build", os.ModePerm)
 
 		components := []Component{
-			articles.NewHome(),
+			articles.NewArticles(),
 			about.NewAbout(),
 			pet_projects.NewPetProjects(),
 		}

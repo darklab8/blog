@@ -1,0 +1,32 @@
+package articles
+
+import (
+	"darklab_blog/blog/common"
+	"darklab_blog/blog/common/urls"
+	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
+)
+
+templ ArticleHeadline(name string, intro string, url string) {
+	<div class="article">
+	<a class="article_header" href={ templ.URL(url) }><h2>{ name }</h2></a>
+	<p>{ intro }</p>
+	@common.TextLink(url){Read more}
+	</div>
+}
+
+templ HomeBody() {
+	@ArticleHeadline(
+		article_git_conventional_commits.Headline,
+		article_git_conventional_commits.Intro,
+		urls.ArticleGitConventionalCommits,
+	)
+}
+
+templ HomeT() {
+	@common.Html5(common.Title("Articles")) {
+		@common.BlogFrame() {
+			@common.Menu()
+			@HomeBody()
+		}
+	}
+}
