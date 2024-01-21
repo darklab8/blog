@@ -1,6 +1,8 @@
 package article_git_conventional_commits
 
 import (
+	"darklab_blog/blog/common/compon"
+	"darklab_blog/blog/common/urls"
 	"strings"
 	"time"
 )
@@ -16,3 +18,16 @@ var (
 	what we change and why we change it.`, "\n", "")
 	Date = time.Date(2023, time.December, 11, 0, 0, 0, 0, time.UTC)
 )
+
+type Article struct {
+	compon.Component
+}
+
+func NewArticle() *Article {
+	return &Article{
+		compon.NewComponent(
+			urls.ArticleGitConventionalCommits,
+			ArticleT(),
+		),
+	}
+}

@@ -3,6 +3,7 @@ package main
 import (
 	"darklab_blog/blog/about"
 	"darklab_blog/blog/articles"
+	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"darklab_blog/blog/pet_projects"
 	"darklab_blog/blog/settings"
 	"flag"
@@ -41,6 +42,7 @@ func main() {
 			articles.NewArticles(),
 			about.NewAbout(),
 			pet_projects.NewPetProjects(),
+			article_git_conventional_commits.NewArticle(),
 		}
 
 		for _, comp := range components {
