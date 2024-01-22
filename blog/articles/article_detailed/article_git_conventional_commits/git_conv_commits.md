@@ -3,7 +3,7 @@
 **Standardized communicating with other devs through git**
 
 <p align="center">
-  <img src="../assets/logo.png" style="width: 200px; height: 200px;"/>
+  <img src="{{.StaticRoot}}article_commits/logo.png" style="width: 200px; height: 200px;"/>
 </p>
 
 ## Intro
@@ -17,11 +17,11 @@ As an [example](https://github.com/torvalds/linux/commit/2099306c4e1d5d772b150ae
 It is hard writing good atomic commit messages though. It takes some getting used to operating [git with best practices](https://deepsource.com/blog/git-best-practices).
 
 But how can we ensure that every member will be adhering to such practices? Or even how to remember to do it yourself?
-The answer is, we can enforce it with [linter](../) 😄
+The answer is, we can enforce it with [linter]({{.AutogitURL}}) 😄
 
 ## Standard v1.0.0
 
-[The tool - autogit](../) helps enforcing [git conventional commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) standard.
+[The tool - autogit]({{.AutogitURL}}) helps enforcing [git conventional commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) standard.
 
 It operates through [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) of your repository. Once linked, it will enforce itself on git commit at any your Git GUI tool.
 
@@ -59,7 +59,8 @@ Reviewed-by: Z
 Refs: #123
 ```
 
-https://github.com/darklab8/darklab_autogit/assets/20555918/44a05f9b-393f-4f6c-aea5-f4732f4fde73
+<video src="{{.StaticRoot}}article_commits/video_instruction.mp4" controls="controls" muted="muted" style="max-height:640px; min-height: 200px">
+</video>
 
 ## How it benefits you?
 
@@ -71,18 +72,18 @@ https://github.com/darklab8/darklab_autogit/assets/20555918/44a05f9b-393f-4f6c-a
 
 ```
 $ git blame main.go
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100  1) /*
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100  2) Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100  3) */
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100  4) package main
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100  5)
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100  1) /*
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100  2) Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100  3) */
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100  4) package main
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100  5)
 d4745237 (dd84ai 2023-12-10 00:09:35 +0100  6) import (
 d4745237 (dd84ai 2023-12-10 00:09:35 +0100  7)  "autogit/interface_cli"
 d4745237 (dd84ai 2023-12-10 00:09:35 +0100  8) )
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100  9)
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100 10) func main() {
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100  9)
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100 10) func main() {
 def7cc5c (dd84ai 2023-10-21 23:30:37 +0200 11)  interface_cli.Execute()
-^3e43b5c (dd84ai 2022-12-10 19:54:42 +0100 12) }
+3e43b5c  (dd84ai 2022-12-10 19:54:42 +0100 12) }
 
 $ git log 3e43b5c
 commit 3e43b5c006406b75afc8ca083262a71c462fd9d0
@@ -92,25 +93,25 @@ Date:   Sat Dec 10 19:54:42 2022 +0100
     chore: init project with GPL license
 ```
 
-- u can use tools made for git conventional commits standard parsing,
+u can use tools made for git conventional commits standard parsing,
   that will generate changelogs of changes for product releases!
-  - This feature is available in [autogit](../)
+(This feature is available in [autogit]({{.AutogitURL}}))
 
 example of generated changelog:
-![changelog example](../assets/changelog_example.png)
+![changelog example]({{.StaticRoot}}article_commits/changelog_example.png)
 
 - Your repository will look professionally with neat git commits, git tags, releases and changelogs! 😎
 
 How can we enforce it for all developers of the repository though?
 
-- By using [CI run with autogit](../.github/workflows/validate.yml) for every commit push or pull request!
+- By using [CI run with autogit]({{.AutogitURL}}/.github/workflows/validate.yml) for every commit push or pull request!
 
 ## What makes autogit different?
 
 There are many [tools for conventional commits](https://www.conventionalcommits.org/en/about/)
 
 Autogit is different by having next things:
-- It was written with [CI usage in mind](../.github/workflows/validate.yml)
+- It was written with [CI usage in mind]({{.AutogitURL}}/.github/workflows/validate.yml)
   - it is easy to insert it into any other CI instrument with the example.
   - just ensure you clone a repository with the history of your tags and commits 😉
 - as a Golang compiled binary it does not require you to install node.js of a specific version or any other heavy interpreter for its running in CI or at the local dev machine.
@@ -129,4 +130,4 @@ Autogit is different by having next things:
 
 ## Where next?
 
-- [Getting started with autogit](../README.md)
+- [Getting started with autogit]({{.AutogitURL}})

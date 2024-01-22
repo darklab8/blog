@@ -1,3 +1,5 @@
 *_templ.go
 build/
 go.work*
+check_markdown.html
+body2.templ_disabled

@@ -3,7 +3,7 @@ package pet_projects
 
 import (
 	"darklab_blog/blog/common"
-	"darklab_blog/blog/pet_projects/pet_projects_static"
+	"darklab_blog/blog/pet_projects/pet_projects_urls"
 )
 
 templ pet_project_section(name string) {
@@ -21,13 +21,22 @@ templ pet_project(name string, url string) {
 templ PetProjectsT() {
 	@common.Html5(common.Title("Pet projects")) {
 		@common.BlogFrame() {
-			@pet_projects_static.PetProjectsCSS()
 			@common.Menu()
+			<style>
+			hr {
+				margin-top: 30px;
+				margin-bottom: 30px;
+			}
+
+			.pet_project_section_header {
+				color: gray;
+			}
+			</style>
 			<div class="pet_projects">
 			@pet_project_section("Tooling")
 			@pet_project(
 				"Autogit - Git conventional commits linter",
-				"https://github.com/darklab8/darklab_autogit",
+				pet_projects_urls.Autogit,
 			) {
 				@common.TextBlock(){
 					an instrument to enforce git conventional commits to submitted commits. CI friendly and without any dependencies.
@@ -61,7 +70,7 @@ templ PetProjectsT() {
 			<hr/>
 			@pet_project(
 				"Flconfigs - ORM to access game data",
-				"https://github.com/darklab8/darklab_fldarklint",
+				"https://github.com/darklab8/darklab_flconfigs",
 			) {
 				@common.TextBlock(){
 					Static typed way to access game data. Contains features not only to read, but to write data back
