@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"os"
 
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
 	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/html"
 	"github.com/gomarkdown/markdown/parser"
@@ -25,17 +26,6 @@ func MdToHTML(md []byte) []byte {
 	return markdown.Render(doc, renderer)
 }
 
-func HtmlFromMdFile(path string) ([]byte, error) {
-	mds, err := os.ReadFile(path)
-	if logus.Log.CheckError(err, "failed to read file") {
-		return nil, err
-	}
-
-	md := []byte(mds)
-	html := MdToHTML(md)
-	return html, nil
-}
-
 func TemplateHtml(html string, input any) (string, error) {
 	tmpl, err := template.New("test").Parse(html)
 	if logus.Log.CheckError(err, "failed to template") {
@@ -48,4 +38,17 @@ func TemplateHtml(html string, input any) (string, error) {
 	}
 	result := buf.String()
 	return result, nil
+}
+
+func ReadMarkdownAndTemplate(path utils_types.FilePath, values any) []byte {
+	var err error
+	data1, err := os.ReadFile(path.ToString())
+	logus.Log.CheckFatal(err, "failed to read git_conv_commits.md")
+
+	data2, err := TemplateHtml(string(data1), values)
+	logus.Log.CheckFatal(err, "failed to template git_conv_commits.md")
+
+	data3 := MdToHTML([]byte(data2))
+
+	return data3
 }

@@ -4,8 +4,6 @@ import (
 	"darklab_blog/blog/common/markdowner"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
 	"darklab_blog/blog/settings"
-	"darklab_blog/blog/settings/logus"
-	"os"
 	"strings"
 	"time"
 
@@ -19,19 +17,13 @@ type Vars struct {
 }
 
 func init() {
-	var err error
-	data1, err := os.ReadFile(string(utils_filepath.Join(utils.GetCurrentFolder(), "git_conv_commits.md").ToString()))
-	logus.Log.CheckFatal(err, "failed to read git_conv_commits.md")
-
-	data2, err := markdowner.TemplateHtml(string(data1), Vars{
-		StaticRoot: settings.StaticRoot,
-		AutogitURL: pet_projects_urls.Autogit,
-	})
-	logus.Log.CheckFatal(err, "failed to template git_conv_commits.md")
-
-	data3 := markdowner.MdToHTML([]byte(data2))
-
-	Body = data3
+	Body = markdowner.ReadMarkdownAndTemplate(
+		utils_filepath.Join(utils.GetCurrentFolder(), "git_conv_commits.md"),
+		Vars{
+			StaticRoot: settings.StaticRoot,
+			AutogitURL: pet_projects_urls.Autogit,
+		},
+	)
 }
 
 var (
