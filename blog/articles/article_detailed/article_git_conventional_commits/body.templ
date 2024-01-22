@@ -7,6 +7,11 @@ import (
 templ ArticleT() {
     @common.Html5(common.Title("Git conventional commit")) {
 		@common.BlogFrame() {
+			<style>
+			img {
+				max-width: 800px;
+			}
+			</style>
 			@common.Menu()
 			@templ.Raw(string(Body))
 		} 
