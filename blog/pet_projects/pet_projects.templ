@@ -3,6 +3,7 @@ package pet_projects
 
 import (
 	"darklab_blog/blog/common"
+	"darklab_blog/blog/settings"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
 )
 
@@ -38,10 +39,35 @@ templ PetProjectsT() {
 				"Autogit - Git conventional commits linter",
 				pet_projects_urls.Autogit,
 			) {
+				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ settings.StaticRoot + "pet_projects/autogit_logo.png" } alt="autogit logo"/>
 				@common.TextBlock(){
-					an instrument to enforce git conventional commits to submitted commits. CI friendly and without any dependencies.
-					Based on submitted commits brings generation of changelogs for releases and suggests next semantic version of a release.
+					The instrument to enforce git conventional commits to submitted commits through git hooks. CI friendly and without any dependencies.
+					Based on submitted commits generates changelogs for releases and suggests next semantic version of a release.
+					Based on quickly observable feedback from generated changelog, the tool encourages writing better commits further.
     			}
+				@common.TextBlock(){
+					The goal of the tool is to decrease toal on writing documentation,
+					and achieving better communication between project maintainers and its end users with minimal effort.
+					As convinient side effect, it will make your repositories more professionally looking,
+					because it encourages you making descriptive commits/tags/releases ^_^.
+				}
+				
+			}
+			@pet_project(
+				"Blog - static site generator",
+				pet_projects_urls.Blog,
+			) {
+				@common.TextBlock(){
+					Personal web site.
+    			}
+				@common.TextBlock(){
+					For comfortable way with having everything auto validated,
+					<a href="https://github.com/a-h/templ">templ go</a> is used to generate static assets of the site.
+					To simplify articles writing further markdown transpiling to html was added and augmented by golang text/template.
+					The made choices helped to achieve 100% customization to any design desires.
+					Fairly small amount of dependencies should help for long term maintenance of the project, as it is aimed for many years of life.
+				}
+				
 			}
 			<hr/>
 			@pet_project_section("Discovery Freelancer community")
@@ -50,11 +76,16 @@ templ PetProjectsT() {
 				"https://github.com/darklab8/darklab_fldarkbot",
 			) {
 				@common.TextBlock(){
-					Discord bot implemented through usage of Cobra-CLI.
-					That made pressence of Discord tied code minimized and therefore easy to unit test locally.
-					The bot allows tracking players, player bases and forum records.
+					Discord bot implemented for game community Freelancer Discovery.
+					The bot offers tracking game entities like Players, Bases, Forum records in Discord.
     			}
 				<img src="https://github.com/darklab8/darklab_fldarkbot/raw/master/docs/index_assets/base_render2.png" />
+				@common.TextBlock(){
+					The project is made high coverage unit testable, through minimizing footprint of
+					Discord pressence to a very small isolated code places. Input out of Discord is intercepted and redirect to be handled by
+					<a href="https://github.com/spf13/cobra">Cobra CLI</a>. The action is handled and rendered by CLI back.
+					Thus we have full unit testing local capability for majority of functionality without requirement for any end-to-end testing shenanigans.
+				}
 			}
 			<hr/>
 			@pet_project(
@@ -62,9 +93,12 @@ templ PetProjectsT() {
 				"https://github.com/darklab8/darklab_fldarklint",
 			) {
 				@common.TextBlock(){
-					Inspired by python black formatter, it formats everything to uniform way.
-					As extra features it was originally made to denormalize data and having available human readable namings to config entities.
+					Inspired by python black formatter, it formats Freelancer config files to uniform way.
     			}
+				@common.TextBlock(){
+					Developers of Freelancer mods make changes to file configs directly.
+					As extra features it was originally made to denormalize data and having available human readable namings to config entities.
+				}
 				<img style="max-width: 100%;" src="https://github.com/darklab8/darklab_fldarklint/raw/master/docs/assets/diff_example.png" />
 			}
 			<hr/>
@@ -73,8 +107,9 @@ templ PetProjectsT() {
 				"https://github.com/darklab8/darklab_flconfigs",
 			) {
 				@common.TextBlock(){
-					Static typed way to access game data. Contains features not only to read, but to write data back
-					without need to write code for how to write to files.
+					ORM for reading game config files data and writing it back without an effort to write code for file writing.
+					The ORM provides static typed access to the data, the code is abe to distinguish int/str/float types. 
+					The project is reused as library for Fldarklint and Fldarkstat.
     			}
 			}
 			</div> 
