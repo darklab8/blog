@@ -12,12 +12,18 @@ templ Intro() {
     } 
     <img class="myphoto" src={ settings.StaticRoot + "about/myphoto.png" } alt="my photo"/>
     @common.TextBlock(){
-        Hi there! My name is Andrei Novoselov. I am DevOps engineer / backend developer / software developer.
-        I have interests in web dev and minecraft ^_^.
+        Hi there! My name is Andrei Novoselov.
     }
     @common.TextBlock(){
-        I travel software development world in search of perfection - how to write easiest to comprehend code,
-        which is at the same time the most documented, easiest to extend, the most quality and not overnengineered at the same time.
+        I am DevOps engineer, which thinks he is Backend developer.
+        Or Backend developer which thinks he is DevOps engineer.
+        In reality i just wish to develop minecraft mods. ^_^.
+    }
+    @common.TextBlock(){
+        I travel software development world in search of perfection - how to write easiest to maintain code.
+        I reach that through seeking automated forms of validations, from static typing to unit testing and further.
+        At the same time getting the ways of how the code should be structured for easier comprehension, testability, extendability
+        and managing to be not overengineering it in addition. There are a lot of things requiring to find golden balance between them.
     } 
     @common.TextBlock(){
         I like web tech due to it being... cross platform by default ^_^ and requiring no installations from end user.
@@ -25,21 +31,11 @@ templ Intro() {
         made me becoming DevOps engineer.
     }
     @common.TextBlock(){
-        I have few desires i wish to fulfill.
+        I have several goals i wish to fulfill.
         <ul>
-        <li>To improve myself to a level of writing books for other programmers, and having them written.</li>
-        <li>And having developed some quality minecraft mods ^_^.</li>
+        <li>To improve myself to a level of writing books for other software developers.</li>
+        <li>And having developed some quality minecraft mods which will be in demand ^_^.</li>
         </ul>
-    }
-}
-
-templ WhyThisSiteWasMade() {
-    @common.TextHeaderMain(){
-        Why this site was made
-    }
-    @common.TextBlock(){
-        Any book writing becomes with something smaller, like writing articles ^_^. I accumulated at this point enough of articles written around in different
-        formats around that i wish to start keeping them in cerntralized way in a single place.
     }
 }
 
@@ -65,8 +61,6 @@ templ AboutT() {
                 About
             }
             @Intro()
-            <hr/>
-            @WhyThisSiteWasMade()
             <hr/>
             @Contacts()
 		}
