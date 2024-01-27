@@ -48,7 +48,7 @@ func haveParentFoldersCreated(buildpath utils_types.FilePath) {
 	err := os.MkdirAll(folder_path, os.ModePerm)
 	logus.Log.CheckError(err,
 		"haveParentFoldersCreated finished",
-		logus_core.Any("folderpath", folder_path),
-		logus_core.Any("path", path),
+		logus_core.String("folderpath", folder_path),
+		logus_core.String("path", path),
 	)
 }

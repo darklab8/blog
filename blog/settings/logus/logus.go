@@ -1,10 +1,7 @@
 package logus
 
 import (
-	"darklab_blog/blog/settings/envs"
-
 	"github.com/darklab8/darklab_goutils/goutils/logus_core"
-	"github.com/darklab8/darklab_goutils/goutils/logus_core/logus_types"
 )
 
 var (
@@ -12,9 +9,5 @@ var (
 )
 
 func init() {
-
-	Log = logus_core.NewLogger(
-		logus_types.LogLevel(envs.LogLevel),
-		logus_types.EnableJsonFormat(envs.LogTurnJSONLogging),
-		logus_types.EnableFileShowing(envs.LogShowFileLocations))
+	Log = logus_core.NewLogger("darkblog")
 }
