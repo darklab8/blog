@@ -54,6 +54,22 @@ templ PetProjectsT() {
 				
 			}
 			@pet_project(
+				"Typelog - Typed structured logging",
+				pet_projects_urls.GoTypelog,
+			) {
+				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ settings.StaticRoot + "typelog/typelog.png"} alt="autogit logo"/>
+				@common.TextBlock(){
+					Brings easy refactorable jsonable logs, context rich with key values.
+					JSON format is important for modern logging ecosystems as it is parsable out of the box without any regex.
+					Context rich by types logs with uniform kept keys across the code, help to keep clean Domain language across an application
+					and easily refactoring in one command.
+					Libraries were ensured to try being written in the way were we at maximum protect ourserlves from pressence of `Any` stuff
+					and therefore accidental shooting into our own foots. Exists as <a href={ templ.URL(pet_projects_urls.GoTypelog) }>golang</a>
+					and <a href={ templ.URL(pet_projects_urls.PyTypelog) }>python</a> versions
+    			}				
+			}
+			@pet_project_section("Personal")
+			@pet_project(
 				"Blog - static site generator",
 				pet_projects_urls.Blog,
 			) {
