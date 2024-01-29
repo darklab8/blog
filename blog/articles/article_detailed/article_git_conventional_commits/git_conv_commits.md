@@ -68,7 +68,7 @@ Refs: #123
   - each code line is easier to understand why was added
 - u can utilize `git blame` on your git files like that
   for each code line, u will see the author of the line and exact message why it was added
-  - through linked git commit you will be able to access hopefully descriptive git commit why this change was made
+  - through linked git commit you will be able to access hopefully descriptive git commit why a change was made
 
 ```
 $ git blame main.go
