@@ -8,7 +8,7 @@
 
 ## Intro
 
-With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs. The alternative to define regex for parsing logs is rather dreadful fragile experience limited in its nature.
+With modern logging systems able to parse JSON out of the box, we need to define easily jsonable logs. The alternative to define regex for parsing logs is a rather dreadful fragile experience limited in its nature.
 Known solutions do not do it consistently and in a type safe way. It is easy to shoot into your own legs with them.
 
 Structured logging became part of std library [for golang]((https://go.dev/blog/slog)),
@@ -153,8 +153,8 @@ class TestExamples(unittest.TestCase):
 - You keep consistent same keys for same variables
 - Easier to refactor logs, you can rename them, change keys or parsing rules in one click or few code lines across application
 - Easier refactoring, brings better Domain language defined across your application
-- You will be able easily to query your JSON logs in modern logging solutions, with capturing more useful logs in a query because of necessary identifiers present consistently.
+- You will be able to query your JSON logs in modern logging solutions, with capturing more useful logs in a query because of necessary identifiers present consistently.
 
 ## Concluding words
 
-Once you tap into the power of context rich logging, you gain another powerful tool for easier program debugging on runtime. The power of it should not be understimated. Some problems are detectable only at runtime, only in production. It is univetable. It is very great to have very useful logs as source of data to investigate when such problems appear.
+Once you tap into the power of context rich logging, you gain another powerful tool for easier program debugging on runtime. The power of it should not be understimated. Some problems are detectable only at runtime, only in production. It is univetable. It is very nice to have useful logs as source of data to investigate when such problems appear.
