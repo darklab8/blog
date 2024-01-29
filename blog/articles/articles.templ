@@ -4,6 +4,7 @@ import (
 	"darklab_blog/blog/common"
 	"darklab_blog/blog/common/urls"
 	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
+	"darklab_blog/blog/articles/article_detailed/article_static_typed_logging"
 	"darklab_blog/blog/articles/article_static"
 	"time"
 )
@@ -26,6 +27,12 @@ templ HomeBody() {
 		urls.ArticleGitConventionalCommits,
 		article_git_conventional_commits.Date,
 	)
+	@ArticleHeadline(
+		article_static_typed_logging.Headline,
+		article_static_typed_logging.Intro,
+		urls.ArticleTypelog,
+		article_static_typed_logging.Date,
+	)
 }
 
 templ HomeT() {
@@ -34,6 +41,6 @@ templ HomeT() {
 		@common.BlogFrame() {
 			@common.Menu()
 			@HomeBody()
-		}
+		} 
 	}
 }

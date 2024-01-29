@@ -1,0 +1,19 @@
+package article_static_typed_logging
+
+import (
+	"darklab_blog/blog/common"
+)
+
+templ ArticleT() {
+    @common.Html5(common.Title("Typelog - type safe structured logging")) {
+		@common.BlogFrame() {
+			<style>
+			img {
+				max-width: 800px;
+			}
+			</style>
+			@common.Menu()
+			@templ.Raw(string(Body))
+		}
+	}
+}

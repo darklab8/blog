@@ -123,11 +123,11 @@ Autogit is different by having next things:
 
 ## Recap
 
-- We learned that communicating our work to other developers (and yourself in a year) is important.
+- Communicating our work to other developers (and yourself in a year) is important.
 - Git serves the ultimate source of truth that will remain with us through years
 - For Git commits to be a more readable history, we can utilize `git conventional commits` enforced by linters.
 - We can use the history of `git conventional commits` to generate automatically changelogs for releases.
 
-## Where next?
+## Getting started with autogit
 
-- [Getting started with autogit]({{.AutogitURL}})
+- [Repository link]({{.AutogitURL}})
