@@ -157,4 +157,4 @@ class TestExamples(unittest.TestCase):
 
 ## Concluding words
 
-Once you tap into the power of context rich logging, you gain another powerful tool for easier program debugging on runtime. The power of it should not be understimated. Some problems are detectable only at runtime, only in production. It is univetable. It is very nice to have useful logs as source of data to investigate when such problems appear.
+Once you tap into the power of context rich logging, you gain another powerful tool for easier program debugging on runtime. The power of it should not be understimated. Some problems are detectable only at runtime, only in production. It is univetable. It is very nice to have useful logs as source of data to investigate when such problems appear. Also, better logging brings easier time debugging unit tests as well, especially if turning third-party libraries to a warning level and turning on your logging level to debug during test runs.
