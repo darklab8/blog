@@ -21,17 +21,19 @@ templ ArticleHeadline(name string, intro string, url string, date time.Time) {
 }
 
 templ HomeBody() {
-	@ArticleHeadline(
-		article_git_conventional_commits.Headline,
-		article_git_conventional_commits.Intro,
-		urls.ArticleGitConventionalCommits,
-		article_git_conventional_commits.Date,
-	)
+	// ORDER BY NEWEST TO TOP
+	// TODO: add autosorting
 	@ArticleHeadline(
 		article_static_typed_logging.Headline,
 		article_static_typed_logging.Intro,
 		urls.ArticleTypelog,
 		article_static_typed_logging.Date,
+	)
+	@ArticleHeadline(
+		article_git_conventional_commits.Headline,
+		article_git_conventional_commits.Intro,
+		urls.ArticleGitConventionalCommits,
+		article_git_conventional_commits.Date,
 	)
 }
 
