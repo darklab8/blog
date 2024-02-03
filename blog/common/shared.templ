@@ -8,13 +8,15 @@ import (
 
 templ LightSwitch(gp types.GlobalParams, pagepath string) {
 	<style>
-		#light_switch {
+		.light_switch {
 			position: fixed;
 			top: 0;
 			right: 0;
-			padding: 50px;
-			width: 200px;
-			height: 200px;
+			padding: 3%;
+		}
+		#light_switch {
+			width: 100px;
+			height: 100px;
 		}
 	</style>
 	switch gp.Theme {
@@ -26,16 +28,20 @@ templ LightSwitch(gp types.GlobalParams, pagepath string) {
 				}
 			</style>
 
+			<div class="light_switch">
 			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath ) } >
 			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light.png" }/>
 			</a>
+			</div>
 		case types.ThemeLight:
 			<style>
 			</style>
 
+			<div class="light_switch">
 			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath) }>
 			<img id="light_switch"  src={ gp.StaticRoot + "common/switch_to_dark.png" }/>
 			</a>
+			</div>
 	}
 }
 
