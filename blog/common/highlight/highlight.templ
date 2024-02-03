@@ -1,7 +1,16 @@
 package highlight
 
-templ IncludeHighlight() {
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"></link>
+import (
+    "darklab_blog/blog/common/types"
+)
+
+templ IncludeHighlight(gp types.GlobalParams) {
+    switch gp.Theme {
+		case types.ThemeDark:
+            <link rel="stylesheet" href={ gp.StaticRoot + "common/dracula.css" }></link>
+        case types.ThemeLight:
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"></link>
+    }
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <!-- and it's easy to individually load additional languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>

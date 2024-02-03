@@ -50,7 +50,7 @@ templ Html5(gp types.GlobalParams, pagepath string, title Title) {
 	<html>
 	<head>
 	<title>{ string(title) }</title>
-    @highlight.IncludeHighlight()
+    @highlight.IncludeHighlight(gp)
 	@common_static.ResetCSS()
 	@common_static.CommonCSS()
 	@common_static.CustomCSS()
