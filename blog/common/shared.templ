@@ -21,13 +21,6 @@ templ LightSwitch(gp types.GlobalParams, pagepath string) {
 	</style>
 	switch gp.Theme {
 		case types.ThemeDark:
-			<style>
-				body {
-					background: #000;
-					color: #fff;
-				}
-			</style>
-
 			<div class="light_switch">
 			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath ) } >
 			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light.png" }/>
@@ -50,6 +43,26 @@ templ Html5(gp types.GlobalParams, pagepath string, title Title) {
 	<html>
 	<head>
 	<title>{ string(title) }</title>
+	switch gp.Theme {
+		case types.ThemeDark:
+			<style>
+			:root {
+				--color_hover_link: #4183C4;
+				--color_link: #91C3F5;
+			}
+			body {
+				background: #000;
+				color: #fff;
+			}
+			</style>
+		case types.ThemeLight:
+			<style>
+			:root {
+				--color_hover_link: #4183C4;
+				--color_link: #33618E;
+			}
+			</style>
+	}
     @highlight.IncludeHighlight(gp)
 	@common_static.ResetCSS()
 	@common_static.CommonCSS()

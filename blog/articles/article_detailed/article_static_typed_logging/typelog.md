@@ -11,7 +11,7 @@
 With modern logging systems able to parse JSON out of the box, we need to define easily jsonable logs. The alternative to define regex for parsing logs is a rather dreadful fragile experience limited in its nature.
 Known solutions do not do it consistently and in a type safe way. It is easy to shoot into your own legs with them.
 
-Structured logging became part of std library [for golang]((https://go.dev/blog/slog)),
+Structured logging became part of std library [for golang](https://go.dev/blog/slog) ,
 as well part of official documentation [for python](https://docs.python.org/3/howto/logging-cookbook.html#implementing-structured-logging). Golang managed to reach a rather big comfort out of the box, but it has some parts missing... like type safety. U can insert Any objects into logging msgs easily. [Python std way](https://docs.python.org/3/howto/logging-cookbook.html#implementing-structured-logging) is in even more raw state. And they all lack a way to do it in a type safe way.
 
 For reading [what is type safety, check here](http://www.pl-enthusiast.net/2014/08/05/type-safety/) (archived [html]({{.StaticRoot}}typelog/what_is_type safety_ThePLEnthusiast.html) / [pdf]({{.StaticRoot}}typelog/what_is_type safety_ThePLEnthusiast.pdf))
