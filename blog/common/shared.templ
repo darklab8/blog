@@ -6,17 +6,7 @@ import (
 	"darklab_blog/blog/common/types"
 )
 
-templ Html5(gp types.GlobalParams,title Title) {
-	<!DOCTYPE html>
-	<html>
-	<head>
-	<title>{ string(title) }</title>
-    @highlight.IncludeHighlight()
-	@common_static.ResetCSS()
-	@common_static.CommonCSS()
-	@common_static.CustomCSS()
-	</head>
-	<body>
+templ LightSwitch(gp types.GlobalParams, pagepath string) {
 	<style>
 		#light_switch {
 			position: fixed;
@@ -38,7 +28,7 @@ templ Html5(gp types.GlobalParams,title Title) {
 				}
 			</style>
 
-			<a href={ templ.URL(gp.OppositeThemeRoot ) } >
+			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath ) } >
 			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light.png" }/>
 			</a>
 		case types.ThemeLight:
@@ -49,10 +39,24 @@ templ Html5(gp types.GlobalParams,title Title) {
 				}
 			</style>
 
-			<a href={ templ.URL(gp.OppositeThemeRoot ) }>
+			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath) }>
 			<img id="light_switch"  src={ gp.StaticRoot + "common/switch_to_dark.png" }/>
 			</a>
 	}
+}
+
+templ Html5(gp types.GlobalParams, pagepath string, title Title) {
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<title>{ string(title) }</title>
+    @highlight.IncludeHighlight()
+	@common_static.ResetCSS()
+	@common_static.CommonCSS()
+	@common_static.CustomCSS()
+	</head>
+	<body>
+	@LightSwitch(gp, pagepath)
 	{ children... }
 	</body>
 	</html>

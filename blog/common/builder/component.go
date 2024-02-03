@@ -17,16 +17,16 @@ import (
 )
 
 type Component struct {
-	relpath    utils_types.FilePath
-	templ_comp func(gp types.GlobalParams) templ.Component
+	pagepath   utils_types.FilePath
+	templ_comp func(gp types.GlobalParams, pagepath string) templ.Component
 }
 
 func NewComponent(
-	relpath utils_types.FilePath,
-	templ_comp func(gp types.GlobalParams) templ.Component,
+	pagepath utils_types.FilePath,
+	templ_comp func(gp types.GlobalParams, pagepath string) templ.Component,
 ) *Component {
 	return &Component{
-		relpath:    relpath,
+		pagepath:   pagepath,
 		templ_comp: templ_comp,
 	}
 }
@@ -34,9 +34,9 @@ func NewComponent(
 func (h *Component) Write(gp types.GlobalParams) {
 	buf := bytes.NewBuffer([]byte{})
 
-	h.templ_comp(gp).Render(context.Background(), buf)
+	h.templ_comp(gp, string(h.pagepath)).Render(context.Background(), buf)
 
-	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, gp.Buildpath, h.relpath)
+	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, gp.Buildpath, h.pagepath)
 	haveParentFoldersCreated(abs_buildpath)
 
 	err := os.WriteFile(abs_buildpath.ToString(), gohtml.FormatBytes(buf.Bytes()), os.ModePerm)

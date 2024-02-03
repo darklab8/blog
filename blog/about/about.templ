@@ -54,8 +54,8 @@ templ Contacts() {
     }
 }
 
-templ AboutT(gp types.GlobalParams) { 
-	@common.Html5(gp,common.Title("About")) {
+templ AboutT(gp types.GlobalParams, pagepath string) { 
+	@common.Html5(gp,pagepath,common.Title("About")) {
 		@common.BlogFrame() {
             @about_static.AboutCSS()
 			@common.Menu(gp)

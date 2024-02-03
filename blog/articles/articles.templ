@@ -38,8 +38,8 @@ templ HomeBody() {
 	)
 }
 
-templ HomeT(gp types.GlobalParams) {
-	@common.Html5(gp,common.Title("Articles")) {
+templ HomeT(gp types.GlobalParams, pathpath string) {
+	@common.Html5(gp, pathpath, common.Title("Articles")) {
 		@article_static.ArticleCSS()
 		@common.BlogFrame() {
 			@common.Menu(gp)

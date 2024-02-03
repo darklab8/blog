@@ -5,8 +5,8 @@ import (
 	"darklab_blog/blog/common/types"
 )
 
-templ ArticleT(gp types.GlobalParams) {
-    @common.Html5(gp,common.Title("Git conventional commit")) {
+templ ArticleT(gp types.GlobalParams, pagepath string) {
+    @common.Html5(gp,pagepath,common.Title("Git conventional commit")) {
 		@common.BlogFrame() {
 			<style>
 			img {
