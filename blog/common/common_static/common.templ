@@ -40,15 +40,18 @@ templ CommonCSS() {
         margin-bottom: 10px;
     }
     a, a:visited, a:hover, a:active {
-        color: var(--color_link);
+        color: inherit;
         font-weight: bold;
+    }
+    p a {
+        color: var(--color_link) !important;
     }
     a {
         text-decoration: none;
         cursor: pointer;
     }
     a:hover {
-        color: var(--color_hover_link);
+        color: var(--color_hover_link) !important;
     }
 
     b {
