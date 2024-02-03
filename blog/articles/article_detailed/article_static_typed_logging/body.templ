@@ -2,18 +2,19 @@ package article_static_typed_logging
 
 import (
 	"darklab_blog/blog/common"
+	"darklab_blog/blog/common/types"
 )
 
-templ ArticleT() {
-    @common.Html5(common.Title("Typelog - type safe structured logging")) {
+templ ArticleT(gp types.GlobalParams) {
+    @common.Html5(gp,common.Title("Typelog - type safe structured logging")) {
 		@common.BlogFrame() {
 			<style>
 			img {
 				max-width: 800px;
 			}
 			</style>
-			@common.Menu()
-			@templ.Raw(string(Body))
+			@common.Menu(gp)
+			@templ.Raw(GetBody(gp))
 		}
 	}
 }

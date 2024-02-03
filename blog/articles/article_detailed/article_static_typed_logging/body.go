@@ -2,8 +2,8 @@ package article_static_typed_logging
 
 import (
 	"darklab_blog/blog/common/markdowner"
+	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
-	"darklab_blog/blog/settings"
 	"strings"
 	"time"
 
@@ -17,15 +17,15 @@ type Vars struct {
 	PyTypelog  string
 }
 
-func init() {
-	Body = markdowner.ReadMarkdownAndTemplate(
+func GetBody(gp types.GlobalParams) string {
+	return string(markdowner.ReadMarkdownAndTemplate(
 		utils_filepath.Join(utils.GetCurrentFolder(), "typelog.md"),
 		Vars{
-			StaticRoot: settings.StaticRoot,
+			StaticRoot: gp.StaticRoot,
 			GoTypelog:  pet_projects_urls.GoTypelog,
 			PyTypelog:  pet_projects_urls.PyTypelog,
 		},
-	)
+	))
 }
 
 var (
@@ -33,5 +33,4 @@ var (
 	Intro    = strings.ReplaceAll(`With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs.
 Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.`, "\n", "")
 	Date = time.Date(2024, time.January, 28, 0, 0, 0, 0, time.UTC)
-	Body []byte
 )

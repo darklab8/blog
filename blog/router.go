@@ -17,23 +17,23 @@ func init() {
 	Builder.RegComps(
 		builder.NewComponent(
 			urls.About,
-			about.AboutT(),
+			about.AboutT,
 		),
 		builder.NewComponent(
 			urls.PetProjects,
-			pet_projects.PetProjectsT(),
+			pet_projects.PetProjectsT,
 		),
 		builder.NewComponent(
 			urls.Articles,
-			articles.HomeT(),
+			articles.HomeT,
 		),
 		builder.NewComponent(
 			urls.ArticleGitConventionalCommits,
-			article_git_conventional_commits.ArticleT(),
+			article_git_conventional_commits.ArticleT,
 		),
 		builder.NewComponent(
 			urls.ArticleTypelog,
-			article_static_typed_logging.ArticleT(),
+			article_static_typed_logging.ArticleT,
 		),
 	)
 }

@@ -1,8 +1,8 @@
 package common
 
 import (
-    	"darklab_blog/blog/settings"
         "darklab_blog/blog/common/urls"
+        "darklab_blog/blog/common/types"
 )
 
 templ NavElem(url string) {
@@ -11,15 +11,15 @@ templ NavElem(url string) {
     </div></a>
 }
 
-templ Menu() {
+templ Menu(gp types.GlobalParams) {
     <menu class="main_menu">
-        @NavElem(settings.SiteRoot) {
+        @NavElem(gp.SiteRoot) {
             Articles
         }
-        @NavElem(settings.SiteRoot + urls.PetProjects) {
+        @NavElem(gp.SiteRoot + urls.PetProjects) {
             Pet projects
         }
-        @NavElem(settings.SiteRoot + urls.About) {
+        @NavElem(gp.SiteRoot + urls.About) {
             About
         } 
     </menu>

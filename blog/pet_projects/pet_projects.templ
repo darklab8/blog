@@ -3,7 +3,7 @@ package pet_projects
 
 import (
 	"darklab_blog/blog/common"
-	"darklab_blog/blog/settings"
+	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
 )
 
@@ -19,10 +19,10 @@ templ pet_project(name string, url string) {
 }
 
 
-templ PetProjectsT() {
-	@common.Html5(common.Title("Pet projects")) {
+templ PetProjectsT(gp types.GlobalParams) {
+	@common.Html5(gp,common.Title("Pet projects")) {
 		@common.BlogFrame() {
-			@common.Menu()
+			@common.Menu(gp)
 			<style>
 			hr {
 				margin-top: 30px;
@@ -39,7 +39,7 @@ templ PetProjectsT() {
 				"Autogit - Git conventional commits linter",
 				pet_projects_urls.Autogit,
 			) {
-				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ settings.StaticRoot + "pet_projects/autogit_logo.png" } alt="autogit logo"/>
+				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ gp.StaticRoot + "pet_projects/autogit_logo.png" } alt="autogit logo"/>
 				@common.TextBlock(){
 					The instrument to enforce git conventional commits to submitted commits through git hooks. CI friendly and without any dependencies.
 					Based on submitted commits generates changelogs for releases and suggests next semantic version of a release.
@@ -57,7 +57,7 @@ templ PetProjectsT() {
 				"Typelog - Typed structured logging",
 				pet_projects_urls.GoTypelog,
 			) {
-				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ settings.StaticRoot + "typelog/typelog.png"} alt="autogit logo"/>
+				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ gp.StaticRoot + "typelog/typelog.png"} alt="autogit logo"/>
 				@common.TextBlock(){
 					Brings easy refactorable jsonable logs, context rich with key values.
 					JSON format is important for modern logging ecosystems as it is parsable out of the box without any regex.

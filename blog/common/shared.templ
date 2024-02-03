@@ -1,11 +1,12 @@
 package common
 
 import (
-    	"darklab_blog/blog/common/highlight"
-		"darklab_blog/blog/common/common_static"
+	"darklab_blog/blog/common/highlight"
+	"darklab_blog/blog/common/common_static"
+	"darklab_blog/blog/common/types"
 )
 
-templ Html5(title Title) {
+templ Html5(gp types.GlobalParams,title Title) {
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -16,6 +17,42 @@ templ Html5(title Title) {
 	@common_static.CustomCSS()
 	</head>
 	<body>
+	<style>
+		#light_switch {
+			position: fixed;
+			top: 0;
+			right: 0;
+			padding: 50px;
+		}
+	</style>
+	switch gp.Theme {
+		case types.ThemeDark:
+			<style>
+				body {
+					background: #000;
+					color: #fff;
+				}
+				#light_switch {
+					width: 200px;
+					height: 200px;
+				}
+			</style>
+
+			<a href={ templ.URL(gp.OppositeThemeRoot ) } >
+			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light.png" }/>
+			</a>
+		case types.ThemeLight:
+			<style>
+				#light_switch {
+					width: 150px;
+					height: 150px;
+				}
+			</style>
+
+			<a href={ templ.URL(gp.OppositeThemeRoot ) }>
+			<img id="light_switch"  src={ gp.StaticRoot + "common/switch_to_dark.png" }/>
+			</a>
+	}
 	{ children... }
 	</body>
 	</html>

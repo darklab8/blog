@@ -2,6 +2,7 @@ package articles
 
 import (
 	"darklab_blog/blog/common"
+		"darklab_blog/blog/common/types"
 	"darklab_blog/blog/common/urls"
 	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"darklab_blog/blog/articles/article_detailed/article_static_typed_logging"
@@ -37,11 +38,11 @@ templ HomeBody() {
 	)
 }
 
-templ HomeT() {
-	@common.Html5(common.Title("Articles")) {
+templ HomeT(gp types.GlobalParams) {
+	@common.Html5(gp,common.Title("Articles")) {
 		@article_static.ArticleCSS()
 		@common.BlogFrame() {
-			@common.Menu()
+			@common.Menu(gp)
 			@HomeBody()
 		} 
 	}

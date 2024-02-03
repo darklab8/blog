@@ -2,8 +2,8 @@ package article_git_conventional_commits
 
 import (
 	"darklab_blog/blog/common/markdowner"
+	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
-	"darklab_blog/blog/settings"
 	"strings"
 	"time"
 
@@ -16,14 +16,14 @@ type Vars struct {
 	AutogitURL string
 }
 
-func init() {
-	Body = markdowner.ReadMarkdownAndTemplate(
+func GetBody(gp types.GlobalParams) string {
+	return string(markdowner.ReadMarkdownAndTemplate(
 		utils_filepath.Join(utils.GetCurrentFolder(), "git_conv_commits.md"),
 		Vars{
-			StaticRoot: settings.StaticRoot,
+			StaticRoot: gp.StaticRoot,
 			AutogitURL: pet_projects_urls.Autogit,
 		},
-	)
+	))
 }
 
 var (
@@ -33,5 +33,4 @@ var (
 	Software development is a team effort, and therefore it requires communicating
 	what we change and why we change it.`, "\n", "")
 	Date = time.Date(2023, time.December, 11, 0, 0, 0, 0, time.UTC)
-	Body []byte
 )

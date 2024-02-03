@@ -3,6 +3,7 @@ package builder
 import (
 	"bytes"
 	"context"
+	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/settings"
 	"darklab_blog/blog/settings/logus"
 	"os"
@@ -17,12 +18,12 @@ import (
 
 type Component struct {
 	relpath    utils_types.FilePath
-	templ_comp templ.Component
+	templ_comp func(gp types.GlobalParams) templ.Component
 }
 
 func NewComponent(
 	relpath utils_types.FilePath,
-	templ_comp templ.Component,
+	templ_comp func(gp types.GlobalParams) templ.Component,
 ) *Component {
 	return &Component{
 		relpath:    relpath,
@@ -30,12 +31,12 @@ func NewComponent(
 	}
 }
 
-func (h *Component) Write(buildpath utils_types.FilePath) {
+func (h *Component) Write(gp types.GlobalParams) {
 	buf := bytes.NewBuffer([]byte{})
 
-	h.templ_comp.Render(context.Background(), buf)
+	h.templ_comp(gp).Render(context.Background(), buf)
 
-	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, buildpath, h.relpath)
+	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, gp.Buildpath, h.relpath)
 	haveParentFoldersCreated(abs_buildpath)
 
 	err := os.WriteFile(abs_buildpath.ToString(), gohtml.FormatBytes(buf.Bytes()), os.ModePerm)
