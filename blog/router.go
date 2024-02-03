@@ -7,6 +7,7 @@ import (
 	"darklab_blog/blog/articles/article_detailed/article_static_typed_logging"
 	"darklab_blog/blog/common/builder"
 	"darklab_blog/blog/common/urls"
+	"darklab_blog/blog/favourite"
 	"darklab_blog/blog/pet_projects"
 )
 
@@ -22,6 +23,10 @@ func init() {
 		builder.NewComponent(
 			urls.PetProjects,
 			pet_projects.PetProjectsT,
+		),
+		builder.NewComponent(
+			urls.Favourite,
+			favourite.PageT,
 		),
 		builder.NewComponent(
 			urls.Articles,

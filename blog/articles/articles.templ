@@ -10,9 +10,9 @@ import (
 	"time"
 )
 
-templ ArticleHeadline(name string, intro string, url string, date time.Time) {
+templ ArticleHeadline(gp types.GlobalParams, name string, intro string, url string, date time.Time) {
 	<div class="article_headline">
-	<a class="article_header" href={ templ.URL(url) }><h2>{ name }</h2></a>
+	<a class="article_header" href={ templ.URL(gp.SiteRoot + url) }><h2>{ name }</h2></a>
 	<p>{ intro }</p>
 	<footer>
 	@common.TextLink(url){Read more}
@@ -21,16 +21,18 @@ templ ArticleHeadline(name string, intro string, url string, date time.Time) {
 	</div>
 }
 
-templ HomeBody() {
+templ HomeBody(gp types.GlobalParams) {
 	// ORDER BY NEWEST TO TOP
 	// TODO: add autosorting
 	@ArticleHeadline(
+		gp,
 		article_static_typed_logging.Headline,
 		article_static_typed_logging.Intro,
 		urls.ArticleTypelog,
 		article_static_typed_logging.Date,
 	)
 	@ArticleHeadline(
+		gp,
 		article_git_conventional_commits.Headline,
 		article_git_conventional_commits.Intro,
 		urls.ArticleGitConventionalCommits,
@@ -43,7 +45,7 @@ templ HomeT(gp types.GlobalParams, pathpath string) {
 		@article_static.ArticleCSS()
 		@common.BlogFrame() {
 			@common.Menu(gp)
-			@HomeBody()
+			@HomeBody(gp)
 		} 
 	}
 }

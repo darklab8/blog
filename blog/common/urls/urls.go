@@ -8,4 +8,6 @@ const (
 	About = "about.html"
 
 	PetProjects = "pet_projects.html"
+
+	Favourite = "favourite.html"
 )

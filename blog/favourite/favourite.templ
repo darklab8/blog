@@ -1,0 +1,22 @@
+package favourite
+
+import (
+    "darklab_blog/blog/common/types"
+    "darklab_blog/blog/common"
+)
+
+templ Book() {
+
+}
+
+templ PageT(gp types.GlobalParams, pathpath string) {
+	@common.Html5(gp,pathpath,common.Title("Pet projects")) {
+		@common.BlogFrame() {
+			@common.Menu(gp)
+			@common.SectionHeader("Books")
+            Books that I certainly recommend for reading
+
+            @common.SectionHeader("Article")
+        }
+    }
+}

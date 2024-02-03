@@ -5,17 +5,62 @@ import (
 	"darklab_blog/blog/common"
 	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
+	"darklab_blog/blog/common/urls"
 )
 
-templ pet_project_section(name string) {
-	<h1 class="pet_project_section_header">{ name }</h1>
+type Link struct {
+	name string
+	url string
 }
 
-templ pet_project(name string, url string) {
-	<div class="pet_project">
-	<a class="pet_project_header" href={ templ.URL(url) }><h2>{ name }</h2></a>
+type PetProject struct {
+	name string
+	id string
+	footer_links []Link
+}
+
+type ProjectOption func(b *PetProject)
+
+
+func NewPetProject(name string, id string, opts ...ProjectOption) *PetProject {
+	p := &PetProject{
+		name: name,
+		id: id,
+	}
+	for _, opt := range opts {
+		opt(p)
+	}
+
+	return p
+}
+
+func WithLink(name string ,url string) ProjectOption {
+	return func(b *PetProject) {
+		b.footer_links = append(b.footer_links, Link{
+			name: name,
+			url: url,
+		})
+	}
+}
+
+func WithGithub(url string) ProjectOption {
+	return WithLink("github", url)
+}
+
+func WithArticle(url string) ProjectOption {
+	return WithLink("article", url)
+}
+
+templ pet_project(project *PetProject) {
+	<div id={ project.id } class="pet_project">
+	<h2>{ project.name }</h2>
 	{ children... }
 	</div>
+	<p>
+	for _, link := range project.footer_links {
+		<a style="margin-right: 20px;" href={ templ.URL(link.url) }>{ link.name }</a>
+	}
+	</p>
 }
 
 
@@ -28,16 +73,16 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 				margin-top: 30px;
 				margin-bottom: 30px;
 			}
-
-			.pet_project_section_header {
-				color: gray;
-			}
 			</style>
 			<div class="pet_projects">
-			@pet_project_section("Tooling")
+			@common.SectionHeader("Tooling")
 			@pet_project(
-				"Autogit - Git conventional commits linter",
-				pet_projects_urls.Autogit,
+				NewPetProject(
+					"Autogit - Git conventional commits linter",
+					"autogit",
+					WithGithub(pet_projects_urls.Autogit),
+					WithArticle(gp.SiteRoot + urls.ArticleGitConventionalCommits),
+				),
 			) {
 				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ gp.StaticRoot + "pet_projects/autogit_logo.png" } alt="autogit logo"/>
 				@common.TextBlock(){
@@ -54,8 +99,14 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 				
 			}
 			@pet_project(
-				"Typelog - Typed structured logging",
-				pet_projects_urls.GoTypelog,
+				NewPetProject(
+					"Typelog - Typed structured logging",
+					"typelog",
+					WithLink("golang github",pet_projects_urls.GoTypelog),
+					WithLink("python github", pet_projects_urls.PyTypelog),
+					WithArticle(gp.SiteRoot + urls.ArticleTypelog),
+				),
+				
 			) {
 				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ gp.StaticRoot + "typelog/typelog.png"} alt="autogit logo"/>
 				@common.TextBlock(){
@@ -64,14 +115,16 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 					Context rich by types logs with uniform kept keys across the code, help to keep clean Domain language across an application
 					and easily refactoring in one command.
 					Libraries were ensured to try being written in the way were we at maximum protect ourserlves from pressence of `Any` stuff
-					and therefore accidental shooting into our own foots. Exists as <a href={ templ.URL(pet_projects_urls.GoTypelog) }>golang</a>
-					and <a href={ templ.URL(pet_projects_urls.PyTypelog) }>python</a> versions
+					and therefore accidental shooting into our own foots. Exists in golang and python versions.
     			}				
 			}
-			@pet_project_section("Personal")
+			@common.SectionHeader("Personal")
 			@pet_project(
-				"Blog - static site generator",
-				pet_projects_urls.Blog,
+				NewPetProject(
+					"Blog - static site generator",
+					"blog",
+					WithGithub(pet_projects_urls.Blog),
+				),
 			) {
 				@common.TextBlock(){
 					Personal web site.
@@ -86,10 +139,15 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 				
 			}
 			<hr/>
-			@pet_project_section("Discovery Freelancer community")
+			@common.SectionHeader("Discovery Freelancer community")
 			@pet_project(
-				"Fldarkbot - Discord bot to track game objects",
-				"https://github.com/darklab8/darklab_fldarkbot",
+				NewPetProject(
+					"Fldarkbot - Discord bot to track game objects",
+					"fldarkbot",
+					WithGithub("https://github.com/darklab8/darklab_fldarkbot"),
+					WithLink("wiki", "https://darklab8.github.io/darklab_fldarkbot/"),
+					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=188040"),
+				),
 			) {
 				@common.TextBlock(){
 					Discord bot implemented for game community Freelancer Discovery.
@@ -105,8 +163,11 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 			}
 			<hr/>
 			@pet_project(
-				"Fldarklint - Linter for game configs",
-				"https://github.com/darklab8/darklab_fldarklint",
+				NewPetProject(
+					"Fldarklint - Linter for game configs",
+					"fldarklint",
+					WithGithub("https://github.com/darklab8/darklab_fldarklint"),
+				),
 			) {
 				@common.TextBlock(){
 					Inspired by python black formatter, it formats Freelancer config files to uniform way.
@@ -119,8 +180,11 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 			}
 			<hr/>
 			@pet_project(
-				"Flconfigs - ORM to access game data",
-				"https://github.com/darklab8/darklab_flconfigs",
+				NewPetProject(
+					"Flconfigs - ORM to access game data",
+					"flconfig",
+					WithGithub("https://github.com/darklab8/darklab_flconfigs"),
+				),
 			) {
 				@common.TextBlock(){
 					ORM for reading game config files data and writing it back without an effort to write code for file writing.
