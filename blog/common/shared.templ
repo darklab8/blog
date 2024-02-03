@@ -13,6 +13,8 @@ templ LightSwitch(gp types.GlobalParams, pagepath string) {
 			top: 0;
 			right: 0;
 			padding: 50px;
+			width: 200px;
+			height: 200px;
 		}
 	</style>
 	switch gp.Theme {
@@ -22,21 +24,13 @@ templ LightSwitch(gp types.GlobalParams, pagepath string) {
 					background: #000;
 					color: #fff;
 				}
-				#light_switch {
-					width: 200px;
-					height: 200px;
-				}
 			</style>
 
 			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath ) } >
-			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light.png" }/>
+			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light2.png" }/>
 			</a>
 		case types.ThemeLight:
 			<style>
-				#light_switch {
-					width: 150px;
-					height: 150px;
-				}
 			</style>
 
 			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath) }>
