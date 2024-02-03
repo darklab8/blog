@@ -59,9 +59,6 @@ templ AboutT(gp types.GlobalParams, pagepath string) {
 		@common.BlogFrame() {
             @about_static.AboutCSS()
 			@common.Menu(gp)
-            @common.PageHeader(){
-                About
-            }
             @Intro(gp)
             <hr/>
             @Contacts()
