@@ -47,6 +47,23 @@ var Articles []*Article = []*Article{
 		WithDescription(strings.ReplaceAll(`With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs.
 		Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.`, "\n", "")),
 	),
+	/*
+		TODO articles
+			- write: about cold blooded software 2 (from https://dubroy.com/blog/cold-blooded-software/ )
+			- write: raising ECS cluster
+			- refactor python docker containers article ( https://github.com/darklab8/darklab_article_docker_python )
+			- refactor "personal docs as git-crypt"
+				- https://github.com/darklab8/darklab_article_documentation_as_a_code
+				- https://darklab8.github.io/darklab_article_documentation_as_a_code/
+			- refactor "parallel pytest"
+				- (needs code refactor. Very Ugly. But small amoutn of code)
+				- https://github.com/darklab8/darklab_article_parallel_pytest
+			- write: python documentation as a code
+
+			- decide what to do: previous git conventional commits article
+				- ❌ https://github.com/darklab8/darklab_article_autogit
+				- We have already better one. Perhaps no point to refactor
+	*/
 }
 
 func init() {
