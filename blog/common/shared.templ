@@ -31,7 +31,7 @@ templ LightSwitch() {
 			</style>
 
 			<div class="light_switch">
-			<a href={ templ.URL(types.GetCtx(ctx).OppositeThemeRoot) }>
+			<a href={ templ.URL(types.GetCtx(ctx).OppositeThemeRoot  + types.GetCtx(ctx).Pagepath) }>
 			<img id="light_switch"  src={ types.GetCtx(ctx).StaticRoot + "common/switch_to_dark.png" }/>
 			</a>
 			</div>

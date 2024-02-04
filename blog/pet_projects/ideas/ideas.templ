@@ -7,7 +7,7 @@ import (
 )
 
 templ IdeasT() {
-    	@common.Html5(common.Title("Pet projects ideas")) {
+	@common.Html5(common.Title("Pet projects ideas")) {
 		@common.BlogFrame() {
 			@common.Menu()
 
@@ -35,18 +35,19 @@ templ IdeasT() {
 			}
 
             <hr/>
-			@common.SectionHeader("Tools")
-
-            @pet_projects.PetProjectRender(
-				pet_projects.NewPetProject(
-					"Aeris CI",
-					"aeris",
-                    pet_projects.WithLink("description", types.GetCtx(ctx).SiteRoot + UrlAeras),
-				),
-			) {
-				@common.TextBlock(){
-					CI agnostic local workflow executor.
-    			}
+			@common.SectionHeader("Others")
+			for _, idea := range Ideas {
+				@pet_projects.PetProjectRender(
+					pet_projects.NewPetProject(
+						idea.Title,
+						idea.Anchor,
+						pet_projects.WithLink("description", types.GetCtx(ctx).SiteRoot + idea.Url),
+					),
+				) {
+					@common.TextBlock(){
+						{ idea.Description }
+					}
+				}
 			}
         }
     }

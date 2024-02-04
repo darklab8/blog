@@ -6,19 +6,72 @@ import (
 	"darklab_blog/blog/common/markdowner"
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
 	"github.com/darklab8/darklab_goutils/goutils/utils"
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
 )
 
 type EmptyVars struct {
 
 }
 
-templ IdeaAerasCI() {
-    	@common.Html5(common.Title("Aeras CI")) {
+type Idea struct {
+	Title string
+	Url string
+	MdPath utils_types.FilePath
+
+	Anchor string
+	Description string
+}
+
+var Ideas = []Idea{
+	{
+		Title: "Aeris CI",
+		Url: "idea/aeras_ci.html",
+		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "darklab_aeras_ci", "README.md"),
+
+		Anchor: "aeris",
+		Description: "CI agnostic local workflow executor.",
+	},
+	{
+		Title: "Gitdep",
+		Url: "idea/git_dep.html",
+		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "darklab_gitdep", "README.md"),
+
+		Anchor: "gitdep",
+		Description: "Language agnostic simple yaml dependency management",
+	},
+	{
+		Title: "Vagrant Compose",
+		Url: "idea/vagrant_compose.html",
+		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "darklab_vagrant_compose", "README.md"),
+
+		Anchor: "vagrant_compose",
+		Description: "Lets have docker-compose style used for multiple vagrant management :)",
+	},
+	{
+		Title: "Auther",
+		Url: "idea/auther.html",
+		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "darklab_auther", "README.md"),
+
+		Anchor: "gitdep",
+		Description: "Authentificating system for monitoring / admin management tools",
+	},
+	{
+		Title: "Tekton executor",
+		Url: "idea/tekton_executor.html",
+		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "darklab_tekton_executor", "README.md"),
+
+		Anchor: "tektox_executor",
+		Description: "Integrate smoothly tekton executor into Github Actions",
+	},
+}
+
+templ IdeaTemplate(idea Idea) {
+    	@common.Html5(common.Title(idea.Title)) {
 		@common.BlogFrame() {
 			@common.Menu()
             @pet_projects.ProjectsShared()
             @templ.Raw(markdowner.MdToHtml(
-				utils_filepath.Join(utils.GetCurrentFolder(), "darklab_aeras_ci", "README.md"),
+				idea.MdPath,
 				EmptyVars{}, 
 			))
         }

@@ -10,6 +10,8 @@ import (
 	"darklab_blog/blog/favourite"
 	"darklab_blog/blog/pet_projects"
 	"darklab_blog/blog/pet_projects/ideas"
+
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
 )
 
 var Builder *builder.Builder
@@ -25,16 +27,6 @@ func init() {
 			urls.PetProjects,
 			pet_projects.PetProjectsT(),
 		),
-
-		builder.NewComponent(
-			urls.PetProjectsIdeas,
-			ideas.IdeasT(),
-		),
-		builder.NewComponent(
-			ideas.UrlAeras,
-			ideas.IdeaAerasCI(),
-		),
-
 		builder.NewComponent(
 			urls.Favourite,
 			favourite.PageT(),
@@ -51,5 +43,18 @@ func init() {
 			urls.ArticleTypelog,
 			article_static_typed_logging.ArticleT(),
 		),
+
+		builder.NewComponent(
+			urls.PetProjectsIdeas,
+			ideas.IdeasT(),
+		),
 	)
+	for _, idea := range ideas.Ideas {
+		Builder.RegComps(
+			builder.NewComponent(
+				utils_types.FilePath(idea.Url),
+				ideas.IdeaTemplate(idea),
+			),
+		)
+	}
 }
