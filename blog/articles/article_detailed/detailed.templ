@@ -1,5 +1,72 @@
 package article_detailed
 
-templ Article() {
-    
+import (
+    "time"
+	"darklab_blog/blog/common"
+	"darklab_blog/blog/common/markdowner"
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+)
+
+type EmptyVars struct{}
+
+type Article struct {
+    Title string
+    Pagepath utils_types.FilePath
+    Description string
+    Date time.Time
+    extra templ.Component
+    vars func(ctx context.Context) any
+    md_path utils_types.FilePath
+}
+
+func NewArticle(
+        Title string,
+        Pagepath utils_types.FilePath,
+        md_path utils_types.FilePath,
+        Date time.Time,
+        opts ...ArticleOption,
+    ) *Article {
+    a := &Article{
+        Title: Title,
+        md_path: md_path,
+        Pagepath: Pagepath,
+        Date:Date,
+        vars: func(ctx context.Context) any { return EmptyVars{} },
+    }
+    for _, opt := range opts {
+        opt(a)
+    }
+    return a
+}
+
+type ArticleOption func(b *Article)
+
+func WithVars(vars func(ctx context.Context) any) ArticleOption  {
+    return func(b *Article) {
+        b.vars = vars
+    }
+}
+
+func WithDescription(Description string) ArticleOption  {
+    return func(b *Article) {
+        b.Description = Description
+    }
+}
+
+
+templ ArticleT(article *Article) {
+    @common.Html5(common.Title(article.Title)) {
+		@common.BlogFrame() {
+			<style>
+			img {
+				max-width: 800px;
+			}
+			</style>
+			@common.Menu()
+			@templ.Raw(markdowner.MdToHtml(
+				article.md_path,
+				article.vars(ctx),
+			))
+		}
+	}
 }
