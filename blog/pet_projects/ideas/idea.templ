@@ -7,6 +7,9 @@ import (
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
 	"github.com/darklab8/darklab_goutils/goutils/utils"
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+
+	"darklab_blog/blog/common/types"
+	"darklab_blog/blog/common/urls"
 )
 
 type EmptyVars struct {
@@ -85,6 +88,16 @@ templ IdeaTemplate(idea Idea) {
     	@common.Html5(common.Title(idea.Title)) {
 		@common.BlogFrame() {
 			@common.Menu()
+            @common.TextHeaderMain(){
+            	<a class="text_link" href={ templ.URL(types.GetCtx(ctx).SiteRoot + urls.PetProjectsIdeas) }>Future project ideas</a>
+            }
+			@common.TextHeaderMain(){ 
+				{ idea.Title }
+			}
+			@common.TextBlock(){
+				{ idea.Description }
+			}
+			<hr/>
             @pet_projects.ProjectsShared()
             @templ.Raw(markdowner.MdToHtml(
 				idea.MdPath,
