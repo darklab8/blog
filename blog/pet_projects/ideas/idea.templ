@@ -1,7 +1,6 @@
 package ideas
 
 import (
-	"darklab_blog/blog/common/types"
     "darklab_blog/blog/common"
     "darklab_blog/blog/pet_projects"
 	"darklab_blog/blog/common/markdowner"
@@ -13,13 +12,12 @@ type EmptyVars struct {
 
 }
 
-templ IdeaAerasCI(gp types.GlobalParams, pathpath string) {
-    	@common.Html5(gp,pathpath,common.Title("Aeras CI")) {
+templ IdeaAerasCI() {
+    	@common.Html5(common.Title("Aeras CI")) {
 		@common.BlogFrame() {
-			@common.Menu(gp)
+			@common.Menu()
             @pet_projects.ProjectsShared()
             @templ.Raw(markdowner.MdToHtml(
-				gp,
 				utils_filepath.Join(utils.GetCurrentFolder(), "darklab_aeras_ci", "README.md"),
 				EmptyVars{}, 
 			))

@@ -11,18 +11,18 @@ templ NavElem(url string) {
     </div></a>
 }
 
-templ Menu(gp types.GlobalParams) {
+templ Menu() {
     <menu class="main_menu">
-        @NavElem(gp.SiteRoot) {
+        @NavElem(types.GetCtx(ctx).SiteRoot) {
             Articles
         }
-        @NavElem(gp.SiteRoot + urls.PetProjects) {
+        @NavElem(types.GetCtx(ctx).SiteRoot + urls.PetProjects) {
             Pet projects
         }
-        @NavElem(gp.SiteRoot + urls.Favourite) {
+        @NavElem(types.GetCtx(ctx).SiteRoot + urls.Favourite) {
             Favourite
         }
-        @NavElem(gp.SiteRoot + urls.About) {
+        @NavElem(types.GetCtx(ctx).SiteRoot + urls.About) {
             About
         } 
     </menu>

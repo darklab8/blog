@@ -72,10 +72,10 @@ templ ProjectsShared() {
 	</style>
 }
 
-templ PetProjectsT(gp types.GlobalParams, pathpath string) {
-	@common.Html5(gp,pathpath,common.Title("Pet projects")) {
+templ PetProjectsT() {
+	@common.Html5(common.Title("Pet projects")) {
 		@common.BlogFrame() {
-			@common.Menu(gp)
+			@common.Menu()
 			@ProjectsShared()
 			@common.SectionHeader("Tooling")
 			@PetProjectRender(
@@ -83,10 +83,10 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 					"Autogit - Git conventional commits linter",
 					"autogit",
 					WithGithub(pet_projects_urls.Autogit),
-					WithArticle(gp.SiteRoot + urls.ArticleGitConventionalCommits),
+					WithArticle(types.GetCtx(ctx).SiteRoot + urls.ArticleGitConventionalCommits),
 				),
 			) {
-				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ gp.StaticRoot + "pet_projects/autogit_logo.png" } alt="autogit logo"/>
+				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ types.GetCtx(ctx).StaticRoot + "pet_projects/autogit_logo.png" } alt="autogit logo"/>
 				@common.TextBlock(){
 					The instrument to enforce git conventional commits to submitted commits through git hooks. CI friendly and without any dependencies.
 					Based on submitted commits generates changelogs for releases and suggests next semantic version of a release.
@@ -106,11 +106,11 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 					"typelog",
 					WithLink("golang github",pet_projects_urls.GoTypelog),
 					WithLink("python github", pet_projects_urls.PyTypelog),
-					WithArticle(gp.SiteRoot + urls.ArticleTypelog),
+					WithArticle(types.GetCtx(ctx).SiteRoot + urls.ArticleTypelog),
 				),
 				
 			) {
-				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ gp.StaticRoot + "typelog/typelog.png"} alt="autogit logo"/>
+				<img style="width: 200px; height: 200px; float: right; margin: 0px 15px 15px 15px;" src={ types.GetCtx(ctx).StaticRoot + "typelog/typelog.png"} alt="autogit logo"/>
 				@common.TextBlock(){
 					Brings easy refactorable jsonable logs, context rich with key values.
 					JSON format is important for modern logging ecosystems as it is parsable out of the box without any regex.
@@ -199,7 +199,7 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 
 			<div style="display: flex; justify-content: center;">
 				<p>
-					<a href={ templ.URL(gp.SiteRoot + urls.PetProjectsIdeas) }>future ideas</a>
+					<a href={ templ.URL(types.GetCtx(ctx).SiteRoot + urls.PetProjectsIdeas) }>future ideas</a>
 				</p>
 			</div>
 		} 

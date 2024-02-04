@@ -9,20 +9,19 @@ import (
 	"github.com/darklab8/darklab_goutils/goutils/utils"
 )
 
-templ ArticleT(gp types.GlobalParams, pagepath string) {
-    @common.Html5(gp,pagepath,common.Title("Git conventional commit")) {
+templ ArticleT() {
+    @common.Html5(common.Title("Git conventional commit")) {
 		@common.BlogFrame() {
 			<style>
 			img {
 				max-width: 800px;
 			}
 			</style>
-			@common.Menu(gp)
+			@common.Menu()
 			@templ.Raw(markdowner.MdToHtml(
-				gp,
 				utils_filepath.Join(utils.GetCurrentFolder(), "git_conv_commits.md"),
 				Vars{
-					StaticRoot: gp.StaticRoot,
+					StaticRoot: types.GetCtx(ctx).StaticRoot,
 					AutogitURL: pet_projects_urls.Autogit,
 				},
 			))

@@ -1,7 +1,6 @@
 package favourite
 
 import (
-    "darklab_blog/blog/common/types"
     "darklab_blog/blog/common"
 )
 
@@ -33,10 +32,10 @@ templ Book(params *BookParams) {
     
 }
 
-templ PageT(gp types.GlobalParams, pathpath string) {
-	@common.Html5(gp,pathpath,common.Title("Pet projects")) {
+templ PageT() {
+	@common.Html5(common.Title("Pet projects")) {
 		@common.BlogFrame() {
-			@common.Menu(gp)
+			@common.Menu()
             <style>
             .book_description img {
                 max-width: 200px;

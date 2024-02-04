@@ -1,17 +1,19 @@
 package types
 
-import "github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+import (
+	"context"
+
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+)
 
 type Theme int64
-
-const ThemeCtxKey = "theme"
 
 const (
 	ThemeDark Theme = iota
 	ThemeLight
 )
 
-const SiteRootCtxKey = "buildpath"
+const GlobalParamsCtxKey = "global_params"
 
 type GlobalParams struct {
 	Buildpath         utils_types.FilePath
@@ -19,4 +21,9 @@ type GlobalParams struct {
 	SiteRoot          string
 	StaticRoot        string
 	OppositeThemeRoot string
+	Pagepath          string
+}
+
+func GetCtx(ctx context.Context) GlobalParams {
+	return ctx.Value(GlobalParamsCtxKey).(GlobalParams)
 }

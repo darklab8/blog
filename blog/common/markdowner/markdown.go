@@ -2,7 +2,6 @@ package markdowner
 
 import (
 	"bytes"
-	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/settings/logus"
 	"html/template"
 	"os"
@@ -55,7 +54,6 @@ func ReadMarkdownAndTemplate(path utils_types.FilePath, values any) []byte {
 }
 
 func MdToHtml(
-	gp types.GlobalParams,
 	markdown_path utils_types.FilePath,
 	values any,
 ) string {

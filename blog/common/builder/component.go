@@ -18,12 +18,12 @@ import (
 
 type Component struct {
 	pagepath   utils_types.FilePath
-	templ_comp func(gp types.GlobalParams, pagepath string) templ.Component
+	templ_comp templ.Component
 }
 
 func NewComponent(
 	pagepath utils_types.FilePath,
-	templ_comp func(gp types.GlobalParams, pagepath string) templ.Component,
+	templ_comp templ.Component,
 ) *Component {
 	return &Component{
 		pagepath:   pagepath,
@@ -34,7 +34,9 @@ func NewComponent(
 func (h *Component) Write(gp types.GlobalParams) {
 	buf := bytes.NewBuffer([]byte{})
 
-	h.templ_comp(gp, string(h.pagepath)).Render(context.Background(), buf)
+	gp.Pagepath = string(h.pagepath)
+
+	h.templ_comp.Render(context.WithValue(context.Background(), types.GlobalParamsCtxKey, gp), buf)
 
 	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, gp.Buildpath, h.pagepath)
 	haveParentFoldersCreated(abs_buildpath)

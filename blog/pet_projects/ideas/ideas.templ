@@ -6,10 +6,10 @@ import (
         "darklab_blog/blog/pet_projects"
 )
 
-templ IdeasT(gp types.GlobalParams, pathpath string) {
-    	@common.Html5(gp,pathpath,common.Title("Pet projects ideas")) {
+templ IdeasT() {
+    	@common.Html5(common.Title("Pet projects ideas")) {
 		@common.BlogFrame() {
-			@common.Menu(gp)
+			@common.Menu()
 
             @common.TextHeaderMain(){
                 Future project ideas
@@ -25,7 +25,7 @@ templ IdeasT(gp types.GlobalParams, pathpath string) {
                     pet_projects.WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
 				),
 			) {
-                <img style="max-width: 100%;" src={ gp.StaticRoot + "ideas/flstat_view.png" } />
+                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
 				@common.TextBlock(){
 					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
 					A tool for navigation of game data for Freelancer game.
@@ -41,7 +41,7 @@ templ IdeasT(gp types.GlobalParams, pathpath string) {
 				pet_projects.NewPetProject(
 					"Aeris CI",
 					"aeris",
-                    pet_projects.WithLink("description", gp.SiteRoot + UrlAeras),
+                    pet_projects.WithLink("description", types.GetCtx(ctx).SiteRoot + UrlAeras),
 				),
 			) {
 				@common.TextBlock(){

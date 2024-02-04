@@ -6,7 +6,7 @@ import (
 	"darklab_blog/blog/common/types"
 )
 
-templ LightSwitch(gp types.GlobalParams, pagepath string) {
+templ LightSwitch() {
 	<style>
 		.light_switch {
 			position: fixed;
@@ -19,11 +19,11 @@ templ LightSwitch(gp types.GlobalParams, pagepath string) {
 			height: 100px;
 		}
 	</style>
-	switch gp.Theme {
+	switch types.GetCtx(ctx).Theme {
 		case types.ThemeDark:
 			<div class="light_switch">
-			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath ) } >
-			<img id="light_switch" src={ gp.StaticRoot + "common/switch_to_light.png" }/>
+			<a href={ templ.URL(types.GetCtx(ctx).OppositeThemeRoot + types.GetCtx(ctx).Pagepath ) } >
+			<img id="light_switch" src={ types.GetCtx(ctx).StaticRoot + "common/switch_to_light.png" }/>
 			</a>
 			</div>
 		case types.ThemeLight:
@@ -31,19 +31,19 @@ templ LightSwitch(gp types.GlobalParams, pagepath string) {
 			</style>
 
 			<div class="light_switch">
-			<a href={ templ.URL(gp.OppositeThemeRoot + pagepath) }>
-			<img id="light_switch"  src={ gp.StaticRoot + "common/switch_to_dark.png" }/>
+			<a href={ templ.URL(types.GetCtx(ctx).OppositeThemeRoot) }>
+			<img id="light_switch"  src={ types.GetCtx(ctx).StaticRoot + "common/switch_to_dark.png" }/>
 			</a>
 			</div>
 	}
 }
 
-templ Html5(gp types.GlobalParams, pagepath string, title Title) {
+templ Html5(title Title) {
 	<!DOCTYPE html>
 	<html>
 	<head>
 	<title>{ string(title) }</title>
-	switch gp.Theme {
+	switch types.GetCtx(ctx).Theme {
 		case types.ThemeDark:
 			<style>
 			:root {
@@ -63,13 +63,13 @@ templ Html5(gp types.GlobalParams, pagepath string, title Title) {
 			}
 			</style>
 	}
-    @highlight.IncludeHighlight(gp)
+    @highlight.IncludeHighlight()
 	@common_static.ResetCSS()
 	@common_static.CommonCSS()
 	@common_static.CustomCSS()
 	</head>
 	<body>
-	@LightSwitch(gp, pagepath)
+	@LightSwitch()
 	{ children... }
 	</body>
 	</html>

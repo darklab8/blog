@@ -6,11 +6,12 @@ import (
     "darklab_blog/blog/about/about_static"
 )
 
-templ Intro(gp types.GlobalParams) {
+templ Intro() {
+    
     @common.TextHeaderMain(){ 
         Intro
     } 
-    <img class="myphoto" src={ gp.StaticRoot + "about/myphoto.png" } alt="my photo"/>
+    <img class="myphoto" src={ types.GetCtx(ctx).StaticRoot + "about/myphoto.png" } alt="my photo"/>
     @common.TextBlock(){
         Hi there! My name is Andrei Novoselov.
     }
@@ -54,12 +55,12 @@ templ Contacts() {
     }
 }
 
-templ AboutT(gp types.GlobalParams, pagepath string) { 
-	@common.Html5(gp,pagepath,common.Title("About")) {
+templ AboutT() { 
+	@common.Html5(common.Title("About")) {
 		@common.BlogFrame() {
             @about_static.AboutCSS()
-			@common.Menu(gp)
-            @Intro(gp)
+			@common.Menu()
+            @Intro()
             <hr/>
             @Contacts()
 		}

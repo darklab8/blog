@@ -4,16 +4,16 @@ import (
     "darklab_blog/blog/common/types"
 )
 
-templ IncludeHighlight(gp types.GlobalParams) {
-    switch gp.Theme {
+templ IncludeHighlight() {
+    switch types.GetCtx(ctx).Theme {
 		case types.ThemeDark:
-            <link rel="stylesheet" href={ gp.StaticRoot + "highlight/dracula.css" }></link>
+            <link rel="stylesheet" href={ types.GetCtx(ctx).StaticRoot + "highlight/dracula.css" }></link>
         case types.ThemeLight:
-            <link rel="stylesheet" href={ gp.StaticRoot + "highlight/11.9.0/styles/default.min.css"}></link>
+            <link rel="stylesheet" href={ types.GetCtx(ctx).StaticRoot + "highlight/11.9.0/styles/default.min.css"}></link>
     }
-    <script src={ gp.StaticRoot + "highlight/11.9.0/highlight.min.js"}></script>
+    <script src={ types.GetCtx(ctx).StaticRoot + "highlight/11.9.0/highlight.min.js"}></script>
     <!-- and it's easy to individually load additional languages -->
-    <script src={ gp.StaticRoot + "highlight/11.9.0/languages/go.min.js"}></script>
+    <script src={ types.GetCtx(ctx).StaticRoot + "highlight/11.9.0/languages/go.min.js"}></script>
     <script>hljs.highlightAll();</script>
 }
 
