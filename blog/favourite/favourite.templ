@@ -80,8 +80,79 @@ templ PageT(gp types.GlobalParams, pathpath string) {
                 </p>
             }
 
+            @Book(NewBookParams(
+                    "Unit Testing Principles, Practices, and Patterns",
+                    "https://www.amazon.com/Unit-Testing-Principles-Practices-Patterns/dp/1617296279",
+                    "https://m.media-amazon.com/images/I/81K8dwbaenL._SY466_.jpg",
+                )){
+                <p>
+                    This book teaches theory behind unit testing. For which goals to aim for, how to escape pitifals.
+                    It will explain you importance of unit testing and what kind of testing exists. This book is important to
+                    weaponize your skills to an average commercial level development.
+                </p>
+            }
+            @Book(NewBookParams(
+                    "Test Driven Development: By Example",
+                    "https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530",
+                    "https://m.media-amazon.com/images/I/61a+MLItPHL._SY466_.jpg",
+                )){
+                <p>
+                    This book teaches practice behind unit testing. On a specific example it walks you through how to
+                    have unit testing as part of your development cycle at every moment. It teaches you feeling how much gap between
+                    tests is allowed in your working code.
+                </p>
+            }
+            @Book(NewBookParams(
+                    "Clean Architecture: A Craftsman's Guide",
+                    "https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164",
+                    "https://m.media-amazon.com/images/I/61r4tYVsRVL._SL1304_.jpg",
+                )){
+                <p>
+                    This book helps to have a global look onto code design of a single application.
+                    It helped me in achieving a necessary view for designing libraries.
+                </p>
+            }
             <hr/>
             @common.SectionHeader("DevOps")
+            @Book(NewBookParams(
+                    "Docker Deep Dive",
+                    "https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton/dp/1916585256",
+                    "https://m.media-amazon.com/images/I/61K0mUALVAL._SL1360_.jpg",
+                )){
+                <p>
+                    Structured learning of docker. Important thing for any DevOps engineer, Backend developer or any other job role dealing
+                    with web applications and their related ecosystem of databases and other stuff. Docker is helping to document as a code your
+                    web application building and freeze entire everything needed for its running. Containers became standard for immutable deployments,
+                    and with learning docker you will make your app compatible with modern ecosystem and get ability for easier rollback to previous version.
+                </p>
+            }
+            @Book(NewBookParams(
+                    "The Kubernetes Book",
+                    "https://www.amazon.com/Kubernetes-Book-Version-November-2018-ebook/dp/B072TS9ZQZ",
+                    "https://m.media-amazon.com/images/I/71lxeRFPYLL._SL1500_.jpg",
+                )){
+                <p>
+                    In case u need jump start in learning kubernetes this book is for you.
+                    From same author as Docker Deep Dive. a structured dive into k8s.
+                </p>
+            }
+            @Book(NewBookParams(
+                    "Terraform up and runnning",
+                    "https://www.amazon.com/Terraform-Running-Writing-Infrastructure-Code/dp/1098116747",
+                    "https://m.media-amazon.com/images/I/81TuTt5Sz3L._SL1500_.jpg",
+                )){
+                <p>
+                    This book teaches you instrument to automate all actions of dealing with cloud providers, like AWS / GCP / Azure.
+                    Without terraform or pulumi it is not very recommended diving into them, for a reason of a high complexity to tune all things.
+                    Infrastructure as a code changes things and helps to utilize the power of such cloud providers in a comfortable way.
+                </p>
+
+                <p>
+                    P.S. this book is AWS oriented, but its material will be useful for you for any cloud provider.
+                    Also recommending learning terraform first instead of kubernetes, as it is covering more necessary things first, from setting up servers,
+                    to configuring networks, iam permissions, security groups to managed databases and other gazillion of moden cloud services.
+                </p>
+            }
 
             @common.TextHeaderMain(){
                 Articles
