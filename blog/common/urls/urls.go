@@ -7,7 +7,8 @@ const (
 
 	About = "about.html"
 
-	PetProjects = "pet_projects.html"
+	PetProjects      = "pet_projects.html"
+	PetProjectsIdeas = "pet_projects_ideas.html"
 
 	Favourite = "favourite.html"
 )

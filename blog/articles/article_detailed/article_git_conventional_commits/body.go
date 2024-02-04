@@ -1,29 +1,13 @@
 package article_git_conventional_commits
 
 import (
-	"darklab_blog/blog/common/markdowner"
-	"darklab_blog/blog/common/types"
-	"darklab_blog/blog/pet_projects/pet_projects_urls"
 	"strings"
 	"time"
-
-	"github.com/darklab8/darklab_goutils/goutils/utils"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
 )
 
 type Vars struct {
 	StaticRoot string
 	AutogitURL string
-}
-
-func GetBody(gp types.GlobalParams) string {
-	return string(markdowner.ReadMarkdownAndTemplate(
-		utils_filepath.Join(utils.GetCurrentFolder(), "git_conv_commits.md"),
-		Vars{
-			StaticRoot: gp.StaticRoot,
-			AutogitURL: pet_projects_urls.Autogit,
-		},
-	))
 }
 
 var (

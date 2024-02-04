@@ -51,7 +51,7 @@ func WithArticle(url string) ProjectOption {
 	return WithLink("article", url)
 }
 
-templ pet_project(project *PetProject) {
+templ PetProjectRender(project *PetProject) {
 	<div id={ project.id } class="pet_project">
 	<h2>{ project.name }</h2>
 	{ children... }
@@ -63,20 +63,22 @@ templ pet_project(project *PetProject) {
 	</p>
 }
 
+templ ProjectsShared() {
+	<style>
+	hr {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	</style>
+}
 
 templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 	@common.Html5(gp,pathpath,common.Title("Pet projects")) {
 		@common.BlogFrame() {
 			@common.Menu(gp)
-			<style>
-			hr {
-				margin-top: 30px;
-				margin-bottom: 30px;
-			}
-			</style>
-			<div class="pet_projects">
+			@ProjectsShared()
 			@common.SectionHeader("Tooling")
-			@pet_project(
+			@PetProjectRender(
 				NewPetProject(
 					"Autogit - Git conventional commits linter",
 					"autogit",
@@ -98,7 +100,7 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 				}
 				
 			}
-			@pet_project(
+			@PetProjectRender(
 				NewPetProject(
 					"Typelog - Typed structured logging",
 					"typelog",
@@ -120,7 +122,7 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 			}
 			<hr/>
 			@common.SectionHeader("Personal")
-			@pet_project(
+			@PetProjectRender(
 				NewPetProject(
 					"Blog - static site generator",
 					"blog",
@@ -141,7 +143,7 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 			}
 			<hr/>
 			@common.SectionHeader("Discovery Freelancer community")
-			@pet_project(
+			@PetProjectRender(
 				NewPetProject(
 					"Fldarkbot - Discord bot to track game objects",
 					"fldarkbot",
@@ -163,7 +165,7 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 				}
 			}
 			<hr/>
-			@pet_project(
+			@PetProjectRender(
 				NewPetProject(
 					"Fldarklint - Linter for game configs",
 					"fldarklint",
@@ -181,7 +183,7 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 				<img style="max-width: 100%;" src="https://github.com/darklab8/darklab_fldarklint/raw/master/docs/assets/diff_example.png" />
 			}
 			<hr/>
-			@pet_project(
+			@PetProjectRender(
 				NewPetProject(
 					"Flconfigs - ORM to access game data",
 					"flconfig",
@@ -194,7 +196,12 @@ templ PetProjectsT(gp types.GlobalParams, pathpath string) {
 					The project is reused as library for Fldarklint and Fldarkstat.
     			}
 			}
-			</div> 
+
+			<div style="display: flex; justify-content: center;">
+				<p>
+					<a href={ templ.URL(gp.SiteRoot + urls.PetProjectsIdeas) }>future ideas</a>
+				</p>
+			</div>
 		} 
 	}
 }

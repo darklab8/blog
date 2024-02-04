@@ -9,6 +9,7 @@ import (
 	"darklab_blog/blog/common/urls"
 	"darklab_blog/blog/favourite"
 	"darklab_blog/blog/pet_projects"
+	"darklab_blog/blog/pet_projects/ideas"
 )
 
 var Builder *builder.Builder
@@ -24,6 +25,16 @@ func init() {
 			urls.PetProjects,
 			pet_projects.PetProjectsT,
 		),
+
+		builder.NewComponent(
+			urls.PetProjectsIdeas,
+			ideas.IdeasT,
+		),
+		builder.NewComponent(
+			ideas.UrlAeras,
+			ideas.IdeaAerasCI,
+		),
+
 		builder.NewComponent(
 			urls.Favourite,
 			favourite.PageT,

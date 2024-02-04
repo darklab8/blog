@@ -1,0 +1,53 @@
+package ideas
+
+import (
+	"darklab_blog/blog/common/types"
+    "darklab_blog/blog/common"
+        "darklab_blog/blog/pet_projects"
+)
+
+templ IdeasT(gp types.GlobalParams, pathpath string) {
+    	@common.Html5(gp,pathpath,common.Title("Pet projects ideas")) {
+		@common.BlogFrame() {
+			@common.Menu(gp)
+
+            @common.TextHeaderMain(){
+                Future project ideas
+            }
+
+            @pet_projects.ProjectsShared()
+			@common.SectionHeader("Discovery Freelancer community")
+            @pet_projects.PetProjectRender(
+				pet_projects.NewPetProject(
+					"Fldarkstat - remake of flstat in online way",
+					"fldarkstat",
+					pet_projects.WithGithub("https://github.com/darklab8/darklab_fldarkstat"),
+                    pet_projects.WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
+				),
+			) {
+                <img style="max-width: 100%;" src={ gp.StaticRoot + "ideas/flstat_view.png" } />
+				@common.TextBlock(){
+					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
+					A tool for navigation of game data for Freelancer game.
+					The main idea that online version will be more accessable.
+					It will be able to have a touch of information never given to client side and thus showing more truthful information.
+    			}
+			}
+
+            <hr/>
+			@common.SectionHeader("Tools")
+
+            @pet_projects.PetProjectRender(
+				pet_projects.NewPetProject(
+					"Aeris CI",
+					"aeris",
+                    pet_projects.WithLink("description", gp.SiteRoot + UrlAeras),
+				),
+			) {
+				@common.TextBlock(){
+					CI agnostic local workflow executor.
+    			}
+			}
+        }
+    }
+}

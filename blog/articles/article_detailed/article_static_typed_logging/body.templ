@@ -2,7 +2,11 @@ package article_static_typed_logging
 
 import (
 	"darklab_blog/blog/common"
+	"darklab_blog/blog/common/markdowner"
 	"darklab_blog/blog/common/types"
+	"darklab_blog/blog/pet_projects/pet_projects_urls"
+	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
+	"github.com/darklab8/darklab_goutils/goutils/utils"
 )
 
 templ ArticleT(gp types.GlobalParams, pagepath string) {
@@ -14,7 +18,15 @@ templ ArticleT(gp types.GlobalParams, pagepath string) {
 			}
 			</style>
 			@common.Menu(gp)
-			@templ.Raw(GetBody(gp))
+			@templ.Raw(markdowner.MdToHtml(
+				gp,
+				utils_filepath.Join(utils.GetCurrentFolder(), "typelog.md"),
+				Vars{
+					StaticRoot: gp.StaticRoot,
+					GoTypelog:  pet_projects_urls.GoTypelog,
+					PyTypelog:  pet_projects_urls.PyTypelog,
+				},
+			))
 		}
 	}
 }
