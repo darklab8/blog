@@ -5,18 +5,108 @@ import (
     "darklab_blog/blog/common"
 )
 
-templ Book() {
+type BookParams struct {
+    name string
+    shop_url string
+    url_cover string
+}
+func NewBookParams(
+    name string,
+    shop_url string,
+    url_cover string,
+) *BookParams {
+    return &BookParams{
+        name: name,
+        shop_url: shop_url,
+        url_cover: url_cover,
+    }
+}
 
+templ Book(params *BookParams) {
+    <a href={ templ.URL(params.shop_url) }><h3>{ params.name }</h3></a>
+    <div class="book_description">
+        <a href={ templ.URL(params.shop_url) }><img class="book_element" src={ params.url_cover }/></a>
+        <p class="book_element">
+            { children... }
+        </p>
+    </div>
+    
 }
 
 templ PageT(gp types.GlobalParams, pathpath string) {
 	@common.Html5(gp,pathpath,common.Title("Pet projects")) {
 		@common.BlogFrame() {
 			@common.Menu(gp)
-			@common.SectionHeader("Books")
+            <style>
+            .book_description img {
+                max-width: 200px;
+                max-height: 200px;
+                float: left;
+            }
+            .book_element {
+                margin: 15px;
+            }
+            .section_header {
+                font-size: 1.4em;
+            }
+            hr {
+                border-color: gray;
+            }
+            </style>
+            @common.TextHeaderMain(){
+                Books
+            }
             Books that I certainly recommend for reading
+            @common.SectionHeader("Core software engineering")
 
-            @common.SectionHeader("Article")
+            @Book(NewBookParams(
+                    "Code Complete: A Practical Handbook of Software Construction",
+                    "https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670",
+                    "https://m.media-amazon.com/images/I/61GzazUmKyL._SL1462_.jpg",
+                )){
+                <p>
+                    If i could recommend to read only a single book in entire life, that would be this one.
+                    It is very all encompasing book covering a lot of aspects of software development.
+                    Some of them in more than enough capacity.
+                    Some of them is showing only briefly and redirecting to where to learn them further.
+                    With this book u will have much clear picture that there is still a lot to learn ahead.
+                    It has plenty of recommendations what to read next.
+                </p>
+                <p>
+                    Despite it being written in 2004 year as second edition, it still remains relevant for 98%+ of its text.
+                    With reading its material you will learn reusable skills that will remain persistent through your full career.
+                    it will help you to write more cleaner, more readable and maintainable code in any programming language.
+                    It will help you to understand possible goals in development to aim for, and what you could be missing to code with more efficiency.
+                </p>
+            }
+
+            <hr/>
+            @common.SectionHeader("DevOps")
+
+            @common.TextHeaderMain(){
+                Articles
+            }
+            <p>
+                <ul>
+                    @common.TextLink("https://grugbrain.dev/"){
+                         <li>Grug brain development</li>
+                    }
+                     @common.TextLink("https://12factor.net/"){
+                         <li>The twelve-factor app</li>
+                    }
+                    @common.TextLink("https://htmx.org/essays/locality-of-behaviour/"){
+                        <li>Locality</li>
+                    }
+
+                    
+                    @common.TextLink("http://www.pl-enthusiast.net/2014/08/05/type-safety/"){
+                        <li>Type safety</li>
+                    }
+                    @common.TextLink("https://gist.github.com/chitchcock/1281611"){
+                        <li>About platforms</li>
+                    }
+                </ul>
+            </p>
         }
     }
 }
