@@ -5,6 +5,8 @@ import (
         "darklab_blog/blog/common/types"
 )
 
+var NonBreakingSpace = "&nbsp;"
+
 templ NavElem(url string) {
     <a href={ templ.URL(url) }><div class="nav_elem">
     { children... }
@@ -17,7 +19,7 @@ templ Menu() {
             Articles
         }
         @NavElem(types.GetCtx(ctx).SiteRoot + urls.PetProjects) {
-            Pet projects
+            Pet&nbsp;projects
         }
         @NavElem(types.GetCtx(ctx).SiteRoot + urls.Favourite) {
             Favourite
