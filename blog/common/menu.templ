@@ -14,6 +14,19 @@ templ NavElem(url string) {
 }
 
 templ Menu() {
+    <style>
+    .main_menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .nav_elem {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+    }
+    </style>
     <menu class="main_menu">
         @NavElem(types.GetCtx(ctx).SiteRoot) {
             Articles

@@ -75,6 +75,27 @@ templ Html5(title Title) {
 }
 
 templ BlogFrame() {
+	<style>
+	.blog_space {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        max-width: 100%;
+
+        .blog_body {
+            margin-left: 20px;
+            margin-right: 20px
+            flex-basis: 800px;
+            max-width: 800px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        margin-top: 10px;
+        margin-bottom: 100px;
+    }
+	</style>
 	<div class="blog_space">
 		<div class="blog_body">
 		{ children... }
