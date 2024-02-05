@@ -8,9 +8,9 @@ import (
 var NonBreakingSpace = "&nbsp;"
 
 templ NavElem(url string) {
-    <a href={ templ.URL(url) }><div class="nav_elem">
+    <a class="meny_elem" href={ templ.URL(url) }><h1>
     { children... }
-    </div></a>
+    </h1></a>
 }
 
 templ Menu() {
@@ -18,12 +18,21 @@ templ Menu() {
     .main_menu {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
 
-        .nav_elem {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            font-size: 2em;
+        .meny_elem {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .main_menu {
+            flex-wrap: wrap;
+            justify-content: space-around;
+            .meny_elem {
+                flex-basis: 34%;
+            }
         }
     }
     </style>
