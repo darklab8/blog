@@ -16,19 +16,6 @@ templ CommonCSS() {
         margin-bottom: 20px;
         font-weight: bold;
     }
-    @media (max-width: 800px) {
-        h1, h2 {
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-    }
-    @media (max-width: 700px) {
-        h1, h2 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-    }
-
     h3 {
         margin-top: 20px;
         margin-bottom: 10px;
@@ -43,42 +30,9 @@ templ CommonCSS() {
     h3 {
         font-size: 1.3em;
     }
-    @media (max-width: 800px) {
-        h1 {
-            font-size: 1.8em;
-        }
-        h2 {
-            font-size: 1.6em;
-        }
-        h3 {
-            font-size: 1.2em;
-        }
-    }
-    @media (max-width: 700px) {
-        h1 {
-            font-size: 1.6em;
-        }
-        h2 {
-            font-size: 1.5em;
-        }
-        h3 {
-            font-size: 1.1em;
-        }
-    }
 
     p, li {
         font-size: 22px;
-    }
-
-    @media (max-width: 800px) {
-        p, li {
-            font-size: 20px;
-        }
-    }
-    @media (max-width: 700px) {
-        p, li {
-            font-size: 18px;
-        }
     }
 
     p {
@@ -109,21 +63,6 @@ templ CommonCSS() {
         margin-left: 15px;
         list-style-type: circle;
         list-style-position: inside;
-    }
-
-    // this pre, code, video combination fixes all issues at all pages for mobile
-    pre {
-        display: flex;
-    }
-    code {
-        flex-basis: 100%;
-    }
-    img, pre, code, video {
-        display: grid;
-        overflow-x: scroll;
-        min-height: 0;
-        min-width: 0;
-        max-width: 100%;
     }
     </style>
 }
