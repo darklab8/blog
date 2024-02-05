@@ -10,28 +10,10 @@ templ LightSwitch() {
 	<style>
 		.light_switch {
 			position: fixed;
-			padding: 1.5%;
-				right: 0;
-		}
-		.light_switch {
 			top: 0;
+			right: 0;
+			padding: 1.5%;
 		}
-		@media (max-width: 1000px) {
-			.light_switch {
-				top: 70px;
-			}
-		}
-		@media (max-width: 710px) {
-			.light_switch {
-				top: 150px;
-			}
-		}
-		@media (max-width: 500px) {
-			.light_switch {
-				top: 250px;
-			}
-		}
-
 		#light_switch {
 			width: 100px;
 			height: 100px;
@@ -59,7 +41,6 @@ templ Html5(title Title) {
 	<!DOCTYPE html>
 	<html>
 	<head>
-	<meta name="viewport" content="width=device-width,initial-scale=1"/>
 	<title>{ string(title) }</title>
 	switch types.GetCtx(ctx).Theme {
 		case types.ThemeDark:
