@@ -58,9 +58,6 @@ templ ArticleT(article *Article) {
     @common.Html5(common.Title(article.Title)) {
 		@common.BlogFrame() {
 			<style>
-			img {
-				max-width: 800px;
-			}
 			</style>
 			@common.Menu()
 			@templ.Raw(markdowner.MdToHtml(
