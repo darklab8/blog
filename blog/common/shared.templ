@@ -41,6 +41,7 @@ templ Html5(title Title) {
 	<!DOCTYPE html>
 	<html>
 	<head>
+	<link rel="icon" type="image/x-icon" href={ types.GetCtx(ctx).StaticRoot + "common/favicon.ico" }/>
 	<title>{ string(title) }</title>
 	switch types.GetCtx(ctx).Theme {
 		case types.ThemeDark:
