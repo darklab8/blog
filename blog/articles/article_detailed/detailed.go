@@ -27,7 +27,7 @@ var Articles []*Article = []*Article{
 				AutogitURL: pet_projects_urls.Autogit,
 			}
 		}),
-		WithDescription(strings.ReplaceAll(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.`, "\n", "")),
+		WithDescription(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.`),
 	),
 	NewArticle(
 		"Typelog - type safe structured logging",
@@ -41,6 +41,11 @@ var Articles []*Article = []*Article{
 				PyTypelog:  pet_projects_urls.PyTypelog,
 			}
 		}),
+		WithDescription(`
+			With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs.
+			Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.
+		`),
+	),
 		WithDescription(strings.ReplaceAll(`With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs.
 		Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.`, "\n", "")),
 	),

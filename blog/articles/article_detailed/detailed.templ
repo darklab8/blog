@@ -2,6 +2,7 @@ package article_detailed
 
 import (
     "time"
+    "strings"
 	"darklab_blog/blog/common"
 	"darklab_blog/blog/common/markdowner"
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
@@ -49,7 +50,7 @@ func WithVars(vars func(ctx context.Context) any) ArticleOption  {
 
 func WithDescription(Description string) ArticleOption  {
     return func(b *Article) {
-        b.Description = Description
+        b.Description = strings.ReplaceAll(Description, "\n", "")
     }
 }
 
