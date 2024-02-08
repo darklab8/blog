@@ -27,10 +27,7 @@ var Articles []*Article = []*Article{
 				AutogitURL: pet_projects_urls.Autogit,
 			}
 		}),
-		WithDescription(strings.ReplaceAll(`We write code not just for machines, but for other humans to read
-		(including future us, who forgot the written code in a year).
-		Software development is a team effort, and therefore it requires communicating
-		what we change and why we change it.`, "\n", "")),
+		WithDescription(strings.ReplaceAll(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.`, "\n", "")),
 	),
 	NewArticle(
 		"Typelog - type safe structured logging",
