@@ -1,4 +1,4 @@
-# Git Conventional Commits
+# Git conventional commits - Communicate with git
 
 **Standardized communicating with other devs through git**
 

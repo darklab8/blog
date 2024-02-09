@@ -17,7 +17,7 @@ import (
 
 var Articles []*Article = []*Article{
 	NewArticle(
-		"Git conventional commit",
+		"Git conventional commits - Communicate with git",
 		urls.ArticleGitConventionalCommits,
 		utils_filepath.Join(utils.GetCurrentFolder(), "article_git_conventional_commits", "git_conv_commits.md"),
 		time.Date(2023, time.December, 11, 0, 0, 0, 0, time.UTC),
@@ -27,7 +27,8 @@ var Articles []*Article = []*Article{
 				AutogitURL: pet_projects_urls.Autogit,
 			}
 		}),
-		WithDescription(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.`),
+		WithDescription(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.
+		How to communicate easier with your end users through git and releases.`),
 	),
 	NewArticle(
 		"Typelog - type safe structured logging",
