@@ -56,7 +56,7 @@ Due to lack of any typing it will be very hard to reread the code of any long te
 
 Or we could take even more ridiculous example of choosing boring technology like Assembly. Yet building in it something sane to maintain will be very challenging adventure.
 
-I think it is important choosing static type stable technlogy first! Like Golang. Or even Java.
+I think it is important choosing static typed stable technlogy first! Like Golang. Or even Java.
 All those languages are self documenting themselves to maximum and very stable in amount of changes.
 
 We could continue thought here, and say that usage of Docker despite it being not boring will be completely justified for long term project.
