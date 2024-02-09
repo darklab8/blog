@@ -2,39 +2,39 @@
 
 ## The article that sparkled the ideas
 
-While reading article [cold blooded software](<https://dubroy.com/blog/cold-blooded-software/>), we can see an interesting analog comparing some projects and tech to cold blooded software and some to hot burning ones.
+While reading the article [cold blooded software](<https://dubroy.com/blog/cold-blooded-software/>), we can see an interesting analog comparing some projects and tech to cold-blooded software and some to hot burning ones.
 
-It recounted next qualities for cold blood projects:
+It recounted the next qualities of cold blood projects:
 - Depends on boring tech
 - Vendors in dependencies
 
-And that according to author makes project easy maintainable in a long run for dozen of years with big gaps between development efforts.
+That according to the author makes a project easily maintainable in the long run for dozens of years with big gaps between development efforts.
 
-I really liked the reptile analogy where we compare long term maintaince projects to turtles which can be frozen and reawakened later, but i think his ideas can be extended much further than two qualities he mentioned.
+I really liked the reptile analogy where we compare long-term maintenance projects to turtles which can be frozen and reawakened later, but I think his ideas can be extended much further than the two qualities he mentioned.
 
-Lets place as next goals what we wish for maintaing our projects in terms of multiple years of lifetime with huge time passed between development active phases:
-- increasing maintanability to maximum
+Let's start with next aims in terms of what we wish for maintaining our projects in terms of multiple years of lifetime with huge time passed between development active phases:
+- increasing maintainability to maximum
 - decreasing toll for updates to minimum
-- increasing project code readability to maximum.
+- increasing project code readability to a maximum.
 
-Lets take some examples first for clarity
+Let's now take some examples first for clarity:
 
 ## Super hot burning project
 
-For such project we will take project written in ReactJS
+For such project, we will take a project written in ReactJS
 
-- it will be depended on dozens of different node.js libs, each one having its own updating cycles.
-- if we will not be regularily launching CI and discovering in time small things broken, then in a year amount of things accumulated can reach too huge amount.
-- It will be hard distinguishing between all the breakings, what needs to be fixed first in order to make the project again operational.
+- it will be dependent on dozens of different node.js libs, each one having its own updating cycles.
+- if we will not be regularly launching CI and discovering in time small things broken, then in a year amount of things accumulated can reach too huge amount.
+- It will be hard to distinguish between all the breakings, and what needs to be fixed first in order to make the project again operational.
 
-I agree with author of the article above, that many projects will be abandoned by authors and / or will stop working with new versions of different dependencies.
+I agree with the author of the article above, that many projects will be abandoned by authors and / or will stop working with new versions of different dependencies.
 
-I will add here that if not having in this project typization increasing readability of a project, even author of the project will completely forget all hidden details how the code was working in a few months.
+I will add here that if not having in the project typization increasing readability of a project, even the author of the project will completely forget all the hidden details of how the code was working in a few months.
 
 ## Super cold project
 
-Lets take project made in Golang.
-- Due to the specifics of how golang is made, it is not needing a lot of libraries to operate in the first place. A lot of stuff is present already in std libraries and golang is often not needing extra libraries to make a plenty of things.
+Let's take a project made in Golang.
+- Due to the specifics of how golang is made, it does not need a lot of libraries to operate in the first place. A lot of stuff is present already in std libraries and golang is often not needing extra libraries to make a plenty of things.
 - Due to the spirit of best practices and attitudes flowing through its community, it is common to be writing solutions using as least external dependencies as possible
 - Static typing in addition increases readability of project considerably. it will not be hard to reread a code of a project in a year and figuring out all its internal working, just because when u type, u manage to write code that describes itself well for everything that is going on [about it in a small function](https://mvysny.github.io/code-locality-and-ability-to-navigate/). You often don't need rereading through full project and figuring out all the possible data mutations in order to understand how the project is operating (A common thing needed in javascript / python projects)
 - The developers of Golang language promise backward compatibility, and develop features in a very careful steady amount.
