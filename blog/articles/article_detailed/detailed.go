@@ -17,7 +17,7 @@ import (
 
 var Articles []*Article = []*Article{
 	NewArticle(
-		"Git conventional commits - Communicate with git",
+		"Git conventional commits - communicating with git",
 		urls.ArticleGitConventionalCommits,
 		utils_filepath.Join(utils.GetCurrentFolder(), "article_git_conventional_commits", "git_conv_commits.md"),
 		time.Date(2023, time.December, 11, 0, 0, 0, 0, time.UTC),
