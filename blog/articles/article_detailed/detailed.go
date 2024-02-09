@@ -60,7 +60,7 @@ var Articles []*Article = []*Article{
 	),
 	/*
 		TODO articles
-			- write: raising ECS cluster
+			- write: raising ECS cluster (especially powered by EC2)
 			- refactor python docker containers article ( https://github.com/darklab8/darklab_article_docker_python )
 			- refactor "personal docs as git-crypt"
 				- https://github.com/darklab8/darklab_article_documentation_as_a_code
