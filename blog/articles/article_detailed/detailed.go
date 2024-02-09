@@ -3,12 +3,12 @@ package article_detailed
 import (
 	"context"
 	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
+	"darklab_blog/blog/articles/article_detailed/article_lts_software"
 	"darklab_blog/blog/articles/article_detailed/article_static_typed_logging"
 	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/common/urls"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
 	"sort"
-	"strings"
 	"time"
 
 	"github.com/darklab8/darklab_goutils/goutils/utils"
@@ -46,12 +46,20 @@ var Articles []*Article = []*Article{
 			Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.
 		`),
 	),
-		WithDescription(strings.ReplaceAll(`With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs.
-		Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.`, "\n", "")),
+	NewArticle(
+		"Long term maintained software",
+		"article/long_term_maintained_software.html",
+		utils_filepath.Join(utils.GetCurrentFolder(), "article_lts_software", "article.md"),
+		time.Date(2024, time.February, 01, 0, 0, 0, 0, time.UTC),
+		WithDescription(`Some thoughts about how to have long term maintanance software with minimal toll to maintain and keep up to date`),
+		WithVars(func(ctx context.Context) any {
+			return article_lts_software.Vars{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+			}
+		}),
 	),
 	/*
 		TODO articles
-			- write: about cold blooded software 2 (from https://dubroy.com/blog/cold-blooded-software/ )
 			- write: raising ECS cluster
 			- refactor python docker containers article ( https://github.com/darklab8/darklab_article_docker_python )
 			- refactor "personal docs as git-crypt"
