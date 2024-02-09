@@ -132,7 +132,7 @@ Evaluate if brought extra technlogy will help you to maintain project easier bec
 As much as possible u need to withold yourself from adding extra dependency
 unless it is completely justified for one of the reasons i mentioned before or another one.
 Usually custom made solutions can be prefered for long term maintained software because it will remain with minimal amount of code fitting exactly for your situation. They replace need for having extra libs.
-When u build commercial hot burning software it can fine using libraries for every sneeze, because devs are able to keep up their changes and plus they win a lot from using already made solutions over remaking frameworks on their own, but for long term maintained stuff solution developed in house is way more preferable, unless some reason justifies using already made third party library
+When u build commercial hot burning software it can fine using libraries for every sneeze, because devs are able to keep up with their changes and plus they win a lot from using already made solutions over remaking frameworks on their own, but for long term maintained stuff solution developed in house is way more preferable, unless some reason justifies using already made third party library
 
 ## Conclusion.
 
