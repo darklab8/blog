@@ -136,5 +136,5 @@ When u build commercial hot burning software it can fine using libraries for eve
 
 ## Conclusion.
 
-Those are all qualities for long term maintained projects with big gaps between development active phases.
-If u will follow some of them for active projects, u will still have achieved decreased toll for maintanance and magntitudes faster new developer onboardings. Not all of those qualities benefit every situation though, as they were written with keeping in mind long term maintained software with extremely big gaps between its development active phases!
+Those are all qualities for long term maintained projects with big gaps between development active phases. So it should be kept in mind, as it will not fit every usage case.
+If u will follow some of them for active projects, u will still have achieved decreased toll for maintanance and magntitudes faster new developer onboardings.
