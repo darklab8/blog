@@ -50,7 +50,7 @@ var Articles []*Article = []*Article{
 		"Long term maintained software",
 		"article/long_term_maintained_software.html",
 		utils_filepath.Join(utils.GetCurrentFolder(), "article_lts_software", "article.md"),
-		time.Date(2024, time.February, 01, 0, 0, 0, 0, time.UTC),
+		time.Date(2024, time.February, 9, 0, 0, 0, 0, time.UTC),
 		WithDescription(`Some thoughts about how to have long term maintanance software with minimal toll to maintain and keep up to date`),
 		WithVars(func(ctx context.Context) any {
 			return article_lts_software.Vars{
