@@ -15,3 +15,6 @@ tasks:
       - task: build
       - go run . --act=web
   
+  test:
+    cmds:
+      - go test ./...
