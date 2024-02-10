@@ -3,6 +3,7 @@ package favourite
 import (
     "darklab_blog/blog/common"
     "darklab_blog/blog/archive"
+	"darklab_blog/blog/common/types"
 )
 
 type BookParams struct {
@@ -62,7 +63,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Code Complete: A Practical Handbook of Software Construction",
                     "https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670",
-                    "https://m.media-amazon.com/images/I/61GzazUmKyL._SL1462_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/61GzazUmKyL._SL1462_.jpg",
                 )){
                 <p>
                     If i could recommend to read only a single book in entire life, that would be this one.
@@ -83,7 +84,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Unit Testing Principles, Practices, and Patterns",
                     "https://www.amazon.com/Unit-Testing-Principles-Practices-Patterns/dp/1617296279",
-                    "https://m.media-amazon.com/images/I/81K8dwbaenL._SY466_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/81K8dwbaenL._SY466_.jpg",
                 )){
                 <p>
                     This book teaches theory behind unit testing. For which goals to aim for, how to escape pitifals.
@@ -94,7 +95,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Test Driven Development: By Example",
                     "https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530",
-                    "https://m.media-amazon.com/images/I/61a+MLItPHL._SY466_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/61a+MLItPHL._SY466_.jpg",
                 )){
                 <p>
                     This book teaches practice behind unit testing. On a specific example it walks you through how to
@@ -105,7 +106,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Clean Architecture: A Craftsman's Guide",
                     "https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164",
-                    "https://m.media-amazon.com/images/I/61r4tYVsRVL._SL1304_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/61r4tYVsRVL._SL1304_.jpg",
                 )){
                 <p>
                     This book helps to have a global look onto code design of a single application.
@@ -115,7 +116,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Systems Analysis and Design",
                     "https://www.amazon.com/Systems-Analysis-Design-Alan-Dennis/dp/1119803780",
-                    "https://m.media-amazon.com/images/I/81AfTuXCNjL._SL1500_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/81AfTuXCNjL._SL1500_.jpg",
                 )){
                 <p>
                     The book makes walk through steps of Software Development Lifecycle. From getting approved draft, gathering requirements for its functional and technical requirements,
@@ -128,7 +129,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Docker Deep Dive",
                     "https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton/dp/1916585256",
-                    "https://m.media-amazon.com/images/I/61K0mUALVAL._SL1360_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/61K0mUALVAL._SL1360_.jpg",
                 )){
                 <p>
                     Structured learning of docker. Important thing for any DevOps engineer, Backend developer or any other job role dealing
@@ -140,7 +141,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "The Kubernetes Book",
                     "https://www.amazon.com/Kubernetes-Book-Version-November-2018-ebook/dp/B072TS9ZQZ",
-                    "https://m.media-amazon.com/images/I/71lxeRFPYLL._SL1500_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/71lxeRFPYLL._SL1500_.jpg",
                 )){
                 <p>
                     In case u need jump start in learning kubernetes this book is for you.
@@ -150,7 +151,7 @@ templ PageT() {
             @Book(NewBookParams(
                     "Terraform up and runnning",
                     "https://www.amazon.com/Terraform-Running-Writing-Infrastructure-Code/dp/1098116747",
-                    "https://m.media-amazon.com/images/I/81TuTt5Sz3L._SL1500_.jpg",
+                    types.GetCtx(ctx).StaticRoot + "favourite/81TuTt5Sz3L._SL1500_.jpg",
                 )){
                 <p>
                     This book teaches you instrument to automate all actions of dealing with cloud providers, like AWS / GCP / Azure.
