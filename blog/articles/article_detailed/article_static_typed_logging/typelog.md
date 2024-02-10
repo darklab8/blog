@@ -14,7 +14,7 @@ Known solutions do not do it consistently and in a type safe way. It is easy to 
 Structured logging became part of std library [for golang](https://go.dev/blog/slog) ,
 as well part of official documentation [for python](https://docs.python.org/3/howto/logging-cookbook.html#implementing-structured-logging). Golang managed to reach a rather big comfort out of the box, but it has some parts missing... like type safety. U can insert Any objects into logging msgs easily. [Python std way](https://docs.python.org/3/howto/logging-cookbook.html#implementing-structured-logging) is in even more raw state. And they all lack a way to do it in a type safe way.
 
-For reading [what is type safety, check here](http://www.pl-enthusiast.net/2014/08/05/type-safety/)
+For reading {{.LinkTypeSafety}}
 
 ## Solution
 

@@ -5,9 +5,10 @@ import (
     "darklab_blog/blog/common/types"
 )
 
-templ LinkT(link *Link) {
+templ LinkT(link *Link, name string) {
     <span class="tooltip">
         @common.TextLink(link.OrignUrl){
+            { name }
             { children... }
         }
         <span class="tooltiptext">

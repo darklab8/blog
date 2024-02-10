@@ -2,7 +2,7 @@
 
 ## The article that sparkled the ideas
 
-While reading the article [cold blooded software](<https://dubroy.com/blog/cold-blooded-software/>), we can see an interesting analog comparing some projects and tech to cold-blooded software and some to hot burning ones.
+While reading the article {{.LinkColdBloodedSoftware}}, we can see an interesting analog comparing some projects and tech to cold-blooded software and some to hot burning ones.
 
 It recounted the next qualities of cold blood projects:
 - Depends on boring tech

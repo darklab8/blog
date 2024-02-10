@@ -22,4 +22,9 @@ var (
 		"PlatformsRant.html",
 		"PlatformsRant.pdf",
 	)
+	LinkColdBloodedSoftware = NewLink(
+		"https://dubroy.com/blog/cold-blooded-software/",
+		"Cold-blooded_software.html",
+		"Cold-blooded_software.pdf",
+	)
 )

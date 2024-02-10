@@ -3,8 +3,8 @@ package markdowner
 import (
 	"bytes"
 	"darklab_blog/blog/settings/logus"
-	"html/template"
 	"os"
+	"text/template"
 
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
 	"github.com/gomarkdown/markdown"

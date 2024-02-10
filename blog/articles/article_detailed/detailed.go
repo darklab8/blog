@@ -2,9 +2,11 @@ package article_detailed
 
 import (
 	"context"
+	"darklab_blog/blog/archive"
 	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"darklab_blog/blog/articles/article_detailed/article_lts_software"
 	"darklab_blog/blog/articles/article_detailed/article_static_typed_logging"
+	"darklab_blog/blog/common"
 	"darklab_blog/blog/common/types"
 	"darklab_blog/blog/common/urls"
 	"darklab_blog/blog/pet_projects/pet_projects_urls"
@@ -37,9 +39,10 @@ var Articles []*Article = []*Article{
 		time.Date(2024, time.January, 28, 0, 0, 0, 0, time.UTC),
 		WithVars(func(ctx context.Context) any {
 			return article_static_typed_logging.Vars{
-				StaticRoot: types.GetCtx(ctx).StaticRoot,
-				GoTypelog:  pet_projects_urls.GoTypelog,
-				PyTypelog:  pet_projects_urls.PyTypelog,
+				StaticRoot:     types.GetCtx(ctx).StaticRoot,
+				GoTypelog:      pet_projects_urls.GoTypelog,
+				PyTypelog:      pet_projects_urls.PyTypelog,
+				LinkTypeSafety: common.TemplToStr(archive.LinkT(archive.LinkTypeSafety, "what is type safety, check here"), ctx),
 			}
 		}),
 		WithDescription(`
@@ -55,7 +58,8 @@ var Articles []*Article = []*Article{
 		WithDescription(`Some thoughts about how to have long term maintanance software with minimal toll to maintain and keep up to date`),
 		WithVars(func(ctx context.Context) any {
 			return article_lts_software.Vars{
-				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				StaticRoot:              types.GetCtx(ctx).StaticRoot,
+				LinkColdBloodedSoftware: common.TemplToStr(archive.LinkT(archive.LinkTypeSafety, "cold blooded software"), ctx),
 			}
 		}),
 	),
