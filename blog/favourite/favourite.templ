@@ -2,6 +2,7 @@ package favourite
 
 import (
     "darklab_blog/blog/common"
+    "darklab_blog/blog/archive"
 )
 
 type BookParams struct {
@@ -169,6 +170,7 @@ templ PageT() {
             }
             <p>
                 <ul>
+                    
                     @common.TextLink("https://grugbrain.dev/"){
                          <li>Grug brain development</li>
                     }
@@ -178,9 +180,7 @@ templ PageT() {
                     @common.TextLink("https://htmx.org/essays/locality-of-behaviour/"){
                         <li>Locality</li>
                     }
-
-                    
-                    @common.TextLink("http://www.pl-enthusiast.net/2014/08/05/type-safety/"){
+                    @archive.LinkT(archive.LinkTypeSafety) {
                         <li>Type safety</li>
                     }
                     @common.TextLink("https://gist.github.com/chitchcock/1281611"){

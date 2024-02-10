@@ -1,0 +1,23 @@
+package archive
+
+import (
+    "darklab_blog/blog/common"
+    "darklab_blog/blog/common/types"
+)
+
+templ LinkT(link *Link) {
+    <span class="tooltip">
+        @common.TextLink(link.OrignUrl){
+            { children... }
+        }
+        <span class="tooltiptext">
+            @common.TextLink(types.GetCtx(ctx).StaticRoot + link.HtmlRelpath){
+                archived html
+            }
+            <br/>
+            @common.TextLink(types.GetCtx(ctx).StaticRoot + link.PdfRelath){
+                archived pdf
+            }
+        </span>
+    </span>
+}
