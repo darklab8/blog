@@ -1,0 +1,705 @@
+﻿<!DOCTYPE html><html lang="en"><head>
+<link rel="icon" data-savepage-href="https://htmx.org/favicon.ico" href="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="htmx gives you access to AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML, using attributes, so you can build modern user interfaces with the simplicity and power of hypertext
+
+    htmx is small (~14k min.gz’d), dependency-free, extendable, IE11 compatible & has reduced code base sizes by 67% when compared with react">
+    
+  <title>&lt;/&gt; htmx ~ Locality of Behaviour (LoB)</title>
+    <link rel="canonical" data-savepage-href="https://htmx.org/essays/locality-of-behaviour/" href="">
+    
+    <link rel="alternate" type="application/atom+xml" title="Sitewide Atom feed" data-savepage-href="/atom.xml" href="">
+    <style data-savepage-href="/css/site.css">:root {
+  --midBlue: #3366cc;
+  --lightBlue: #3d72d7;
+}
+
+body {
+  overflow-x:hidden;
+  margin: 0px;
+  line-height: 1.5em;
+  font-size: 16px;
+  color: #111;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+}
+
+table {
+  font-size: 16px;
+}
+
+.info-table table tbody tr td:first-of-type {
+  white-space: nowrap;
+}
+
+.full-width {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.logo {
+  color: inherit;
+  text-decoration: none;
+
+  font-size: 28px;
+  font-weight: bold;
+
+}
+.logo b {
+  font-weight: inherit;
+  color: var(--midBlue);
+}
+
+/*
+.light {
+}
+
+.content{
+}
+*/
+
+.top-nav {
+  line-height: 30px;
+  border-bottom: 1px solid #d0d0d0;
+  margin: 0px;
+  background-image: linear-gradient(#fff, #f4f5f5);
+  box-shadow: 0px 4px 15px 0px rgb(239, 239, 239);
+  margin-bottom:1em;
+}
+
+.hide {
+  display:none;
+}
+
+.active a {
+  font-weight: bold;
+}
+
+body .content code {
+  font-size: 0.9em;
+}
+
+code:not(code[class*="language-"]) {
+  background: #3465a41f;
+  border-radius: 2px;
+  padding: 2px 5px;
+}
+
+.dark-hero {
+  background: /*savepage-url=/img/topo.svg*/ url(), linear-gradient(#1f1f1f, #2d2d2d) ;
+  height: 240px;
+  line-height: 240px;
+  text-align: center;
+  vertical-align: center;
+  color: whitesmoke;
+  margin-top: -2em;
+  box-shadow:
+          inset 0px 11px 8px -10px #262626,
+          inset 0px -11px 8px -10px #262626;
+  border-bottom: 1px solid whitesmoke;
+}
+  .dark-hero * {
+      opacity: 0;
+      transition: all 500ms ease-in;
+  }
+  .dark-hero sub {
+      display: inline-block;
+      position: relative;
+      top: 40px;
+  }
+  .dark-hero.appear * {
+      opacity: 1;
+      top: 10px;
+  }
+  .dark-hero .logo {
+      font-size: 100px;
+  }
+  .dark-hero .blue {
+      color: var(--lightBlue);
+  }
+
+p {
+  margin: 0.5em 0;
+}
+
+blockquote {
+  border-left: 4px solid whitesmoke;
+  margin: 1em;
+  padding-left: 0.5em;
+}
+
+table {
+  width: 100%;
+}
+
+.hero {
+  text-align: center;
+  font-size: 5em;
+  margin: 0;
+  line-height: 1em;
+}
+
+time {
+  font-weight: bold;
+}
+
+a {
+text-decoration: none;
+color: var(--midBlue)
+}
+
+.center {
+  text-align: center;
+}
+
+.nav {
+  margin-bottom: 1em;
+}
+  .nav ul {
+      list-style: none;
+      padding-left: 12px;
+  }
+
+.hamburger {
+  display: none;
+}
+
+h2:not(:first-child) {
+  margin-top: 42px;
+}
+h3 {
+  margin-top: 32px;
+}
+h4 {
+  margin-top: 16px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+    margin-left: 12px;
+}
+
+ul li {
+    padding: 4px;
+}
+
+ol {
+    margin-left: 12px;
+}
+
+ol li {
+    padding: 4px;
+}
+
+@media(max-width:45rem) {
+  #nav {
+      height: 0px;
+      overflow: hidden;
+      text-align: center;
+      font-size: 22px;
+  }
+  #nav.show {
+      height: initial;
+      overflow: visible;
+  }
+  .hero {
+      font-size: 2.5em;
+  }
+  pre[class*="language-"]  {
+      overflow-x: scroll !important;
+      border-radius: 0 !important;
+  }
+  .info-table  {
+      overflow-x: scroll !important;
+  }
+  .no-mobile {
+      display: none !important;
+  }
+  .hamburger {
+      display: revert;
+      float: right;
+  }
+  .nav {
+      text-align: center;
+      font-size: 1.2em;
+      line-height: 1.3em;
+  }
+}
+
+@media(min-width:45em) {
+  .col {
+      display: table-cell;
+  }
+  .\31 {
+      width: 5%;
+  }
+  .\33 {
+      width: 22%;
+  }
+  .\34 {
+      width: 30%;
+  }
+  .\35 {
+      width: 40%;
+  }
+  .\32 {
+      width: 15%;
+  }
+  .content .row .nav,
+  .logo-wrapper{
+      width:12rem;
+  }
+  .row {
+      display: table;
+      table-layout: fixed;
+      /* border-spacing: 1em 0; */
+  }
+}
+
+.w-100,
+.row {
+  width: 100%;
+}
+
+.card:focus {
+  outline: 0;
+  border: solid var(--midBlue);
+}
+
+hr {
+  outline: 0;
+}
+
+.card {
+  padding: 1em;
+  border: solid #eee;
+}
+
+a[href]:hover, .btn:hover {
+  opacity: .6;
+}
+
+.c {
+  padding: 0 .7em;
+  max-width: 40em;
+  margin: auto;
+}
+
+.c.wide-content {
+  max-width: 50em;
+}
+
+.btn.primary {
+  color: white;
+  background: var(--midBlue);
+  border: solid var(--midBlue);
+}
+
+td {
+  padding: 0.2em 0.2em 0.2em 0;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  padding: 0.2em 0.2em 0.2em 0;
+  text-align: left;
+  border-bottom: 2px solid #eee;
+}
+
+.btn {
+  padding: 1em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: white;
+  border: solid;
+  cursor:pointer;
+  border-radius: 8px;
+}
+
+pre {
+  overflow: auto;
+  font-size: 0.9em;
+  background-color: #272822;
+}
+
+table.delete-row-example .htmx-swapping {
+opacity: 0;
+transition: visibility 0s 1s, opacity 1s linear;
+}
+
+/* MENU */
+
+.menu{
+  padding:1em 0;
+}
+
+.github-stars iframe{
+  max-width:95px
+}
+
+/* Content */
+
+.content {
+  padding-top:1em;
+}
+
+h1,h2,h3,h4{
+  margin-bottom: .65em;
+  font-weight: 600;
+  line-height: 1em;
+}
+
+/* UL in content */
+:not(.nav) ul{
+  padding-left: 1em;
+}
+
+.nav ul{
+  padding-left: 0;
+}
+
+.nav ul ul {
+  padding-left:12px;
+}
+
+
+@media(min-width:45em) {
+
+  /* Menu */
+  .menu,
+  .navigation > div{
+      display:flex;
+      align-items:center;
+  }
+  .navigation{
+     flex:1;
+     display:flex;
+     justify-content: space-between;
+     padding-left: calc(1em + 1.5vw);
+  }
+  .navigation-items > *:not(:last-child){
+      margin-right: calc(.5em + .7vw);
+  }
+  .github-stars{
+      display:flex;
+      align-items:center;
+  }
+  .github-stars a{
+      margin:0 calc(.5em + .7vw);
+  }
+
+  /* Content */
+  .content .col:not(:nth-child(1)):not(.nav) {
+      padding-left: calc(1em + 1.5vw);
+  }
+  .content .nav > p,
+  .content .nav #contents{
+      position: sticky;
+
+  }
+
+  .content .nav #contents{
+      top: 3.5em;
+  }
+  .content .nav #contents > ul {
+      max-height: calc(100vh - 5rem);
+      overflow-y: scroll;
+  }
+
+  .content .nav > p
+  {
+      position: sticky;
+      top: 2vh;
+  }
+
+  .shift-up-img {
+      position:relative;
+      top:-120px
+  }
+
+}
+
+@media(max-width:45rem) {
+  .github-stars{
+      text-align:center;
+      margin-top:1em;
+  }
+  .github-stars a{
+      display:block;
+  }
+}
+
+
+.logo-wrapper {
+white-space: nowrap;
+}
+
+table td:first-child code {
+display: block;
+background: none;
+}
+
+
+.search-box {
+    transition: all .2s ease-in-out;
+    width: 2.5rem;
+    padding: 4px 6px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    margin-right: 10px;
+    outline: 0;
+}
+
+.search-box::placeholder {
+    text-align: right;
+}
+
+.search-box:hover, .search-box:not(:placeholder-shown) {
+    border: 2px solid var(--midBlue);
+}
+
+.search-box:active, .search-box:focus, .search-box:not(:placeholder-shown) {
+    width: 10rem;
+}
+
+footer {
+margin-top: 2em;
+padding-top: 2em;
+padding-bottom: 5em;
+background-color: #f6f6f6;
+}
+
+footer .footer-menu {
+text-align: right;
+}
+
+@media(max-width:45rem) {
+footer .footer-haiku {
+  margin-bottom: 3em;
+}
+
+footer .footer-menu {
+  padding-top: 3em;
+  border-top: 1px solid #eee;
+  text-align: left;
+}
+}
+pre[class|="language"] {
+  line-height: 1.3;
+  padding: .5rem;
+  margin: .5rem 0;
+  border-radius: .25rem;
+  color: lightgray;
+}
+.zola-anchor {
+  margin-left: -1.3rem;
+  margin-right: .3rem;
+  opacity: 40%;
+}
+.zola-anchor:hover {
+    opacity: 95%;
+}
+</style>
+    <script data-savepage-type="" type="text/plain" data-savepage-src="/js/htmx.js"></script>
+    <script data-savepage-type="" type="text/plain" data-savepage-src="/js/class-tools.js"></script>
+    <script data-savepage-type="" type="text/plain" data-savepage-src="/js/preload.js"></script>
+    <script data-savepage-type="" type="text/plain" data-savepage-src="/js/_hyperscript.js"></script>
+    <meta name="generator" content="Zola v.TODO">
+<style>                      .htmx-indicator{opacity:0}                      .htmx-request .htmx-indicator{opacity:1; transition: opacity 200ms ease-in;}                      .htmx-request.htmx-indicator{opacity:1; transition: opacity 200ms ease-in;}                    </style>
+<style id="savepage-cssvariables">
+  :root {
+  }
+</style>
+<script id="savepage-shadowloader" type="text/javascript">
+  "use strict";
+  window.addEventListener("DOMContentLoaded",
+  function(event) {
+    savepage_ShadowLoader(5);
+  },false);
+  function savepage_ShadowLoader(c){createShadowDOMs(0,document.documentElement);function createShadowDOMs(a,b){var i;if(b.localName=="iframe"||b.localName=="frame"){if(a<c){try{if(b.contentDocument.documentElement!=null){createShadowDOMs(a+1,b.contentDocument.documentElement)}}catch(e){}}}else{if(b.children.length>=1&&b.children[0].localName=="template"&&b.children[0].hasAttribute("data-savepage-shadowroot")){b.attachShadow({mode:"open"}).appendChild(b.children[0].content);b.removeChild(b.children[0]);for(i=0;i<b.shadowRoot.children.length;i++)if(b.shadowRoot.children[i]!=null)createShadowDOMs(a,b.shadowRoot.children[i])}for(i=0;i<b.children.length;i++)if(b.children[i]!=null)createShadowDOMs(a,b.children[i])}}}
+</script>
+<meta name="savepage-url" content="https://htmx.org/essays/locality-of-behaviour/">
+<meta name="savepage-title" content="</> htmx ~ Locality of Behaviour (LoB)">
+<meta name="savepage-pubdate" content="Unknown">
+<meta name="savepage-from" content="https://htmx.org/essays/locality-of-behaviour/">
+<meta name="savepage-date" content="Sat Feb 10 2024 03:38:27 GMT+0100 (Central European Standard Time)">
+<meta name="savepage-state" content="Standard Items; Retain cross-origin frames; Merge CSS images; Remove unsaved URLs; Load lazy images in existing content; Max frame depth = 5; Max resource size = 50MB; Max resource time = 10s;">
+<meta name="savepage-version" content="33.9">
+<meta name="savepage-comments" content="">
+  </head>
+<body hx-ext="class-tools, preload">
+
+<div class="top-nav">
+    <div class="c">
+        <div class="menu">
+            <div class="logo-wrapper">
+                <a data-savepage-href="/" href="https://htmx.org/" class="logo light">&lt;<b>/</b>&gt; htm<b>x</b></a>
+                <svg _="on click toggle .show on #nav" class="hamburger" viewBox="0 0 100 80" width="25" height="25" style="margin-bottom:-5px">
+                    <rect width="100" height="20" style="fill:rgb(52, 101, 164)" rx="10"></rect>
+                    <rect y="30" width="100" height="20" style="fill:rgb(52, 101, 164)" rx="10"></rect>
+                    <rect y="60" width="100" height="20" style="fill:rgb(52, 101, 164)" rx="10"></rect>
+                </svg>
+            </div>
+            
+            <div id="nav" class="navigation" hx-boost="true">
+            
+                <div class="navigation-items" preload="mouseover">
+                    <div><a data-savepage-href="/docs/" href="https://htmx.org/docs/">docs</a></div>
+                    <div><a data-savepage-href="/reference/" href="https://htmx.org/reference/">reference</a></div>
+                    <div><a data-savepage-href="/examples/" href="https://htmx.org/examples/">examples</a></div>
+                    <div><a data-savepage-href="/talk/" href="https://htmx.org/talk/">talk</a></div>
+                    <div><a data-savepage-href="/essays/" href="https://htmx.org/essays/">essays</a></div>
+                    <div hx-disable="">
+                        <form action="https://google.com/search">
+                            <input type="hidden" name="q" value="site:htmx.org">
+                            <label>
+                                <span style="display:none;">Search</span>
+                                <input type="text" name="q" placeholder="🔍️" class="search-box" value="">
+                            </label>
+                        </form>
+                    </div>
+                </div>
+                <div class="github-stars">
+                    <iframe sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html lang=&quot;en&quot;><head><base href=&quot;https://ghbtns.com/github-btn.html?user=bigskysoftware&amp;repo=htmx&amp;type=star&amp;count=true&quot;><script data-savepage-type=&quot;&quot; type=&quot;text/plain&quot; data-savepage-src=&quot;https://api.github.com/repos/bigskysoftware/htmx?callback=callback&quot;></script><meta charset=&quot;utf-8&quot;><style>body{padding:0;margin:0;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,Arial,&quot;Noto Sans&quot;,sans-serif;font-size:11px;font-weight:700;line-height:14px}.github-btn{height:20px;overflow:hidden}.gh-btn,.gh-count,.gh-ico{float:left}.gh-btn,.gh-count{padding:2px 5px 2px 4px;color:#333;text-decoration:none;white-space:nowrap;cursor:pointer;border-radius:3px}.gh-btn{background-color:#eee;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#fcfcfc),to(#eee));background-image:linear-gradient(to bottom,#fcfcfc 0,#eee 100%);background-repeat:no-repeat;border:1px solid #d5d5d5}.gh-btn:focus,.gh-btn:hover{text-decoration:none;background-color:#ddd;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#eee),to(#ddd));background-image:linear-gradient(to bottom,#eee 0,#ddd 100%);border-color:#ccc}.gh-btn:active{background-color:#dcdcdc;background-image:none;border-color:#b5b5b5;box-shadow:inset 0 2px 4px rgba(0,0,0,.15)}.gh-ico{width:14px;height:14px;margin-right:4px;background:url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='12 12 40 40'%3e%3cpath fill='%23333' d='M32 13.4c-10.5 0-19 8.5-19 19 0 8.4 5.5 15.5 13 18 1 .2 1.3-.4 1.3-.9v-3.2c-5.3 1.1-6.4-2.6-6.4-2.6-.9-2.1-2.1-2.7-2.1-2.7-1.7-1.2.1-1.1.1-1.1 1.9.1 2.9 2 2.9 2 1.7 2.9 4.5 2.1 5.5 1.6.2-1.2.7-2.1 1.2-2.6-4.2-.5-8.7-2.1-8.7-9.4 0-2.1.7-3.7 2-5.1-.2-.5-.8-2.4.2-5 0 0 1.6-.5 5.2 2 1.5-.4 3.1-.7 4.8-.7 1.6 0 3.3.2 4.7.7 3.6-2.4 5.2-2 5.2-2 1 2.6.4 4.6.2 5 1.2 1.3 2 3 2 5.1 0 7.3-4.5 8.9-8.7 9.4.7.6 1.3 1.7 1.3 3.5v5.2c0 .5.4 1.1 1.3.9 7.5-2.6 13-9.7 13-18.1 0-10.5-8.5-19-19-19z'/%3e%3c/svg%3e&quot;) 0 0/100% 100% no-repeat}.gh-count{position:relative;display:none;margin-left:4px;background-color:#fafafa;border:1px solid #d4d4d4}.gh-count:focus,.gh-count:hover{color:#0366d6}.gh-count::after,.gh-count::before{position:absolute;display:inline-block;width:0;height:0;content:&quot;&quot;;border-color:transparent;border-style:solid}.gh-count::before{top:50%;left:-3px;margin-top:-4px;border-width:4px 4px 4px 0;border-right-color:#fafafa}.gh-count::after{top:50%;left:-4px;z-index:-1;margin-top:-5px;border-width:5px 5px 5px 0;border-right-color:#d4d4d4}.github-btn-large{height:30px}.github-btn-large .gh-btn,.github-btn-large .gh-count{padding:3px 10px 3px 8px;font-size:16px;line-height:22px;border-radius:4px}.github-btn-large .gh-ico{width:20px;height:20px}.github-btn-large .gh-count{margin-left:6px}.github-btn-large .gh-count::before{left:-5px;margin-top:-6px;border-width:6px 6px 6px 0}.github-btn-large .gh-count::after{left:-6px;margin-top:-7px;border-width:7px 7px 7px 0}.no-text .gh-ico{margin-right:0}</style><title>Star bigskysoftware/htmx on GitHub</title>
+<style id=&quot;savepage-cssvariables&quot;>
+  :root {
+  }
+</style>
+                  </head><body><span class=&quot;github-btn github-stargazers&quot;><a class=&quot;gh-btn&quot; href=&quot;https://github.com/bigskysoftware/htmx&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; aria-label=&quot;Star bigskysoftware/htmx on GitHub&quot;><span class=&quot;gh-ico&quot; aria-hidden=&quot;true&quot;></span> <span class=&quot;gh-text&quot;>Star</span> </a><a class=&quot;gh-count&quot; href=&quot;https://github.com/bigskysoftware/htmx/stargazers&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; aria-label=&quot;29,538 stargazers on GitHub&quot; style=&quot;display: block;&quot;>29,538</a></span><script data-savepage-type=&quot;&quot; type=&quot;text/plain&quot;></script></body></html>" data-savepage-crossorigin="" style="margin:auto;" data-savepage-src="https://ghbtns.com/github-btn.html?user=bigskysoftware&repo=htmx&type=star&count=true" src="" frameborder="0" scrolling="0" width="150" height="20" title="Star htmx on GitHub" data-savepage-key="0-0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+
+
+<div class="c content ">
+    
+
+  <h1>Locality of Behaviour (LoB)</h1>
+  
+    <address>Carson Gross</address>
+    <time>May 29, 2020</time>
+  
+
+  <blockquote>
+<p>“The primary feature for easy maintenance is locality: Locality is that characteristic of source code that enables a 
+programmer to understand that source by looking at only a small portion of it.” – <a rel="noopener" target="_blank" href="https://www.dreamsongs.com/Files/PatternsOfSoftware.pdf">Richard Gabriel</a></p>
+</blockquote>
+<h2 id="the-lob-principle"><a class="zola-anchor" href="#the-lob-principle" aria-label="Anchor link for: the-lob-principle">#</a>The LoB Principle</h2>
+<p>Locality of Behaviour is the principle that: </p>
+<blockquote>
+<p>The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code</p>
+</blockquote>
+<h2 id="discussion"><a class="zola-anchor" href="#discussion" aria-label="Anchor link for: discussion">#</a>Discussion</h2>
+<p>The LoB principle is a simple prescriptive formulation of the quoted statement from <a rel="noopener" target="_blank" data-savepage-href="https://www.dreamsongs.com" href="https://www.dreamsongs.com/">Richard Gabriel</a>.
+In as much as it is possible, and in balance with other concerns, developers should strive to make the behaviour of
+a code element obvious on inspection.</p>
+<p>Consider two different implementations of an AJAX request in HTML, the first in <a href="https://htmx.org/">htmx</a>:</p>
+<pre data-lang="html" style="background-color:#1f2329;color:#abb2bf;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#e06c75;">button </span><span style="color:#d19a66;">hx-get</span><span>=</span><span style="color:#98c379;">"/clicked"</span><span>&gt;Click Me&lt;/</span><span style="color:#e06c75;">button</span><span>&gt;
+</span></code></pre>
+<p>and the second in <a rel="noopener" target="_blank" href="https://jquery.com/">jQuery</a>:</p>
+<pre data-lang="javascript" style="background-color:#1f2329;color:#abb2bf;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span>  </span><span style="color:#61afef;">$</span><span>(</span><span style="color:#98c379;">"#d1"</span><span>).</span><span style="color:#61afef;">on</span><span>(</span><span style="color:#98c379;">"click"</span><span>, </span><span style="color:#c678dd;">function</span><span>(){
+</span><span>    </span><span style="color:#e06c75;">$</span><span>.</span><span style="color:#61afef;">ajax</span><span>({
+</span><span>         </span><span style="font-style:italic;color:#848da1;">/* AJAX options... */
+</span><span>    });
+</span><span>  });
+</span></code></pre>
+<pre data-lang="html" style="background-color:#1f2329;color:#abb2bf;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#e06c75;">button </span><span style="color:#d19a66;">id</span><span>=</span><span style="color:#98c379;">"d1"</span><span>&gt;Click Me&lt;/</span><span style="color:#e06c75;">button</span><span>&gt;
+</span></code></pre>
+<p>In the former, the behaviour of the <code>button</code> element is obvious on inspection, satisfying the LoB principle.</p>
+<p>In the latter, the behaviour of the <code>button</code> element is spread out amongst multiple files.  It is difficult to know
+exactly what the button does without a total knowledge of the code base.  This “spooky action at a distance” is a source
+of maintenance issues and stands in the way of developers understanding of the code base.</p>
+<p>The htmx example demonstrates good Locality of Behaviour, while the jQuery example has poor Locality of Behaviour.</p>
+<h3 id="surfacing-behaviour-vs-inlining-implementation"><a class="zola-anchor" href="#surfacing-behaviour-vs-inlining-implementation" aria-label="Anchor link for: surfacing-behaviour-vs-inlining-implementation">#</a>Surfacing Behaviour vs. Inlining Implementation</h3>
+<p>A common objection to Locality of Behaviour is that it is inlining implementation details within a code unit, making the
+code unit less abstract and more brittle.  However, it is important to make the distinction between inlining the
+<em>implementation</em> of some behaviour and inlining the invocation (or declaration) of some behaviour.</p>
+<p>Consider functions in most programming languages: there is a distinction between the declaration of function and its 
+use at call sites.  A good function abstracts away its implementation details, but is also invoked in an obvious manner, 
+without any spooky action at a distance.</p>
+<p>Increasing the obviousness of the behaviour of an element is, ceteris paribus, a good thing, but it falls to both end-developers
+and especially framework developers to make LoB both as easy and as conceptually clean as possible.</p>
+<h3 id="conflict-with-other-development-principles"><a class="zola-anchor" href="#conflict-with-other-development-principles" aria-label="Anchor link for: conflict-with-other-development-principles">#</a>Conflict With Other Development Principles</h3>
+<p>The LoB will often conflict with other software development principles.  Two important ones
+are:</p>
+<ul>
+<li>
+<p><a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY - Don’t Repeat Yourself</a></p>
+<p>Software developers typically strive to avoid redundancy in their code or data.  This has come to be called “Staying DRY”,
+i.e. Don’t Repeat Yourself.  Like other software design principles this, on its own, is a good thing.  htmx, for example, 
+allows you to place many attributes on parent elements in a DOM and avoid repeating these attributes on children.  This is a 
+violation of LoB, in favor of DRY, and such tradeoffs need to be made judiciously by developers.</p>
+<p>Note that the further behaviour gets from the code unit it effects, the more severe the violation of LoB.  If it is
+within a few lines of the code unit, this is less serious than if it is a page away, which is less serious than if
+it is in a separate file entirely.</p>
+<p>There is no hard and fast rule, but rather subjective tradeoffs that must be made as software developers.</p>
+</li>
+<li>
+<p><a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Separation_of_concerns">SoC - Separation Of Concerns</a></p>
+<p>Separation of concerns a design principle for separating a computer program into distinct sections such that each 
+section addresses a separate concern.  A canonical example of this is splitting HTML, CSS, and Javascript.  Again, on its own and
+in isolation this may, indeed, be a good thing.  Inlining styles <a rel="noopener" target="_blank" href="https://tailwindcss.com/">has become more prevalent lately</a>, 
+but there are still strong arguments in favor of SoC in this regard.</p>
+<p>Note that SoC is, however, in conflict with LoB.  By tweaking a CSS file the look and, to an extent, behaviour of an
+element can change dramatically, and it is not obvious where this dramatic change came from.  Tools can help to an extent
+here, but there is still “spooky action at a distance” going on.</p>
+<p>Again, this isn’t to condemn SoC wholesale, just to say that there are subjective tradeoffs that must be made when
+considering how to structure your code.  The fact that inline styles have become more prevalent as of late is an
+indication that SoC is losing some support amongst developers.</p>
+</li>
+</ul>
+<h2 id="conclusion"><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">#</a>Conclusion</h2>
+<p>LoB is a subjective software design principle that can help make a code base more humane and maintainable.  It must be traded
+off against other design principles and be considered in terms of the limitations of the system a code unit is
+written in, but, as much as is it is practical, adherence to this principle will increase your software maintainability,
+quality and sustainability.</p>
+
+  <div style="padding-top: 120px;padding-bottom:40px;text-align: center">
+    &lt;/&gt;
+  </div>
+</div>
+
+<footer>
+    <div class="c content ">
+        <div class="row">
+            <div class="6 col footer-haiku">
+                <h2>haiku</h2>
+                <p><em>
+                    javascript fatigue:<br>
+                    longing for a hypertext<br>
+                    already in hand
+                </em></p>
+            </div>
+            <div class="6 col footer-menu">
+                <div><a data-savepage-href="/docs/" href="https://htmx.org/docs/">docs</a></div>
+                <div><a data-savepage-href="/reference/" href="https://htmx.org/reference/">reference</a></div>
+                <div><a data-savepage-href="/examples/" href="https://htmx.org/examples/">examples</a></div>
+                <div><a data-savepage-href="/talk/" href="https://htmx.org/talk/">talk</a></div>
+                <div><a data-savepage-href="/essays/" href="https://htmx.org/essays/">essays</a></div>
+                <div><a href="https://twitter.com/htmx_org">@htmx_org</a></div>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;">
+            <div class="col">
+                <img data-savepage-currentsrc="https://htmx.org/img/bss_bars.png" data-savepage-src="/img/bss_bars.png" src="data:image/png;base64,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" alt="" style="max-width: 30px; margin-top: 3em;">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body></html>

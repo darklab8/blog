@@ -172,21 +172,31 @@ templ PageT() {
             <p>
                 <ul>
                     
-                    @common.TextLink("https://grugbrain.dev/"){
-                         <li>Grug brain development</li>
+                    <li>
+                        @archive.LinkT(archive.LinkGrugBrainDev){
+                            Grug brain development
+                        }
+                    </li>
+                    <li>
+                    @common.TextLink("https://12factor.net/"){
+                         The twelve-factor app
                     }
-                     @common.TextLink("https://12factor.net/"){
-                         <li>The twelve-factor app</li>
+                    </li>
+                    <li>
+                    @archive.LinkT(archive.LinkLocality){
+                        Locality
                     }
-                    @common.TextLink("https://htmx.org/essays/locality-of-behaviour/"){
-                        <li>Locality</li>
-                    }
+                    </li>
+                    <li>
                     @archive.LinkT(archive.LinkTypeSafety) {
-                        <li>Type safety</li>
+                        Type safety
                     }
-                    @common.TextLink("https://gist.github.com/chitchcock/1281611"){
-                        <li>About platforms</li>
+                    </li>
+                    <li>
+                    @archive.LinkT(archive.LinkPlatformsRant){
+                        About platforms
                     }
+                    </li>
                 </ul>
             </p>
         }

@@ -11,12 +11,12 @@ templ LinkT(link *Link) {
             { children... }
         }
         <span class="tooltiptext">
+            achive
             @common.TextLink(types.GetCtx(ctx).StaticRoot + link.HtmlRelpath){
-                archived html
+                html
             }
-            <br/>
             @common.TextLink(types.GetCtx(ctx).StaticRoot + link.PdfRelath){
-                archived pdf
+                pdf
             }
         </span>
     </span>
