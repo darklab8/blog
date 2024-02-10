@@ -1,0 +1,21 @@
+package mermaid
+
+import (
+    "darklab_blog/blog/common/types"
+)
+
+templ MermaidCSS() {
+    <script src={ types.GetCtx(ctx).StaticRoot + "mermaid/unpkg.com_mermaid@10.6.1_dist_mermaid.min.js"}></script>
+}
+
+const (
+    // prepared for insertion into Markdown
+    MermaidOpener = `<pre class="mermaid">`
+    MermaidCloser = `</pre>`
+)
+
+templ Diagram() {
+    @templ.Raw(MermaidOpener)
+    { children... }
+    @templ.Raw(MermaidCloser)
+}
