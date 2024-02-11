@@ -1,4 +1,4 @@
-package logus_core
+package typelog
 
 import (
 	"fmt"
@@ -12,8 +12,8 @@ type Logger struct {
 	name                string
 	enable_file_showing bool
 	enable_json_format  bool
-	log_level           *slog.LevelVar
-	default_params      []SlogParam
+	log_level_slog      *slog.LevelVar
+	level_log           LogLevel
 }
 
 type LoggerParam func(r *Logger)
@@ -48,13 +48,13 @@ func WithLogLevel(log_level_str LogLevel) LoggerParam {
 			programLevel.Set(slog.LevelWarn)
 		case LEVEL_ERROR:
 			programLevel.Set(slog.LevelError)
-		case "":
+		case LEVEL_DEFAULT_WARN:
 			programLevel.Set(slog.LevelWarn)
 		default:
 			panic(fmt.Sprintf("invalid log level=%s for logger=%s", log_level_str, logger.name))
 		}
-
-		logger.log_level = programLevel
+		logger.log_level_slog = programLevel
+		logger.level_log = log_level_str
 	}
 }
 
@@ -100,15 +100,16 @@ func (logger *Logger) OverrideOption(options ...LoggerParam) *Logger {
 
 func (logger *Logger) Initialized() *Logger {
 	if logger.enable_json_format {
-		logger.logger = slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: logger.log_level}))
+		logger.logger = slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: logger.log_level_slog}))
 	} else {
-		logger.logger = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: logger.log_level}))
+		logger.logger = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: logger.log_level_slog}))
 	}
 	return logger
 }
 
-func (l *Logger) WithFields(opts ...SlogParam) *Logger {
+func (l *Logger) WithFields(opts ...LogType) *Logger {
 	var new_logger Logger = *l
-	new_logger.default_params = append(l.default_params, opts...)
+	new_logger.Initialized()
+	new_logger.logger = new_logger.logger.With(newSlogArgs(opts...)...)
 	return &new_logger
 }

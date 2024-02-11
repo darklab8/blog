@@ -14,8 +14,8 @@ import (
 	"github.com/darklab8/blog/blog/common/urls"
 	"github.com/darklab8/blog/blog/pet_projects/pet_projects_urls"
 
-	"github.com/darklab8/darklab_goutils/goutils/utils"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/goutils/utils"
+	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
 )
 
 var Articles []*Article = []*Article{

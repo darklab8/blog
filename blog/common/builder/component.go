@@ -9,11 +9,11 @@ import (
 	"github.com/darklab8/blog/blog/common/types"
 	"github.com/darklab8/blog/blog/settings"
 	"github.com/darklab8/blog/blog/settings/logus"
+	"github.com/darklab8/go-typelog/typelog"
 
 	"github.com/a-h/templ"
-	"github.com/darklab8/darklab_goutils/goutils/logus_core"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 	"github.com/yosssi/gohtml"
 )
 
@@ -52,7 +52,7 @@ func haveParentFoldersCreated(buildpath utils_types.FilePath) {
 	err := os.MkdirAll(folder_path, os.ModePerm)
 	logus.Log.CheckError(err,
 		"haveParentFoldersCreated finished",
-		logus_core.String("folderpath", folder_path),
-		logus_core.String("path", path),
+		typelog.String("folderpath", folder_path),
+		typelog.String("path", path),
 	)
 }

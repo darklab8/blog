@@ -6,7 +6,7 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_logus"
+	"github.com/darklab8/go-utils/goutils/utils/utils_logus"
 )
 
 func SleepAwaitCtrlC() {

@@ -3,7 +3,7 @@ package types
 import (
 	"context"
 
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 )
 
 type Theme int64

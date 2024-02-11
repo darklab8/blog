@@ -2,15 +2,17 @@
 ## explicit; go 1.20
 github.com/a-h/templ
 github.com/a-h/templ/safehtml
-# github.com/darklab8/darklab_goutils v0.10.1
+# github.com/darklab8/go-typelog v0.3.2
 ## explicit; go 1.21.1
-github.com/darklab8/darklab_goutils/goutils/logus_core
-github.com/darklab8/darklab_goutils/goutils/utils
-github.com/darklab8/darklab_goutils/goutils/utils/utils_cp
-github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath
-github.com/darklab8/darklab_goutils/goutils/utils/utils_logus
-github.com/darklab8/darklab_goutils/goutils/utils/utils_os
-github.com/darklab8/darklab_goutils/goutils/utils/utils_types
+github.com/darklab8/go-typelog/typelog
+# github.com/darklab8/go-utils v0.10.6
+## explicit; go 1.21.1
+github.com/darklab8/go-utils/goutils/utils
+github.com/darklab8/go-utils/goutils/utils/utils_cp
+github.com/darklab8/go-utils/goutils/utils/utils_filepath
+github.com/darklab8/go-utils/goutils/utils/utils_logus
+github.com/darklab8/go-utils/goutils/utils/utils_os
+github.com/darklab8/go-utils/goutils/utils/utils_types
 # github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47
 ## explicit; go 1.12
 github.com/gomarkdown/markdown

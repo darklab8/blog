@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/darklab8/darklab_goutils/goutils/logus_core"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_logus"
-	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/goutils/utils/utils_logus"
+	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 )
 
 type file struct {
@@ -27,7 +26,7 @@ func NewReadFile(filepath utils_types.FilePath, callback func(*FileRead)) {
 	file, err := os.Open(string(f.filepath))
 	f.file.file = file
 
-	utils_logus.Log.CheckFatal(err, "failed to open", logus_core.FilePath(f.filepath))
+	utils_logus.Log.CheckFatal(err, "failed to open", utils_logus.FilePath(f.filepath))
 	defer f.file.file.Close()
 
 	callback(f)
@@ -52,7 +51,7 @@ func NewWriteFile(filepath utils_types.FilePath, callback func(*FileWrite)) {
 
 	file, err := os.Create(string(f.filepath))
 	f.file.file = file
-	utils_logus.Log.CheckFatal(err, "failed to open ", logus_core.FilePath(f.filepath))
+	utils_logus.Log.CheckFatal(err, "failed to open ", utils_logus.FilePath(f.filepath))
 	defer f.file.file.Close()
 	callback(f)
 }

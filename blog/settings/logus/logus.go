@@ -1,13 +1,5 @@
 package logus
 
-import (
-	"github.com/darklab8/darklab_goutils/goutils/logus_core"
-)
+import "github.com/darklab8/go-typelog/typelog"
 
-var (
-	Log *logus_core.Logger
-)
-
-func init() {
-	Log = logus_core.NewLogger("darkblog")
-}
+var Log *typelog.Logger = typelog.NewLogger("darkblog")
