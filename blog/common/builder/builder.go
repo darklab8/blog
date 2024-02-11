@@ -1,9 +1,10 @@
 package builder
 
 import (
-	"darklab_blog/blog/common/types"
-	"darklab_blog/blog/settings"
 	"os"
+
+	"github.com/darklab8/blog/blog/common/types"
+	"github.com/darklab8/blog/blog/settings"
 
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_cp"
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"

@@ -1,11 +1,12 @@
 package main
 
 import (
-	"darklab_blog/blog"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/darklab8/blog/blog"
 )
 
 type Component interface {

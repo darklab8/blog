@@ -1,15 +1,15 @@
 package blog
 
 import (
-	"darklab_blog/blog/about"
-	"darklab_blog/blog/articles"
-	"darklab_blog/blog/articles/article_detailed"
-	"darklab_blog/blog/common/builder"
-	"darklab_blog/blog/common/urls"
-	"darklab_blog/blog/examples"
-	"darklab_blog/blog/favourite"
-	"darklab_blog/blog/pet_projects"
-	"darklab_blog/blog/pet_projects/ideas"
+	"github.com/darklab8/blog/blog/about"
+	"github.com/darklab8/blog/blog/articles"
+	"github.com/darklab8/blog/blog/articles/article_detailed"
+	"github.com/darklab8/blog/blog/common/builder"
+	"github.com/darklab8/blog/blog/common/urls"
+	"github.com/darklab8/blog/blog/examples"
+	"github.com/darklab8/blog/blog/favourite"
+	"github.com/darklab8/blog/blog/pet_projects"
+	"github.com/darklab8/blog/blog/pet_projects/ideas"
 
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_types"
 )

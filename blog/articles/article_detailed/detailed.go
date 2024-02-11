@@ -2,16 +2,17 @@ package article_detailed
 
 import (
 	"context"
-	"darklab_blog/blog/archive"
-	"darklab_blog/blog/articles/article_detailed/article_git_conventional_commits"
-	"darklab_blog/blog/articles/article_detailed/article_lts_software"
-	"darklab_blog/blog/articles/article_detailed/article_static_typed_logging"
-	"darklab_blog/blog/common"
-	"darklab_blog/blog/common/types"
-	"darklab_blog/blog/common/urls"
-	"darklab_blog/blog/pet_projects/pet_projects_urls"
 	"sort"
 	"time"
+
+	"github.com/darklab8/blog/blog/archive"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_git_conventional_commits"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_lts_software"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_static_typed_logging"
+	"github.com/darklab8/blog/blog/common"
+	"github.com/darklab8/blog/blog/common/types"
+	"github.com/darklab8/blog/blog/common/urls"
+	"github.com/darklab8/blog/blog/pet_projects/pet_projects_urls"
 
 	"github.com/darklab8/darklab_goutils/goutils/utils"
 	"github.com/darklab8/darklab_goutils/goutils/utils/utils_filepath"

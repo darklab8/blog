@@ -3,11 +3,12 @@ package builder
 import (
 	"bytes"
 	"context"
-	"darklab_blog/blog/common/types"
-	"darklab_blog/blog/settings"
-	"darklab_blog/blog/settings/logus"
 	"os"
 	"path/filepath"
+
+	"github.com/darklab8/blog/blog/common/types"
+	"github.com/darklab8/blog/blog/settings"
+	"github.com/darklab8/blog/blog/settings/logus"
 
 	"github.com/a-h/templ"
 	"github.com/darklab8/darklab_goutils/goutils/logus_core"

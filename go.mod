@@ -1,4 +1,4 @@
-module darklab_blog
+module github.com/darklab8/blog
 
 go 1.21.1
 
