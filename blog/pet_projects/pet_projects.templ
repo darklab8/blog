@@ -145,8 +145,8 @@ templ PetProjectsT() {
 			@common.SectionHeader("Discovery Freelancer community")
 			@PetProjectRender(
 				NewPetProject(
-					"Fldarkbot - Discord bot to track game objects",
-					"fldarkbot",
+					"Darkbot - Discord bot to track game objects",
+					"fl-darkbot",
 					WithGithub("https://github.com/darklab8/fl-darkbot"),
 					WithLink("wiki", "https://darklab8.github.io/fl-darkbot/"),
 					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=188040"),
@@ -167,9 +167,9 @@ templ PetProjectsT() {
 			<hr/>
 			@PetProjectRender(
 				NewPetProject(
-					"Fldarklint - Linter for game configs",
-					"fldarklint",
-					WithGithub("https://github.com/darklab8/darklab_fldarklint"),
+					"Darklint - Linter for game configs",
+					"darklint",
+					WithGithub("https://github.com/darklab8/fl-darklint"),
 					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=195174"),
 				),
 			) {
@@ -180,20 +180,20 @@ templ PetProjectsT() {
 					Developers of Freelancer mods make changes to file configs directly.
 					As extra features it was originally made to denormalize data and having available human readable namings to config entities.
 				}
-				<img style="max-width: 100%;" src="https://github.com/darklab8/darklab_fldarklint/raw/master/docs/assets/diff_example.png" />
+				<img style="max-width: 100%;" src="https://github.com/darklab8/fl-darklint/raw/master/docs/assets/diff_example.png" />
 			}
 			<hr/>
 			@PetProjectRender(
 				NewPetProject(
-					"Flconfigs - ORM to access game data",
-					"flconfig",
+					"Configs - ORM to access game data",
+					"fl-configs",
 					WithGithub("https://github.com/darklab8/fl-configs"),
 				),
 			) {
 				@common.TextBlock(){
 					ORM for reading game config files data and writing it back without an effort to write code for file writing.
 					The ORM provides static typed access to the data, the code is abe to distinguish int/str/float types. 
-					The project is reused as library for Fldarklint and Fldarkstat.
+					The project is reused as library for fl-darklint and fl-darkstat.
     			}
 			}
 
