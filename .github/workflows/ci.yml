@@ -31,7 +31,7 @@ jobs:
       - name: build
         run: task build
         env:
-            SITE_ROOT: "/github.com/darklab8/blog/"
+            SITE_ROOT: "/blog/"
 
       - name: Test
         run: task test
