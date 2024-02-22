@@ -66,6 +66,7 @@ var Articles []*Article = []*Article{
 	),
 	/*
 		TODO articles
+			- write article about refactoring legacy code based on your AWS Step functions experience?
 			- write: raising ECS cluster (especially powered by EC2)
 			- write article about making pet projects
 				- https://discord.com/channels/838802001861017662/842969729336344614/1204779829258354739
