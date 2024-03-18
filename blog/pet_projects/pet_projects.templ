@@ -120,6 +120,19 @@ templ PetProjectsT() {
 					and therefore accidental shooting into our own foots. Exists in golang and python versions.
     			}				
 			}
+			@PetProjectRender(
+				NewPetProject(
+					"Argocd-cue - plugin for argocd to support Cue configurational language",
+					"typelog",
+					WithGithub(pet_projects_urls.Argocue),
+				),
+				
+			) {
+				@common.TextBlock(){
+					Adds ability to autdeploy/syncronyze via argocd code written in Cue.
+					Supports written manifests in Cue, and helm charts too.
+    			}				
+			}
 			<hr/>
 			@common.SectionHeader("Personal")
 			@PetProjectRender(
