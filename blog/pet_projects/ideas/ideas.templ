@@ -16,24 +16,6 @@ templ IdeasT() {
             }
 
             @pet_projects.ProjectsShared()
-			@common.SectionHeader("Discovery Freelancer community")
-            @pet_projects.PetProjectRender(
-				pet_projects.NewPetProject(
-					"Darkstat - remake of flstat in online way",
-					"fl-darkstat",
-					pet_projects.WithGithub("https://github.com/darklab8/fl-darkstat"),
-                    pet_projects.WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
-				),
-			) {
-                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
-				@common.TextBlock(){
-					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
-					A tool for navigation of game data for Freelancer game.
-					The main idea that online version will be more accessable.
-					It will be able to have a touch of information never given to client side and thus showing more truthful information.
-    			}
-			}
-            <hr/>
 			@common.SectionHeader("Others")
 			for _, idea := range Ideas {
 				@pet_projects.PetProjectRender(

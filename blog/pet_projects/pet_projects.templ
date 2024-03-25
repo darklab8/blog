@@ -225,6 +225,23 @@ templ PetProjectsT() {
 					The project is reused as library for fl-darklint and fl-darkstat.
     			}
 			}
+			<hr/>
+            @PetProjectRender(
+				NewPetProject(
+					"Darkstat - remaking flstat in online way",
+					"fl-darkstat",
+					WithGithub("https://github.com/darklab8/fl-darkstat"),
+                    WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
+				),
+			) {
+                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
+				@common.TextBlock(){
+					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
+					A tool for navigation of game data for Freelancer game.
+					The main idea that online version will be more accessable.
+					It will be able to have a touch of information never given to client side and thus showing more truthful information.
+    			}
+			}
 
 			<div style="display: flex; justify-content: center;">
 				<p>
