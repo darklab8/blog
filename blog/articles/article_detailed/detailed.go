@@ -83,6 +83,14 @@ var Articles []*Article = []*Article{
 			- decide what to do: previous git conventional commits article
 				- ❌ https://github.com/darklab8/darklab_article_autogit
 				- We have already better one. Perhaps no point to refactor
+			- write article about cached dockerized CI:
+				1) Calculate md5 hash from dependencies file lock onto libraries. Whatever your language is. Lets call the value as `builder_base_hash`
+				2) Pull image image `{{ builder_base_hash }}` if it exists in docker registry, if not then build up to stage --builder. Save result to docker registry under tag ` {{ builder_base_hash }}`
+				(Thus we implemented speed up twice for CI), as we are were able to cache half of longest CI in a way that its CI jobs can run at different runners, as we use remote for persistence
+				3) run full building of an image, til the code capable to run unit tests and push to docker registry under tag ` build_${{ github.run_id }}`
+				4) at unit test stage: pull the image ` build_${{ github.run_id }}` and run unit tests and other tests
+				5) if it passed them, than save the image as `service_name_{{ github.run_number }}` as fit for deployment :slight_smile:, also mark it as `latest` and etc whatever tags u need
+				Optionally build Github Actions. For md5 calculations. For golang, For Dagger CI? using Cue-lang? Experiment what to use.
 	*/
 }
 
