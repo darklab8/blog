@@ -24,7 +24,7 @@ func NewBookParams(
 }
 
 templ Book(params *BookParams) {
-    <a href={ templ.SafeURL("#" + common.TurnToAnchor(params.name)) }><h3>{ params.name }</h3></a>
+    <a href={ templ.SafeURL("#" + common.TurnToAnchor(params.name)) }><h3 id={common.TurnToAnchor(params.name)}>{ params.name }</h3></a>
     <a style="margin-right: 20px;opacity:0.6;" href={ templ.URL(params.shop_url) }>Shop</a>
     <div class="book_description">
         <a href={ templ.URL(params.shop_url) }><img class="book_element" src={ params.url_cover }/></a>
