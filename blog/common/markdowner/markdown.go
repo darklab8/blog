@@ -44,10 +44,10 @@ func TemplateHtml(html string, input any) (string, error) {
 func ReadMarkdownAndTemplate(path utils_types.FilePath, values any) []byte {
 	var err error
 	data1, err := os.ReadFile(path.ToString())
-	logus.Log.CheckFatal(err, "failed to read git_conv_commits.md")
+	logus.Log.CheckPanic(err, "failed to read git_conv_commits.md")
 
 	data2, err := TemplateHtml(string(data1), values)
-	logus.Log.CheckFatal(err, "failed to template git_conv_commits.md")
+	logus.Log.CheckPanic(err, "failed to template git_conv_commits.md")
 
 	data3 := MdToHTML([]byte(data2))
 

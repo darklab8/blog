@@ -12,7 +12,7 @@ tasks:
 
   dev:web:
     cmds:
-      - task: build
+      - templ generate
       - go run . --act=web
   
   test:
@@ -26,5 +26,6 @@ tasks:
         ~/venv/bin/watchmedo auto-restart 
         --patterns "*.templ;*.go;*.css;*.js" 
         -i "*_templ.go;build/*"
+        -d blog
         --recursive
         -- sh -c "task dev:web; sleep infinity"

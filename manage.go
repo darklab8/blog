@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/darklab8/blog/blog"
 	"github.com/darklab8/blog/blog/settings/logus"
@@ -31,8 +31,9 @@ func main() {
 		fs := http.FileServer(http.Dir("./build"))
 		http.Handle("/", fs)
 
-		log.Print("Listening on :8080...")
-		err := http.ListenAndServe(":8080", nil)
+		port := 8080
+		logus.Log.Info("Listening on " + strconv.Itoa(port))
+		err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
 		logus.Log.CheckPanic(err, "unable to serve serve")
 	}
 	switch Action(action) {

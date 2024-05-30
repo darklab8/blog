@@ -1,5 +1,7 @@
 package common
 
+import "strings"
+
 templ PageHeader() {
 	<h1 class="page_header">
 	{ children... }
@@ -24,8 +26,16 @@ templ TextLink(url string) {
 	</a>
 }
 
+func StripNewlines(text string) string {
+    return strings.ReplaceAll(text, " ","")
+}
+
 templ SectionHeader(name string) {
-	<h1 class="section_header">{ name }</h1>
+	<a href={ templ.URL(StripNewlines("#" + name))}>
+        <h1 id={ StripNewlines(name) }  class="section_header">
+            { name }
+        </h1>
+    </a>
 }
 templ SubSectionHeader(name string) {
 	<h2 class="sub_section_header">{ name }</h2>

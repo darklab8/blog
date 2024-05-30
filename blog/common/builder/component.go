@@ -43,7 +43,7 @@ func (h *Component) Write(gp types.GlobalParams) {
 	haveParentFoldersCreated(abs_buildpath)
 
 	err := os.WriteFile(abs_buildpath.ToString(), gohtml.FormatBytes(buf.Bytes()), os.ModePerm)
-	logus.Log.CheckFatal(err, "failed to write *.html file")
+	logus.Log.CheckPanic(err, "failed to write *.html file")
 }
 
 func haveParentFoldersCreated(buildpath utils_types.FilePath) {
