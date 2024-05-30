@@ -28,7 +28,10 @@ templ Menu() {
     }
     </style>
     <menu class="main_menu">
-        @NavElem(types.GetCtx(ctx).SiteRoot) {
+        @NavElem(types.GetCtx(ctx).SiteRoot + urls.About) {
+            About
+        } 
+        @NavElem(types.GetCtx(ctx).SiteRoot + urls.Articles) {
             Articles
         }
         @NavElem(types.GetCtx(ctx).SiteRoot + urls.PetProjects) {
@@ -37,8 +40,5 @@ templ Menu() {
         @NavElem(types.GetCtx(ctx).SiteRoot + urls.Favourite) {
             Favourite
         }
-        @NavElem(types.GetCtx(ctx).SiteRoot + urls.About) {
-            About
-        } 
     </menu>
 }
