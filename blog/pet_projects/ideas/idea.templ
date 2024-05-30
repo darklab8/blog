@@ -77,7 +77,7 @@ var Ideas = []Idea{
 }
 
 templ IdeaTemplate(idea Idea) {
-    	@common.Html5(common.Title(idea.Title)) {
+    	@common.Html5(types.Title(idea.Title)) {
 		@common.BlogFrame() {
 			@common.Menu()
             @common.TextHeaderMain(){

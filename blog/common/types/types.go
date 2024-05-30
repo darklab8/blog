@@ -6,6 +6,8 @@ import (
 	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 )
 
+type Title string
+
 type Theme int64
 
 const (

@@ -18,3 +18,14 @@ tasks:
   test:
     cmds:
       - go test ./...
+
+  dev:watch:
+    cmds:
+      # pip install watchdog[watchmedo]
+      - > 
+        ~/venv/bin/watchmedo auto-restart 
+        --patterns "*.templ;*.go;*.css;*.js" 
+        -i "*_templ.go"
+        -i "build/*"
+        --recursive
+        -- sh -c "task dev:web; sleep infinity"

@@ -5,6 +5,7 @@ import (
     "strings"
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/markdowner"
+   	"github.com/darklab8/blog/blog/common/types"
 	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 )
 
@@ -56,7 +57,7 @@ func WithDescription(Description string) ArticleOption  {
 
 
 templ ArticleT(article *Article) {
-    @common.Html5(common.Title(article.Title)) {
+    @common.Html5(types.Title(article.Title)) {
 		@common.BlogFrame() {
 			<style>
 			</style>

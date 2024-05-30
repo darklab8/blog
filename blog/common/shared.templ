@@ -37,7 +37,7 @@ templ LightSwitch() {
 			</div>
 	}
 }
-templ Html5(title Title) {
+templ Html5(title types.Title) {
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -51,7 +51,7 @@ templ Html5(title Title) {
 				--color_link: #91C3F5;
 			}
 			body {
-				background: #1E1E1E;
+				background: #0D0D0D;
 				color: #ddd;
 			}
 			</style>
@@ -102,35 +102,4 @@ templ BlogFrame() {
 		{ children... }
 		</div> 
 	</div>
-}
-
-templ PageHeader() {
-	<h1 class="page_header">
-	{ children... }
-	</h1>
-}
-
-templ TextHeaderMain() {
-	<h1 class="text_header_1">
-	{ children... }
-	</h1>
-}
-
-templ TextBlock() {
-	<p class="text_block">
-	{ children... } 
-	</p>
-}
-
-templ TextLink(url string) {
-	<a class="text_link" href={ templ.URL(url) }>
-	{ children... }
-	</a>
-}
-
-templ SectionHeader(name string) {
-	<h1 class="section_header">{ name }</h1>
-}
-templ SubSectionHeader(name string) {
-	<h2 class="sub_section_header">{ name }</h2>
 }
