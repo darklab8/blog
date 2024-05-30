@@ -1,6 +1,8 @@
 package common
 
-import "strings"
+import (
+	"unicode"
+)
 
 templ PageHeader() {
 	<h1 class="page_header">
@@ -26,13 +28,22 @@ templ TextLink(url string) {
 	</a>
 }
 
-func StripNewlines(text string) string {
-    return strings.ReplaceAll(text, " ","")
+func TurnToAnchor(text string) string {
+	var buffer bytes.Buffer
+
+	for _, letter := range text {
+		if !unicode.IsLetter(letter) {
+			continue
+		}
+		buffer.WriteString(string(letter))
+	}
+    
+	return buffer.String()
 }
 
 templ SectionHeader(name string) {
-	<a href={ templ.URL(StripNewlines("#" + name))}>
-        <h1 id={ StripNewlines(name) }  class="section_header">
+	<a href={ templ.URL(TurnToAnchor("#" + name))}>
+        <h1 id={ TurnToAnchor(name) }  class="section_header">
             { name }
         </h1>
     </a>
