@@ -102,23 +102,23 @@ func OptError(err error) LogType {
 	}
 }
 
-func Items[T any](value []T, item_name string) LogType {
+func Items[T any](item_name string, value []T) LogType {
 	return func(c *LogAtrs) {
 		sliced_string := fmt.Sprintf("%v", value)
 		if len(sliced_string) > 300 {
 			sliced_string = sliced_string[:300] + "...sliced string"
 		}
-		c.Append(slog.String(item_name, fmt.Sprintf("%v", value)))
+		c.Append(slog.String(item_name, fmt.Sprintf("%v", sliced_string)))
 		c.Append(slog.String(fmt.Sprintf("%s_len", item_name), fmt.Sprintf("%d", len(value))))
 	}
 }
 
 func Records[T any](value []T) LogType {
-	return Items[T](value, "records")
+	return Items[T]("records", value)
 }
 
 func Args(value []string) LogType {
-	return Items[string](value, "args")
+	return Items[string]("args", value)
 }
 
 func Bytes(key string, value []byte) LogType {
@@ -127,13 +127,15 @@ func Bytes(key string, value []byte) LogType {
 	}
 }
 
-func Struct(value any) LogType {
+type StructType = any
+
+func Struct(value StructType) LogType {
 	return func(c *LogAtrs) {
 		c.Append(TurnMapToAttrs(StructToMap(value))...)
 	}
 }
 
-func NestedStruct(key string, value any) LogType {
+func NestedStruct(key string, value StructType) LogType {
 	return func(c *LogAtrs) {
 		attrs := TurnMapToAttrs(StructToMap(value))
 		c.Append(Group(key, attrs...))
@@ -143,5 +145,11 @@ func NestedStruct(key string, value any) LogType {
 func Map(value map[string]any) LogType {
 	return func(c *LogAtrs) {
 		c.Append(TurnMapToAttrs(value)...)
+	}
+}
+
+func NestedMap(key string, value map[string]any) LogType {
+	return func(c *LogAtrs) {
+		c.Append(Group(key, TurnMapToAttrs(value)...))
 	}
 }

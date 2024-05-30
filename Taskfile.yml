@@ -25,7 +25,6 @@ tasks:
       - > 
         ~/venv/bin/watchmedo auto-restart 
         --patterns "*.templ;*.go;*.css;*.js" 
-        -i "*_templ.go"
-        -i "build/*"
+        -i "*_templ.go;build/*"
         --recursive
         -- sh -c "task dev:web; sleep infinity"

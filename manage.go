@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/darklab8/blog/blog"
+	"github.com/darklab8/blog/blog/settings/logus"
 )
 
 type Component interface {
@@ -32,9 +33,7 @@ func main() {
 
 		log.Print("Listening on :8080...")
 		err := http.ListenAndServe(":8080", nil)
-		if err != nil {
-			log.Fatal(err)
-		}
+		logus.Log.CheckPanic(err, "unable to serve serve")
 	}
 	switch Action(action) {
 	case ActionBuild:

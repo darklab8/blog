@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/darklab8/go-utils/goutils/utils/utils_logus"
 	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 )
 
@@ -11,9 +12,7 @@ func GetDirsSimply(path utils_types.FilePath) []utils_types.FilePath {
 	dirs := []utils_types.FilePath{}
 	files, err := os.ReadDir(string(path))
 
-	if err != nil {
-		panic(err)
-	}
+	utils_logus.Log.CheckError(err, "no such directory", utils_logus.FilePath(path))
 
 	for _, fileInfo := range files {
 		if fileInfo.IsDir() {

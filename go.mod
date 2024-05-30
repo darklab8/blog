@@ -9,7 +9,7 @@ require (
 )
 
 require (
-	github.com/darklab8/go-typelog v0.3.2 // indirect
-	github.com/darklab8/go-utils v0.10.6 // indirect
+	github.com/darklab8/go-typelog v0.6.0 // indirect
+	github.com/darklab8/go-utils v0.13.2 // indirect
 	golang.org/x/net v0.17.0 // indirect
 )
