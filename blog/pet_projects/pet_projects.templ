@@ -52,8 +52,8 @@ func WithArticle(url string) ProjectOption {
 }
 
 templ PetProjectRender(project *PetProject) {
-	<div id={ project.id } class="pet_project">
-	<h2>{ project.name }</h2>
+	<div class="pet_project">
+	<a href={ templ.URL("#" + project.id)}><h2 id={ project.id } >{ project.name }</h2></a>
 	{ children... }
 	</div>
 	<p>
@@ -174,6 +174,25 @@ templ PetProjectsT() {
 			@common.SectionHeader("Discovery Freelancer community")
 			@PetProjectRender(
 				NewPetProject(
+					"Darkstat - remaking flstat in online way",
+					"fl-darkstat",
+					WithGithub("https://github.com/darklab8/fl-darkstat"),
+                    WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
+					WithLink("Discovery","https://darklab8.github.io/fl-data-discovery/"),
+					WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/"),
+				),
+			) {
+                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
+				@common.TextBlock(){
+					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
+					A tool for navigation of game data for Freelancer game.
+					The main idea that online version will be more accessable.
+					It will be able to have a touch of information never given to client side and thus showing more truthful information.
+    			}
+			}
+			<hr/>
+			@PetProjectRender(
+				NewPetProject(
 					"Darkbot - Discord bot to track game objects",
 					"fl-darkbot",
 					WithGithub("https://github.com/darklab8/fl-darkbot"),
@@ -224,26 +243,7 @@ templ PetProjectsT() {
 					The ORM provides static typed access to the data, the code is abe to distinguish int/str/float types. 
 					The project is reused as library for fl-darklint and fl-darkstat.
     			}
-			}
-			<hr/>
-            @PetProjectRender(
-				NewPetProject(
-					"Darkstat - remaking flstat in online way",
-					"fl-darkstat",
-					WithGithub("https://github.com/darklab8/fl-darkstat"),
-                    WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
-					WithLink("Discovery","https://darklab8.github.io/fl-data-discovery/"),
-					WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/"),
-				),
-			) {
-                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
-				@common.TextBlock(){
-					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
-					A tool for navigation of game data for Freelancer game.
-					The main idea that online version will be more accessable.
-					It will be able to have a touch of information never given to client side and thus showing more truthful information.
-    			}
-			}
+			}           
 
 			<div style="display: flex; justify-content: center;">
 				<p>
