@@ -42,7 +42,7 @@ func TurnToAnchor(text string) string {
 }
 
 templ SectionHeader(name string) {
-	<a href={ templ.URL(TurnToAnchor("#" + name))}>
+	<a href={  templ.URL("#" + TurnToAnchor(name))}>
         <h1 id={ TurnToAnchor(name) }  class="section_header">
             { name }
         </h1>

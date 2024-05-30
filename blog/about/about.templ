@@ -7,10 +7,6 @@ import (
 )
 
 templ Intro() {
-    
-    @common.TextHeaderMain(){ 
-        Intro
-    } 
     <img class="myphoto" src={ types.GetCtx(ctx).StaticRoot + "about/myphoto.png" } alt="my photo"/>
     @common.TextBlock(){
         Hi there! My name is Andrei Novoselov. I am DevOps engineer and Backend developer.
