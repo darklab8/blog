@@ -1,4 +1,4 @@
-# Git conventional commits - communicating with git
+# Git conventional commits - Communicating with devs through git commits
 
 **Standardized communicating with other devs through git**
 
@@ -94,7 +94,7 @@ Date:   Sat Dec 10 19:54:42 2022 +0100
 ```
 
 u can use tools made for git conventional commits standard parsing,
-  that will generate changelogs of changes for product releases!
+that will generate changelogs of changes for product releases!
 (This feature is available in [autogit]({{.AutogitURL}}))
 
 example of generated changelog:
@@ -111,6 +111,7 @@ How can we enforce it for all developers of the repository though?
 There are many [tools for conventional commits](https://www.conventionalcommits.org/en/about/)
 
 Autogit is different by having next things:
+
 - It was written with [CI usage in mind]({{.AutogitURL}}/.github/workflows/validate.yml)
   - it is easy to insert it into any other CI instrument with the example.
   - just ensure you clone a repository with the history of your tags and commits 😉
@@ -121,12 +122,14 @@ Autogit is different by having next things:
 - it can operate with all defaults out of the box, and at the same time it can be customized with `autogit.yml` config of settings to specific needs.
 - with operating through git hooks, it will work for you for any Git GUI tool and any IDE.
 
-## Recap
+## Summarizing
 
-- Communicating our work to other developers (and yourself in a year) is important.
+- Git commits can serve as communicating tool with more options and depth.
 - Git serves the ultimate source of truth that will remain with us through years
 - For Git commits to be a more readable history, we can utilize `git conventional commits` enforced by linters.
-- We can use the history of `git conventional commits` to generate automatically changelogs for releases.
+- We can use the history of `git conventional commits` to generate automatically changelogs for releases. (Which `autogit` tool does)
+- Your repository will look more professional if applying `autogit` to it or any other similar tool.
+- Not every repository needs git commits in depth as Linux repository has, but majority of repositories will benefit from simplified changelog generation.
 
 ## Getting started with autogit
 
