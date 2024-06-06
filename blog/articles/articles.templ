@@ -3,40 +3,68 @@ package articles
 import (
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
-	"github.com/darklab8/blog/blog/articles/article_static"
-	"time"
-	"github.com/darklab8/blog/blog/articles/article_detailed"
-	"github.com/darklab8/go-utils/goutils/utils/utils_types"
+	"github.com/darklab8/blog/blog/common/markdowner"
 )
 
-templ ArticleHeadline(name string, intro string, url utils_types.FilePath, date time.Time) {
+// name, intro string, url utils_types.FilePath, date time.Time
+templ ArticleHeadline(article *Article) {
+	<style>
+	.article_headline {
+		margin-top: 30px;
+		margin-bottom: 30px;
+
+	}
+	.article_headline footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+	</style>
 	<div class="article_headline">
-	<a class="article_header" href={ templ.URL(types.GetCtx(ctx).SiteRoot + url.ToString()) }><h2>{ name }</h2></a>
-	<p>{ intro }</p>
+	<a class="article_header" href={ templ.URL(types.GetCtx(ctx).SiteRoot + article.Pagepath.ToString()) }><h2>{ article.Title }</h2></a>
+	@TitlePic(article.TitlePicture)
+	<p>{ article.Description }</p>
 	<footer>
-	@common.TextLink(url.ToString()){Read more}
-	<span>{ date.Format("2006 January 02") }</span>
+	@common.TextLink(article.Pagepath.ToString()){Read more}
+	<span>{ article.Date.Format("2006 January 02") }</span>
 	</footer>
 	</div>
 }
 
+templ TitlePic(picture *TitlePicture) {
+	if picture != nil {
+		<img src={  types.GetCtx(ctx).StaticRoot + picture.Path.ToString() }/>
+	}
+}
+
 templ HomeBody() {
-	for _, article := range article_detailed.Articles {
-		@ArticleHeadline(
-			article.Title,
-			article.Description,
-			article.Pagepath,
-			article.Date,
-		)
+	for _, article := range Articles {
+		@ArticleHeadline(article)
+	}
+}
+
+templ ArticleT(article *Article) {
+    @common.Html5(types.Title(article.Title)) {
+		@common.BlogFrame() {
+			<style>
+			</style>
+			@common.Menu()
+			<h2>{ article.Title }</h2>
+			@TitlePic(article.TitlePicture)
+			@templ.Raw(markdowner.MdToHtml(
+				article.md_path,
+				article.vars(ctx),
+			))
+		}
 	}
 }
 
 templ HomeT() {
 	@common.Html5(types.Title("Articles")) {
-		@article_static.ArticleCSS()
 		@common.BlogFrame() {
 			@common.Menu()
 			@HomeBody()
 		} 
 	}
 }
+

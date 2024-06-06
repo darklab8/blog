@@ -49,26 +49,20 @@ func (b *Builder) build(params types.GlobalParams) {
 }
 
 func (b *Builder) BuildAll() {
-	staticPrefix := "static/"
 
-	var siteRoot string
-	if value, ok := os.LookupEnv("SITE_ROOT"); ok {
-		siteRoot = value
-	} else {
-		siteRoot = "/"
-	}
+	var siteRoot = settings.GetSiteRoot()
 	b.build(types.GlobalParams{
 		Buildpath:         "build",
 		Theme:             types.ThemeDark,
 		SiteRoot:          siteRoot,
-		StaticRoot:        siteRoot + staticPrefix,
+		StaticRoot:        siteRoot + settings.StaticPrefix,
 		OppositeThemeRoot: siteRoot + "light/",
 	})
 	b.build(types.GlobalParams{
 		Buildpath:         "build/light",
 		Theme:             types.ThemeLight,
 		SiteRoot:          siteRoot + "light/",
-		StaticRoot:        siteRoot + "light/" + staticPrefix,
+		StaticRoot:        siteRoot + "light/" + settings.StaticPrefix,
 		OppositeThemeRoot: siteRoot,
 	})
 

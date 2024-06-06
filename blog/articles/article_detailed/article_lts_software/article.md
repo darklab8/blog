@@ -1,5 +1,3 @@
-# Long term maintained software
-
 ## The article that sparkled the ideas
 
 While reading the article {{.LinkColdBloodedSoftware}}, we can see an interesting analog comparing some projects and tech to cold-blooded software and some to hot burning ones.

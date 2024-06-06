@@ -1,4 +1,4 @@
-package article_detailed
+package articles
 
 import (
 	"context"
@@ -18,11 +18,13 @@ import (
 	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
 )
 
+var artcieles_root = utils_filepath.Join(utils.GetCurrentFolder(), "article_detailed")
+
 var Articles []*Article = []*Article{
 	NewArticle(
 		"Git conventional commits - communicating with git",
 		urls.ArticleGitConventionalCommits,
-		utils_filepath.Join(utils.GetCurrentFolder(), "article_git_conventional_commits", "git_conv_commits.md"),
+		utils_filepath.Join(artcieles_root, "article_git_conventional_commits", "git_conv_commits.md"),
 		time.Date(2023, time.December, 11, 0, 0, 0, 0, time.UTC),
 		WithVars(func(ctx context.Context) any {
 			return article_git_conventional_commits.Vars{
@@ -32,11 +34,14 @@ var Articles []*Article = []*Article{
 		}),
 		WithDescription(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.
 		How to communicate easier with your end users through git and releases.`),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("article_commits", "autogit_title_pic.jpg"),
+		}),
 	),
 	NewArticle(
 		"Typelog - type safe structured logging",
 		urls.ArticleTypelog,
-		utils_filepath.Join(utils.GetCurrentFolder(), "article_static_typed_logging", "typelog.md"),
+		utils_filepath.Join(artcieles_root, "article_static_typed_logging", "typelog.md"),
 		time.Date(2024, time.January, 28, 0, 0, 0, 0, time.UTC),
 		WithVars(func(ctx context.Context) any {
 			return article_static_typed_logging.Vars{
@@ -50,11 +55,14 @@ var Articles []*Article = []*Article{
 			With modern logging systems able to parse JSON out of the box, we need defining easily jsonable logs.
 			Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.
 		`),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("typelog", "typelog_title_pic.jpg"),
+		}),
 	),
 	NewArticle(
 		"Long term maintained software",
 		"article/long_term_maintained_software.html",
-		utils_filepath.Join(utils.GetCurrentFolder(), "article_lts_software", "article.md"),
+		utils_filepath.Join(artcieles_root, "article_lts_software", "article.md"),
 		time.Date(2024, time.February, 9, 0, 0, 0, 0, time.UTC),
 		WithDescription(`Some thoughts about how to have long term maintanance software with minimal toll to maintain and keep up to date`),
 		WithVars(func(ctx context.Context) any {
@@ -62,6 +70,9 @@ var Articles []*Article = []*Article{
 				StaticRoot:              types.GetCtx(ctx).StaticRoot,
 				LinkColdBloodedSoftware: common.TemplToStr(archive.LinkT(archive.LinkTypeSafety, "cold blooded software"), ctx),
 			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("cold_blood", "cold_blood_title_pic.jpg"),
 		}),
 	),
 	/*

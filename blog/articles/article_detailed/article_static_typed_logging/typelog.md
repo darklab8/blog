@@ -1,10 +1,4 @@
-# Typelog - type safe structured logging
-
 **Keeping logs clean, rich and useful**
-
-<p align="center">
-  <img src="{{.StaticRoot}}typelog/typelog.png" style="width: 200px; height: 200px;"/>
-</p>
 
 ## Intro
 
@@ -17,6 +11,10 @@ as well part of official documentation [for python](https://docs.python.org/3/ho
 For reading {{.LinkTypeSafety}}
 
 ## Solution
+
+<p align="center">
+  <img src="{{.StaticRoot}}typelog/typelog.png" style="width: 200px; height: 200px;"/>
+</p>
 
 Typelog comes to bring best parts out of different solutions, and having added typing safety against shooting into your own legs! Presence of type **Any** is as maximum as possible removed from its public interface parts.
 

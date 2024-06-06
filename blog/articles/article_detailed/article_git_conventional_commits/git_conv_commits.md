@@ -1,10 +1,4 @@
-# Git conventional commits - Communicating with devs through git commits
-
 **Standardized communicating with other devs through git**
-
-<p align="center">
-  <img src="{{.StaticRoot}}article_commits/logo.png" style="width: 200px; height: 200px;"/>
-</p>
 
 ## Intro
 
@@ -107,6 +101,10 @@ How can we enforce it for all developers of the repository though?
 - By using [CI run with autogit]({{.AutogitURL}}/.github/workflows/validate.yml) for every commit push or pull request!
 
 ## What makes autogit different?
+
+<p align="center">
+  <img src="{{.StaticRoot}}article_commits/logo.png" style="width: 200px; height: 200px;"/>
+</p>
 
 There are many [tools for conventional commits](https://www.conventionalcommits.org/en/about/)
 

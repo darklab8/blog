@@ -3,7 +3,6 @@ package blog
 import (
 	"github.com/darklab8/blog/blog/about"
 	"github.com/darklab8/blog/blog/articles"
-	"github.com/darklab8/blog/blog/articles/article_detailed"
 	"github.com/darklab8/blog/blog/common/builder"
 	"github.com/darklab8/blog/blog/common/urls"
 	"github.com/darklab8/blog/blog/examples"
@@ -52,11 +51,11 @@ func init() {
 			),
 		)
 	}
-	for _, article := range article_detailed.Articles {
+	for _, article := range articles.Articles {
 		Builder.RegComps(
 			builder.NewComponent(
 				article.Pagepath,
-				article_detailed.ArticleT(article),
+				articles.ArticleT(article),
 			),
 		)
 	}
