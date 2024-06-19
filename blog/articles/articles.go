@@ -8,17 +8,36 @@ import (
 	"github.com/darklab8/blog/blog/archive"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_lts_software"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_shortest_paths"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_static_typed_logging"
+
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
 	"github.com/darklab8/blog/blog/common/urls"
 	"github.com/darklab8/blog/blog/pet_projects/pet_projects_urls"
+
+	_ "embed"
 
 	"github.com/darklab8/go-utils/goutils/utils"
 	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
 )
 
 var artcieles_root = utils_filepath.Join(utils.GetCurrentFolder(), "article_detailed")
+
+//go:embed article_detailed/article_shortest_paths/trades/floyd.go
+var floyd_main_code string
+
+//go:embed article_detailed/article_shortest_paths/trades/floyd_test.go
+var floyd_test_code string
+
+//go:embed article_detailed/article_shortest_paths/trades/heap.go
+var shortest_paths_heap string
+
+//go:embed article_detailed/article_shortest_paths/trades/johnson.go
+var shortest_paths_johnson_code string
+
+//go:embed article_detailed/article_shortest_paths/trades/johnson_test.go
+var shortest_paths_Johnson_test string
 
 var Articles []*Article = []*Article{
 	NewArticle(
@@ -75,6 +94,27 @@ var Articles []*Article = []*Article{
 			Path: utils_filepath.Join("cold_blood", "cold_blood_title_pic.jpg"),
 		}),
 	),
+	NewArticle(
+		"All Shortest Paths in Graph with Golang",
+		"article/article_shortest_paths.html",
+		utils_filepath.Join(artcieles_root, "article_shortest_paths", "article.md"),
+		time.Date(2024, time.June, 19, 20, 0, 0, 0, time.UTC),
+		WithDescription(`Finding All Shortest Paths with Floyd and Johnson in Golang`),
+		WithVars(func(ctx context.Context) any {
+			return article_shortest_paths.Vars{
+				StaticRoot:  types.GetCtx(ctx).StaticRoot,
+				DarkstatUrl: types.GetCtx(ctx).SiteRoot + "pet_projects.html#fl-darkstat",
+				FloydMain:   floyd_main_code,
+				FloydTest:   floyd_test_code,
+				HeapCode:    shortest_paths_heap,
+				JohnsonCode: shortest_paths_johnson_code,
+				JohnsonTest: shortest_paths_Johnson_test,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("shortest_paths", "constellations.jpg"),
+		}),
+	),
 	/*
 		TODO articles
 			- write article about refactoring legacy code based on your AWS Step functions experience?
@@ -90,10 +130,6 @@ var Articles []*Article = []*Article{
 				- (needs code refactor. Very Ugly. But small amoutn of code)
 				- https://github.com/darklab8/darklab_article_parallel_pytest
 			- write: python documentation as a code
-
-			- decide what to do: previous git conventional commits article
-				- ❌ https://github.com/darklab8/darklab_article_autogit
-				- We have already better one. Perhaps no point to refactor
 			- write article about cached dockerized CI:
 				1) Calculate md5 hash from dependencies file lock onto libraries. Whatever your language is. Lets call the value as `builder_base_hash`
 				2) Pull image image `{{ builder_base_hash }}` if it exists in docker registry, if not then build up to stage --builder. Save result to docker registry under tag ` {{ builder_base_hash }}`
