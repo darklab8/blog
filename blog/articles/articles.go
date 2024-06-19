@@ -99,7 +99,9 @@ var Articles []*Article = []*Article{
 		"article/article_shortest_paths.html",
 		utils_filepath.Join(artcieles_root, "article_shortest_paths", "article.md"),
 		time.Date(2024, time.June, 19, 20, 0, 0, 0, time.UTC),
-		WithDescription(`Finding All Shortest Paths with Floyd and Johnson in Golang`),
+		WithDescription(`Finding All Shortest Paths with Floyd and Johnson in Golang.
+			Comparison, profiling and optimization with parallelization.
+			Calculating distances for trading routes in a space simulator game.`),
 		WithVars(func(ctx context.Context) any {
 			return article_shortest_paths.Vars{
 				StaticRoot:  types.GetCtx(ctx).StaticRoot,
