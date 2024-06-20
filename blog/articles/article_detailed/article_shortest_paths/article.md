@@ -148,3 +148,5 @@ johnson_test.go
 That was a success! With receiving still same values, the calculating was way faster just with the touch of a very simple Golang paralelism using go routines and channels to collect the result. We went from 2 minutes and 20 seconds to the achieved 6 seconds results for 2218 vertixes, and 15125 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
 
 P.S. The Algorithm is usable for directional graphs too, just a need to remove one code line for adding edges to both directions.
+
+P.P.S. Found [the wiki page containing three different parallel methods for all shortest paths problem](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). We have implemented the trivial parallelization. There is a room to try advanced choice for Dijkstra parallelization (that will be potentially having no gain), and Floyd parallelization
