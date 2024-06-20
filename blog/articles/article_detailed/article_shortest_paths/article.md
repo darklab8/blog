@@ -149,4 +149,4 @@ That was a success! With receiving still same values, the calculating was way fa
 
 P.S. The Algorithm is usable for directional graphs too, just a need to remove one code line for adding edges to both directions.
 
-P.P.S. Found [the wiki page containing three different parallel methods for all shortest paths problem](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). We have implemented the trivial parallelization. There is a room to try advanced choice for Dijkstra parallelization (that will be potentially having no gain), and Floyd parallelization
+P.P.S. Found [the wiki page containing three different parallel methods for all shortest paths problem solving](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). We have implemented the trivial parallelization. There is room to try the advanced choices for Dijkstra parallelization (that will have potentially no gain), and Floyd parallelization.
