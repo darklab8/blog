@@ -37,7 +37,7 @@ Still it made me look further. Can I parallel this algorithm to speed up? [The f
 
 Looking through my options on [shortest paths algorithm wikipedia page](https://en.wikipedia.org/wiki/Shortest_path_problem), i saw that Johnson’s algorithm is very promising, as it is told to be possibly faster on sparse graph
 
-I checked [geeks web site](https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/) for inspiration how to implement, as it had already implementation in C++, Java, Python and Javascript. With rewriting Java algorithm to golang I received twice faster calculating time than with the previous Floyd’s algo.
+I checked [geeks web site](https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/) for inspiration how to implement, as it had already implementation in C++, Java, Python and Javascript. With rewriting Java algorithm to golang I received twice faster calculating time than with the original Floyd’s algo time speed (or equal in speed if considering fix to Floyd calculations with integer)
 
 ```
 GetDist(graph, dist, "li01_01_base", "li01_to_li02")= 22148
@@ -49,7 +49,7 @@ GetDist(graph, dist, "li01_01_base", "li12_02_base") 31383
 time=2024-06-16T12:33:57.060+02:00 level=DEBUG msg="time_measure 1m12.256099084s | trade routes calculated"
 ```
 
-It was still a rather horrible time to calculate it though. What i did do next? I turned on the default Golang profiling. By just adding extra code lines from std lib into the unit test beginning. And running after that `go tool pprof johnson.prof` and then inserting command `web`. That opened the browser page with the visual profile shown below.
+It was still a rather horrible time to calculate it. What i did do next? I turned on the default Golang profiling. By just adding extra code lines from std lib into the unit test beginning. And running after that `go tool pprof johnson.prof` and then inserting command `web`. That opened the browser page with the visual profile shown below.
 ```go
 func TestTradeRoutesJohnson(t *testing.T) {
     //The code i don't wish to profile
