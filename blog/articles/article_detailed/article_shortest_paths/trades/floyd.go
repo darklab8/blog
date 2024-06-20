@@ -39,10 +39,12 @@ floydWarshall algirthm in a no matter directional graph
 */
 type Floyder struct {
 	*GameGraph
-	dist [][]float64
+	dist [][]int
 }
 
-func (f *Floyder) mapMatrixEdgeToFloyd(keya VertexName, keyb VertexName, distance float64) {
+var FloydMax = int(math.MaxInt / 2)
+
+func (f *Floyder) mapMatrixEdgeToFloyd(keya VertexName, keyb VertexName, distance int) {
 	f.dist[f.index_by_nickname[keya]][f.index_by_nickname[keyb]] = distance
 	f.dist[f.index_by_nickname[keyb]][f.index_by_nickname[keya]] = distance
 }
@@ -56,12 +58,12 @@ func (f *Floyder) Calculate() *Floyder {
 
 	len_vertexes := len(f.matrix)
 
-	f.dist = make([][]float64, len_vertexes)
+	f.dist = make([][]int, len_vertexes)
 
 	for i := 0; i < len_vertexes; i++ {
-		f.dist[i] = make([]float64, len_vertexes)
+		f.dist[i] = make([]int, len_vertexes)
 		for j := 0; j < len_vertexes; j++ {
-			f.dist[i][j] = INF
+			f.dist[i][j] = FloydMax
 		}
 	}
 	for i := 0; i < len_vertexes; i++ {
@@ -76,15 +78,19 @@ func (f *Floyder) Calculate() *Floyder {
 
 	for vertex_source, vertex_targets := range f.matrix {
 		for vertex_target_name, vertex_target_dist := range vertex_targets {
-			f.mapMatrixEdgeToFloyd(vertex_source, vertex_target_name, vertex_target_dist)
+			f.mapMatrixEdgeToFloyd(vertex_source, vertex_target_name, int(vertex_target_dist))
 		}
 	}
 
 	for k := 0; k < len_vertexes; k++ {
-		fmt.Println("starting, k=", k)
+		if k%100 == 0 {
+			fmt.Println("starting, k=", k)
+		}
 		for i := 0; i < len_vertexes; i++ {
 			for j := 0; j < len_vertexes; j++ {
-				f.dist[i][j] = float64(math.Min(float64(f.dist[i][j]), float64(f.dist[i][k]+f.dist[k][j])))
+				if f.dist[i][k]+f.dist[k][j] < f.dist[i][j] {
+					f.dist[i][j] = f.dist[i][k] + f.dist[k][j]
+				}
 			}
 		}
 	}

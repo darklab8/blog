@@ -22,10 +22,10 @@ func TestFloyd(t *testing.T) {
 
 	for i := 0; i < 4; i++ {
 		for j := 0; j < 4; j++ {
-			if dist[i][j] == INF {
+			if dist[i][j] == FloydMax {
 				fmt.Printf("%7s", "INF")
 			} else {
-				fmt.Printf("%7.0f", dist[i][j])
+				fmt.Printf("%7d", dist[i][j])
 			}
 		}
 		fmt.Println()

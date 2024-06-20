@@ -29,10 +29,9 @@ GetDist(graph, dist, "li01_01_base", "br01_01_base") 128222.95301963031
 GetDist(graph, dist, "li01_01_base", "li12_02_base") 31394.034148767405
 time=2024-06-16T12:29:47.108+02:00 level=DEBUG msg="time_measure 2m20.534426392s | trade routes calculated"
 ```
-It took more than 2 minutes to calculate necessary data with floyd.
+It took more than 2 minutes and 20 seconds to calculate necessary data with floyd. The time improved to just 60 seconds if using integers instead of floats for matrix though.
 
-It took more than 2 minutes to calculate the necessary data with floyd.
-It made me look further. Can I parallel this algorithm to speed up? [The found article](https://cse.buffalo.edu/faculty/miller/Courses/CSE633/Asmita-Gautam-Spring-2019.pdf) from a university hints at yes. However the algorithm looked dependent on previous parallelized jobs, it looked too complex, so I did not risk implementing it.
+Still it made me look further. Can I parallel this algorithm to speed up? [The found article](https://cse.buffalo.edu/faculty/miller/Courses/CSE633/Asmita-Gautam-Spring-2019.pdf) from a university hints at yes. However the algorithm looked dependent on previous parallelized jobs, it looked too complex, so I did not risk implementing it.
 
 ## Johnson's Algorithms
 
@@ -145,7 +144,7 @@ johnson_test.go
 {{.JohnsonTest}}
 ```
 
-That was a success! With receiving still same values, the calculating was way faster just with the touch of a very simple Golang paralelism using go routines and channels to collect the result. We went from 2 minutes and 20 seconds to the achieved 6 seconds results for 2218 vertixes, and 15125 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
+That was a success! With receiving still same values, the calculating was way faster just with the touch of a very simple Golang paralelism using go routines and channels to collect the result. We went from 2 minutes and 20 seconds (technically 1 minute) to the achieved 6 seconds results for 2218 vertixes, and 15125 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
 
 P.S. The Algorithm is usable for directional graphs too, just a need to remove one code line for adding edges to both directions.
 
