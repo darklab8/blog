@@ -216,8 +216,12 @@ func (g *Johnson) Johnsons() [][]int {
 
 This final optimization gave me 1.5 seconds total time to get all the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 2218 vertices, having 15125 edges in an indirected graph. (P.S. usage for directed graph is possible)
 
+Final code for space simuator trading calculations is also optimized by replacing Johnson's algorithm to DijkstraAPSP. Since game data does not have negative weight edges, Johnson's usage is actually not needed, DijkstraAPSP is enough.
+
+Some more vertexes and edges can be later removed which will not affect final calculations. Not used space bases, or removing intermediate travel points in trade lane (flight speed boosters) and replacing them with single pair of vertexes/edge.
+
 Attachments:
 - [Code examples from this artcle](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
-- [Final code in use for space simulator trading routes calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
+- [Code in use for space simulator trading routes calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
 
 All examples are with unit tests how to use them ^_^.
