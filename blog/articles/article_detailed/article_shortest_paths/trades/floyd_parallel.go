@@ -26,7 +26,7 @@ Searching places:
 - try to find leetcode solutions
 
 Conclusion onto Floyd Warshall parallelization.
-Algorithms pretty much almost dont exist, and those that do, are very dubious of correct ones
+Algorithms pretty much almost dont exist, and those that do, are very dubious if correct ones
 and for some reason not matching scientist papers.
 You need a good understanding of Floyd Warshall parallelization from scientist papers, in order to that in a right way.
 */
