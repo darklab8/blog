@@ -60,6 +60,11 @@ templ CustomCSS() {
     p code {
         color: orange;
     }
+
+    // fixed highlighting having it `italics` for some reason.
+    .hljs-title, .hljs-attr, .hljs-meta-keyword {
+        font-style: normal;
+    }
     </style>
     @TooltopCSS()
 }
