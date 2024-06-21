@@ -220,7 +220,7 @@ Final code for space simuator trading calculations is also optimized by replacin
 
 Some more vertexes and edges can be later removed which will not affect final calculations. Not used space bases, or removing intermediate travel points in trade lane (flight speed boosters) and replacing them with single pair of vertexes/edge.
 
-Even further optimization can be made by calculating all shortest paths within each star system only. And then building second graph that has only added as vertex bases and jump holes/gates. That will allow calculating even faster.
+Even further optimization can be made by calculating all shortest paths within each star system only. And then building second graph that has only added as vertex bases and jump holes/gates. That will allow calculating even faster, because calculations will be made for a graph having less than 900 vertex (instead of having 2200+ vertexes graph)
 
 Attachments:
 - [Code examples from this artcle](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
