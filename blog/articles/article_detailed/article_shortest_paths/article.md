@@ -2,7 +2,7 @@ Comparison, profiling and optimizing with paralleling.
 
 ## Intro
 
-During the development of [a game data navigation tool]({{.DarkstatUrl}}), I encountered a need to calculate all shortest paths between 2218 vertices, having 15125 edges in a bidirectional graph. That is required to calculate profit per time, for different trading routes in a game of flying between star systems and trading. ^_^.
+During the development of [a game data viewing tool for a space simulator]({{.DarkstatUrl}}), I encountered a need to calculate all shortest paths between 2218 vertices, having 15125 edges in a bidirectional graph. That is required to calculate profit per time, for different trading routes in a game of flying between star systems and trading. ^_^.
 
 ## Floyd All Shortest Paths
 
@@ -29,15 +29,15 @@ GetDist(graph, dist, "li01_01_base", "br01_01_base") 128222.95301963031
 GetDist(graph, dist, "li01_01_base", "li12_02_base") 31394.034148767405
 time=2024-06-16T12:29:47.108+02:00 level=DEBUG msg="time_measure 2m20.534426392s | trade routes calculated"
 ```
-It took more than 2 minutes and 20 seconds to calculate necessary data with floyd. The time improved to just 60 seconds if using integers instead of floats for matrix though.
+Initially, it took more than 2 minutes and 20 seconds to calculate the necessary data with Floyd, which happened because of float64 usage. The time improved considerably to just 60 seconds if using integers instead of floats for matrix though. The example above is already of a fixed to integer usage algorithm.
 
-Still it made me look further. Can I parallel this algorithm to speed up? [The found article](https://cse.buffalo.edu/faculty/miller/Courses/CSE633/Asmita-Gautam-Spring-2019.pdf) from a university hints at yes. However the algorithm looked dependent on previous parallelized jobs, it looked too complex, so I did not risk implementing it.
+The speed was not very satisfying, therefore it made me look further. Can I parallel this algorithm to speed up? [The found article](https://cse.buffalo.edu/faculty/miller/Courses/CSE633/Asmita-Gautam-Spring-2019.pdf) from a university hints at yes. However the algorithm looked dependent on previous parallelized jobs, it looked too complex, so I did not risk implementing it. Trustworthy code examples are rather tough to find for parallel Floyd too.
 
 ## Johnson's Algorithms
 
 Looking through my options on [shortest paths algorithm wikipedia page](https://en.wikipedia.org/wiki/Shortest_path_problem), i saw that Johnson’s algorithm is very promising, as it is told to be possibly faster on sparse graph
 
-I checked [geeks web site](https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/) for inspiration how to implement, as it had already implementation in C++, Java, Python and Javascript. With rewriting Java algorithm to golang I received twice faster calculating time than with the original Floyd’s algo time speed (or equal in speed if considering fix to Floyd calculations with integer)
+I checked [geeks web site](https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/) for inspiration how to implement, as it had already implementation in C++, Java, Python and Javascript. By rewriting the Java algorithm to Golang, I received a speed almost equal to Floyd's calculations with integers. (Initially, I thought it was twice faster since I discovered Integer optimization for Floyd later)
 
 ```
 GetDist(graph, dist, "li01_01_base", "li01_to_li02")= 22148
@@ -87,7 +87,7 @@ func TestTradeRoutesJohnson(t *testing.T) {
 
 ![]({{.StaticRoot}}shortest_paths/johnson_java_first.png)
 
-I discovered that the provided Java algorithm had a problem with its `findMinDistanceVertex` function. After comparing the Java algorithm with C++ and Python algorithms I saw they use Priority Queue data structure, while Java just used search in a list. Suspecting not efficiency from it, I rewrote Dijkstra's algorithm to usage of Priority Queue, by taking info for it from [this golang std library](https://pkg.go.dev/container/heap) for heap
+I discovered that the provided Java algorithm had a problem with its `findMinDistanceVertex` function. After comparing the Java algorithm with C++ and Python algorithms ([at the same page]((https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/))) I saw they use Priority Queue data structure, while Java just used search in a list. Suspecting not efficiency from it, I rewrote Dijkstra's algorithm to usage of Priority Queue, by taking info for it from [this golang std library](https://pkg.go.dev/container/heap) for heap
 
 ```
 GetDist(graph, dist, "li01_01_base", "li01_to_li02")= 22148
@@ -148,4 +148,70 @@ That was a success! With receiving still same values, the calculating was way fa
 
 P.S. The Algorithm is usable for directional graphs too, just a need to remove one code line for adding edges to both directions.
 
-P.P.S. Found [the wiki page containing three different parallel methods for all shortest paths problem solving](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). We have implemented the trivial parallelization. There is room to try the advanced choices for Dijkstra parallelization (that will have potentially no gain), and Floyd parallelization.
+## Further optimizations
+
+Found [the wiki page containing three different parallel methods for all shortest paths problem solving](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). The parallelizing Dijkstra solution made for Johnson's algo looks like DijkstraAPSP described in it. There is room to try the advanced choices for Dijkstra parallelization (that will have potentially no gain), and Floyd parallelization.
+
+Resources to find exact realizations for those different options are very scarce though. At the end of a day, i realized optimization by skipping calculations for all shortest paths originating from vertexes i use only as intermediate travel points, so I replaced for them Dijkstra calculations with a filled array `[Inf, Inf, Inf, 0(for source index), Inf, Inf, Inf...]` like in the code below:
+```go
+func (g *Johnson) Johnsons() [][]int {
+	// ...
+	// Johnson's other code
+
+	// Performance optimization of the algorithm
+	// By skipping heaviest calculations for all shortest paths
+	// originiating from vertexes not needed.
+	// As those vertex are important only as intermediate travel point.
+	skip_not_allowed_vertex := func(source int) ([]int, bool) {
+		if len(g.allowed_base_ids) > 0 {
+			_, is_base := g.allowed_base_ids[source]
+			if !is_base {
+				dist := make([]int, g.vertices)
+				ArraysFill(dist, math.MaxInt)
+				dist[source] = 0
+				return dist, true
+			}
+		}
+		return nil, false
+	}
+
+	if is_sequential {
+		for s := 0; s < g.vertices; s++ {
+			if dist_result, is_skipped := skip_not_allowed_vertex(s); is_skipped {
+				distances[s] = dist_result
+				continue
+			}
+
+			distances[s] = g.dijkstra(s)
+		}
+	} else {
+		dijkstra_results := make(chan *DijkstraResult)
+		awaited := 0
+		for s := 0; s < g.vertices; s++ {
+
+			if dist_result, is_skipped := skip_not_allowed_vertex(s); is_skipped {
+				distances[s] = dist_result
+				continue
+			}
+
+			awaited += 1
+			go func(s int) {
+				dist_result := g.dijkstra(s)
+				dijkstra_results <- &DijkstraResult{
+					source:      s,
+					dist_result: dist_result,
+				}
+			}(s)
+		}
+		for s := 0; s < awaited; s++ {
+			result := <-dijkstra_results
+			distances[result.source] = result.dist_result
+		}
+	}
+
+	// ...
+	// Johnson's other code
+}
+```
+
+This final optimization gave me 1.5 seconds total time to get all the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 2218 vertices, having 15125 edges in an indirected graph. (P.S. usage for directed graph is possible)
