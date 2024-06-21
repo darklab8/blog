@@ -218,6 +218,6 @@ This final optimization gave me 1.5 seconds total time to get all the necessary 
 
 Attachments:
 - [Code examples from this artcle](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
-- [Final code used for space simulator trading routes calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
+- [Final code in use for space simulator trading routes calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
 
 All examples are with unit tests how to use them ^_^.
