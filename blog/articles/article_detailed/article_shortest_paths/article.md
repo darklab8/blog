@@ -2,7 +2,7 @@ Comparison, profiling and optimizing with paralleling.
 
 ## Intro
 
-During the development of [a game data viewing tool for a space simulator]({{.DarkstatUrl}}), I encountered a need to calculate all shortest paths between 2218 vertices, having 15125 edges in a bidirectional graph. That is required to calculate profit per time, for different trading routes in a game of flying between star systems and trading. ^_^.
+During the development of [a game data viewing tool for a space simulator]({{.DarkstatUrl}}), I encountered a need to calculate all shortest paths between 2218 vertices, having 30250 edges in a directional graph. That is required to calculate profit per time, for different trading routes in a game of flying between star systems and trading. ^_^.
 
 ## Floyd All Shortest Paths
 
@@ -87,7 +87,7 @@ func TestTradeRoutesJohnson(t *testing.T) {
 
 ![]({{.StaticRoot}}shortest_paths/johnson_java_first.png)
 
-I discovered that the provided Java algorithm had a problem with its `findMinDistanceVertex` function. After comparing the Java algorithm with C++ and Python algorithms ([at the same page]((https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/))) I saw they use Priority Queue data structure, while Java just used search in a list. Suspecting not efficiency from it, I rewrote Dijkstra's algorithm to usage of Priority Queue, by taking info for it from [this golang std library](https://pkg.go.dev/container/heap) for heap
+I discovered that the provided Java algorithm had a problem with its `findMinDistanceVertex` function. After comparing the Java algorithm with C++ and Python algorithms ([at the same page]((https://www.geeksforgeeks.org/implementation-of-johnsons-algorithm-for-all-pairs-shortest-paths/))) I saw they use Priority Queue data structure, while Java just used search in a list. Suspecting not efficiency from it, I rewrote Dijkstra's algorithm to usage of Priority Queue, by taking info for it from [this golang std library](https://pkg.go.dev/container/heap) for heap ( Later was discovered that wiki page for Dijkstra ( https://en.wikipedia.org/wiki/Dijkstra's_algorithm ) actually documents both those versions and tells their complexity, the heap version is obviously better )
 
 ```
 GetDist(graph, dist, "li01_01_base", "li01_to_li02")= 22148
@@ -144,86 +144,49 @@ johnson_test.go
 {{.JohnsonTest}}
 ```
 
-That was a success! With receiving still same values, the calculating was way faster just with the touch of a very simple Golang paralelism using go routines and channels to collect the result. We went from 2 minutes and 20 seconds (technically 1 minute) to the achieved 6 seconds results for 2218 vertixes, and 15125 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
-
-P.S. The Algorithm is usable for directional graphs too, just a need to remove one code line for adding edges to both directions.
+That was a success! With receiving still same values, the calculating was way faster just with the touch of a very simple Golang paralelism using go routines and channels to collect the result. We went from 2 minutes and 20 seconds (technically 1 minute) to the achieved 6 seconds results for 2218 vertixes, and 30250 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
 
 ## Further optimizations
 
 Found [the wiki page containing three different parallel methods for all shortest paths problem solving](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). The parallelizing Dijkstra solution made for Johnson's algo looks like DijkstraAPSP described in it. There is room to try the advanced choices for Dijkstra parallelization (that will have potentially no gain), and Floyd parallelization.
 
-Resources to find exact realizations for those different options are very scarce though. At the end of a day, i realized optimization by skipping calculations for all shortest paths originating from vertexes i use only as intermediate travel points, so I replaced for them Dijkstra calculations with a filled array `[Inf, Inf, Inf, 0(for source index), Inf, Inf, Inf...]` like in the code below:
+Resources to find exact realizations for those different options are very scarce though. We could optimizatize by skipping calculations for all shortest paths originating from vertexes i use only as intermediate travel points, so we can replace for them Dijkstra calculations with a filled array `[Inf, Inf, Inf, 0(for source index), Inf, Inf, Inf...]` instead of calculating Dijkstra itself. The given task requires me getting distances starting from intermediate traveling points too though, *so i could not apply this optimization* for my requirements of the task.
+
+Alternatively there is another possible optimization. the given domain of data has as dense connections only specific star systems, with every vertex connected to each other, and connected very scarely only by few edges between star systems. We could have calculated rapidly all shortest paths for each system (even with floyd), and then we could have built a second graph that contains only "space bases" and jump gates/holes connecting star systems. That would have decreased amount of vertex from 2218 to less than 900 vertex and made faster potentially total calculations. *But this optimization was no made too*, because there is simple alternative.
+
+The given domain of data inside each star system contains space ship flight speed boosters called Trade Lanes. They are made out of multiple rings connected in a line. Originally each ring had its own vertex connected with edges to its neighbors. I applied optimziation by joining intermediate vertexes in a single "trade lane", and thus amount of vertex decreased from 2218 to 1218 without almost no drop in quality of calculations.
+
+Additionally optimization was made by removing Johnson's algorithm parts. Since graph actually had no edges with negative weights... Johnson's Algorithm was not really required. So it was stripped down to DijkstraAPSP already written inside of it.
+
+This final optimizations gave me `1.5 seconds total time` for calculation runs to get all the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 1218 vertices, having 22896 edges in an directed graph. Nature of domain data appeared to be requiring directed graph.
+
+Since we used DijkstraAPSP, it was possible to modify the algorithm for returning reconstructed shortest exact paths. That was actually very desirable for the task goals, and thankfully possible. Modifications were made based on [wiki article for Dijkstra algo](<https://en.wikipedia.org/wiki/Dijkstra%27s_algor>)
+
+Providing the most final DijkstraAPSP algorithm, calculating all shortest paths through DijkstraSSSP in golang, with provided ability for path reconstructions.
+
+graph.go
 ```go
-func (g *Johnson) Johnsons() [][]int {
-	// ...
-	// Johnson's other code
-
-	// Performance optimization of the algorithm
-	// By skipping heaviest calculations for all shortest paths
-	// originiating from vertexes not needed.
-	// As those vertex are important only as intermediate travel point.
-	skip_not_allowed_vertex := func(source int) ([]int, bool) {
-		if len(g.allowed_base_ids) > 0 {
-			_, is_base := g.allowed_base_ids[source]
-			if !is_base {
-				dist := make([]int, g.vertices)
-				ArraysFill(dist, math.MaxInt)
-				dist[source] = 0
-				return dist, true
-			}
-		}
-		return nil, false
-	}
-
-	if is_sequential {
-		for s := 0; s < g.vertices; s++ {
-			if dist_result, is_skipped := skip_not_allowed_vertex(s); is_skipped {
-				distances[s] = dist_result
-				continue
-			}
-
-			distances[s] = g.dijkstra(s)
-		}
-	} else {
-		dijkstra_results := make(chan *DijkstraResult)
-		awaited := 0
-		for s := 0; s < g.vertices; s++ {
-
-			if dist_result, is_skipped := skip_not_allowed_vertex(s); is_skipped {
-				distances[s] = dist_result
-				continue
-			}
-
-			awaited += 1
-			go func(s int) {
-				dist_result := g.dijkstra(s)
-				dijkstra_results <- &DijkstraResult{
-					source:      s,
-					dist_result: dist_result,
-				}
-			}(s)
-		}
-		for s := 0; s < awaited; s++ {
-			result := <-dijkstra_results
-			distances[result.source] = result.dist_result
-		}
-	}
-
-	// ...
-	// Johnson's other code
-}
+{{.GraphCode}}
 ```
 
-This final optimization gave me 1.5 seconds total time to get all the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 2218 vertices, having 15125 edges in an indirected graph. (P.S. usage for directed graph is possible)
+dijkstra_apsp.go
+```go
+{{.DijkstraApsp}}
+```
 
-Final code for space simuator trading calculations is also optimized by replacing Johnson's algorithm to DijkstraAPSP. Since game data does not have negative weight edges, Johnson's usage is actually not needed, DijkstraAPSP is enough.
-
-Some more vertexes and edges can be later removed which will not affect final calculations. Not used space bases, or removing intermediate travel points in trade lane (flight speed boosters) and replacing them with single pair of vertexes/edge.
-
-Even further optimization can be made by calculating all shortest paths within each star system only. And then building second graph that has only added as vertexes: bases and jump holes/gates. That will allow calculating even faster, because final calculations will be made for a graph having less than 900 vertexes (instead of having 2200+ vertexes graph now). That is possible due to the nature of game data, where free space flight is available within each star system, but travels between systems are connected only by jump holes and jump gates as you can see in [the galaxy map](https://fifthbarrier.github.io/Navmap/#q=)
+dijkstra_apsp_test.go
+```go
+{{.DijkstraApspTest}}
+```
 
 Attachments:
-- [Code examples from this artcle](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
+- [the galaxy map for the same data for which we built graph](https://fifthbarrier.github.io/Navmap/#q=)
+- [Code examples from this artcle, cleaned from domain specific stuff](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
 - [Code in use for space simulator trading routes calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
+- [This article page in repository of static site generator](https://github.com/darklab8/blog/blob/master/blog/articles/article_detailed/article_shortest_paths/article.md)
 
-All examples are with unit tests how to use them ^_^.
+All examples have unit tests how to use them ^_^. The research results were applied to [darkstat](<https://github.com/darklab8/fl-darkstat>) tool for trading routes calculations between space bases in the [Freelancer Discovery](https://discoverygc.com/) modding community.
+
+DarkStat trading routes tab:
+![]({{.StaticRoot}}shortest_paths/darkstat_tab_trades.png)
+

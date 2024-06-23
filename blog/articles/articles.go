@@ -39,6 +39,15 @@ var shortest_paths_johnson_code string
 //go:embed article_detailed/article_shortest_paths/trades/johnson_test.go
 var shortest_paths_Johnson_test string
 
+//go:embed article_detailed/article_shortest_paths/trades/dijkstra_apsp.go
+var dijkstra_apsp_code string
+
+//go:embed article_detailed/article_shortest_paths/trades/dijkstra_apsp_test.go
+var dijkstra_apsp_test string
+
+//go:embed article_detailed/article_shortest_paths/trades/graph.go
+var graph_shared_code string
+
 var Articles []*Article = []*Article{
 	NewArticle(
 		"Git conventional commits - communicating with git",
@@ -104,13 +113,16 @@ var Articles []*Article = []*Article{
 			Calculating distances for trading routes in a space simulator game.`),
 		WithVars(func(ctx context.Context) any {
 			return article_shortest_paths.Vars{
-				StaticRoot:  types.GetCtx(ctx).StaticRoot,
-				DarkstatUrl: types.GetCtx(ctx).SiteRoot + "pet_projects.html#fl-darkstat",
-				FloydMain:   floyd_main_code,
-				FloydTest:   floyd_test_code,
-				HeapCode:    shortest_paths_heap,
-				JohnsonCode: shortest_paths_johnson_code,
-				JohnsonTest: shortest_paths_Johnson_test,
+				StaticRoot:       types.GetCtx(ctx).StaticRoot,
+				DarkstatUrl:      types.GetCtx(ctx).SiteRoot + "pet_projects.html#fl-darkstat",
+				FloydMain:        floyd_main_code,
+				FloydTest:        floyd_test_code,
+				HeapCode:         shortest_paths_heap,
+				JohnsonCode:      shortest_paths_johnson_code,
+				JohnsonTest:      shortest_paths_Johnson_test,
+				DijkstraApsp:     dijkstra_apsp_code,
+				DijkstraApspTest: dijkstra_apsp_test,
+				GraphCode:        graph_shared_code,
 			}
 		}),
 		WithTitlePicture(TitlePicture{

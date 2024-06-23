@@ -61,14 +61,14 @@ func NewJohnsonFromGraph(graph *GameGraph) *Johnson {
 
 	index := 0
 	for vertex, _ := range graph.matrix {
-		graph.index_by_nickname[vertex] = index
+		graph.IndexByNick[vertex] = index
 		index++
 	}
 
 	for vertex_name, vertex := range graph.matrix {
 		for vertex_target, weight := range vertex {
-			i := graph.index_by_nickname[vertex_name]
-			j := graph.index_by_nickname[vertex_target]
+			i := graph.IndexByNick[vertex_name]
+			j := graph.IndexByNick[vertex_target]
 
 			g.addEdge(i, j, int(weight))
 		}
@@ -78,7 +78,6 @@ func NewJohnsonFromGraph(graph *GameGraph) *Johnson {
 
 func (g *Johnson) addEdge(source int, destination int, weight int) {
 	g.adjacencyList[source] = append(g.adjacencyList[source], NewNeighbour(destination, weight))
-	g.adjacencyList[destination] = append(g.adjacencyList[destination], NewNeighbour(source, weight))
 }
 
 func ArraysFill[T any](array []T, value T) {
@@ -87,16 +86,16 @@ func ArraysFill[T any](array []T, value T) {
 	}
 }
 
-// // Time complexity of this
-// // implementation of dijkstra is O(V^2).
+// Dijkstra which is faster than regular one with O(|V|^2)
+// This is Dijkstra with heap priority queue. Compltexity O(|E|+|V|log|V|)
+// According to wiki page https://en.wikipedia.org/wiki/Dijkstra's_algorithm
 func (g *Johnson) dijkstra(source int) []int {
-	var isVisited []bool = make([]bool, g.vertices)
 	var distance []int = make([]int, g.vertices)
 
 	pq := make(PriorityQueue, 0)
 	item := &Item{
-		value:    0,
-		priority: source,
+		value_weight: 0,
+		priority:     source,
 	}
 	pq.Push(item)
 
@@ -106,17 +105,14 @@ func (g *Johnson) dijkstra(source int) []int {
 	for pq.Len() > 0 {
 		item := heap.Pop(&pq).(*Item)
 		node := item.priority
-		dist := item.value
-		if isVisited[node] {
-			continue
-		}
+		dist := item.value_weight
 
 		for _, neighbour := range g.adjacencyList[node] {
-			if !isVisited[neighbour.destination] && dist+neighbour.weight < distance[neighbour.destination] {
+			if dist+neighbour.weight < distance[neighbour.destination] {
 				distance[neighbour.destination] = dist + neighbour.weight
 				pq.Push(&Item{
-					value:    distance[neighbour.destination],
-					priority: neighbour.destination,
+					value_weight: distance[neighbour.destination],
+					priority:     neighbour.destination,
 				})
 			}
 

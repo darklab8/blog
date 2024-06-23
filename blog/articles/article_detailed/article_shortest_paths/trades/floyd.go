@@ -5,37 +5,8 @@ import (
 	"math"
 )
 
-const INF = math.MaxFloat32
-
-type VertexName string
-
-type GameGraph struct {
-	matrix            map[VertexName]map[VertexName]float64
-	index_by_nickname map[VertexName]int
-}
-
-func NewGameGraph() *GameGraph {
-	return &GameGraph{
-		matrix:            make(map[VertexName]map[VertexName]float64),
-		index_by_nickname: map[VertexName]int{},
-	}
-}
-
-func (f *GameGraph) SetEdge(keya string, keyb string, distance float64) {
-	vertex, vertex_exists := f.matrix[VertexName(keya)]
-	if !vertex_exists {
-		vertex = make(map[VertexName]float64)
-		f.matrix[VertexName(keya)] = vertex
-	}
-
-	if _, vert_target_exists := f.matrix[VertexName(keyb)]; !vert_target_exists {
-		f.matrix[VertexName(keyb)] = make(map[VertexName]float64)
-	}
-	vertex[VertexName(keyb)] = distance
-}
-
 /*
-floydWarshall algirthm in a no matter directional graph
+floydWarshall algirthm
 */
 type Floyder struct {
 	*GameGraph
@@ -45,8 +16,7 @@ type Floyder struct {
 var FloydMax = int(math.MaxInt / 2)
 
 func (f *Floyder) mapMatrixEdgeToFloyd(keya VertexName, keyb VertexName, distance int) {
-	f.dist[f.index_by_nickname[keya]][f.index_by_nickname[keyb]] = distance
-	f.dist[f.index_by_nickname[keyb]][f.index_by_nickname[keya]] = distance
+	f.dist[f.IndexByNick[keya]][f.IndexByNick[keyb]] = distance
 }
 
 func NewFloyder(graph *GameGraph) *Floyder {
@@ -72,7 +42,7 @@ func (f *Floyder) Calculate() *Floyder {
 
 	index := 0
 	for vertex, _ := range f.matrix {
-		f.index_by_nickname[vertex] = index
+		f.IndexByNick[vertex] = index
 		index++
 	}
 
@@ -95,8 +65,4 @@ func (f *Floyder) Calculate() *Floyder {
 		}
 	}
 	return f
-}
-
-func GetDist[T any](f *GameGraph, dist [][]T, keya string, keyb string) T {
-	return dist[f.index_by_nickname[VertexName(keya)]][f.index_by_nickname[VertexName(keyb)]]
 }
