@@ -179,6 +179,23 @@ dijkstra_apsp_test.go
 {{.DijkstraApspTest}}
 ```
 
+TestDijkstraAPSPWithGraph output:
+```
+solved matrix
+      0      5      9      8
+    INF      0      4      3
+    INF    INF      0    INF
+    INF    INF      1      0
+get dists and paths
+a -> c =  8 path= [{ a -1 0 0} {a b 0 1 5} {b c 1 3 3} {c  3 -1 0}]
+a -> b =  5 path= [{-1 0 0} {0 1 5} {1 -1 0}]
+a -> d =  9 path= [{-1 0 0} {0 1 5} {1 3 3} {3 2 1} {2 -1 0}]
+detailed path reconstruction, useful for debug
+prev=                    a next=                    b prev_node=     0 next_node=     1 dist=     5
+prev=                    b next=                    c prev_node=     1 next_node=     3 dist=     3
+PASS
+```
+
 Attachments:
 - [the galaxy map for the same data for which we built graph](https://fifthbarrier.github.io/Navmap/#q=)
 - [Code examples from this artcle, cleaned from domain specific stuff](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)

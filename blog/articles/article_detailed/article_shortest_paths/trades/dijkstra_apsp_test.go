@@ -57,6 +57,7 @@ func TestDijkstraAPSPWithGraph(t *testing.T) {
 	johnson := NewDijkstraApspFromGraph(graph)
 	dist, parents := johnson.DijkstraApsp()
 
+	fmt.Println("solved matrix")
 	for i := 0; i < 4; i++ {
 		for j := 0; j < 4; j++ {
 			if dist[i][j] == math.MaxInt {
@@ -68,11 +69,12 @@ func TestDijkstraAPSPWithGraph(t *testing.T) {
 		fmt.Println()
 	}
 
+	fmt.Println("get dists and paths")
 	fmt.Println("a -> c = ", GetDist(graph, dist, "a", "c"), "path=", graph.GetPaths(parents, dist, "a", "c"))
 	fmt.Println("a -> b = ", GetDist(graph, dist, "a", "b"), "path=", GetPath(graph, parents, dist, "a", "b"))
 	fmt.Println("a -> d = ", GetDist(graph, dist, "a", "d"), "path=", GetPath(graph, parents, dist, "a", "d"))
 
-	// Detailed Reconstructed Path
+	fmt.Println("detailed path reconstruction, useful for debug")
 	paths := graph.GetPaths(parents, dist, "a", "c")
 	for index, path := range paths {
 		if path.Dist == 0 && (index != 0 || index != len(paths)-1) {
