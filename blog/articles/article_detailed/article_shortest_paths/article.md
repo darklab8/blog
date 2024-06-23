@@ -148,21 +148,21 @@ That was a success! With receiving still same values, the calculating was way fa
 
 ## Further optimizations
 
-Found [the wiki page containing three different parallel methods for all shortest paths problem solving](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). The parallelizing Dijkstra solution made for Johnson's algo looks like DijkstraAPSP described in it. There is room to try the advanced choices for Dijkstra parallelization (that will have potentially no gain), and Floyd parallelization.
+Found [the wiki page containing three different parallel methods for all shortest paths problem solving](https://en.wikipedia.org/wiki/Parallel_all-pairs_shortest_path_algorithm). The parallelizing Dijkstra solution made for Johnson's algo looks like the DijkstraAPSP described in it. There is room to try the advanced choices for Dijkstra parallelization (that will have potentially no gain), and Floyd parallelization.
 
-Resources to find exact realizations for those different options are very scarce though. We could optimizatize by skipping calculations for all shortest paths originating from vertexes i use only as intermediate travel points, so we can replace for them Dijkstra calculations with a filled array `[Inf, Inf, Inf, 0(for source index), Inf, Inf, Inf...]` instead of calculating Dijkstra itself. The given task requires me getting distances starting from intermediate traveling points too though, *so i could not apply this optimization* for my requirements of the task.
+Resources to find exact realizations for those different options are very scarce though. We could optimize by skipping calculations for all shortest paths originating from vertexes I use only as intermediate travel points, so we can replace for them Dijkstra calculations with a filled array `[Inf, Inf, Inf, 0(for source index), Inf, Inf, Inf...]` instead of calculating Dijkstra itself. The given task requires me to get distances starting from intermediate traveling points too though, *so I could not apply this optimization* for my requirements of the task.
 
-Alternatively there is another possible optimization. the given domain of data has as dense connections only specific star systems, with every vertex connected to each other, and connected very scarely only by few edges between star systems. We could have calculated rapidly all shortest paths for each system (even with floyd), and then we could have built a second graph that contains only "space bases" and jump gates/holes connecting star systems. That would have decreased amount of vertex from 2218 to less than 900 vertex and made faster potentially total calculations. *But this optimization was no made too*, because there is simple alternative.
+Alternatively, there is another possible optimization. the given domain of data has as dense connections only specific star systems, with every vertex connected to each other, and connected very scarcely only by a few edges between star systems. We could have calculated rapidly all shortest paths for each system (even with floyd), and then we could have built a second graph that contains only "space bases" and jump gates/holes connecting star systems. That would have decreased amount of vertex from 2218 to less than 900 vertex and made faster potential total calculations. *But this optimization was not made too*, because there is a simple alternative.
 
-The given domain of data inside each star system contains space ship flight speed boosters called Trade Lanes. They are made out of multiple rings connected in a line. Originally each ring had its own vertex connected with edges to its neighbors. I applied optimziation by joining intermediate vertexes in a single "trade lane", and thus amount of vertex decreased from 2218 to 1218 without almost no drop in quality of calculations.
+The given domain of data inside each star system contains spaceship flight speed boosters called Trade Lanes. They are made out of multiple rings connected in a line. Originally each ring had its own vertex connected with edges to its neighbors. I applied optimization by joining intermediate vertexes in a single "trade lane", and thus the amount of vertex decreased from 2218 to 1218 without almost no drop in the quality of calculations.
 
-Additionally optimization was made by removing Johnson's algorithm parts. Since graph actually had no edges with negative weights... Johnson's Algorithm was not really required. So it was stripped down to DijkstraAPSP already written inside of it.
+Additionally, optimization was made by removing Johnson's algorithm parts. Since the graph actually had no edges with negative weights... Johnson's Algorithm was not really required. So it was stripped down to DijkstraAPSP already written inside of it.
 
-This final optimizations gave me `1.5 seconds total time` for calculation runs to get all the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 1218 vertices, having 22896 edges in an directed graph. Nature of domain data appeared to be requiring directed graph.
+This final optimization gave me `1.5 seconds total time` for calculation runs to get all the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 1218 vertices, having 22896 edges in a directed graph.
 
 Since we used DijkstraAPSP, it was possible to modify the algorithm for returning reconstructed shortest exact paths. That was actually very desirable for the task goals, and thankfully possible. Modifications were made based on [wiki article for Dijkstra algo](<https://en.wikipedia.org/wiki/Dijkstra%27s_algor>)
 
-Providing the most final DijkstraAPSP algorithm, calculating all shortest paths through DijkstraSSSP in golang, with provided ability for path reconstructions.
+Providing the most final DijkstraAPSP algorithm, calculating all shortest paths through DijkstraSSSP in Golang, with the provided ability for path reconstructions.
 
 graph.go
 ```go
@@ -197,13 +197,12 @@ PASS
 ```
 
 Attachments:
-- [the galaxy map for the same data for which we built graph](https://fifthbarrier.github.io/Navmap/#q=)
-- [Code examples from this artcle, cleaned from domain specific stuff](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
+- [the galaxy map for the same data for which we built the graph](https://fifthbarrier.github.io/Navmap/#q=)
+- [Code examples from this article, cleaned from domain-specific stuff](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
 - [Code in use for space simulator trading routes calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
-- [This article page in repository of static site generator](https://github.com/darklab8/blog/blob/master/blog/articles/article_detailed/article_shortest_paths/article.md)
+- [This article page in repository of static site generator](https://github.com/darklab8/blog/blob/master/blog/articles/article_detailed/article_shortest_paths/article.md).
 
-All examples have unit tests how to use them ^_^. The research results were applied to [darkstat](<https://github.com/darklab8/fl-darkstat>) tool for trading routes calculations between space bases in the [Freelancer Discovery](https://discoverygc.com/) modding community.
+All examples have unit tests on how to use them ^_^. The links above may contain a version of the article and code examples more up-to-date or with other fixes. The research results were applied to [darkstat](<https://github.com/darklab8/fl-darkstat>) tool for trading routes calculations between space bases in the [Freelancer Discovery](https://discoverygc.com/) modding community.
 
 DarkStat trading routes tab:
 ![]({{.StaticRoot}}shortest_paths/darkstat_tab_trades.png)
-
