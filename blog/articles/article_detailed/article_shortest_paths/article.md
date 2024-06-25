@@ -163,7 +163,7 @@ The given domain of data inside each star system contains spaceship flight speed
 
 Additionally, optimization was made by removing Johnson’s algorithm parts. Since the graph actually had no edges with negative weights… Johnson’s Algorithm was not really required. So it was stripped down to DijkstraAPSP already written inside of it.
 
-This final optimization gave me initially 1.5 seconds total time for calculation runs between all vertices, and `it improved to 0.65s time` after I white-listed in addition to running single sourced Dijkstra only from the list of allowed starting points to find out the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 1218 vertices, having 22896 edges in a directed graph.
+This final optimization gave me initially 1.5 seconds total time for calculation runs between all vertices, and `it improved to 0.65s time` after I white-listed in addition to running single sourced Dijkstra only for the list of allowed starting points to find out the necessary shortest trading route distances between space bases in a galaxy of a space simulator, and that is a satisfying end result for 1218 vertices, having 22896 edges in a directed graph.
 
 Since we used DijkstraAPSP, it was possible to modify the algorithm for returning reconstructed shortest exact paths. That was very desirable for the task goals, and thankfully possible. Modifications were made based on [the Wiki article for Dijkstra algo](<https://en.wikipedia.org/wiki/Dijkstra%27s_algor>)
 
