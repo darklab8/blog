@@ -18,7 +18,6 @@ Writing last versions of dependencies with which it was possible to make it happ
 - `lutris/now 0.5.16 all [installed,upgradable to: 0.5.17]` ( output of `$ apt list --installed | grep "lutris"`)
 - [Wine proton 8.0-4](<https://github.com/Kron4ek/Wine-Builds/releases/tag/proton-8.0-4>)
 - [dxvk2.4 with direct 8 support](<https://github.com/doitsujin/dxvk/releases/tag/v2.4>)
-    - optional alternative [d3d8to9 v1.12.0](<https://github.com/crosire/d3d8to9/releases/tag/v1.12.0>)
 
 ## 1. Setup Lutris
 
@@ -182,3 +181,11 @@ It should make alt-tab working reliably.
 ## Extra info - d3d8to9 v1.12.0
 
 The guide used dxvk 2.4 with direct 8 support to launch the game, but [d3d8to9 v1.12.0](https://github.com/crosire/d3d8to9/releases/tag/v1.12.0) can be used as alternative.
+
+## Extra info - vendoring dependencies
+
+Just in case providing copies of all main dependencies, vendored in for this articles, in case they aren't longer downloadable.
+
+- [Lutris 0.5.16]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/lutris_0.5.17_all.deb)
+- [Wine proton 8.0-4]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/wine-proton-8.0-4-amd64.tar.xz)
+- [dxvk2.4 with direct 8 support]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/dxvk-2.4.tar.gz)
