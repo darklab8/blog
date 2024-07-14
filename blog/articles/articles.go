@@ -132,7 +132,7 @@ var Articles []*Article = []*Article{
 	),
 	NewArticle(
 		"Installing Freelancer Discovery with Lutris at Linux",
-		"article/article_freelancer_setup_at_linux",
+		"article/article_freelancer_setup_at_linux.html",
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article.md"),
 		time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
 		WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
