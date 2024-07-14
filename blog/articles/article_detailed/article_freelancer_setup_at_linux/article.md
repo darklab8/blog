@@ -154,11 +154,6 @@ Launch the game :) You are ready. Close notes, agree to license, patch to latest
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/game_launch.png)
 
-## Acknowlegments
-
-- Emawind (Source of truth. This guide would not be possible without this person)
-- Darkwind (A.k.a me: Interrogating source of truth, following the instructions and writing this article)
-
 ## Extra info - Fonts.
 
 Thie step is not need if u used this guide main instruction and used Lutris/Wine to install the game properly as described in `3. Setup Freelancer and Wine Prefix` step.
@@ -189,3 +184,10 @@ Just in case providing copies of all main dependencies, vendored in for this art
 - [Lutris 0.5.16]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/lutris_0.5.17_all.deb)
 - [Wine proton 8.0-4]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/wine-proton-8.0-4-amd64.tar.xz)
 - [dxvk2.4 with direct 8 support]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/dxvk-2.4.tar.gz)
+
+## Acknowlegments
+
+- Emawind (Source of truth. This guide would not be possible without this person)
+    - he mentioned using it with Steam Deck.
+- Darkwind (A.k.a me: Interrogating source of truth, following the instructions and writing this article)
+    - Your Kubuntu user.
