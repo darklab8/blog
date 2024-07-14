@@ -39,7 +39,7 @@ func init() {
 			articles.HomeT(),
 		),
 		builder.NewComponent(
-			"examples",
+			"examples.html",
 			examples.Example(),
 		),
 	)
