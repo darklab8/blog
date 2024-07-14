@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/darklab8/blog/blog/archive"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_setup_at_linux"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_lts_software"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_shortest_paths"
@@ -127,6 +128,22 @@ var Articles []*Article = []*Article{
 		}),
 		WithTitlePicture(TitlePicture{
 			Path: utils_filepath.Join("shortest_paths", "constellations.jpg"),
+		}),
+	),
+	NewArticle(
+		"Installing Freelancer Discovery with Lutris at Linux",
+		"article/article_freelancer_setup_at_linux",
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article.md"),
+		time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
+		WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
+		for launching Freelancer Disovery space simulator at Linux`),
+		WithVars(func(ctx context.Context) any {
+			return article_freelancer_setup_at_linux.Vars{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
 		}),
 	),
 	/*

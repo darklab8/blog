@@ -33,7 +33,15 @@ templ ArticleHeadline(article *Article) {
 
 templ TitlePic(picture *TitlePicture) {
 	if picture != nil {
-		<img src={  types.GetCtx(ctx).StaticRoot + picture.Path.ToString() }/>
+		<style>
+			.title_pic {
+				display: flex;
+				justify-content: center;
+			}
+		</style>
+		<div class="title_pic">
+			<img src={  types.GetCtx(ctx).StaticRoot + picture.Path.ToString() }/>
+		</div>
 	}
 }
 
