@@ -35,6 +35,9 @@ We installed Lutris `0.5.16` at the moment of last attempt.
 
 ## 2. Setup Wine Proton
 
+There are many wine versions, but this one is the last that keep the UI text from not cutting out
+and also keeps intro video playing nicely with Freelancer Vanilla.
+
 - [Download Wine Proton](<https://github.com/Kron4ek/Wine-Builds/releases/tag/proton-8.0-4>)
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_proton_installing.png)
@@ -173,6 +176,8 @@ It should make alt-tab working reliably.
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/gamescope_install.png)
 
+P.S. Alternatively can be used Virtual Desktop feature, but it is not available anymore in the proton version. This is why we go with gamescope.
+
 ## Extra info - d3d8to9 v1.12.0
 
 The guide used dxvk 2.4 with direct 8 support to launch the game, but [d3d8to9 v1.12.0](https://github.com/crosire/d3d8to9/releases/tag/v1.12.0) can be used as alternative.
@@ -184,6 +189,10 @@ Just in case providing copies of all main dependencies, vendored in for this art
 - [Lutris 0.5.16]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/lutris_0.5.17_all.deb)
 - [Wine proton 8.0-4]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/wine-proton-8.0-4-amd64.tar.xz)
 - [dxvk2.4 with direct 8 support]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/dxvk-2.4.tar.gz)
+
+## Extra info - useful links
+
+- [This forum page](<https://discoverygc.com/forums/showthread.php?tid=173057>) contains legacy instruction from other person and has anouncements regarding this upaded version and possible comments from other people. May be helpful for other bits to know.
 
 ## Acknowlegments
 
