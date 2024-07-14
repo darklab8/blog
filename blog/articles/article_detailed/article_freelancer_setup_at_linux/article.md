@@ -1,6 +1,6 @@
 ## Intro
 
-This article describes installation of Freelancer Discovery for Linux. We show specifics for Kubuntu 22.04 LTS, but it should be usable for any Linux as long as you are able to install Lutris and having reasonable CPU architecture (we go with amd64). We organize article in paragraphs having next structure:
+This article describes installation of [Freelancer Discovery](<https://discoverygc.com/>) online space simulator for Linux. We show specifics for Kubuntu 22.04 LTS, but it should be usable for any Linux as long as you are able to install Lutris and having reasonable CPU architecture (we go with amd64). We organize article in paragraphs having next structure:
 
 - How to start step/stage of installation
 - What u see as progress and warning about possible pitifals
