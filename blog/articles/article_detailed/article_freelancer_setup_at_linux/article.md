@@ -213,7 +213,10 @@ Just in case showing page with all app default settings. This information may be
 
 ## Extra info - useful links
 
-- [This forum page](<https://discoverygc.com/forums/showthread.php?tid=173057>) contains legacy instruction from other person and has anouncements regarding this upaded version and possible comments from other people. May be helpful for other bits to know.
+- [Anouncements and communicating with players for current tutorial](<https://discoverygc.com/forums/showthread.php?tid=204034&pid=2339308>)
+- [Tutorial from Missfit](<https://discoverygc.com/forums/showthread.php?tid=173057>). Very outdated, but still useful for some bits
+- [Tutorial from LieOfDamashi](<https://discoverygc.com/forums/showthread.php?tid=202325&highlight=Linux>). Relatively fresh and about Lutris too.
+- [Tutorial from Corile](<https://discoverygc.com/forums/showthread.php?tid=147190&highlight=Linux>). Recently was used
 
 ## Acknowlegments
 
