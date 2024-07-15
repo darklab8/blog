@@ -128,14 +128,22 @@ Change in Lutris app configuration `executable` path to
 
 ## 6. Setup DxVk
 
-- [Download DxVK](https://github.com/doitsujin/dxvk/releases/tag/v2.4) and unpack to your lutrix dxvk folder.
-I unpackaged to `v2.4` folder for the same convention used as for other installed dxvk
+- [Download DxVK v2.4](https://github.com/doitsujin/dxvk/releases/tag/v2.4) and unpack `d3d8.dll` and `d3d9.dll`
+into your Freelancer/EXE folder
 
-![]({{.StaticRoot}}article_freelancer_setup_at_linux/dxvk_install.png)
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/dxvk_install_manual.png)
 
-Relaunch Lutris and check that u can select in app Runner options 2.4 version
+open for Lutris application `Freelancer Online` (or how u named it) options menu and open `Wine Configuration` and turn on overrides for `d3d8.dll` and `d3d9.dll`
 
-![]({{.StaticRoot}}article_freelancer_setup_at_linux/dxvk_confirmation.png)
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/dxvk_install_manual_dll_overrides.png)
+
+if u did this step correctly, Alt tabbing will work correctly regardless of how many times u alt tabbed at full screen.
+
+You can optionally add Environment variable `DXVK_HUD=devinfo,fps,api` as described here in docs https://github.com/doitsujin/dxvk?tab=readme-ov-file#dll-dependencies
+
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/dxvk_install_manual_confirmation.png)
+
+if u did this step, later in game u will see turned on d3d8 in a HUD overlay for confirmation
 
 ## 7. Setup dll override
 
@@ -159,7 +167,8 @@ Launch the game :) You are ready. Close notes, agree to license, patch to latest
 
 ## Extra info - Fonts.
 
-Thie step is not need if u used this guide main instruction and used Lutris/Wine to install the game properly as described in `3. Setup Freelancer and Wine Prefix` step.
+`By default you don't need this step, if u followed Step "3. Setup Freelancer and Wine Prefix" step correctly!`
+
 If you copied game from windows 10 instead of installing in Lutris/Wine, then u need to put the fonts manually in windotws/Fonts folder
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/fonts_setup1.png)
@@ -168,15 +177,19 @@ U can find them in the freelancer ISO
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/fonts_setup_source.png)
 
-## Extra info - Reliable Alt-tab switch.
+## Extra info - Legacy reliable Alt-tab switch.
 
-In general alt tab works. and u can play from window after turning it on through Alt-Enter.
-But sometimes alt tabing breaks the game. In this case u can install gamescope separately and turn on it in Lutris app configuration.
+`By default you don't need this step, if u followed Step DxVK 2.4 step correctly!`
+
+Current version with `## 6. Setup DxVk` having manual d3d8/d3d9 from dxvk makes alt tab working reliably at it is.
+Having this section only out of legacy how this problem was solved in the past.
+
+Older instruction suggested installing gamescope separately and turn on it in Lutris app configuration.
 It should make alt-tab working reliably.
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/gamescope_install.png)
 
-P.S. Alternatively can be used Virtual Desktop feature, but it is not available anymore in the proton version. This is why we go with gamescope.
+P.S. Alternatively can be used Virtual Desktop feature, but it is not available anymore in the proton version. This is why was suggested option with gamescope.
 
 ## Extra info - d3d8to9 v1.12.0
 
@@ -189,6 +202,13 @@ Just in case providing copies of all main dependencies, vendored in for this art
 - [Lutris 0.5.16]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/lutris_0.5.17_all.deb)
 - [Wine proton 8.0-4]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/wine-proton-8.0-4-amd64.tar.xz)
 - [dxvk2.4 with direct 8 support]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/dxvk-2.4.tar.gz)
+
+## Extra info - possible unexpected dependencies.
+
+as it was mentioned before lutris/now 0.5.16 version is currently used and it may be turning on some unexpected other important stuff.
+Just in case showing page with all app default settings. This information may be will be helpful for future maintenance.
+
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/unexpected_dependencies.png)
 
 ## Extra info - useful links
 
