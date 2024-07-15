@@ -179,7 +179,7 @@ U can find them in the freelancer ISO
 
 ## Extra info - Legacy reliable Alt-tab switch.
 
-`By default you don't need this step, if u followed Step DxVK 2.4 step correctly!`
+`By default you don't need this step, if u followed Step DxVK 2.4 setup correctly!`
 
 Current version with `## 6. Setup DxVk` having manual d3d8/d3d9 from dxvk makes alt tab working reliably at it is.
 Having this section only out of legacy how this problem was solved in the past.
