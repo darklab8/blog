@@ -42,7 +42,8 @@ and also keeps intro video playing nicely with Freelancer Vanilla.
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_proton_installing.png)
 
-- find folder with Lutris wines and unpack archive in to it (i unpacked `wine-proton-8.0-4-amd64.tar.xz` since i have amd64)
+- find folder with Lutris wines (at Kubuntu `$HOME/.local/share/lutris/runners/wine`) and unpack archive in to it (i unpacked `wine-proton-8.0-4-amd64.tar.xz` since i have amd64)
+- P.S. if you use Steam Deck, the possible expected path is known to look like `$HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine`
 
 the folder inside expects to look like this
 
