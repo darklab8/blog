@@ -211,6 +211,15 @@ Just in case showing page with all app default settings. This information may be
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/unexpected_dependencies.png)
 
+## Extra info - Limit Frame rate
+
+Some Discovery players need limiting their frame rate.
+You can do it by inserting desired framerate into Env variables of application `DXVK_FRAME_RATE=150` for example
+
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/frame_limit_install.png)
+
+You can validate it works, by also injecting env var `DXVK_HUD=devinfo,fps,api` to see FPS in real time
+
 ## Extra info - useful links
 
 - [Anouncements and communicating with players for current tutorial](<https://discoverygc.com/forums/showthread.php?tid=204034&pid=2339308>)
