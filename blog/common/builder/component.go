@@ -14,7 +14,6 @@ import (
 	"github.com/a-h/templ"
 	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
 	"github.com/darklab8/go-utils/goutils/utils/utils_types"
-	"github.com/yosssi/gohtml"
 )
 
 type Component struct {
@@ -42,7 +41,7 @@ func (h *Component) Write(gp types.GlobalParams) {
 	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, gp.Buildpath, h.pagepath)
 	haveParentFoldersCreated(abs_buildpath)
 
-	err := os.WriteFile(abs_buildpath.ToString(), gohtml.FormatBytes(buf.Bytes()), os.ModePerm)
+	err := os.WriteFile(abs_buildpath.ToString(), buf.Bytes(), os.ModePerm)
 	logus.Log.CheckPanic(err, "failed to write *.html file")
 }
 

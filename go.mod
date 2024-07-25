@@ -3,13 +3,8 @@ module github.com/darklab8/blog
 go 1.21.1
 
 require (
-	github.com/a-h/templ v0.2.513
+	github.com/a-h/templ v0.2.747
+	github.com/darklab8/go-typelog v0.6.0
+	github.com/darklab8/go-utils v0.13.2
 	github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47
-	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
-)
-
-require (
-	github.com/darklab8/go-typelog v0.6.0 // indirect
-	github.com/darklab8/go-utils v0.13.2 // indirect
-	golang.org/x/net v0.17.0 // indirect
 )
