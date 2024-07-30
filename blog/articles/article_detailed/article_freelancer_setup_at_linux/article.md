@@ -16,15 +16,13 @@ Writing last versions of dependencies with which it was possible to make it happ
 
 - `Kubuntu 22.04.3 LTS`
 - `lutris/now 0.5.16 all [installed,upgradable to: 0.5.17]` ( output of `$ apt list --installed | grep "lutris"`)
-- [Wine proton 8.0-4](<https://github.com/Kron4ek/Wine-Builds/releases/tag/proton-8.0-4>)
+- [Wine 9.0](<https://github.com/Kron4ek/Wine-Builds/releases/download/9.0/wine-9.0-amd64.tar.xz>)
 - [dxvk2.4 with direct 8 support](<https://github.com/doitsujin/dxvk/releases/tag/v2.4>)
 
 ## 1. Setup Lutris
 
 Visit list of [lutris installating instructions](<https://lutris.net/downloads>)
-Check your OS and install Lutris accordingly. IT IS IMPORTANT TO INSTALL `0.5.16` version exactly.
-Another person `Amba` tried using 0.5.17 and it did not work because of issues to use Proton version we use later.
-So use exatly the mentioned version and make sure you have created clean Wine Prefix later and not reusing it from other versions.
+Check your OS and install Lutris accordingly. Article guarantees all this stuff will work with lutris 0.5.16, how it will work with other versions is not guaranteed.
 
 - Since we used Kubuntu, we downloaded [deb package](<https://github.com/lutris/lutris/releases/tag/v0.5.16>) for it
 - and used `sudo apt install ./lutris_0.5.16_all.deb` for its installation
@@ -36,25 +34,28 @@ if you are able to launch Lutris and see it, the installation is succeful
 Verify that u installed Lutris `0.5.16` in Lutris About. `lutris --version` for CLI.
 If we will use newer Lutris version, the guide will be updated.
 
-## 2. Setup Wine Proton
+## 2. Setup Wine
 
 There are many wine versions, but this one is the last that keep the UI text from not cutting out
 and also keeps intro video playing nicely with Freelancer Vanilla.
 
-- [Download Wine Proton](<https://github.com/Kron4ek/Wine-Builds/releases/tag/proton-8.0-4>)
+- [Download Wine-9.0](<https://github.com/Kron4ek/Wine-Builds/releases/download/9.0/wine-9.0-amd64.tar.xz>)
 
-![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_proton_installing.png)
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_installing.png)
 
-- find folder with Lutris wines (at Kubuntu `$HOME/.local/share/lutris/runners/wine`) and unpack archive in to it (i unpacked `wine-proton-8.0-4-amd64.tar.xz` since i have amd64)
+- find folder with Lutris wines (at Kubuntu `$HOME/.local/share/lutris/runners/wine`) and unpack archive in to it (i unpacked `wine-9.0-amd64` since i have amd64)
 - P.S. if you use Steam Deck, the possible expected path is known to look like `$HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine`
 
 the folder inside expects to look like this
 
-![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_proton_expected.png)
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_expected.png)
 
 Relaunch lutris, u should see it in discovered wines
 
-![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_proton_expected2.png)
+![]({{.StaticRoot}}article_freelancer_setup_at_linux/wine_expected2.png)
+
+P.S. Known issues for Wine 9.0. For me the keyboard is not available right away at the game entering.
+It becomes active only if i alt tab and return. Ensure on game enter, u can open chat by "Enter" before flying from planet!
 
 ## 3. Setup Freelancer and Wine Prefix
 
@@ -68,7 +69,7 @@ After that u need to create locally installed Game in Lutris. Name in whatever w
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/freelancer_install_wine_prefix.png)
 
-- The important part u need to select 32 `Prefix architecture` inside (even if your OS has installed 64 bit Wine Proton, it still supports 32 bit running)
+- The important part u need to select 32 `Prefix architecture` inside (even if your OS has installed 64 bit Wine, it still supports 32 bit running)
 - And u need to select any empty dedicated folder for `Wine prefix` (I chose `/home/naa/apps/freelancer_related/wine_prefix_freelancer_online`)
     - that ensures a fresh copy of Windows Filesystem emulation will be used with dedication to our Freelancer Discovery setup.
 
@@ -193,7 +194,7 @@ It should make alt-tab working reliably.
 
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/gamescope_install.png)
 
-P.S. Alternatively can be used Virtual Desktop feature, but it is not available anymore in the proton version. This is why was suggested option with gamescope.
+P.S. Alternatively can be used Virtual Desktop feature.
 
 ## Extra info - d3d8to9 v1.12.0
 
@@ -204,7 +205,7 @@ The guide used dxvk 2.4 with direct 8 support to launch the game, but [d3d8to9 v
 Just in case providing copies of all main dependencies, vendored in for this articles, in case they aren't longer downloadable.
 
 - [Lutris 0.5.16]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/lutris_0.5.17_all.deb)
-- [Wine proton 8.0-4]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/wine-proton-8.0-4-amd64.tar.xz)
+- [Wine 9.0]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/wine-9.0-amd64.tar.xz)
 - [dxvk2.4 with direct 8 support]({{.StaticRoot}}article_freelancer_setup_at_linux/vendored_freel_stuff/dxvk-2.4.tar.gz)
 
 ## Extra info - possible unexpected dependencies.
@@ -222,6 +223,13 @@ You can do it by inserting desired framerate into Env variables of application `
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/frame_limit_install.png)
 
 You can validate it works, by also injecting env var `DXVK_HUD=devinfo,fps,api` to see FPS in real time
+
+## Extra info - Migrating from legacy Wine Proton 8.0.4
+
+For those of you who used Wine Proton 8.0.4 before, you can reuse same created Wine Prefix
+- You need only to repeat step `## 2. Setup Wine` to install new wine
+- Specify it in your App Runner options
+- and repeat step with Winetricks installation (specifically `msacm32` and `directplay`) and ensure dll overrides are present.
 
 ## Extra info - useful links
 
