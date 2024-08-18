@@ -19,13 +19,22 @@ templ ArticleHeadline(article *Article) {
         flex-direction: row;
         justify-content: space-between;
     }
+	.links a {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
 	</style>
-	<div class="article_headline">
-	<a class="article_header" href={ templ.URL(types.GetCtx(ctx).SiteRoot + article.Pagepath.ToString()) }><h2>{ article.Title }</h2></a>
-	@TitlePic(article.TitlePicture)
+	<div class="article_headline" id={ common.TurnToAnchor(article.Title) }>
+	<a href={ templ.URL(types.GetCtx(ctx).SiteRoot + article.Pagepath.ToString()) }>
+			<h2>{ article.Title }</h2>
+		@TitlePic(article.TitlePicture)
+	</a>
 	<p>{ article.Description }</p>
 	<footer>
-	@common.TextLink(article.Pagepath.ToString()){Read more}
+	<div class="links">
+		@common.TextLink(article.Pagepath.ToString()){Read more}
+		@common.TextLink("#" + common.TurnToAnchor(article.Title)){Anchor}
+	</div>
 	<span>{ article.Date.Format("2006 January 02") }</span>
 	</footer>
 	</div>
@@ -42,12 +51,22 @@ templ TitlePic(picture *TitlePicture) {
 		<div class="title_pic">
 			<img src={  types.GetCtx(ctx).StaticRoot + picture.Path.ToString() }/>
 		</div>
+		if picture.Attribution != "" {
+			<div class="attribution" style="flex-direction: row; display: flex; justify-content: center; align-items: center; font-size:12px;">
+				<a href={ templ.SafeURL(picture.AttributionUrl) }>
+					{ picture.Attribution }
+				</a>
+			</div>
+		}
 	}
 }
 
 templ HomeBody() {
 	for _, article := range Articles {
-		@ArticleHeadline(article)
+
+		if !article.IsHidden {
+			@ArticleHeadline(article)
+		}		
 	}
 }
 

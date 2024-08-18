@@ -13,6 +13,12 @@ templ NavElem(url string) {
     </div></a>
 }
 
+templ VerticalText() {
+   <div style="display: flex;flex-direction:column; justify-content: center; align-items: center;">
+        { children... }
+    </div>
+}
+
 templ Menu() {
     <style>
     .main_menu {
@@ -23,7 +29,9 @@ templ Menu() {
         .nav_elem {
             margin-top: 20px;
             margin-bottom: 20px;
-            font-size: 2em;
+            font-size: 1.4em;
+            margin-left: 10px;
+            margin-right: 10px;
         }
     }
     </style>
@@ -35,10 +43,20 @@ templ Menu() {
             Articles
         }
         @NavElem(types.GetCtx(ctx).SiteRoot + urls.PetProjects) {
-            Pet&nbsp;projects
+            @VerticalText() {
+                 <div>Pet</div>
+                <div>Projects</div>
+            }
         }
         @NavElem(types.GetCtx(ctx).SiteRoot + urls.Favourite) {
-            Favourite
+            @VerticalText() {
+                <div>Favourite</div>
+            }
+        }
+        @NavElem(types.GetCtx(ctx).SiteRoot + urls.CommunityFreelancer) {
+            @VerticalText() {
+                <div>Freelancer(2003)</div>
+            }
         }
     </menu>
 }

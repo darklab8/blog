@@ -6,11 +6,13 @@ import (
 	"time"
 
 	"github.com/darklab8/blog/blog/archive"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_menu"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_setup_at_linux"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_lts_software"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_shortest_paths"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_static_typed_logging"
+	"github.com/darklab8/blog/blog/pet_projects"
 
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
@@ -48,6 +50,51 @@ var dijkstra_apsp_test string
 
 //go:embed article_detailed/article_shortest_paths/trades/graph.go
 var graph_shared_code string
+
+var ArticleDiscoLinux *Article = NewArticle(
+	"Freelancer Discovery setup with Lutris, Wine at Linux",
+	"article/article_freelancer_setup_at_linux.html",
+	utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article.md"),
+	time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
+	WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
+	for launching Freelancer Disovery space simulator at Linux`),
+	WithVars(func(ctx context.Context) any {
+		return article_freelancer_setup_at_linux.Vars{
+			StaticRoot: types.GetCtx(ctx).StaticRoot,
+			SiteRoot:   types.GetCtx(ctx).SiteRoot,
+		}
+	}),
+	WithTitlePicture(TitlePicture{
+		Path: utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
+	}),
+)
+
+var ArticleAllShortestPaths = NewArticle(
+	"All Shortest Paths in Graph with Golang",
+	"article/article_shortest_paths.html",
+	utils_filepath.Join(artcieles_root, "article_shortest_paths", "article.md"),
+	time.Date(2024, time.June, 19, 20, 0, 0, 0, time.UTC),
+	WithDescription(`Finding All Shortest Paths with Floyd and Johnson in Golang.
+		Comparison, profiling and optimization with parallelization.
+		Calculating distances for trading routes in a space simulator game.`),
+	WithVars(func(ctx context.Context) any {
+		return article_shortest_paths.Vars{
+			StaticRoot:       types.GetCtx(ctx).StaticRoot,
+			DarkstatUrl:      types.GetCtx(ctx).SiteRoot + "pet_projects.html#fl-darkstat",
+			FloydMain:        floyd_main_code,
+			FloydTest:        floyd_test_code,
+			HeapCode:         shortest_paths_heap,
+			JohnsonCode:      shortest_paths_johnson_code,
+			JohnsonTest:      shortest_paths_Johnson_test,
+			DijkstraApsp:     dijkstra_apsp_code,
+			DijkstraApspTest: dijkstra_apsp_test,
+			GraphCode:        graph_shared_code,
+		}
+	}),
+	WithTitlePicture(TitlePicture{
+		Path: utils_filepath.Join("shortest_paths", "constellations.jpg"),
+	}),
+)
 
 var Articles []*Article = []*Article{
 	NewArticle(
@@ -104,48 +151,40 @@ var Articles []*Article = []*Article{
 			Path: utils_filepath.Join("cold_blood", "cold_blood_title_pic.jpg"),
 		}),
 	),
+	ArticleAllShortestPaths,
 	NewArticle(
-		"All Shortest Paths in Graph with Golang",
-		"article/article_shortest_paths.html",
-		utils_filepath.Join(artcieles_root, "article_shortest_paths", "article.md"),
-		time.Date(2024, time.June, 19, 20, 0, 0, 0, time.UTC),
-		WithDescription(`Finding All Shortest Paths with Floyd and Johnson in Golang.
-			Comparison, profiling and optimization with parallelization.
-			Calculating distances for trading routes in a space simulator game.`),
-		WithVars(func(ctx context.Context) any {
-			return article_shortest_paths.Vars{
-				StaticRoot:       types.GetCtx(ctx).StaticRoot,
-				DarkstatUrl:      types.GetCtx(ctx).SiteRoot + "pet_projects.html#fl-darkstat",
-				FloydMain:        floyd_main_code,
-				FloydTest:        floyd_test_code,
-				HeapCode:         shortest_paths_heap,
-				JohnsonCode:      shortest_paths_johnson_code,
-				JohnsonTest:      shortest_paths_Johnson_test,
-				DijkstraApsp:     dijkstra_apsp_code,
-				DijkstraApspTest: dijkstra_apsp_test,
-				GraphCode:        graph_shared_code,
-			}
-		}),
-		WithTitlePicture(TitlePicture{
-			Path: utils_filepath.Join("shortest_paths", "constellations.jpg"),
-		}),
-	),
-	NewArticle(
-		"Freelancer Discovery setup with Lutris, Wine at Linux",
-		"article/article_freelancer_setup_at_linux.html",
-		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article.md"),
+		"Freelancer related articles and tools",
+		urls.CommunityFreelancer,
+		utils_filepath.Join(artcieles_root, "article_freelancer_menu", "menu.md"),
 		time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
-		WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
-		for launching Freelancer Disovery space simulator at Linux`),
+		WithDescription(`Navigational menu for Freelancer stuff`),
 		WithVars(func(ctx context.Context) any {
-			return article_freelancer_setup_at_linux.Vars{
+			return article_freelancer_menu.Vars{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				SiteRoot:   types.GetCtx(ctx).SiteRoot,
+
+				ArticleDiscoLinux:       types.GetCtx(ctx).SiteRoot + urls.Articles + "#" + common.TurnToAnchor(ArticleDiscoLinux.Title),
+				ArticleAllShortestPaths: types.GetCtx(ctx).SiteRoot + urls.Articles + "#" + common.TurnToAnchor(ArticleAllShortestPaths.Title),
+
+				AnchorToolDarkstat: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkstat.ID,
+				AnchorToolDarkbot:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkbot.ID,
+				AnchorToolDarklint: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarklint.ID,
+				AnchorToolConfigs:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectConfigs.ID,
+
+				Darkstat: pet_projects.ProjectDarkstat,
+				Darkbot:  pet_projects.ProjectDarkbot,
+				Darklint: pet_projects.ProjectDarklint,
+				Configs:  pet_projects.ProjectConfigs,
 			}
 		}),
 		WithTitlePicture(TitlePicture{
-			Path: utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
+			Path:           utils_filepath.Join("freelancer_menu", "3xhumed-Mega-Games-Pack-23-Freelancer-4.256.png"),
+			Attribution:    "picture by Exhumed",
+			AttributionUrl: "https://www.iconarchive.com/artist/3xhumed.html",
 		}),
+		WitHidden(),
 	),
+	ArticleDiscoLinux,
 	/*
 		TODO articles
 			- write article about refactoring legacy code based on your AWS Step functions experience?

@@ -14,18 +14,18 @@ type Link struct {
 }
 
 type PetProject struct {
-	name string
-	id string
+	Name string
+	ID string
 	footer_links []Link
 }
 
 type ProjectOption func(b *PetProject)
 
 
-func NewPetProject(name string, id string, opts ...ProjectOption) *PetProject {
+func NewPetProject(Name string, ID string, opts ...ProjectOption) *PetProject {
 	p := &PetProject{
-		name: name,
-		id: id,
+		Name: Name,
+		ID: ID,
 	}
 	for _, opt := range opts {
 		opt(p)
@@ -53,7 +53,7 @@ func WithArticle(url string) ProjectOption {
 
 templ PetProjectRender(project *PetProject) {
 	<div class="pet_project">
-	<a href={ templ.URL("#" + project.id)}><h2 id={ project.id } >{ project.name }</h2></a>
+	<a href={ templ.URL("#" + project.ID)}><h2 id={ project.ID } >{ project.Name }</h2></a>
 	{ children... }
 	</div>
 	<p>
@@ -71,6 +71,36 @@ templ ProjectsShared() {
 	}
 	</style>
 }
+
+var ProjectDarkstat *PetProject = NewPetProject(
+	"Darkstat - remaking flstat in online way",
+	"fl-darkstat",
+	WithGithub("https://github.com/darklab8/fl-darkstat"),
+	WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
+	WithLink("Discovery","https://darklab8.github.io/fl-data-discovery/"),
+	WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/"),
+)
+
+var ProjectDarkbot *PetProject = NewPetProject(
+					"Darkbot - Discord bot to track game objects",
+					"fl-darkbot",
+					WithGithub("https://github.com/darklab8/fl-darkbot"),
+					WithLink("wiki", "https://darklab8.github.io/fl-darkbot/"),
+					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=188040"),
+				)
+
+var ProjectDarklint *PetProject = NewPetProject(
+					"Darklint - Linter for game configs",
+					"darklint",
+					WithGithub("https://github.com/darklab8/fl-darklint"),
+					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=195174"),
+				)
+
+var ProjectConfigs *PetProject = NewPetProject(
+					"Configs - ORM to access game data",
+					"fl-configs",
+					WithGithub("https://github.com/darklab8/fl-configs"),
+				)
 
 templ PetProjectsT() {
 	@common.Html5(types.Title("Pet projects")) {
@@ -172,16 +202,7 @@ templ PetProjectsT() {
 			}
 			<hr/>
 			@common.SectionHeader("Discovery Freelancer community")
-			@PetProjectRender(
-				NewPetProject(
-					"Darkstat - remaking flstat in online way",
-					"fl-darkstat",
-					WithGithub("https://github.com/darklab8/fl-darkstat"),
-                    WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
-					WithLink("Discovery","https://darklab8.github.io/fl-data-discovery/"),
-					WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/"),
-				),
-			) {
+			@PetProjectRender(ProjectDarkstat) {
                 <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
 				@common.TextBlock(){
 					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
@@ -191,15 +212,7 @@ templ PetProjectsT() {
     			}
 			}
 			<hr/>
-			@PetProjectRender(
-				NewPetProject(
-					"Darkbot - Discord bot to track game objects",
-					"fl-darkbot",
-					WithGithub("https://github.com/darklab8/fl-darkbot"),
-					WithLink("wiki", "https://darklab8.github.io/fl-darkbot/"),
-					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=188040"),
-				),
-			) {
+			@PetProjectRender(ProjectDarkbot) {
 				@common.TextBlock(){
 					Discord bot implemented for game community Freelancer Discovery.
 					The bot offers tracking game entities like Players, Bases, Forum records in Discord.
@@ -213,14 +226,7 @@ templ PetProjectsT() {
 				}
 			}
 			<hr/>
-			@PetProjectRender(
-				NewPetProject(
-					"Darklint - Linter for game configs",
-					"darklint",
-					WithGithub("https://github.com/darklab8/fl-darklint"),
-					WithLink("forum", "https://discoverygc.com/forums/showthread.php?tid=195174"),
-				),
-			) {
+			@PetProjectRender(ProjectDarklint) {
 				@common.TextBlock(){
 					Inspired by python black formatter, it formats Freelancer config files to uniform way.
     			}
@@ -231,13 +237,7 @@ templ PetProjectsT() {
 				<img style="max-width: 100%;" src="https://github.com/darklab8/fl-darklint/raw/master/docs/assets/diff_example.png" />
 			}
 			<hr/>
-			@PetProjectRender(
-				NewPetProject(
-					"Configs - ORM to access game data",
-					"fl-configs",
-					WithGithub("https://github.com/darklab8/fl-configs"),
-				),
-			) {
+			@PetProjectRender(ProjectConfigs) {
 				@common.TextBlock(){
 					ORM for reading game config files data and writing it back without an effort to write code for file writing.
 					The ORM provides static typed access to the data, the code is abe to distinguish int/str/float types. 

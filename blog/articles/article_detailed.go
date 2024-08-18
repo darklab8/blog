@@ -12,7 +12,9 @@ import (
 type EmptyVars struct{}
 
 type TitlePicture struct {
-	Path utils_types.FilePath
+	Path           utils_types.FilePath
+	Attribution    string
+	AttributionUrl string
 }
 
 type Article struct {
@@ -24,6 +26,7 @@ type Article struct {
 	extra        templ.Component
 	vars         func(ctx context.Context) any
 	md_path      utils_types.FilePath
+	IsHidden     bool
 }
 
 func NewArticle(
@@ -63,5 +66,11 @@ func WithDescription(Description string) ArticleOption {
 func WithTitlePicture(picture TitlePicture) ArticleOption {
 	return func(b *Article) {
 		b.TitlePicture = &picture
+	}
+}
+
+func WitHidden() ArticleOption {
+	return func(b *Article) {
+		b.IsHidden = true
 	}
 }

@@ -12,4 +12,6 @@ const (
 	PetProjectsIdeas = "pet_projects_ideas.html"
 
 	Favourite = "favourite.html"
+
+	CommunityFreelancer = "community_freelancer.html"
 )
