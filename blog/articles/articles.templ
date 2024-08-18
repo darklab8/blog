@@ -27,9 +27,11 @@ templ ArticleHeadline(article *Article) {
 	<div class="article_headline" id={ common.TurnToAnchor(article.Title) }>
 	<a href={ templ.URL(types.GetCtx(ctx).SiteRoot + article.Pagepath.ToString()) }>
 			<h2>{ article.Title }</h2>
-		@TitlePic(article.TitlePicture)
 	</a>
-	<p>{ article.Description }</p>
+	<div style="display: flex;">
+		@TitlePicInMenu(article.TitlePicture)
+		<p>{ article.Description }</p>
+	</div>
 	<footer>
 	<div class="links">
 		@common.TextLink(article.Pagepath.ToString()){Read more}
@@ -40,7 +42,30 @@ templ ArticleHeadline(article *Article) {
 	</div>
 }
 
-templ TitlePic(picture *TitlePicture) {
+templ TitlePicInMenu(picture *TitlePicture) {
+	if picture != nil {
+		<style>
+			.title_pic {
+				display: flex;
+				justify-content: center;
+				max-width: 200px;
+				margin: 10px;
+			}
+		</style>
+		<div class="title_pic">
+			<img src={  types.GetCtx(ctx).StaticRoot + picture.Path.ToString() }/>
+		</div>
+		if picture.Attribution != "" {
+			<div class="attribution" style="flex-direction: row; display: flex; justify-content: center; align-items: center; font-size:12px;">
+				<a href={ templ.SafeURL(picture.AttributionUrl) }>
+					{ picture.Attribution }
+				</a>
+			</div>
+		}
+	}
+}
+
+templ TitlePicInArticle(picture *TitlePicture) {
 	if picture != nil {
 		<style>
 			.title_pic {
@@ -63,7 +88,6 @@ templ TitlePic(picture *TitlePicture) {
 
 templ HomeBody() {
 	for _, article := range Articles {
-
 		if !article.IsHidden {
 			@ArticleHeadline(article)
 		}		
@@ -77,7 +101,7 @@ templ ArticleT(article *Article) {
 			</style>
 			@common.Menu()
 			<h2>{ article.Title }</h2>
-			@TitlePic(article.TitlePicture)
+			@TitlePicInArticle(article.TitlePicture)
 			@templ.Raw(markdowner.MdToHtml(
 				article.md_path,
 				article.vars(ctx),

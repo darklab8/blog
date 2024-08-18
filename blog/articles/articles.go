@@ -163,8 +163,8 @@ var Articles []*Article = []*Article{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
 				SiteRoot:   types.GetCtx(ctx).SiteRoot,
 
-				ArticleDiscoLinux:       types.GetCtx(ctx).SiteRoot + urls.Articles + "#" + common.TurnToAnchor(ArticleDiscoLinux.Title),
-				ArticleAllShortestPaths: types.GetCtx(ctx).SiteRoot + urls.Articles + "#" + common.TurnToAnchor(ArticleAllShortestPaths.Title),
+				ArticleDiscoLinux:       types.GetCtx(ctx).SiteRoot + ArticleDiscoLinux.Pagepath.ToString(),
+				ArticleAllShortestPaths: types.GetCtx(ctx).SiteRoot + ArticleAllShortestPaths.Pagepath.ToString(),
 
 				AnchorToolDarkstat: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkstat.ID,
 				AnchorToolDarkbot:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkbot.ID,
