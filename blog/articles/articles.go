@@ -76,6 +76,7 @@ var ArticleDiscoLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_winetricks.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dxvk.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "disco", "article_setup_discovery.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_post_installation.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dll_override.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "disco", "article_launch_discovery.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
@@ -107,6 +108,8 @@ var ArticleFreelancerVanillaLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_freelancer.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_winetricks.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "vanilla", "article_setup_combopatch.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_post_installation.md"),
+
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dxvk.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dll_override.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "vanilla", "article_launch_vanilla.md"),

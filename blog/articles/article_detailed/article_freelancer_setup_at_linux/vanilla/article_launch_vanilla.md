@@ -16,8 +16,3 @@ size= 1920, 1080
 Now u are ready for sure ;)
 
 ![]({{.StaticRoot}}freelancer_vanilla/game_launch.png)
-
-
-## Extra info - Crashes on new game with 000c22fe, 000c21de offsets
-
-WARNING: if you crash with weird errors 000c22fe, 000c21de on New Game, that can be because your "My Games" is symlinked to single place. Rename/delete existing ones to ensure u stat a fresh one not touched by other Freelancer mods.
