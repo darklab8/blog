@@ -54,7 +54,7 @@ var graph_shared_code string
 var ArticleDiscoLinux *Article = NewArticle(
 	"Freelancer Discovery setup with Lutris, Wine at Linux",
 	"article/article_freelancer_setup_at_linux.html",
-	utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article.md"),
+	utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "disco", "article_start_disco.md"),
 	time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
 	WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
 	for launching Freelancer Disovery space simulator at Linux`),
@@ -67,6 +67,52 @@ var ArticleDiscoLinux *Article = NewArticle(
 	WithTitlePicture(TitlePicture{
 		Path: utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
 	}),
+	WithMoreMarkdowns(
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_intro.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_dependencies.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_lutris.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_wine.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_freelancer.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_winetricks.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dxvk.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "disco", "article_setup_discovery.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dll_override.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "disco", "article_launch_discovery.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
+	),
+)
+
+var ArticleFreelancerVanillaLinux *Article = NewArticle(
+	"Freelancer Vanilla setup with Lutris, Wine at Linux",
+	"article/article_freelancer_vanilla_at_linux.html",
+	utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "vanilla", "article_start_vanilla.md"),
+	time.Date(2024, time.August, 19, 20, 0, 0, 0, time.UTC),
+	WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
+	for launching Freelancer Vanilla space simulator at Linux`),
+	WithVars(func(ctx context.Context) any {
+		return article_freelancer_setup_at_linux.Vars{
+			StaticRoot: types.GetCtx(ctx).StaticRoot,
+			SiteRoot:   types.GetCtx(ctx).SiteRoot,
+		}
+	}),
+	WithTitlePicture(TitlePicture{
+		Path: utils_filepath.Join("freelancer_vanilla", "install01.jpg"),
+	}),
+	WithMoreMarkdowns(
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_intro.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_dependencies.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_lutris.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_wine.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_freelancer.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_winetricks.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "vanilla", "article_setup_combopatch.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dxvk.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dll_override.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "vanilla", "article_launch_vanilla.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
+	),
 )
 
 var ArticleAllShortestPaths = NewArticle(
@@ -163,8 +209,9 @@ var Articles []*Article = []*Article{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
 				SiteRoot:   types.GetCtx(ctx).SiteRoot,
 
-				ArticleDiscoLinux:       types.GetCtx(ctx).SiteRoot + ArticleDiscoLinux.Pagepath.ToString(),
-				ArticleAllShortestPaths: types.GetCtx(ctx).SiteRoot + ArticleAllShortestPaths.Pagepath.ToString(),
+				ArticleDiscoLinux:             types.GetCtx(ctx).SiteRoot + ArticleDiscoLinux.Pagepath.ToString(),
+				ArticleVanillaFreelancerLinux: types.GetCtx(ctx).SiteRoot + ArticleFreelancerVanillaLinux.Pagepath.ToString(),
+				ArticleAllShortestPaths:       types.GetCtx(ctx).SiteRoot + ArticleAllShortestPaths.Pagepath.ToString(),
 
 				AnchorToolDarkstat: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkstat.ID,
 				AnchorToolDarkbot:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkbot.ID,
@@ -185,6 +232,7 @@ var Articles []*Article = []*Article{
 		WitHidden(),
 	),
 	ArticleDiscoLinux,
+	ArticleFreelancerVanillaLinux,
 	/*
 		TODO articles
 			- write article about refactoring legacy code based on your AWS Step functions experience?

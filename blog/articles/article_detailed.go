@@ -25,7 +25,7 @@ type Article struct {
 	Date         time.Time
 	extra        templ.Component
 	vars         func(ctx context.Context) any
-	md_path      utils_types.FilePath
+	md_paths     []utils_types.FilePath
 	IsHidden     bool
 }
 
@@ -38,7 +38,7 @@ func NewArticle(
 ) *Article {
 	a := &Article{
 		Title:    Title,
-		md_path:  md_path,
+		md_paths: []utils_types.FilePath{md_path},
 		Pagepath: Pagepath,
 		Date:     Date,
 		vars:     func(ctx context.Context) any { return EmptyVars{} },
@@ -66,6 +66,12 @@ func WithDescription(Description string) ArticleOption {
 func WithTitlePicture(picture TitlePicture) ArticleOption {
 	return func(b *Article) {
 		b.TitlePicture = &picture
+	}
+}
+
+func WithMoreMarkdowns(md_paths ...utils_types.FilePath) ArticleOption {
+	return func(b *Article) {
+		b.md_paths = append(b.md_paths, md_paths...)
 	}
 }
 

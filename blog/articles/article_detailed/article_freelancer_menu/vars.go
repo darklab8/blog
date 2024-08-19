@@ -3,10 +3,11 @@ package article_freelancer_menu
 import "github.com/darklab8/blog/blog/pet_projects"
 
 type Vars struct {
-	StaticRoot              string
-	SiteRoot                string
-	ArticleDiscoLinux       string
-	ArticleAllShortestPaths string
+	StaticRoot                    string
+	SiteRoot                      string
+	ArticleDiscoLinux             string
+	ArticleVanillaFreelancerLinux string
+	ArticleAllShortestPaths       string
 
 	AnchorToolDarkstat string
 	AnchorToolDarkbot  string

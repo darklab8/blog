@@ -102,10 +102,12 @@ templ ArticleT(article *Article) {
 			@common.Menu()
 			<h2>{ article.Title }</h2>
 			@TitlePicInArticle(article.TitlePicture)
-			@templ.Raw(markdowner.MdToHtml(
-				article.md_path,
-				article.vars(ctx),
-			))
+			for _, md_path := range article.md_paths {
+				@templ.Raw(markdowner.MdToHtml(
+					md_path,
+					article.vars(ctx),
+				))
+			}
 		}
 	}
 }

@@ -3,6 +3,7 @@ Page dedicated to gathering links related to Freelancer (2003) game.
 # Articles
 
 - [Installing Discovery freelancer at Linux]({{.ArticleDiscoLinux}})
+- [Installing Vanilla freelancer at Linux]({{.ArticleVanillaFreelancerLinux}})
 - [Finding all shortest paths for trade routes]({{.ArticleAllShortestPaths}})
 
 # Tools
