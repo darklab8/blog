@@ -84,6 +84,7 @@ var ArticleDiscoLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_mirate_proton_8.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
 	),
+	WitHidden(),
 )
 
 var ArticleFreelancerVanillaLinux *Article = NewArticle(
@@ -119,6 +120,7 @@ var ArticleFreelancerVanillaLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
 	),
+	WitHidden(),
 )
 
 var ArticleFreelancerHDLinux *Article = NewArticle(
@@ -150,6 +152,7 @@ var ArticleFreelancerHDLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
 	),
+	WitHidden(),
 )
 
 var ArticleAllShortestPaths = NewArticle(
