@@ -118,6 +118,37 @@ var ArticleFreelancerVanillaLinux *Article = NewArticle(
 	),
 )
 
+var ArticleFreelancerHDLinux *Article = NewArticle(
+	"Freelancer HD Edition setup with Lutris, Wine at Linux",
+	"article/article_freelancer_hd_edition_at_linux.html",
+	utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "hd_edition", "article_start_hd.md"),
+	time.Date(2024, time.August, 19, 21, 0, 0, 0, time.UTC),
+	WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
+	for launching Freelancer HD Edition space simulator at Linux`),
+	WithVars(func(ctx context.Context) any {
+		return article_freelancer_setup_at_linux.Vars{
+			StaticRoot: types.GetCtx(ctx).StaticRoot,
+			SiteRoot:   types.GetCtx(ctx).SiteRoot,
+		}
+	}),
+	WithTitlePicture(TitlePicture{
+		Path: utils_filepath.Join("freelancer_hd_edition", "installer.png"),
+	}),
+	WithMoreMarkdowns(
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_intro.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_dependencies.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_lutris.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_wine.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_freelancer.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_winetricks.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "hd_edition", "article_setup_hd_edition.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_post_installation.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "hd_edition", "article_launch_hd.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
+	),
+)
+
 var ArticleAllShortestPaths = NewArticle(
 	"All Shortest Paths in Graph with Golang",
 	"article/article_shortest_paths.html",
@@ -212,9 +243,10 @@ var Articles []*Article = []*Article{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
 				SiteRoot:   types.GetCtx(ctx).SiteRoot,
 
-				ArticleDiscoLinux:             types.GetCtx(ctx).SiteRoot + ArticleDiscoLinux.Pagepath.ToString(),
-				ArticleVanillaFreelancerLinux: types.GetCtx(ctx).SiteRoot + ArticleFreelancerVanillaLinux.Pagepath.ToString(),
-				ArticleAllShortestPaths:       types.GetCtx(ctx).SiteRoot + ArticleAllShortestPaths.Pagepath.ToString(),
+				ArticleDiscoLinux:               types.GetCtx(ctx).SiteRoot + ArticleDiscoLinux.Pagepath.ToString(),
+				ArticleVanillaFreelancerLinux:   types.GetCtx(ctx).SiteRoot + ArticleFreelancerVanillaLinux.Pagepath.ToString(),
+				ArticleFreelancerHDEditionLinux: types.GetCtx(ctx).SiteRoot + ArticleFreelancerHDLinux.Pagepath.ToString(),
+				ArticleAllShortestPaths:         types.GetCtx(ctx).SiteRoot + ArticleAllShortestPaths.Pagepath.ToString(),
 
 				AnchorToolDarkstat: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkstat.ID,
 				AnchorToolDarkbot:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkbot.ID,
@@ -236,6 +268,7 @@ var Articles []*Article = []*Article{
 	),
 	ArticleDiscoLinux,
 	ArticleFreelancerVanillaLinux,
+	ArticleFreelancerHDLinux,
 	/*
 		TODO articles
 			- write article about refactoring legacy code based on your AWS Step functions experience?
