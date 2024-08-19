@@ -7,6 +7,8 @@ Specify as launchable Executable.
 
 Go to Wine Configuration and change Windows XP default to Windows 7.
 
+![]({{.StaticRoot}}freelancer_hd_edition/pick_windows_7.png)
+
 Launch installer, and select it to patch into your Freelancer location.
 
 ![]({{.StaticRoot}}freelancer_hd_edition/installer.png)
