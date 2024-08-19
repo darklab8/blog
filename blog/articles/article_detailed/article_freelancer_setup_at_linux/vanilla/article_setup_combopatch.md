@@ -3,6 +3,7 @@
 Visit [starport to download combopatch](<https://the-starport.com/forums/topic/6250/how-to-get-vanilla-freelancer-running-in-2023-no-cd>) for Vanilla Freelancer. ([You can use vendored copy by this link]({{.StaticRoot}}freelancer_vanilla/FLCombinedPatch.exe))
 
 Put it inside your wineprefix at path like this `/home/naa/apps/freelancer_related/winreprefix_freelancer_vanilla/drive_c/FLCombinedPatch.exe`
+Specify as launchable Executable.
 
 ![]({{.StaticRoot}}freelancer_vanilla/SelectComboPatch.png)
 
