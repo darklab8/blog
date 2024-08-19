@@ -7,3 +7,5 @@ U should be having already selected `Freelancer.exe` as main `executable` from `
 Launch the game :) You are ready. Close notes, agree to license and launch as normal.
 
 ![]({{.StaticRoot}}freelancer_hd_edition/game_launch.png)
+
+P.S. my Integrated GPU graphics looks like too weak for HD edition.

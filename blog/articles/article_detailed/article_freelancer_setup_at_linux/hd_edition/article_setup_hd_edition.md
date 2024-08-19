@@ -13,6 +13,10 @@ Go to Wine Configuration and change Windows XP default to Windows 7.
 
 Launch installer, and select it to patch into your Freelancer location.
 
+![]({{.StaticRoot}}freelancer_hd_edition/installer_warning.png)
+
+If u  did all correctly, installer will actually detect u are using it in wine and will give extra advices regarding possible DLL overrides to do
+
 ![]({{.StaticRoot}}freelancer_hd_edition/installer.png)
 
 Choose all the options, i used defaults for everything.
