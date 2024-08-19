@@ -79,7 +79,9 @@ var ArticleDiscoLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_post_installation.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dll_override.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "disco", "article_launch_discovery.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_d3d8.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_mirate_proton_8.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
 	),
 )
@@ -113,6 +115,7 @@ var ArticleFreelancerVanillaLinux *Article = NewArticle(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dxvk.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_setup_dll_override.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "vanilla", "article_launch_vanilla.md"),
+		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_d3d8.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_extra_info_shared.md"),
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_acknowledgements.md"),
 	),

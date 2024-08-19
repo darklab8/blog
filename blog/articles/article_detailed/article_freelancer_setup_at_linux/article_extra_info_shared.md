@@ -24,10 +24,6 @@ It should make alt-tab working reliably.
 
 P.S. Alternatively can be used Virtual Desktop feature.
 
-## Extra info - d3d8to9 v1.12.0
-
-The guide used dxvk 2.4 with direct 8 support to launch the game, but [d3d8to9 v1.12.0](https://github.com/crosire/d3d8to9/releases/tag/v1.12.0) can be used as alternative.
-
 ## Extra info - vendoring dependencies
 
 Just in case providing copies of all main dependencies, vendored in for this articles, in case they aren't longer downloadable.
@@ -51,13 +47,6 @@ You can do it by inserting desired framerate into Env variables of application `
 ![]({{.StaticRoot}}article_freelancer_setup_at_linux/frame_limit_install.png)
 
 You can validate it works, by also injecting env var `DXVK_HUD=devinfo,fps,api` to see FPS in real time
-
-## Extra info - Migrating from legacy Wine Proton 8.0.4
-
-For those of you who used Wine Proton 8.0.4 before, you can reuse same created Wine Prefix
-- You need only to repeat step `## 2. Setup Wine` to install new wine
-- Specify it in your App Runner options
-- and repeat step with Winetricks installation (specifically `msacm32` and `directplay`) and ensure dll overrides are present.
 
 ## Extra info - useful links
 
