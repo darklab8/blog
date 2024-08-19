@@ -5,6 +5,8 @@ Visit [starport to download HD Edition installer](<https://the-starport.com/foru
 Put it inside your wineprefix at path like this `/home/naa/apps/freelancer_related/winprefix_freelancer_hd/drive_c/FreelancerHDSetup_v0_6.exe`
 Specify as launchable Executable.
 
+![]({{.StaticRoot}}freelancer_hd_edition/pick_installer_as_executable.png)
+
 Go to Wine Configuration and change Windows XP default to Windows 7.
 
 ![]({{.StaticRoot}}freelancer_hd_edition/pick_windows_7.png)

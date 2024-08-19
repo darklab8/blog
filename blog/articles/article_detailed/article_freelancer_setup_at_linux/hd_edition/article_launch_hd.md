@@ -2,7 +2,7 @@
 
 U should be having already selected `Freelancer.exe` as main `executable` from `C:\Freelancer HD Edition\EXE` folder
 
-![]({{.StaticRoot}}freelancer_hd_edition/pick_executable.png)
+![]({{.StaticRoot}}freelancer_hd_edition/pick_game_as_executable.png)
 
 Launch the game :) You are ready. Close notes, agree to license and launch as normal.
 
