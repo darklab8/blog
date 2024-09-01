@@ -203,12 +203,19 @@ templ PetProjectsT() {
 			<hr/>
 			@common.SectionHeader("Discovery Freelancer community")
 			@PetProjectRender(ProjectDarkstat) {
-                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "ideas/flstat_view.png" } />
+                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "pet_projects/flstat_view.png" } />
 				@common.TextBlock(){
+					<p>
 					Remaking in online way, the <a href="https://discoverygc.com/forums/showthread.php?tid=115254">old flstat</a>.
 					A tool for navigation of game data for Freelancer game.
 					The main idea that online version will be more accessable.
 					It will be able to have a touch of information never given to client side and thus showing more truthful information.
+					</p>
+					<p>
+					At this point of time, darkstat also integrated into itself functionality of viewing trading routes like flcompanion,
+					shows tech compatibility for Discovery Freelancer like the old Mactan Network,
+					and has some previously not seen anywhere information like Missions searching, and Ore mining fields search.
+					</p>
     			}
 			}
 			<hr/>
@@ -241,7 +248,7 @@ templ PetProjectsT() {
 				@common.TextBlock(){
 					ORM for reading game config files data and writing it back without an effort to write code for file writing.
 					The ORM provides static typed access to the data, the code is abe to distinguish int/str/float types. 
-					The project is reused as library for fl-darklint and fl-darkstat.
+					The project is reused as library for fl-darklint and fl-darkstat. Also intended for applying to fl-darkmap future project.
     			}
 			}           
 
