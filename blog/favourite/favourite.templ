@@ -51,6 +51,7 @@ templ PageT() {
             }
             .section_header {
                 font-size: 1.4em;
+                margin-top: 120px;
             }
             hr {
                 border-color: gray;
@@ -59,7 +60,8 @@ templ PageT() {
             @common.TextHeaderMain(){
                 Books
             }
-            Books that I certainly recommend for reading
+            Books that I certainly recommend for reading.
+            I will try to arrange them in the order of recommended reading at least within each sub section like "Core Software Engineering"
             @common.SectionHeader("Core software engineering")
 
             @Book(NewBookParams(
@@ -81,17 +83,11 @@ templ PageT() {
                     it will help you to write more cleaner, more readable and maintainable code in any programming language.
                     It will help you to understand possible goals in development to aim for, and what you could be missing to code with more efficiency.
                 </p>
-            }
-
-            @Book(NewBookParams(
-                    "Unit Testing Principles, Practices, and Patterns",
-                    "https://www.amazon.com/Unit-Testing-Principles-Practices-Patterns/dp/1617296279",
-                    types.GetCtx(ctx).StaticRoot + "favourite/81K8dwbaenL._SY466_.jpg",
-                )){
                 <p>
-                    This book teaches theory behind unit testing. For which goals to aim for, how to escape pitifals.
-                    It will explain you importance of unit testing and what kind of testing exists. This book is important to
-                    weaponize your skills to an average commercial level development.
+                Prerequisits: I recommend it for reading after you already grasped basic syntax to program applications,
+                "for loops", "classes", importing code from other files, learned DSA stuff like with book like
+                <a href="https://www.amazon.com/Grokking-Algorithms-illustrated-programmers-curious/dp/1617292230">grokking algorithms </a>,
+                and tried writing around a thousand code lines programms preferably.
                 </p>
             }
             @Book(NewBookParams(
@@ -106,6 +102,35 @@ templ PageT() {
                 </p>
             }
             @Book(NewBookParams(
+                    "Unit Testing Principles, Practices, and Patterns",
+                    "https://www.amazon.com/Unit-Testing-Principles-Practices-Patterns/dp/1617296279",
+                    types.GetCtx(ctx).StaticRoot + "favourite/81K8dwbaenL._SY466_.jpg",
+                )){
+                <p>
+                    This book teaches theory behind unit testing. For which goals to aim for, how to escape pitifals.
+                    It will explain you importance of unit testing and what kind of testing exists. This book is important to
+                    weaponize your skills to an average commercial level development.
+                </p>
+                <p>
+                    To understand this book fully in a full capacity,
+                    you would have to learn operating code architecture at a scale of application with drawing lines
+                    of isolation between different layers of your code architecture..
+                </p>
+            }
+            @Book(NewBookParams(
+                    "Head first Design Patterns",
+                    "https://www.amazon.com/Head-First-Design-Patterns-Brain-Friendly/dp/0596007124",
+                    types.GetCtx(ctx).StaticRoot + "favourite/design_patterns.jpg",
+                )){
+                <p>
+                    This book helped me training mind in a brain friendly way to operate basic code architecture structures.
+                    This book has far more sense if you wield languages like Golang, Java, C#
+                    or grasped gradual typing capabilities of your dynamic typed language like usage of Mypy/Pydantic in Python or Typescript for JS.
+                    Otherwise applying it would be more problematic
+                </p>
+
+            }
+            @Book(NewBookParams(
                     "Clean Architecture: A Craftsman's Guide",
                     "https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164",
                     types.GetCtx(ctx).StaticRoot + "favourite/61r4tYVsRVL._SL1304_.jpg",
@@ -113,7 +138,16 @@ templ PageT() {
                 <p>
                     This book helps to have a global look onto code design of a single application.
                     It helped me in achieving a necessary view for designing libraries.
+                    I would recommend first keeping in mind learned architecture approach with making things rapidly auto testable locally first,
+                    that will help you to achieve quite balanced result.
                 </p>
+
+                <p>
+                    When to read this book: I would recommend going through Head First Design Patterns first
+                    to achieve necessary flexibility of a mind to operate architecutre.
+                    Having learned static typing is necessary prerequisute in my opinion too.
+                </p>
+
             }
             @Book(NewBookParams(
                     "Systems Analysis and Design",
@@ -139,15 +173,11 @@ templ PageT() {
                     web application building and freeze entire everything needed for its running. Containers became standard for immutable deployments,
                     and with learning docker you will make your app compatible with modern ecosystem and get ability for easier rollback to previous version.
                 </p>
-            }
-            @Book(NewBookParams(
-                    "The Kubernetes Book",
-                    "https://www.amazon.com/Kubernetes-Book-Version-November-2018-ebook/dp/B072TS9ZQZ",
-                    types.GetCtx(ctx).StaticRoot + "favourite/71lxeRFPYLL._SL1500_.jpg",
-                )){
+
                 <p>
-                    In case u need jump start in learning kubernetes this book is for you.
-                    From same author as Docker Deep Dive. a structured dive into k8s.
+                    When to read it: This is more job role specialized thing, usually will be most useful only if
+                    you are into backend, devops, full stack, data engineering or any other web development related role (You deploy final apps to Linux servers)
+                    and/or your company uses docker compose stuff actively in dev environment.
                 </p>
             }
             @Book(NewBookParams(
@@ -166,33 +196,101 @@ templ PageT() {
                     Also recommending learning terraform first instead of kubernetes, as it is covering more necessary things first, from setting up servers,
                     to configuring networks, iam permissions, security groups to managed databases and other gazillion of moden cloud services.
                 </p>
+                <p>
+                    When to read it: Good to go after Docker learning at minimum.
+                    You could consider also giving a go to <a href="https://www.amazon.com/Practical-Ansible-infrastructure-configuration-applications/dp/1789807468">Ansible</a>
+                    In order to learn more raw approach to configure stuff before diving to 
+                    @OpentofuName()
+                </p>
+            }
+            @Book(NewBookParams(
+                    "The Kubernetes Book",
+                    "https://www.amazon.com/Kubernetes-Book-Version-November-2018-ebook/dp/B072TS9ZQZ",
+                    types.GetCtx(ctx).StaticRoot + "favourite/71lxeRFPYLL._SL1500_.jpg",
+                )){
+                <p>
+                    In case u need jump start in learning kubernetes this book is for you.
+                    From same author as Docker Deep Dive. a structured dive into k8s.
+                </p>
+                <p>
+                    When to read it: if you are into Infrastructure as a code as I am, my advice regarding this book will be leaving for the last one
+                    Kubernetes is <a href="https://landscape.cncf.io/">entire wormhole</a> of new problems and ecosystem. Better learning things like 
+                    @OpentofuName() or Pulumi, learning docker/containerzation throughly,
+                    usage of distributed monitoring systems first (Like Loki, Grafana, Prometheus, Tempo for example).
+                </p>
+            }
+            @Book(NewBookParams(
+                    "The Phoenix Project",
+                    "https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592",
+                    types.GetCtx(ctx).StaticRoot + "favourite/phoenix_project.jpg",
+                )){
+                <p>
+                    At a start of our journey we learn more hard skills than soft skills.
+                    But for further growth we should learn understanding what is person in our role needs to do in order to help developers and company
+                    in the most useful way. The Phoenix Book is a good one for getting a needed mindset
+                </p>
+                <p>
+                    P.S. It has continuation <a href="https://www.amazon.com/gp/product/1942788762?ref_=dbs_m_mng_rwt_calw_thcv_1&storeType=ebooks">The Unicorn Project</a>
+                </p>
+            }
+            @Book(NewBookParams(
+                    "Site Reliability Engineering",
+                    "https://books.google.rs/books?id=81UrjwEACAAJ&redir_esc=y",
+                    types.GetCtx(ctx).StaticRoot + "favourite/sre_book.png",
+                )){
+                <p>
+                    The Phoenix book was fun, but we could be desiring more serious reading, having recipes for different real world challenges
+                    and which approach and professional behavior is expected from us to solve it. Google SRE books help with that.
+                </p>
+                <p>
+                    P.S. The full set of related Google SRE books <a href="https://sre.google/books/">is linked here</a>
+                </p>
             }
 
+            
             @common.TextHeaderMain(){
                 Articles
             }
+            which caught my eye. And i can be wishing often linking, quoting them to other people i talk with.
             <p>
                 <ul>
                     
                     <li>
-                    @archive.LinkT(archive.LinkGrugBrainDev, "Grug brain development")
+                    @archive.LinkT(archive.LinkGrugBrainDev, "Grug brain development") 
+                    &nbsp;- Fighting complexity and tech debts is the main challenge of a software dev.
+                    I wish to be such dev as described in this article too.
                     </li>
                     <li>
                     @common.TextLink("https://12factor.net/"){
                          The twelve-factor app
                     }
+                    &nbsp;- If u wish your web app being more friendly and adhering to ways for running easily with modern deployment systems through infrastructure as a code approaches, better adhering to them
                     </li>
                     <li>
                     @archive.LinkT(archive.LinkLocality, "Locality")
+                    &nbsp;- Readability of a code is quite important.
+                    I think Locality affects the code positively both in terms of readability and complexity.
+                    It is quite nice when we can understand the code from local small part of it, instead of having a need to read through its all
+                    mutations across multiple functions and files, just to see all possible values inside some dictionary full of magical values or possible types of attributes instance can have.
                     </li>
                     <li>
                     @archive.LinkT(archive.LinkTypeSafety, "Type safety")
+                    &nbsp;- I value developer comfort quite a lot. And as much as i am in love with unit testing, it is not the panacea.
+                    For having higher confidence of program working correctly, we should be making them in a type safe way.
+                    As well as gaining nicer options to self document the code and increase its readability more.
+                    This article caught my eye because i used dynamic typed language Python too much.
                     </li>
                     <li>
                     @archive.LinkT(archive.LinkPlatformsRant, "About platforms")
+                    &nbsp;- Thoughtful reading for ecosystem of applications going very large in amount, for companies using microservices approach.
+                    Because of this article i wish to have client libs for all written microservices and treading company devs like third party clients which should not have to know any internal code of a written service.
                     </li>
                 </ul>
             </p>
         }
     }
+}
+
+templ OpentofuName(){
+    <span style="text-decoration: line-through;">Terraform</span> Opentofu or Pulumi, learning docker/containerzation throughly,
 }
