@@ -55,13 +55,13 @@ templ TitlePicInMenu(picture *TitlePicture) {
 		<div class="title_pic">
 			<img src={  types.GetCtx(ctx).StaticRoot + picture.Path.ToString() }/>
 		</div>
-		if picture.Attribution != "" {
-			<div class="attribution" style="flex-direction: row; display: flex; justify-content: center; align-items: center; font-size:12px;">
-				<a href={ templ.SafeURL(picture.AttributionUrl) }>
-					{ picture.Attribution }
-				</a>
-			</div>
-		}
+		// if picture.Attribution != "" {
+		// 	<div class="attribution" style="flex-direction: row; display: flex; justify-content: center; align-items: center; font-size:12px;">
+		// 		<a href={ templ.SafeURL(picture.AttributionUrl) }>
+		// 			{ picture.Attribution }
+		// 		</a>
+		// 	</div>
+		// }
 	}
 }
 

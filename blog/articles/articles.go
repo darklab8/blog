@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/darklab8/blog/blog/archive"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_choosing_pet_projects"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_menu"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_setup_at_linux"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_git_conventional_commits"
@@ -275,6 +276,24 @@ var Articles []*Article = []*Article{
 	ArticleDiscoLinux,
 	ArticleFreelancerVanillaLinux,
 	ArticleFreelancerHDLinux,
+	NewArticle(
+		"Choosing software engineering pet projects",
+		"choosing_pet_projects.html",
+		utils_filepath.Join(artcieles_root, "article_choosing_pet_projects", "article.md"),
+		time.Date(2024, time.September, 8, 20, 0, 0, 0, time.UTC),
+		WithDescription(`Some words on how to pick long term pet projects for a programmer`),
+		WithVars(func(ctx context.Context) any {
+			return article_choosing_pet_projects.Vars{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				SiteRoot:   types.GetCtx(ctx).SiteRoot,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path:           utils_filepath.Join("choosing_pet_projects", "logo.png"),
+			Attribution:    "picture by Kelly Sikkema",
+			AttributionUrl: "https://unsplash.com/photos/white-paper-on-black-table-4TBOXap8qg4",
+		}),
+	),
 	/*
 		TODO articles
 			- write article about refactoring legacy code based on your AWS Step functions experience?
