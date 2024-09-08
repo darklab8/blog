@@ -33,7 +33,9 @@ The best pet projects are the ones someone will be using and someone actually ne
 It is really pointless to make "business-like needed project in a vacuum". It could work as part of tutorial completion, but it has no life beyond its first implementation.
 A good project has users 
 - at minimum one, you. If you are not using it, how could you persuade other users that it will have a valid usability?
-    - You could build CLI tool you need in development, you could build any interface daily task organizer for example too.
+    - You could build CLI tool you need in development
+    - you could build any interface daily task organizer for example too.
+    - or you could find yourself one day wishing where to present projects you made, and writing words as articles once and then able to link them instead of repeating  again and again, and thus making [blog site]({{.SiteRoot}}) like the one this article in.
 - Also by having at least one user you, it is ensured that someone will be sending bug fix requests, maintenance requests and may be even feature requests to the author
 
 For example, i started with CLI instrument (because it is kind of easiest interface also too)
@@ -44,7 +46,7 @@ Ideally, you are part of some community.
 - Possibly part of some tool/framework, like Django, kubernetes, and etc.
 - It can be any community that has specific problems and needs. As part of it as user, you can recognize needs the community have and offer application/program/solution that can do better in specific case than everything else the community has.
 
-For me personally unlimited amount of things to do appeared because space game Freelancer community has accumulated in 20 years many many tools, but they became bad, deprecated, lost code and etc, and there is just a simple need to... rebuild things in a quality way. As long as i build employing at least [unit testing]({.SiteRoot}}favourite.html#UnitTestingPrinciplesPracticesandPatterns) and giving a thought from the position of a user of this community, what is needed and what i miss for a comfortable life, i have always projects to do.
+For me personally unlimited amount of things to do appeared because space game Freelancer community has accumulated in 20 years many many tools, but they became bad, deprecated, lost code and etc, and there is just a simple need to... rebuild things in a quality way. As long as i build employing at least [unit testing]({{.SiteRoot}}favourite.html#UnitTestingPrinciplesPracticesandPatterns) and giving a thought from the position of a user of this community, what is needed and what i miss for a comfortable life, i have always projects to do.
 - As part of this community, I recognized need for Discord integration through a bot, and rewrote all broken bots community had [to my own bot]({{.SiteRoot}}pet_projects.html#fl-darkbot)
 - As part of this community, I recognized need for new [game info parsing tool]({{.SiteRoot}}pet_projects.html#fl-darkstat) that shows game data in a comfortable way for user with added things that became relevant in latest modding develoment
 
@@ -59,7 +61,7 @@ I love playing minecraft, and that makes me opened to infinity a plethora of min
 - Ideally you build projects that someone actually needs (at least you. Just a single user makes all the difference. U will be able to write articles about the written program if u are at least the user of it)
 - Your project should come preferably from a heart. Build something the most according to your interests, even if it is smth related to game modding or some other very silly topic.
     - Building smth that others need for work/dev related stuff is even more nicer to do eventually, as u are even more contributing back to society.
-- For you TO SEE what the community/some tool needs in terms of development, u should PART OF IT. As user that uses it too, u will face the limitations the users have and u will be able to recognize what can be done to do better, what can be addressed with programmatic solution!
+- For you TO SEE what the community/some tool needs in terms of development, u should be PART OF IT. As user that uses it too, u will face the limitations the users have and u will be able to recognize what can be done to do better, what can be addressed with programmatic solution!
 - It is a good entry point to learn which CLI, TUI, GUI, Web UI tools exist and to learn them in order to understand how to build interface for an end user. Some tool can be running with UI as Discord bot, other can be mods and having as user interface game itself.
 - It will be very nice if u will build eventually projects with [unit testing]({{.SiteRoot}}favourite.html#TestDrivenDevelopmentByExample). U could learn [theory about it here]({{.SiteRoot}}favourite.html#UnitTestingPrinciplesPracticesandPatterns) why it is important, but if to say shortly, if u will do for project above 50% coverage in unit testing, and it will be possible to cover it up to 80-90%... it is almost guaranteed that your project has sufficient code quality to evolve and be maintained easily through years, through your entire career with you (if the need in the project will persist through this dozens years of time)
     - If your use dynamic type danguage , some static typing can be especially nice (Mypy/Pyright for python, Typescript for js). That increases likely hood that if u open your code in a year or two, u will be able to clean up the now shitty code (as your skill improve in a year or two), make it clean again and continue with new life to it (instead of rewriting from zero... again. P.S. i rewrote my discord bot three times from zero before it became charming)
