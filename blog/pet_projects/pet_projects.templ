@@ -105,6 +105,11 @@ var ProjectConfigs *PetProject = NewPetProject(
 templ PetProjectsT() {
 	@common.Html5(common.HtmlOptions{
 		Title: "Pet projects",
+       OgImage: &common.OgImage{
+            Url: types.GetCtx(ctx).StaticRoot + "pet_projects/og_image.jpg",
+            WidthPx: 320,
+            HeightPx: 304,
+        },
 	}) {
 		@common.BlogFrame() {
 			@common.Menu()

@@ -15,6 +15,9 @@ type TitlePicture struct {
 	Path           utils_types.FilePath
 	Attribution    string
 	AttributionUrl string
+
+	OhWidthPx  int
+	OgHeightPx int
 }
 
 type Article struct {

@@ -97,6 +97,11 @@ templ HomeBody() {
 templ ArticleT(article *Article) {
     @common.Html5(common.HtmlOptions{
 		Title: article.Title,
+       OgImage: &common.OgImage{
+            Url: types.GetCtx(ctx).StaticRoot + article.TitlePicture.Path.ToString(),
+            WidthPx: article.TitlePicture.OhWidthPx,
+            HeightPx: article.TitlePicture.OgHeightPx,
+        },
 	}) {
 		@common.BlogFrame() {
 			<style>
@@ -117,6 +122,11 @@ templ ArticleT(article *Article) {
 templ HomeT() {
 	@common.Html5(common.HtmlOptions{
 		Title: "Articles",
+        OgImage: &common.OgImage{
+            Url: types.GetCtx(ctx).StaticRoot + "articles/og_image.jpg",
+            WidthPx: 191,
+            HeightPx: 282,
+        },
 	}) {
 		@common.BlogFrame() {
 			@common.Menu()

@@ -39,6 +39,12 @@ templ Book(params *BookParams) {
 templ PageT() {
 	@common.Html5(common.HtmlOptions{
         Title: "Favourite",
+        Description: "Book recommendations and articles i found interesting to read",
+        OgImage: &common.OgImage{
+            Url: types.GetCtx(ctx).StaticRoot + "favourite/og_image.jpg",
+            WidthPx: 192,
+            HeightPx: 289,
+        },
     }) {
 		@common.BlogFrame() {
 			@common.Menu()
