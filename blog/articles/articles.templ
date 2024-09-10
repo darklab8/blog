@@ -4,6 +4,7 @@ import (
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
 	"github.com/darklab8/blog/blog/common/markdowner"
+	"context"
 )
 
 // name, intro string, url utils_types.FilePath, date time.Time
@@ -94,14 +95,25 @@ templ HomeBody() {
 	}
 }
 
-templ ArticleT(article *Article) {
-    @common.Html5(common.HtmlOptions{
+func HtmlOptions(ctx context.Context, article *Article) common.HtmlOptions {
+	var og_image_url string
+	if article.OgImage != nil {
+		og_image_url = types.GetCtx(ctx).StaticRoot + article.OgImage.Url
+	} else {
+		og_image_url = types.GetCtx(ctx).StaticRoot + article.TitlePicture.Path.ToString()
+	}
+
+	return common.HtmlOptions{
 		Title: article.Title,
 		Description: article.Description,
        OgImage: &common.OgImage{
-            Url: types.GetCtx(ctx).StaticRoot + article.TitlePicture.Path.ToString(),
+            Url: og_image_url,
         },
-	}) {
+	}
+}
+
+templ ArticleT(article *Article) {
+    @common.Html5(HtmlOptions(ctx, article)) {
 		@common.BlogFrame() {
 			<style>
 			</style>

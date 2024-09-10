@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/a-h/templ"
+	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/go-utils/goutils/utils/utils_types"
 )
 
@@ -20,6 +21,7 @@ type TitlePicture struct {
 type Article struct {
 	Title        string
 	TitlePicture *TitlePicture
+	OgImage      *common.OgImage
 	Pagepath     utils_types.FilePath
 	Description  string
 	Date         time.Time
@@ -54,6 +56,12 @@ type ArticleOption func(b *Article)
 func WithVars(vars func(ctx context.Context) any) ArticleOption {
 	return func(b *Article) {
 		b.vars = vars
+	}
+}
+
+func WithOgImage(OgImage *common.OgImage) ArticleOption {
+	return func(b *Article) {
+		b.OgImage = OgImage
 	}
 }
 

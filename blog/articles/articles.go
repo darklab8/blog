@@ -179,6 +179,9 @@ var ArticleAllShortestPaths = NewArticle(
 	WithTitlePicture(TitlePicture{
 		Path: utils_filepath.Join("shortest_paths", "constellations.jpg"),
 	}),
+	WithOgImage(&common.OgImage{
+		Url: utils_filepath.Join("shortest_paths", "og_image.jpg").ToString(),
+	}),
 )
 
 var Articles []*Article = []*Article{
