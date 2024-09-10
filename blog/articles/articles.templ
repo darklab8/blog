@@ -97,6 +97,7 @@ templ HomeBody() {
 templ ArticleT(article *Article) {
     @common.Html5(common.HtmlOptions{
 		Title: article.Title,
+		Description: article.Description,
        OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + article.TitlePicture.Path.ToString(),
             WidthPx: article.TitlePicture.OgWidthPx,
