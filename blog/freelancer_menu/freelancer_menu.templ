@@ -18,10 +18,11 @@ import (
 templ FreelancerMenuT() {
 	@common.Html5(common.HtmlOptions{
         Title: "Freelancer Menu",
+        Description: "Page for articles and tools about Freelancer 2003 game",
         OgImage: &common.OgImage{
-            Url: types.GetCtx(ctx).StaticRoot + "freelancer_menu/logo200.png",
-            WidthPx: 200,
-            HeightPx: 113,
+            Url: types.GetCtx(ctx).StaticRoot + "freelancer_menu/logo500_282.png",
+            WidthPx: 400,
+            HeightPx: 225,
         },
     }) {
 		@common.BlogFrame() {
