@@ -71,13 +71,16 @@ templ Html5(options HtmlOptions) {
 	if options.OgImage != nil {
 		<meta property="og:image" content={ options.OgImage.Url } />
 		<meta property="og:image:url" content={ options.OgImage.Url } />
-		<meta property="og:image:width" content={ strconv.Itoa(options.OgImage.WidthPx) } />
-		<meta property="og:image:height" content={ strconv.Itoa(options.OgImage.HeightPx) } />
+		if options.OgImage.WidthPx != 0 {
+			<meta property="og:image:width" content={ strconv.Itoa(options.OgImage.WidthPx) } />
+		}
+		if options.OgImage.HeightPx != 0 {
+			<meta property="og:image:height" content={ strconv.Itoa(options.OgImage.HeightPx) } />
+		}
 	} else {
 		<meta property="og:image" content={ types.GetCtx(ctx).StaticRoot + "about/myphoto.png" } />
 		<meta property="og:image:url" content={ types.GetCtx(ctx).StaticRoot + "about/myphoto.png" } />
-		<meta property="og:image:width" content={ "400" } />
-		<meta property="og:image:height" content={ "204 "} />
+
 	}
 	switch types.GetCtx(ctx).Theme {
 		case types.ThemeDark:

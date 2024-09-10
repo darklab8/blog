@@ -64,9 +64,7 @@ var ArticleDiscoLinux *Article = NewArticle(
 		}
 	}),
 	WithTitlePicture(TitlePicture{
-		Path:       utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
-		OgWidthPx:  300,
-		OgHeightPx: 320,
+		Path: utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
 	}),
 	WithMoreMarkdowns(
 		utils_filepath.Join(artcieles_root, "article_freelancer_setup_at_linux", "article_intro.md"),
@@ -179,9 +177,7 @@ var ArticleAllShortestPaths = NewArticle(
 		}
 	}),
 	WithTitlePicture(TitlePicture{
-		Path:       utils_filepath.Join("shortest_paths", "constellations.jpg"),
-		OgWidthPx:  300,
-		OgHeightPx: 240,
+		Path: utils_filepath.Join("shortest_paths", "constellations.jpg"),
 	}),
 )
 
@@ -200,9 +196,7 @@ var Articles []*Article = []*Article{
 		WithDescription(`About usage of Git Conventional Commits, linters and auto changelog generating from your git commits.
 		How to communicate easier with your end users through git and releases.`),
 		WithTitlePicture(TitlePicture{
-			Path:       utils_filepath.Join("article_commits", "autogit_title_pic.jpg"),
-			OgWidthPx:  300,
-			OgHeightPx: 180,
+			Path: utils_filepath.Join("article_commits", "autogit_title_pic.jpg"),
 		}),
 	),
 	NewArticle(
@@ -223,9 +217,7 @@ var Articles []*Article = []*Article{
 			Known solutions do not do it consistently and in a type safe way. Typelog comes to rescue.
 		`),
 		WithTitlePicture(TitlePicture{
-			Path:       utils_filepath.Join("typelog", "typelog_title_pic.jpg"),
-			OgWidthPx:  300,
-			OgHeightPx: 195,
+			Path: utils_filepath.Join("typelog", "typelog_title_pic.jpg"),
 		}),
 	),
 	NewArticle(
@@ -241,9 +233,7 @@ var Articles []*Article = []*Article{
 			}
 		}),
 		WithTitlePicture(TitlePicture{
-			Path:       utils_filepath.Join("cold_blood", "cold_blood_title_pic.jpg"),
-			OgWidthPx:  300,
-			OgHeightPx: 195,
+			Path: utils_filepath.Join("cold_blood", "cold_blood_title_pic.jpg"),
 		}),
 	),
 	ArticleAllShortestPaths,

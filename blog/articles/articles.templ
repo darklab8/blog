@@ -100,8 +100,6 @@ templ ArticleT(article *Article) {
 		Description: article.Description,
        OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + article.TitlePicture.Path.ToString(),
-            WidthPx: article.TitlePicture.OgWidthPx,
-            HeightPx: article.TitlePicture.OgHeightPx,
         },
 	}) {
 		@common.BlogFrame() {
@@ -126,8 +124,6 @@ templ HomeT() {
 		Description: "Andrei Novoselov's articles page",
         OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + "articles/og_image.jpg",
-            WidthPx: 200,
-            HeightPx: 300,
         },
 	}) {
 		@common.BlogFrame() {
