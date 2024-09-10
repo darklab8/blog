@@ -65,7 +65,7 @@ var ArticleDiscoLinux *Article = NewArticle(
 	}),
 	WithTitlePicture(TitlePicture{
 		Path:       utils_filepath.Join("article_freelancer_setup_at_linux", "installer_picture.png"),
-		OhWidthPx:  300,
+		OgWidthPx:  300,
 		OgHeightPx: 320,
 	}),
 	WithMoreMarkdowns(
@@ -180,7 +180,7 @@ var ArticleAllShortestPaths = NewArticle(
 	}),
 	WithTitlePicture(TitlePicture{
 		Path:       utils_filepath.Join("shortest_paths", "constellations.jpg"),
-		OhWidthPx:  300,
+		OgWidthPx:  300,
 		OgHeightPx: 240,
 	}),
 )
@@ -201,8 +201,8 @@ var Articles []*Article = []*Article{
 		How to communicate easier with your end users through git and releases.`),
 		WithTitlePicture(TitlePicture{
 			Path:       utils_filepath.Join("article_commits", "autogit_title_pic.jpg"),
-			OhWidthPx:  400,
-			OgHeightPx: 240,
+			OgWidthPx:  300,
+			OgHeightPx: 180,
 		}),
 	),
 	NewArticle(
@@ -224,8 +224,8 @@ var Articles []*Article = []*Article{
 		`),
 		WithTitlePicture(TitlePicture{
 			Path:       utils_filepath.Join("typelog", "typelog_title_pic.jpg"),
-			OhWidthPx:  400,
-			OgHeightPx: 260,
+			OgWidthPx:  300,
+			OgHeightPx: 195,
 		}),
 	),
 	NewArticle(
@@ -242,8 +242,8 @@ var Articles []*Article = []*Article{
 		}),
 		WithTitlePicture(TitlePicture{
 			Path:       utils_filepath.Join("cold_blood", "cold_blood_title_pic.jpg"),
-			OhWidthPx:  400,
-			OgHeightPx: 260,
+			OgWidthPx:  300,
+			OgHeightPx: 195,
 		}),
 	),
 	ArticleAllShortestPaths,

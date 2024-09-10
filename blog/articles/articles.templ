@@ -99,7 +99,7 @@ templ ArticleT(article *Article) {
 		Title: article.Title,
        OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + article.TitlePicture.Path.ToString(),
-            WidthPx: article.TitlePicture.OhWidthPx,
+            WidthPx: article.TitlePicture.OgWidthPx,
             HeightPx: article.TitlePicture.OgHeightPx,
         },
 	}) {
@@ -124,8 +124,8 @@ templ HomeT() {
 		Title: "Articles",
         OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + "articles/og_image.jpg",
-            WidthPx: 191,
-            HeightPx: 282,
+            WidthPx: 200,
+            HeightPx: 300,
         },
 	}) {
 		@common.BlogFrame() {

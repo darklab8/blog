@@ -16,7 +16,7 @@ type TitlePicture struct {
 	Attribution    string
 	AttributionUrl string
 
-	OhWidthPx  int
+	OgWidthPx  int
 	OgHeightPx int
 }
 
