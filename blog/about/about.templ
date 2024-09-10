@@ -5,6 +5,7 @@ import (
     "github.com/darklab8/blog/blog/common/types"
     "github.com/darklab8/blog/blog/about/about_static"
 	"github.com/darklab8/blog/blog/common/urls"
+	"github.com/darklab8/blog/blog/pet_projects"
 )
 
 templ Intro() {
@@ -49,9 +50,9 @@ templ Intro() {
         The site is sprinkled with syntax highlighter for code blocks, and has ability to link mermaid.js diagrams if necessary (anything is possible in custom made web site)
     </p>
     <p>
-        <a href={ templ.SafeURL(types.GetCtx(ctx).SiteRoot) + urls.PetProjects }>The code is available in public</a> and <a href="https://github.com/darklab8/blog/blob/master/.github/workflows/build.yml">auto re-deployed with Github Actions</a> on every commit to Github Pages.
+        <a href={ templ.SafeURL(types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectBlog.ID) }>The code is available in public</a> and <a href="https://github.com/darklab8/blog/blob/master/.github/workflows/build.yml">auto re-deployed with Github Actions</a> on every commit to Github Pages.
     </p>
-    <p>
+    <p>.
         It is nice having it made like this, because allows to add all the... desired personal touches to it and using it for the necessary multiple goals at full capacity. Like having anchor links at necessary resources and linking them to other people.
         At the same time maintanance of the web site is very simple due to having very low amount of dependencies.
     </p>

@@ -102,6 +102,12 @@ var ProjectConfigs *PetProject = NewPetProject(
 					WithGithub("https://github.com/darklab8/fl-configs"),
 				)
 
+var ProjectBlog *PetProject = NewPetProject(
+					"Blog - static site generator",
+					"blog",
+					WithGithub(pet_projects_urls.Blog),
+				)
+
 templ PetProjectsT() {
 	@common.Html5(common.HtmlOptions{
 		Title: "Pet projects",
@@ -188,13 +194,7 @@ templ PetProjectsT() {
 					For servers running pet projects and for reusable common infra code.
 				}	
 			}
-			@PetProjectRender(
-				NewPetProject(
-					"Blog - static site generator",
-					"blog",
-					WithGithub(pet_projects_urls.Blog),
-				),
-			) {
+			@PetProjectRender(ProjectBlog) {
 				@common.TextBlock(){
 					Personal web site.
     			}
