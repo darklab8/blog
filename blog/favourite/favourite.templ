@@ -39,7 +39,7 @@ templ Book(params *BookParams) {
 templ PageT() {
 	@common.Html5(common.HtmlOptions{
         Title: "Favourite",
-        Description: "Book recommendations and articles i found interesting to read",
+        Description: "Andrei Novoselov's book recommendations and articles linked to remember",
         OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + "favourite/og_image.jpg",
             WidthPx: 200,

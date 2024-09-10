@@ -111,6 +111,7 @@ var ProjectBlog *PetProject = NewPetProject(
 templ PetProjectsT() {
 	@common.Html5(common.HtmlOptions{
 		Title: "Pet projects",
+		Description: "Andrei Novoselov's pet projects",
        OgImage: &common.OgImage{
             Url: types.GetCtx(ctx).StaticRoot + "pet_projects/og_image.jpg",
             WidthPx: 320,
