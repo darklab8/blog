@@ -103,7 +103,9 @@ var ProjectConfigs *PetProject = NewPetProject(
 				)
 
 templ PetProjectsT() {
-	@common.Html5(types.Title("Pet projects")) {
+	@common.Html5(common.HtmlOptions{
+		Title: "Pet projects",
+	}) {
 		@common.BlogFrame() {
 			@common.Menu()
 			@ProjectsShared()

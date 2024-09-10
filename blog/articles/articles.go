@@ -7,13 +7,11 @@ import (
 
 	"github.com/darklab8/blog/blog/archive"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_choosing_pet_projects"
-	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_menu"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_freelancer_setup_at_linux"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_git_conventional_commits"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_lts_software"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_shortest_paths"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_static_typed_logging"
-	"github.com/darklab8/blog/blog/pet_projects"
 
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
@@ -239,40 +237,6 @@ var Articles []*Article = []*Article{
 		}),
 	),
 	ArticleAllShortestPaths,
-	NewArticle(
-		"Freelancer related articles and tools",
-		urls.CommunityFreelancer,
-		utils_filepath.Join(artcieles_root, "article_freelancer_menu", "menu.md"),
-		time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
-		WithDescription(`Navigational menu for Freelancer stuff`),
-		WithVars(func(ctx context.Context) any {
-			return article_freelancer_menu.Vars{
-				StaticRoot: types.GetCtx(ctx).StaticRoot,
-				SiteRoot:   types.GetCtx(ctx).SiteRoot,
-
-				ArticleDiscoLinux:               types.GetCtx(ctx).SiteRoot + ArticleDiscoLinux.Pagepath.ToString(),
-				ArticleVanillaFreelancerLinux:   types.GetCtx(ctx).SiteRoot + ArticleFreelancerVanillaLinux.Pagepath.ToString(),
-				ArticleFreelancerHDEditionLinux: types.GetCtx(ctx).SiteRoot + ArticleFreelancerHDLinux.Pagepath.ToString(),
-				ArticleAllShortestPaths:         types.GetCtx(ctx).SiteRoot + ArticleAllShortestPaths.Pagepath.ToString(),
-
-				AnchorToolDarkstat: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkstat.ID,
-				AnchorToolDarkbot:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarkbot.ID,
-				AnchorToolDarklint: types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectDarklint.ID,
-				AnchorToolConfigs:  types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_projects.ProjectConfigs.ID,
-
-				Darkstat: pet_projects.ProjectDarkstat,
-				Darkbot:  pet_projects.ProjectDarkbot,
-				Darklint: pet_projects.ProjectDarklint,
-				Configs:  pet_projects.ProjectConfigs,
-			}
-		}),
-		WithTitlePicture(TitlePicture{
-			Path:           utils_filepath.Join("freelancer_menu", "3xhumed-Mega-Games-Pack-23-Freelancer-4.256.png"),
-			Attribution:    "picture by Exhumed",
-			AttributionUrl: "https://www.iconarchive.com/artist/3xhumed.html",
-		}),
-		WitHidden(),
-	),
 	ArticleDiscoLinux,
 	ArticleFreelancerVanillaLinux,
 	ArticleFreelancerHDLinux,

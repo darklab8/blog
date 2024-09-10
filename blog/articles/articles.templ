@@ -95,7 +95,9 @@ templ HomeBody() {
 }
 
 templ ArticleT(article *Article) {
-    @common.Html5(types.Title(article.Title)) {
+    @common.Html5(common.HtmlOptions{
+		Title: article.Title,
+	}) {
 		@common.BlogFrame() {
 			<style>
 			</style>
@@ -113,7 +115,9 @@ templ ArticleT(article *Article) {
 }
 
 templ HomeT() {
-	@common.Html5(types.Title("Articles")) {
+	@common.Html5(common.HtmlOptions{
+		Title: "Articles",
+	}) {
 		@common.BlogFrame() {
 			@common.Menu()
 			@HomeBody()

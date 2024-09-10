@@ -7,7 +7,9 @@ import (
 )
 
 templ IdeasT() {
-	@common.Html5(types.Title("Pet projects ideas")) {
+	@common.Html5(common.HtmlOptions{
+		Title: "Pet projects ideas",
+	}) {
 		@common.BlogFrame() {
 			@common.Menu()
 

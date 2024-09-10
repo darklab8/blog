@@ -3,7 +3,6 @@ package examples
 import (
 	"github.com/darklab8/blog/blog/common"
     "github.com/darklab8/blog/blog/common/mermaid"
-    "github.com/darklab8/blog/blog/common/types"
 )
 
 const (
@@ -53,7 +52,9 @@ mindmap
 )
 
 templ Example() {
-	@common.Html5(types.Title("Examples")) {
+	@common.Html5(common.HtmlOptions{
+        Title: "Examples",
+    }) {
 		@common.BlogFrame() {
 			@common.Menu()
             @mermaid.MermaidCSS()

@@ -7,6 +7,7 @@ import (
 	"github.com/darklab8/blog/blog/common/urls"
 	"github.com/darklab8/blog/blog/examples"
 	"github.com/darklab8/blog/blog/favourite"
+	"github.com/darklab8/blog/blog/freelancer_menu"
 	"github.com/darklab8/blog/blog/pet_projects"
 	"github.com/darklab8/blog/blog/pet_projects/ideas"
 
@@ -37,6 +38,10 @@ func init() {
 		builder.NewComponent(
 			urls.Articles,
 			articles.HomeT(),
+		),
+		builder.NewComponent(
+			urls.CommunityFreelancer,
+			freelancer_menu.FreelancerMenuT(),
 		),
 		builder.NewComponent(
 			"examples.html",
