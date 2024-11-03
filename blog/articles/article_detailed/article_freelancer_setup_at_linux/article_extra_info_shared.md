@@ -48,6 +48,13 @@ You can do it by inserting desired framerate into Env variables of application `
 
 You can validate it works, by also injecting env var `DXVK_HUD=devinfo,fps,api` to see FPS in real time
 
+## Extra info - Error logs
+
+if you encounter crashes, make sure to check
+
+- `~{Wine Prefix}/drive_c/users/{User}/AppData/Local/Freelancer/FLSpew.txt` it contains most useful errors that helped to fix one of them. Erors in it reflect reason for crashes!
+- `~{Wine Prefix}/drive_c/users/{User}/Documents/My Games/Freelancer/` location for DSace.log
+
 ## Extra info - useful links
 
 - [Anouncements and communicating with players for current tutorial](<https://discoverygc.com/forums/showthread.php?tid=204034&pid=2339308>)
