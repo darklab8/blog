@@ -285,6 +285,7 @@ var Articles []*Article = []*Article{
 				4) at unit test stage: pull the image ` build_${{ github.run_id }}` and run unit tests and other tests
 				5) if it passed them, than save the image as `service_name_{{ github.run_number }}` as fit for deployment :slight_smile:, also mark it as `latest` and etc whatever tags u need
 				Optionally build Github Actions. For md5 calculations. For golang, For Dagger CI? using Cue-lang? Experiment what to use.
+			- Write an article regarding AWS ECS/EKS terraform/docker image deployment procedure
 			- Write an article about importantce of unit testing
 	*/
 }
