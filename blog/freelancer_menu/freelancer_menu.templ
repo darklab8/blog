@@ -59,7 +59,19 @@ templ Tools(pet_projects ...*pet_projects.PetProject) {
     <h1>Tools</h1>
     <ul>
         for _, pet_project := range pet_projects {
-            <li><a href={ templ.SafeURL(types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_project.ID) }>{ pet_project.Name }</a></li>
+            <li><a href={ templ.SafeURL(types.GetCtx(ctx).SiteRoot + urls.PetProjects + "#" + pet_project.ID) }>{ pet_project.Name }</a>
+
+                if len(pet_project.FooterLinks) > 0 {
+                    <ul><li>
+                        for _, link := range pet_project.FooterLinks {
+                            <a style="margin-right: 20px; font-size: 80%;" href={ templ.SafeURL(link.Url) }>{ link.Name }</a>
+                        }    
+                    </li></ul>
+                }
+                
+            
+            </li>
+            <br/>
         }
         <li><a href="https://github.com/darklab8/fl-darkctrlv">Darkctrlv - Ctrl-V in Freelancer (Linux and Windows)</a></li>
     </ul>

@@ -9,18 +9,17 @@ import (
 )
 
 type Link struct {
-	name string
-	url string
+	Name string
+	Url string
 }
 
 type PetProject struct {
 	Name string
 	ID string
-	footer_links []Link
+	FooterLinks []Link
 }
 
 type ProjectOption func(b *PetProject)
-
 
 func NewPetProject(Name string, ID string, opts ...ProjectOption) *PetProject {
 	p := &PetProject{
@@ -36,9 +35,9 @@ func NewPetProject(Name string, ID string, opts ...ProjectOption) *PetProject {
 
 func WithLink(name string ,url string) ProjectOption {
 	return func(b *PetProject) {
-		b.footer_links = append(b.footer_links, Link{
-			name: name,
-			url: url,
+		b.FooterLinks = append(b.FooterLinks, Link{
+			Name: name,
+			Url: url,
 		})
 	}
 }
@@ -57,8 +56,8 @@ templ PetProjectRender(project *PetProject) {
 	{ children... }
 	</div>
 	<p>
-	for _, link := range project.footer_links {
-		<a style="margin-right: 20px;" href={ templ.URL(link.url) }>{ link.name }</a>
+	for _, link := range project.FooterLinks {
+		<a style="margin-right: 20px;" href={ templ.URL(link.Url) }>{ link.Name }</a>
 	}
 	</p>
 }
@@ -77,6 +76,7 @@ var ProjectDarkstat *PetProject = NewPetProject(
 	"fl-darkstat",
 	WithGithub("https://github.com/darklab8/fl-darkstat"),
 	WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=187294&pid=2223107#pid2223107"),
+	WithLink("FLSR","https://darklab8.github.io/fl-data-flsr/"),
 	WithLink("Discovery","https://darklab8.github.io/fl-data-discovery/"),
 	WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/"),
 )
@@ -207,7 +207,7 @@ templ PetProjectsT() {
 				
 			}
 			<hr/>
-			@common.SectionHeader("Discovery Freelancer community")
+			@common.SectionHeader("Freelancer community")
 			@PetProjectRender(ProjectDarkstat) {
                 <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "pet_projects/flstat_view.png" } />
 				@common.TextBlock(){
