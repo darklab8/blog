@@ -60,14 +60,15 @@ templ Intro() {
 
 templ Contacts() {
     @common.TextHeaderMain(){
-        Contacts
+        <a id="contacts" href={ templ.SafeURL(types.GetCtx(ctx).SiteRoot + urls.About + "#contacts" )}>Contacts</a>
     }
     @common.TextBlock(){ 
         <ul class="contacts">
             <li>@common.TextLink("https://github.com/darklab8"){<b>Github projects profile</b>}</li>
             <li>@common.TextLink("https://github.com/dd84ai"){<b>Github main profile</b>}</li>
-            <li>Email: dark.dreamflyer@gmail.com</li>
+            <li><a href="https://discord.gg/zFzSs82y3W">Discord Server: darklab</a></li>
             <li>Discord: darkwind8</li>
+            <li>Email: dark.dreamflyer@gmail.com</li>
         </ul> 
     }
 }
