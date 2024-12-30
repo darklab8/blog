@@ -19,16 +19,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-            go-version: 1.21
+        uses: darklab8/infra/.github/actions/install-go@master
+      
+      - name: Install Taskfile
+        uses: darklab8/infra/.github/actions/install-taskfile@master
 
-      - name: Install Task
-        run: |
-            sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-
-      - name: Install templ
-        run: go install github.com/a-h/templ/cmd/templ@v0.2.747
+      - name: Install Templ
+        uses: darklab8/infra/.github/actions/install-templ@master    
 
       - name: build
         run: task build

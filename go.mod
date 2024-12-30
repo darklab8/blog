@@ -1,6 +1,6 @@
 module github.com/darklab8/blog
 
-go 1.21.1
+go 1.23.4
 
 require (
 	github.com/a-h/templ v0.2.747
