@@ -32,12 +32,17 @@ templ FreelancerMenuT() {
             <p>
                 Page dedicated to gathering links related to Freelancer (2003) game.
             </p>
-            @Articles(articles.ArticleDiscoLinux,articles.ArticleFreelancerVanillaLinux, articles.ArticleFreelancerHDLinux, articles.ArticleAllShortestPaths)
+            @Articles(articles.ArticleDiscoLinux,
+                articles.ArticleFreelancerVanillaLinux,
+                articles.ArticleFreelancerHDLinux,
+                articles.ArticleAllShortestPaths,
+            )
             @Tools(
                 pet_projects.ProjectDarkstat,
                 pet_projects.ProjectDarkbot,
                 pet_projects.ProjectDarklint,
                 pet_projects.ProjectConfigs,
+                pet_projects.ProjectServerVanilla,
             )
             <h1>Contacts</h1>
             <a href={ templ.SafeURL(types.GetCtx(ctx).SiteRoot + urls.About + "#contacts" )}>see here</a>

@@ -108,6 +108,12 @@ var ProjectBlog *PetProject = NewPetProject(
 					WithGithub(pet_projects_urls.Blog),
 				)
 
+var ProjectServerVanilla *PetProject = NewPetProject(
+					"Dockerizer Freelancer Server",
+					"fl-server-vanilla",
+					WithGithub(pet_projects_urls.FlServerVanilla),
+				)
+
 templ PetProjectsT() {
 	@common.Html5(common.HtmlOptions{
 		Title: "Pet projects",
@@ -256,7 +262,7 @@ templ PetProjectsT() {
 					The ORM provides static typed access to the data, the code is abe to distinguish int/str/float types. 
 					The project is reused as library for fl-darklint and fl-darkstat. Also intended for applying to fl-darkmap future project.
     			}
-			}           
+			}       
 
 			<div style="display: flex; justify-content: center;">
 				<p>
