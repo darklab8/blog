@@ -1,32 +1,17 @@
 package main
 
 import (
-	"flag"
-	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/darklab8/blog/blog"
+	"github.com/darklab8/blog/blog/settings"
 	"github.com/darklab8/blog/blog/settings/logus"
-)
-
-type Component interface {
-	Write()
-}
-type Action string
-
-const (
-	ActionWeb   Action = "web"
-	ActionBuild Action = "build"
+	"github.com/darklab8/go-utils/utils/cantil"
 )
 
 func main() {
-	var action string
-	flag.StringVar(&action, "act", "undefined", "action to run")
-	flag.Parse()
-
-	fmt.Println("act:", action)
-
 	web := func() {
 		fs := http.FileServer(http.Dir("./build"))
 		http.Handle("/", fs)
@@ -36,13 +21,30 @@ func main() {
 		err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
 		logus.Log.CheckPanic(err, "unable to serve serve")
 	}
-	switch Action(action) {
-	case ActionBuild:
-		blog.Builder.BuildAll()
-	case ActionWeb:
-		blog.Builder.BuildAll()
-		web()
-	default:
-		panic("action is not chosen")
-	}
+
+	parser := cantil.NewConsoleParser(
+		[]cantil.Action{
+			{
+				Nickname:    "build",
+				Description: "build to static assets: html, css, js files",
+				Func: func(info cantil.ActionInfo) error {
+					blog.Builder.BuildAll()
+					return nil
+				},
+			},
+			{
+				Nickname:    "web",
+				Description: "for local development",
+				Func: func(info cantil.ActionInfo) error {
+					blog.Builder.BuildAll()
+					web()
+					return nil
+				},
+			},
+		},
+		cantil.ParserOpts{
+			Enverants: settings.Enverants,
+		},
+	)
+	parser.Run(os.Args[1:])
 }

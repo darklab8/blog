@@ -38,7 +38,7 @@ func (h *Component) Write(gp types.GlobalParams) {
 
 	h.templ_comp.Render(context.WithValue(context.Background(), types.GlobalParamsCtxKey, gp), buf)
 
-	abs_buildpath := utils_filepath.Join(settings.ProjectFolder, gp.Buildpath, h.pagepath)
+	abs_buildpath := utils_filepath.Join(settings.Env.ProjectFolder, gp.Buildpath, h.pagepath)
 	haveParentFoldersCreated(abs_buildpath)
 
 	err := os.WriteFile(abs_buildpath.ToString(), buf.Bytes(), os.ModePerm)

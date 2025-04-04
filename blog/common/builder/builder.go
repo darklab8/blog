@@ -42,28 +42,28 @@ func (b *Builder) build(params types.GlobalParams) {
 
 func (b *Builder) BuildAll() {
 
-	var siteRoot = settings.GetSiteRoot()
+	var siteRoot = settings.Env.SiteRoot
 	main_build_path := utils_types.FilePath("build")
 	b.build(types.GlobalParams{
 		Buildpath:         main_build_path,
 		Theme:             types.ThemeDark,
 		SiteRoot:          siteRoot,
-		StaticRoot:        siteRoot + settings.StaticPrefix,
+		StaticRoot:        siteRoot + settings.Env.StaticPrefix,
 		OppositeThemeRoot: siteRoot + "light/",
 	})
 	b.build(types.GlobalParams{
 		Buildpath:         utils_filepath.Join(main_build_path, "light"),
 		Theme:             types.ThemeLight,
 		SiteRoot:          siteRoot + "light/",
-		StaticRoot:        siteRoot + settings.StaticPrefix,
+		StaticRoot:        siteRoot + settings.Env.StaticPrefix,
 		OppositeThemeRoot: siteRoot,
 	})
 
-	folders := utils_os.GetRecursiveDirs(settings.ProjectFolder)
+	folders := utils_os.GetRecursiveDirs(settings.Env.ProjectFolder)
 	for _, folder := range folders {
 		if utils_filepath.Base(folder) == "static" {
 			utils_cp.Dir(folder.ToString(),
-				utils_filepath.Join(settings.ProjectFolder, utils_types.FilePath(main_build_path.ToString()), "static").ToString())
+				utils_filepath.Join(settings.Env.ProjectFolder, utils_types.FilePath(main_build_path.ToString()), "static").ToString())
 		}
 	}
 }

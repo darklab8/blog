@@ -4,16 +4,16 @@ tasks:
   build:
     cmds:
       - templ generate
-      - go run . --act=build
+      - go run . build
 
   dev:templ:
     cmds:
-      - templ generate -watch --proxy="http://localhost:8080" --cmd="go run . --act=web"
+      - templ generate -watch --proxy="http://localhost:8080" --cmd="go run . web"
 
   dev:web:
     cmds:
       - templ generate
-      - go run . --act=web
+      - go run . web
   
   test:
     cmds:
