@@ -6,10 +6,10 @@ import (
 	"github.com/darklab8/blog/blog/common/types"
 	"github.com/darklab8/blog/blog/settings"
 
-	"github.com/darklab8/go-utils/goutils/utils/utils_cp"
-	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
-	"github.com/darklab8/go-utils/goutils/utils/utils_os"
-	"github.com/darklab8/go-utils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/utils/utils_cp"
+	"github.com/darklab8/go-utils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/utils/utils_os"
+	"github.com/darklab8/go-utils/utils/utils_types"
 )
 
 type Builder struct {

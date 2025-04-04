@@ -3,7 +3,7 @@ package types
 import (
 	"context"
 
-	"github.com/darklab8/go-utils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/utils/utils_types"
 )
 
 type Title string

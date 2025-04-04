@@ -20,11 +20,11 @@ import (
 
 	_ "embed"
 
-	"github.com/darklab8/go-utils/goutils/utils"
-	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/utils/utils_os"
 )
 
-var artcieles_root = utils_filepath.Join(utils.GetCurrentFolder(), "article_detailed")
+var artcieles_root = utils_filepath.Join(utils_os.GetCurrentFolder(), "article_detailed")
 
 //go:embed article_detailed/article_shortest_paths/trades/floyd.go
 var floyd_main_code string

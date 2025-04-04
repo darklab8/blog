@@ -3,9 +3,9 @@ package settings
 import (
 	"os"
 
-	"github.com/darklab8/go-utils/goutils/utils"
-	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
-	"github.com/darklab8/go-utils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/utils/utils_os"
+	"github.com/darklab8/go-utils/utils/utils_types"
 )
 
 var StaticPrefix = "static/"
@@ -28,5 +28,5 @@ var ProjectFolder utils_types.FilePath
 
 func init() {
 
-	ProjectFolder = utils_filepath.Dir(utils_filepath.Dir(utils.GetCurrentFolder()))
+	ProjectFolder = utils_filepath.Dir(utils_filepath.Dir(utils_os.GetCurrentFolder()))
 }

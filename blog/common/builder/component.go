@@ -12,8 +12,8 @@ import (
 	"github.com/darklab8/go-typelog/typelog"
 
 	"github.com/a-h/templ"
-	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
-	"github.com/darklab8/go-utils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/utils/utils_types"
 )
 
 type Component struct {

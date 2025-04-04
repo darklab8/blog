@@ -4,12 +4,12 @@ import (
     "github.com/darklab8/blog/blog/common"
     "github.com/darklab8/blog/blog/pet_projects"
 	"github.com/darklab8/blog/blog/common/markdowner"
-	"github.com/darklab8/go-utils/goutils/utils/utils_filepath"
-	"github.com/darklab8/go-utils/goutils/utils"
-	"github.com/darklab8/go-utils/goutils/utils/utils_types"
+	"github.com/darklab8/go-utils/utils/utils_filepath"
+	"github.com/darklab8/go-utils/utils/utils_types"
 
 	"github.com/darklab8/blog/blog/common/types"
 	"github.com/darklab8/blog/blog/common/urls"
+	"github.com/darklab8/go-utils/utils/utils_os"
 )
 
 type EmptyVars struct {
@@ -29,7 +29,7 @@ var Ideas = []Idea{
 	{
 		Title: "Aeris CI",
 		Url: "idea/aeras_ci.html",
-		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "idea_aeras_ci", "README.md"),
+		MdPath: utils_filepath.Join(utils_os.GetCurrentFolder(), "idea_aeras_ci", "README.md"),
 
 		Anchor: "aeris",
 		Description: "CI agnostic local workflow executor.",
@@ -37,7 +37,7 @@ var Ideas = []Idea{
 	{
 		Title: "Gitdep",
 		Url: "idea/git_dep.html",
-		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "idea_gitdep", "README.md"),
+		MdPath: utils_filepath.Join(utils_os.GetCurrentFolder(), "idea_gitdep", "README.md"),
 
 		Anchor: "gitdep",
 		Description: "Language agnostic simple yaml dependency management",
@@ -45,7 +45,7 @@ var Ideas = []Idea{
 	{
 		Title: "Vagrant Compose",
 		Url: "idea/vagrant_compose.html",
-		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "idea_vagrant_compose", "README.md"),
+		MdPath: utils_filepath.Join(utils_os.GetCurrentFolder(), "idea_vagrant_compose", "README.md"),
 
 		Anchor: "vagrant_compose",
 		Description: "Lets have docker-compose style used for multiple vagrant management :)",
@@ -53,7 +53,7 @@ var Ideas = []Idea{
 	{
 		Title: "Tekton executor",
 		Url: "idea/tekton_executor.html",
-		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "idea_tekton_executor", "README.md"),
+		MdPath: utils_filepath.Join(utils_os.GetCurrentFolder(), "idea_tekton_executor", "README.md"),
 
 		Anchor: "tektox_executor",
 		Description: "Integrate smoothly tekton executor into Github Actions",
@@ -61,7 +61,7 @@ var Ideas = []Idea{
 	{
 		Title: "Minecraft chatops",
 		Url: "idea/minecraft_chatops.html",
-		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "idea_minecraft_chatops", "README.md"),
+		MdPath: utils_filepath.Join(utils_os.GetCurrentFolder(), "idea_minecraft_chatops", "README.md"),
 
 		Anchor: "minecraft_chatops",
 		Description: "Optimize minecraft server uptime consuming money only when players are online Or pressed its reactivation to be online",
@@ -69,7 +69,7 @@ var Ideas = []Idea{
 	{
 		Title: "Personal Organizer",
 		Url: "idea/organizer.html",
-		MdPath: utils_filepath.Join(utils.GetCurrentFolder(), "idea_organizer", "README.md"),
+		MdPath: utils_filepath.Join(utils_os.GetCurrentFolder(), "idea_organizer", "README.md"),
 
 		Anchor: "organizer",
 		Description: "Personal organizer in every day life",
