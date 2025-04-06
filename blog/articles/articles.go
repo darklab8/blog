@@ -264,7 +264,7 @@ var Articles []*Article = []*Article{
 		}),
 	),
 	NewArticle(
-		"Vscode debugger recipes for py and docker",
+		"Vscode debugger recipes for python and docker",
 		"article_visual_debugger_in_vscode.html",
 		utils_filepath.Join(artcieles_root, "article_visual_debugger_in_vscode", "debugger.md"),
 		time.Date(2025, time.April, 6, 20, 0, 0, 0, time.UTC),
