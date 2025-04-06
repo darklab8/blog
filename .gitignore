@@ -3,3 +3,8 @@ build/
 go.work*
 check_markdown.html
 body2.templ_disabled
+
+.venv/
+.mypy_cache
+__pycache__
+.pytest_cache
