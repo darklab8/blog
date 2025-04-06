@@ -1,5 +1,3 @@
-**Vscode debugger recipes for py, go, docker**
-
 # For whom the article
 
 The article is written for all those people using Pycharm but wishing to switch to Vscode for some reason. And also for beginners not knowing how to setup the visual debugger in vscode for python yet.
