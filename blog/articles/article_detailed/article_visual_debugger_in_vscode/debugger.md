@@ -1,6 +1,6 @@
 # For whom the article
 
-The article is written for all those people using Pycharm but wishing to switch to Vscode for some reason. And also for beginners not knowing how to setup the visual debugger in vscode for python yet.
+The article is written for all those people using Pycharm but wishing to switch to Vscode for a reason. And also for beginners not knowing how to setup the visual debugger in vscode for python yet.
 
 The article is written on request of multiple people who work with python through dev env setups with docker-compose, and needing connect to already existing containers and start dealing with python efficiently in it.
 
@@ -16,12 +16,12 @@ P.S. In normal projects reopening workdir with `code -r .` is not required, as w
 
 # Python without docker
 
-- We make assume we utilize [flat python structure](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/), because it is simple and makes project working maximum out of the box with minimum of extra wtfs.
+- We make assumption we utilize [flat python structure](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/), because it is simple and makes project working maximum out of the box with minimum of extra wtfs.
 - We also assume we will be utilizing unit testing :]
 - As mentioned, as assume u will be opening as "Working Directory" specific example folders like examples/simple_pyscript.
     - `code -r .` shortcut allows quickly reopening vscode with changing working directory.
-- We also assume you are using Linux as main OS, or at least WSL2 with default linux opened inside.
-    - Some changes 
+- We also assume you are using Linux as main OS, or at least using WSL2 with linux opened inside if u are developing at Windows or MacOS.
+    - (the article material is tested to work on Kubuntu 22.04 LTS)
 
 First assure u installed `Pytest Explorer` extension. It will autoinstall Python extension for intellisence along the way.
 - pytest explorer id for search `@id:littlefoxteam.vscode-python-test-adapter`
@@ -58,7 +58,7 @@ Now lets check it working for pytest test debug
 - F10 step forward
 - F11 step forward and deeper
 - F5 continue
-- use mouse to break red breakpoints around
+- use mouse to set red breakpoints around
 
 # Python with settings for env vars
 
@@ -90,14 +90,15 @@ $ python3 file.py
 Example(foo=10, bar='abc', is_smth=False)
 ```
 
-those env vars will be available for access from within launched unit tests too
+those env vars will be available for access from within launched web server and unit tests during visual debug usage too
 
 # Python with running debug for django
 
 cd ../django_example && code -r .
 
-set breakpoint in a view at urls.py and launch Python Django debug
-it will work due to the present .vscode/launch.json containing
+set breakpoint in a view at urls.py and launch Python Django debug, like in this picture below
+![]({{.StaticRoot}}article_visual_debugger_in_vscode/red_breakpoint.png)
+debug for django will work due to the present .vscode/launch.json containing
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
@@ -145,8 +146,8 @@ it will work due to the present .vscode/launch.json containing
 }
 ```
 
-out of all those settings, only Python: Django part is important to us for running debug via manage.py
-take note that u can technically input arbitary arguments to run it for more different stuff
+out of all those settings, only Python: Django part is important to us at the moment for running debug via manage.py.
+Take note that u can technically input arbitary arguments (under `args` key) to run it for execution of more different stuff 
 ![]({{.StaticRoot}}article_visual_debugger_in_vscode/django1.png)
 
 take note of setting `"justMyCode": false`, it allows u navigating during visual debug third party libs too. Otherwise they will be skiped.
@@ -163,7 +164,7 @@ one of the other settings written in launch.json will ensure u can utilize third
 
 - cd ../fastapi/example && code -r .
 
-we create again venv, pip install -r requirements.txt, select new venv.
+we create again venv, pip install -r requirements.txt, select new venv (at the bottom-right of the IDE. Select path to venv/bin/python3 manually if necessary there).
 if smth glitches, we do `Ctrl + Shift + P -> Reload Window` trick
 
 with small fixing to launch.json, we have it adapted for fastapi now
@@ -226,6 +227,7 @@ Ensure having installed Dev Containers app @id:ms-vscode-remote.remote-container
     - `--service-ports` option ensures we forwarded 8000 port written in docker-compose in case of wishing to runserver and seeing it
 - check the settings configured to make things working in `docker-compose.yml`.
     - We forwarded current volume insode to path /code, we made sure working directory in container /code too.
+
 P.S. instead of usage of docker-compose, same is achievable with regular docker as `docker build --tag test .` and then `docker run -it -v $(pwd):/code -w /code --name shell --entrypoint=bash test`
 
 Now we can enter already running container by using "Attach Visual Studio Code" option.
@@ -237,7 +239,7 @@ and if necessary reload window by using `Ctrl + Shift + P -> Reload Window`
 
 And go to working directory /code
 
-if u did everything right, interface will be showing ability to run specific tests in debug mode like we did previously
+if u did everything right, interface will be showing ability to run specific tests in debug mode like we did previously.
 And u can also launch web server by using button from Debug menu on the left with selection of "Python: Django"
 ![]({{.StaticRoot}}article_visual_debugger_in_vscode/docker3.png)
 
@@ -259,7 +261,7 @@ Congratulations, now u are able to use visual debug for python common web framew
 With showing examples how it is be done for two different python frameworks, where for fastapi we adjusted launch.json on a fly,
 it is my intention u will be able to see how to do it similarily for any other existing python framework.
 
-I encourage you trying to develop from within unit tests written with visual debug, since it is actually a comfortable way of having testing as part of a working code written. Doing that with ensure most rapid feedback and comfort makes u writing better code in all kind of internal characteristics.
+I encourage you trying to develop from within unit tests written with visual debug, since it is actually a comfortable way of having testing as part of a working code writing. Doing that will ensure most rapid feedback, and ensure u a writing better code in all kind of code internal characteristics.
 Do check books like [TDD by kent beck]({{.SiteRoot}}favourite.html#TestDrivenDevelopmentByExample) and [Unit testing by Vladimir Khorikov]({{.SiteRoot}}favourite.html#UnitTestingPrinciplesPracticesandPatterns) in order to find out more about unit testing that enables writing maintainable code.
 
 We showed examples with Docker, because modern web development could be having different C dependended libraries, that without docker is very struggling to install otherwise. Also docker makes universal way to setup dev envs for many people. Some companies just keep dev env straight in docker only for those reasons.
