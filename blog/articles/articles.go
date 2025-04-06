@@ -269,7 +269,7 @@ var Articles []*Article = []*Article{
 		utils_filepath.Join(artcieles_root, "article_visual_debugger_in_vscode", "debugger.md"),
 		time.Date(2025, time.April, 6, 20, 0, 0, 0, time.UTC),
 		WithDescription(`How to start working with visual debuger in vscode for python.
-Including with connecting to already running docker. Written for people wishing to be quickly productive with vscode. For known acquintances wishing to migrate from pycharm :]`),
+Including with connecting to already running docker. Written for people wishing to be quickly productive with vscode and for known acquintances wishing to migrate from pycharm :]`),
 		WithVars(func(ctx context.Context) any {
 			return article_visual_debugger_in_vscode.Vars{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
