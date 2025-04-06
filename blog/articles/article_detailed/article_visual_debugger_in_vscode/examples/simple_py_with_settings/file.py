@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from copy import copy
+import os
 
 @dataclass
 class Example:
@@ -13,7 +14,8 @@ def func(e: Example) -> Example:
     return e
 
 if __name__=="__main__":
-    a = Example(5, "smth")
+    a = Example(5, os.environ["SOME_VAR"])
     b = func(a)
     print(b)
+    assert a.bar == "abc"
 

@@ -12,6 +12,7 @@ import (
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_lts_software"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_shortest_paths"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_static_typed_logging"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_visual_debugger_in_vscode"
 
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
@@ -260,6 +261,23 @@ var Articles []*Article = []*Article{
 			Path:           utils_filepath.Join("choosing_pet_projects", "logo.png"),
 			Attribution:    "picture by Kelly Sikkema",
 			AttributionUrl: "https://unsplash.com/photos/white-paper-on-black-table-4TBOXap8qg4",
+		}),
+	),
+	NewArticle(
+		"Vscode debugger recipes for py, go, docker",
+		"article_visual_debugger_in_vscode.html",
+		utils_filepath.Join(artcieles_root, "article_visual_debugger_in_vscode", "debugger.md"),
+		time.Date(2025, time.April, 6, 20, 0, 0, 0, time.UTC),
+		WithDescription(`How to start working with visual debuger in vscode for python and go.
+Including with connecting to already running docker. Written for people wishing to be quickly productive with vscode.`),
+		WithVars(func(ctx context.Context) any {
+			return article_visual_debugger_in_vscode.Vars{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				SiteRoot:   types.GetCtx(ctx).SiteRoot,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("article_visual_debugger_in_vscode", "logo.png"),
 		}),
 	),
 	/*

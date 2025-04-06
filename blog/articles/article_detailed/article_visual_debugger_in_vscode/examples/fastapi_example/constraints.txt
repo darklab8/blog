@@ -1,0 +1,14 @@
+asgiref==3.8.1
+click==8.1.8
+Django==5.2
+exceptiongroup==1.2.2
+h11==0.14.0
+iniconfig==2.1.0
+packaging==24.2
+pluggy==1.5.0
+pytest==8.3.5
+pytest-django==4.11.1
+sqlparse==0.5.3
+tomli==2.2.1
+typing_extensions==4.13.1
+uvicorn==0.34.0

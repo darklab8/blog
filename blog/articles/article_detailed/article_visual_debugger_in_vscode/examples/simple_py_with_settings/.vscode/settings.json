@@ -1,0 +1,16 @@
+{
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "terminal.integrated.env.linux": {
+        "SOME_VAR": "abc"
+    },
+    "terminal.integrated.env.windows": {
+        "SOME_VAR": "abc"
+    },
+    "terminal.integrated.env.osx": {
+        "SOME_VAR": "abc"
+    }
+}
