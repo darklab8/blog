@@ -259,7 +259,7 @@ Ensure having installed Dev Containers app `@id:ms-vscode-remote.remote-containe
 ```shell
 cd ../examples/django_example
 docker compose build
-docker compose run --service-ports shell
+docker compose run --service-ports shell # `--service-ports` option ensures we forwarded 8000 port written in docker-compose despite using `run` command instead of `up`
 ```
 
 Instead of docker-compose usage, same is achievable with regular `docker` command:
