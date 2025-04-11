@@ -36,7 +36,7 @@ If smth is working weirdly, like syntax highlighting by colors is not present, m
 
 After that python simple file debugging is launchable as
 git clone/download https://github.com/darklab8/blog/tree/master/
-```shell
+```sh
 git clone https://github.com/darklab8/blog.git
 cd blog/blog/articles/article_detailed/article_visual_debugger_in_vscode/examples
 cd simple_pyscript && code -r # will reopen to different workdir
@@ -49,7 +49,7 @@ Select in the top menu: Run -> Star Debugging (F5)
 ![]({{.StaticRoot}}article_visual_debugger_in_vscode/debug_python_script2.png)
 
 Now let's check it is working for pytest test debug:
-```shell
+```sh
 # create venv 
 python3 -m venv .venv
 # activate
@@ -78,13 +78,13 @@ If smth glitches, we do `Ctrl + Shift + P -> Reload Window` trick
 
 # Python with settings for env vars
 
-```shell
+```sh
 cd ../simple_py_with_settings && code -r .
 ```
 
 You can update `.vscode/settings.json` to set up your debug parameters.
 
-```shell
+```sh
 cat .vscode/settings.json
 ```
 will show content:
@@ -107,7 +107,7 @@ will show content:
 }
 ```
 
-```shell
+```sh
 $ python3 file.py 
 Example(foo=10, bar='abc', is_smth=False)
 ```
@@ -116,7 +116,7 @@ Those env vars will be available for access from within the launched web server 
 
 # Python with running debug for django
 
-```shell
+```sh
 cd ../django_example && code -r .
 ```
 
@@ -188,12 +188,12 @@ The `justMyCode: false` setting in `launch.json` allows navigation through third
 
 # Python with running debug for fastapi
 
-```shell
+```sh
 cd ../fastapi_example && code -r .
 ```
 
 Install packages in virtualenv again:
-```shell
+```sh
 deactivate
 python3 -m venv .venv
 source .venv/bin/activate # at windows can be `venv\Scripts\activate`
@@ -256,14 +256,14 @@ See folder `flask_example` for almost same example to try for Flask too.
 Ensure having installed Dev Containers app `@id:ms-vscode-remote.remote-containers`
 ![]({{.StaticRoot}}article_visual_debugger_in_vscode/docker_extension_install1.png)
 
-```shell
+```sh
 cd ../examples/django_example
 docker compose build
 docker compose run --service-ports shell # `--service-ports` option ensures we forwarded 8000 port written in docker-compose despite using `run` command instead of `up`
 ```
 
 Instead of docker-compose usage, same is achievable with regular `docker` command:
-```shell
+```sh
 docker build --tag test 
 docker run -it -v $(pwd):/code -w /code --name shell --entrypoint=bash test
 ```
