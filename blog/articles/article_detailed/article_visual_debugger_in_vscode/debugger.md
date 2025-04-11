@@ -123,7 +123,7 @@ cd ../django_example && code -r .
 set a breakpoint in a view at `urls.py` and launch Python Django debug, like in this picture below
 ![]({{.StaticRoot}}article_visual_debugger_in_vscode/red_breakpoint.png)
 
-Debug for Django will work due to the present `.VSCode/launch.json` containing
+Debug for Django will work due to the present `.vscode/launch.json` containing
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
