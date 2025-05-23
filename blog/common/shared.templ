@@ -88,6 +88,8 @@ templ Html5(options HtmlOptions) {
 			:root {
 				--color_hover_link: #4183C4;
 				--color_link: #91C3F5;
+				--color_quote: orange;
+				--color_quote_weight: 500;
 			}
 			body {
 				background: #0D0D0D;
@@ -99,9 +101,28 @@ templ Html5(options HtmlOptions) {
 			:root {
 				--color_hover_link: #4183C4;
 				--color_link: #33618E;
+				--color_quote: #bf7c00;
+				--color_quote_weight: 600;
+			}
+			body {
+				background: #f0f0f0;
+				color:#333;
+			}
+			.hljs {
+				filter: brightness(90%);
 			}
 			</style>
 	}
+	<style>
+		body {
+			line-height:1.6;
+			font-size:18px;
+			padding:0 10px;
+		}
+		h1,h2,h3{
+			line-height:1.2;
+		}
+	</style>
     @highlight.IncludeHighlight()
 	@common_static.ResetCSS()
 	@common_static.CommonCSS()
