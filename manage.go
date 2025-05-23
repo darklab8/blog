@@ -16,7 +16,7 @@ func main() {
 		fs := http.FileServer(http.Dir("./build"))
 		http.Handle("/", fs)
 
-		port := 8080
+		port := 8000
 		logus.Log.Info("Listening on " + strconv.Itoa(port))
 		err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
 		logus.Log.CheckPanic(err, "unable to serve serve")
