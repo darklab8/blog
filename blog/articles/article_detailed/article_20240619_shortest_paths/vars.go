@@ -1,4 +1,4 @@
-package article_shortest_paths
+package article_20240619_shortest_paths
 
 type Vars struct {
 	StaticRoot       string

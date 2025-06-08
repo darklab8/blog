@@ -1,4 +1,4 @@
-package article_freelancer_setup_at_linux
+package article_20240908_choosing_pet_projects
 
 type Vars struct {
 	StaticRoot string

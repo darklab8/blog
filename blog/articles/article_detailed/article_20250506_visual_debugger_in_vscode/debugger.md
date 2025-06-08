@@ -9,7 +9,7 @@ In the article, we also cover the ability to run visual debug for specific unit 
 Article as main point guides people how to setup things for working with Python for Django *in already running* Docker containers, but we provide also explanation of doing it without docker, and also for Fastapi, and Flask for comparison.
 Previous zero knowledge of VSCode usage is assumed. Basic knowledge of how to use `pip` and `venv` is assumed.
 
-All examples in the article are in the [examples](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_visual_debugger_in_vscode/examples) folder. 
+All examples in the article are in the [examples](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_20250506_visual_debugger_in_vscode/examples) folder. 
 **We assume you’re opening VSCode with the working directory set to a specific example folder** (e.g., `examples/simple_pyscript` or `examples/django_example`) so that the `.vscode` folder is at the project root.
 
 P.S. In normal projects reopening workdir with `code -r .` is not required, as we open projects only once, but we will be often using it in this article to switch between multiple working directories when necessary.
@@ -27,26 +27,26 @@ In normal projects reopening workdir with `code -r .` is not required, as we ope
 First, ensure you installed `Pytest Explorer` extension. It will autoinstall Python extension for intellisense along the way.
 - pytest explorer id for search `@id:littlefoxteam.vscode-python-test-adapter`
 - it will autoinstall Python extension along side: `@id:ms-python.python`
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/extension_pytest1.png)
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/extension_pytest2.png)
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/extension_pytest3.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/extension_pytest1.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/extension_pytest2.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/extension_pytest3.png)
 
 If smth is working weirdly, like syntax highlighting by colors is not present, make sure to run Ctrl + Shift + P and write Reload Window. Select and apply, it quickly reloads VSCode, including reloading extensions.
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/ctrl_shift_p_reloadwindow.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/ctrl_shift_p_reloadwindow.png)
 
 After that python simple file debugging is launchable as
 git clone/download https://github.com/darklab8/blog/tree/master/
 ```sh
 git clone https://github.com/darklab8/blog.git
-cd blog/blog/articles/article_detailed/article_visual_debugger_in_vscode/examples
+cd blog/blog/articles/article_detailed/article_20250506_visual_debugger_in_vscode/examples
 cd simple_pyscript && code -r # will reopen to different workdir
 ```
 
 In the left sidebar, click on `file.py` in the directory tree.
 Select in the top menu: Run -> Star Debugging (F5)
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/debug_python_script.png)
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/debug_python_script2.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/debug_python_script.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/debug_python_script2.png)
 
 Now let's check it is working for pytest test debug:
 ```sh
@@ -65,8 +65,8 @@ Select a new venv in VSCode using one of these methods:
 
 If smth glitches, we do `Ctrl + Shift + P -> Reload Window` trick
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/simple_pytest1.png)
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/simple_pytest2.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/simple_pytest1.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/simple_pytest2.png)
 
 # Basic functions of a visual debug in VSCode
 
@@ -121,7 +121,7 @@ cd ../django_example && code -r .
 ```
 
 set a breakpoint in a view at `urls.py` and launch Python Django debug, like in this picture below
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/red_breakpoint.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/red_breakpoint.png)
 
 Debug for Django will work due to the present `.vscode/launch.json` containing
 ```json
@@ -174,17 +174,17 @@ Debug for Django will work due to the present `.vscode/launch.json` containing
 
 Of all the settings, only the `Python: Django` section matters for running the debugger via `manage.py` right now.
 Take note that you can technically input arbitrary arguments (under `args` key) to run it for execution of more different stuff 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/django1.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/django1.png)
 
 take note of setting `"justMyCode": false`, it allows you navigating during visual debug third party libs too. Otherwise, they will be skipped.
 Crucial thing when debugging internal company libs, or when developing your own library that is doing smth with known third-party libs.
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/django2.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/django2.png)
 
 The `justMyCode: false` setting in `launch.json` allows navigation through third-party library code, even during visual debugging from unit tests.
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/django3.png)
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/django4.png)
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/django5.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/django3.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/django4.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/django5.png)
 
 # Python with running debug for fastapi
 
@@ -243,18 +243,18 @@ with small fixes to `.vscode/launch.json`, we have it adapted for fastapi now
 }
 ```
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/fastapi1.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/fastapi1.png)
 
 With written small code examples in `app_test.py` we have no trouble launching visual debug for unit tests of fastapi
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/fastapi2.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/fastapi2.png)
 
 See folder `flask_example` for almost same example to try for Flask too.
 
 # Python in already existing Docker
 
 Ensure having installed Dev Containers app `@id:ms-vscode-remote.remote-containers`
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/docker_extension_install1.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/docker_extension_install1.png)
 
 ```sh
 cd ../examples/django_example
@@ -270,7 +270,7 @@ docker run -it -v $(pwd):/code -w /code --name shell --entrypoint=bash test
 
 Now we can enter the already running container by using **Attach Visual Studio Code** option.
 This option opens a second VSCode instance, running from within the container.
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/docker_extension_install2.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/docker_extension_install2.png)
 
 Install Pytest Explorer `@id:littlefoxteam.VSCode-python-test-adapter` (with autoinstalled Python inside).
 
@@ -282,12 +282,12 @@ If everything is set up correctly, you’ll see green arrows next to test functi
 
 You can also launch the web server from the Debug menu by selecting `Python: Django`.
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/docker3.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/docker3.png)
 
 To ensure that we are able to see dev server from the container, ensure we binded it to `0.0.0.0` instead of `localhost`!
 That is doable with `python3 manage.py runserver 0.0.0.0:8000` for django, we added missing argument into `.vscode/launch.json`.
 
-![]({{.StaticRoot}}article_visual_debugger_in_vscode/docker4.png)
+![]({{.StaticRoot}}visual_debugger_in_vscode/docker4.png)
 after setting breakpoint in view, and visiting `http://localhost:8000/polls` we get being stopped in breakpoint as desired.
 
 The same steps are doable for FastAPI and Flask.

@@ -1,4 +1,4 @@
-package article_static_typed_logging
+package article_20240128_static_typed_logging
 
 type Vars struct {
 	StaticRoot     string

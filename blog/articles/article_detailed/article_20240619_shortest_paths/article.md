@@ -146,7 +146,7 @@ johnson_test.go
 {{.JohnsonTest}}
 ```
 
-That was a success! The calculation was sped up significantly with a touch of a very simple Golang parallelism using `go routines` and `channels` to collect the result; it went way faster without changing answer/result values. We went from 2 minutes and 20 seconds (technically 1 minute) to the achieved 6 seconds results for 2218 vertices, and 30250 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
+That was a success! The calculation was sped up significantly with a touch of a very simple Golang parallelism using `go routines` and `channels` to collect the result; it went way faster without changing answer/result values. We went from 2 minutes and 20 seconds (technically 1 minute) to the achieved 6 seconds results for 2218 vertices, and 30250 edges, which was very satisfying and 34 times faster. [The same code can be found in Github folders](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_20240619_shortest_paths/trades)
 
 
 ## Onwards! Towards final optimizations.
@@ -203,9 +203,9 @@ PASS
 
 Attachments:
 - [the galaxy map for the same data for which we built the graph](https://fifthbarrier.github.io/Navmap/#q=)
-- [Code examples from this article, cleaned from domain-specific stuff](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_shortest_paths/trades)
+- [Code examples from this article, cleaned from domain-specific stuff](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_20240619_shortest_paths/trades)
 - [Code in use for space simulator trading route calculations](https://github.com/darklab8/fl-configs/tree/master/configs/configs_export/trades)
-- [This article page is in the repository of static site generators.](https://github.com/darklab8/blog/blob/master/blog/articles/article_detailed/article_shortest_paths/article.md).
+- [This article page is in the repository of static site generators.](https://github.com/darklab8/blog/blob/master/blog/articles/article_detailed/article_20240619_shortest_paths/article.md).
 
 All examples have unit tests on how to use them ^_^. The links above may contain a version of the article and code examples more up-to-date or with other fixes. The research results were applied to [darkstat](<https://github.com/darklab8/fl-darkstat>) tool for trading route calculations between space bases in the [Freelancer Discovery](https://discoverygc.com/) modding community.
 

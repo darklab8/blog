@@ -1,4 +1,4 @@
-package article_git_conventional_commits
+package article_20231211_git_conventional_commits
 
 type Vars struct {
 	StaticRoot string

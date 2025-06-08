@@ -8,7 +8,7 @@ Check your OS and install Lutris accordingly. Article guarantees all this stuff 
 
 if you are able to launch Lutris and see it, the installation is succeful
 
-![]({{.StaticRoot}}article_freelancer_setup_at_linux/installed_lutris.png)
+![]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/installed_lutris.png)
 
 Verify that u installed Lutris `0.5.16` in Lutris About. `lutris --version` for CLI.
 If we will use newer Lutris version, the guide will be updated.
