@@ -53,7 +53,7 @@ var graph_shared_code string
 
 var ArticleDiscoLinux *Article = NewArticle(
 	"Freelancer Discovery setup with Lutris, Wine at Linux",
-	"article/article_20240614_freelancer_setup_at_linux.html",
+	"article/article_freelancer_setup_at_linux.html",
 	utils_filepath.Join(artcieles_root, "article_20240614_freelancer_setup_at_linux", "disco", "article_start_disco.md"),
 	time.Date(2024, time.July, 14, 20, 0, 0, 0, time.UTC),
 	WithDescription(`Using Lutris, custom Wine, Wine Tricks to install all custom dependencies
@@ -158,7 +158,7 @@ var ArticleFreelancerHDLinux *Article = NewArticle(
 
 var ArticleAllShortestPaths = NewArticle(
 	"All Shortest Paths in Graph with Golang",
-	"article/article_20240619_shortest_paths.html",
+	"article/article_shortest_paths.html",
 	utils_filepath.Join(artcieles_root, "article_20240619_shortest_paths", "article.md"),
 	time.Date(2024, time.June, 19, 20, 0, 0, 0, time.UTC),
 	WithDescription(`Finding All Shortest Paths with Floyd and Johnson in Golang.
@@ -265,7 +265,7 @@ var Articles []*Article = []*Article{
 	),
 	NewArticle(
 		"Vscode debugger recipes for python and docker",
-		"article_20250506_visual_debugger_in_vscode.html",
+		"article_visual_debugger_in_vscode.html",
 		utils_filepath.Join(artcieles_root, "article_20250506_visual_debugger_in_vscode", "debugger.md"),
 		time.Date(2025, time.April, 6, 20, 0, 0, 0, time.UTC),
 		WithDescription(`How to start working with visual debuger in vscode for python.
