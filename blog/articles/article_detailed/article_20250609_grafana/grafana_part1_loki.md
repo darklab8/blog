@@ -249,6 +249,12 @@ similarily if u need just average results, utilize `avg_over_time` without quant
 Saving it all together, setting Title names, changing units to Seconds for duration based diagrams, optionally changing for some of them look to Bar chart, and having legend in Table mods with showing Last/Mean values we receive a final looking application debugging dashboard looking like this.
 Such look is way easier to navigate then Raw logs, isn't it? :]
 ![]({{.StaticRoot}}grafana_loki/dashboard_loki5.png)
+The final looking dashboard is provided for optional import as json code
+{{ spoiler_start "dashboard_app_logs.json" }}
+```json
+{{.AppLogsDashboard}}
+```
+{{ spoiler_end "" }}
 
 That's it for first part of setting up grafana + loki. We will have next article parts, concentrated onto Metrics, Traces and Alerts.
 Try to use Logging drilldown interface and filter by different ways logs, and navigate to different services with it.

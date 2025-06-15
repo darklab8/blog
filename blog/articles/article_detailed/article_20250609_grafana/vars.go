@@ -19,6 +19,8 @@ type Vars struct {
 
 	AlloyLogsConfig     string
 	AlloyLogsDockerfile string
+
+	AppLogsDashboard string
 }
 
 //go:embed code_examples/docker-compose.yaml
@@ -44,3 +46,6 @@ var AlloyLogsConfig string
 
 //go:embed code_examples/Dockerfile.alloy.logs
 var AlloyLogsDockerfile string
+
+//go:embed code_examples/dashboard_app_logs.json
+var AppLogsDashboard string
