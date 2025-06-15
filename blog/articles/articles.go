@@ -287,7 +287,7 @@ Including with connecting to already running docker. Written for people wishing 
 		utils_filepath.Join(artcieles_root, "article_20250609_grafana", "grafana_part1_loki.md"),
 		time.Date(2025, time.June, 9, 10, 0, 0, 0, time.UTC),
 		WithDescription(`Configuring Grafana monitoring for homelab or small load companies for Docker.
-Configuring with Opentofu(Terraform) or Docker-compose. Examples for Golang, and comments for other languages.`),
+Configuring with Opentofu(Terraform) or Docker-compose. For any backend language capable to emit logs in JSON.`),
 		WithVars(func(ctx context.Context) any {
 			return article_20250609_grafana.Vars{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
