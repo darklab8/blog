@@ -153,7 +153,7 @@ Participating configs:
 Proceed to apply deployment for raising the monitoring stack
 (or use Opentofu(Terraform) to raise all stuff together as modules from ../main.tf)
 ```sh
-git clone https://github.com/darklab8/blog
+git clone --recurse-submodules https://github.com/darklab8/blog
 cd blog/articles/article_detailed/article_20250609_grafana/code_examples
 
 # if docker-compose way

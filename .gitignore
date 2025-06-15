@@ -9,4 +9,4 @@ body2.templ_disabled
 __pycache__
 .pytest_cache
 .terraform/
-*.tfstate
+*.tfstate*
