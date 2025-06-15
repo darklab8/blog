@@ -13,6 +13,7 @@ import (
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_20240619_shortest_paths"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_20240908_choosing_pet_projects"
 	"github.com/darklab8/blog/blog/articles/article_detailed/article_20250506_visual_debugger_in_vscode"
+	"github.com/darklab8/blog/blog/articles/article_detailed/article_20250609_grafana"
 
 	"github.com/darklab8/blog/blog/common"
 	"github.com/darklab8/blog/blog/common/types"
@@ -278,6 +279,35 @@ Including with connecting to already running docker. Written for people wishing 
 		}),
 		WithTitlePicture(TitlePicture{
 			Path: utils_filepath.Join("visual_debugger_in_vscode", "logo.png"),
+		}),
+	),
+	NewArticle(
+		"Grafana monitoring with Docker. Part 1 - Logs with Loki",
+		"article_grafana_loki.html",
+		utils_filepath.Join(artcieles_root, "article_20250609_grafana", "grafana_part1_loki.md"),
+		time.Date(2025, time.June, 9, 10, 0, 0, 0, time.UTC),
+		WithDescription(`Configuring Grafana monitoring for homelab or small load companies for Docker.
+Configuring with Opentofu(Terraform) or Docker-compose. Examples for Golang, and comments for other languages.`),
+		WithVars(func(ctx context.Context) any {
+			return article_20250609_grafana.Vars{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				SiteRoot:   types.GetCtx(ctx).SiteRoot,
+
+				MainCompose:   article_20250609_grafana.MainCompose,
+				MainTerraform: article_20250609_grafana.MainTerraform,
+
+				GrafanaConfig:     article_20250609_grafana.GrafanaConfig,
+				GrafanaDockerfile: article_20250609_grafana.GrafanaDockerfile,
+
+				LokiConfig:     article_20250609_grafana.LokiConfig,
+				LokiDockerfile: article_20250609_grafana.LokiDockerfile,
+
+				AlloyLogsConfig:     article_20250609_grafana.AlloyLogsConfig,
+				AlloyLogsDockerfile: article_20250609_grafana.AlloyLogsDockerfile,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("grafana_loki", "loki_drilldown1.png"),
 		}),
 	),
 	/*

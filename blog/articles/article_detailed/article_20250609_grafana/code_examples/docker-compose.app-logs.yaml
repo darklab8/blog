@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app-logs:
+    build:
+      context: ./app_logs
+    container_name: app-logs
+    restart: always
+    logging:
+      driver: json-file # ensures logs from containers will not overfill server
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m

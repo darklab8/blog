@@ -1,6 +1,6 @@
 package common_static
 
-templ TooltopCSS() {
+templ TooltipCSS() {
     <style>
     /* Tooltip container */
     .tooltip {
@@ -66,5 +66,199 @@ templ CustomCSS() {
         font-style: normal !important;
     }
     </style>
-    @TooltopCSS()
+    @TooltipCSS()
+
+    // MARKDOWN ALERTS
+    <style>
+    .markdown-alert {
+        padding: 0.5rem 1rem;
+        margin-bottom: 16px;
+        color: inherit;
+        border-left: .25em solid #888;
+    }
+
+    .markdown-alert>:first-child {
+        margin-top: 0
+    }
+
+    .markdown-alert>:last-child {
+        margin-bottom: 0
+    }
+
+    .markdown-alert .markdown-alert-title {
+        display: flex;
+        font-weight: 500;
+        align-items: center;
+        line-height: 1
+    }
+
+    .markdown-alert .markdown-alert-title .octicon {
+        margin-right: 0.5rem;
+        display: inline-block;
+        overflow: visible !important;
+        vertical-align: text-bottom;
+        fill: currentColor;
+    }
+
+    .markdown-alert.markdown-alert-note {
+        border-left-color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-note .markdown-alert-title {
+        color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-important {
+        border-left-color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-important .markdown-alert-title {
+        color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-warning {
+        border-left-color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-warning .markdown-alert-title {
+        color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-tip {
+        border-left-color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-tip .markdown-alert-title {
+        color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-caution {
+        border-left-color: var(--color-caution);
+    }
+
+    .markdown-alert.markdown-alert-caution .markdown-alert-title {
+        color: var(--color-caution);
+    }
+    </style>
+
+    // code block switch
+    <style>
+    .code-container {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: monospace;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    .code-tabs {
+        display: flex;
+        background: #f0f0f0;
+    }
+
+    .tab-button {
+        flex: 1;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-weight: bold;
+    }
+
+    .tab-button.active {
+        background: white;
+        border-bottom: 2px solid dodgerblue;
+    }
+
+    .code-block {
+        padding: 15px;
+        margin: 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+    </style>
+
+    <style>
+    
+    details, button {
+        cursor: pointer;
+    }
+
+.button-84 {
+  align-items: center;
+  background-color: initial;
+  background-image: linear-gradient(#464d55, #25292e);
+  border-radius: 8px;
+  border-width: 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  font-family: expo-brand-demi,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 18px;
+  height: 52px;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 32px;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all 150ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-84:hover {
+  box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+  opacity: .85;
+}
+
+.button-84:active {
+  outline: 0;
+}
+
+.button-84:focus {
+  box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
+}
+
+@media (max-width: 420px) {
+  .button-84 {
+    height: 48px;
+  }
+}
+    </style>
+}
+
+
+templ CommonJS(){
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.tab-button');
+            const codeBlocks = document.querySelectorAll('.code-block');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active tab
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Toggle code visibility
+                    const lang = button.dataset.lang;
+                    codeBlocks.forEach(block => {
+                        block.classList.toggle('hidden', !block.classList.contains(`language-${lang}`));
+                    });
+                });
+            });
+        });
+    </script>
 }

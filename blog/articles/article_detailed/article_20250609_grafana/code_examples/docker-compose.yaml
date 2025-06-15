@@ -1,0 +1,105 @@
+version: "3.8"
+
+services:
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:2.9.1
+    container_name: caddy
+    restart: always
+    networks:
+      - caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - caddy_data:/data
+    logging:
+      driver: json-file # ensures logs from containers will not overfill server
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+  grafana:
+    build:
+      dockerfile: ./Dockerfile.grafana
+      context: .
+    container_name: grafana
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
+      - GF_INSTALL_PLUGINS=https://storage.googleapis.com/integration-artifacts/grafana-exploretraces-app/grafana-exploretraces-app-latest.zip;grafana-traces-app
+    networks:
+      - grafana
+      - caddy
+    volumes:
+      - grafana_data:/var/lib/grafana
+    logging:
+      driver: json-file
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+    labels:
+      caddy_0: ${GRAFANA_PASSWORD}
+      caddy_0.reverse_proxy: "{{upstreams 3000}}"
+  loki:
+    build:
+      dockerfile: ./Dockerfile.loki
+      context: .
+    container_name: loki
+    restart: always
+    entrypoint: ["/usr/bin/loki"]
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    networks:
+      grafana:
+        aliases:
+          - loki
+    volumes:
+      - loki_data:/data
+    logging:
+      driver: json-file
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+    mem_limit: 1000m
+  alloy-logs:
+    build:
+      dockerfile: ./Dockerfile.alloy.logs
+      context: .
+    container_name: alloy-logs
+    restart: always
+    networks:
+      grafana:
+        aliases:
+          - alloy-logs
+    entrypoint: ["/bin/alloy"]
+    command: ["run","/etc/alloy/config.alloy","--storage.path=/var/lib/alloy/data"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      driver: json-file
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+
+networks:
+  grafana:
+    name: grafana
+    driver: overlay
+    attachable: true
+  caddy:
+    name: caddy
+    driver: overlay
+    attachable: true
+
+volumes:
+  caddy_data:
+    name: "caddy_data"
+  grafana_data:
+    name: "grafana_data"
+  loki_data:
+    name: "loki_data"

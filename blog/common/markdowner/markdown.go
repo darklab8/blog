@@ -5,6 +5,7 @@ import (
 	"os"
 	"text/template"
 
+	"github.com/darklab8/blog/blog/common/notes"
 	"github.com/darklab8/blog/blog/settings/logus"
 
 	"github.com/darklab8/go-utils/utils/utils_types"
@@ -28,7 +29,7 @@ func MdToHTML(md []byte) []byte {
 }
 
 func TemplateHtml(html string, input any) (string, error) {
-	tmpl, err := template.New("test").Parse(html)
+	tmpl, err := template.New("test").Funcs(notes.FuncMap).Parse(html)
 	if logus.Log.CheckError(err, "failed to template") {
 		return "", err
 	}

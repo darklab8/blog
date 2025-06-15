@@ -12,7 +12,7 @@ Previous zero knowledge of VSCode usage is assumed. Basic knowledge of how to us
 All examples in the article are in the [examples](https://github.com/darklab8/blog/tree/master/blog/articles/article_detailed/article_20250506_visual_debugger_in_vscode/examples) folder. 
 **We assume you’re opening VSCode with the working directory set to a specific example folder** (e.g., `examples/simple_pyscript` or `examples/django_example`) so that the `.vscode` folder is at the project root.
 
-P.S. In normal projects reopening workdir with `code -r .` is not required, as we open projects only once, but we will be often using it in this article to switch between multiple working directories when necessary.
+{{ note `In normal projects reopening workdir with "code -r ." is not required, as we open projects only once, but we will be often using it in this article to switch between multiple working directories when necessary.` }}
 
 # Python without docker
 
@@ -293,7 +293,7 @@ after setting breakpoint in view, and visiting `http://localhost:8000/polls` we 
 The same steps are doable for FastAPI and Flask.
 We added Dockerfile and docker-compose.yml for the same into fastapi_example and flask_example folders.
 
-P.S. When you are in VSCode from within container, opened terminal is opened automatically for within the container shell
+{{ tip `When you are in VSCode from within container, opened terminal is opened automatically for within the container shell` }}
 
 # Ending
 
