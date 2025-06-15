@@ -203,6 +203,12 @@ Filtering by any text simply can be done with menu "Search i nlog lines" and pre
 
 {{ important `Make sure to emit your logs in JSON format! Logging drilldown interface will be automatically recognizing all your json key values as legit labels in a simple way. in Explore and LogQL queries u will need to specify JSON format separately for that to work though.`}}
 
+a bit below we deploy simple application example which we will use for more advanced examples. After u deployed it, try to filter logs by minimal duration, switching between different applications, filtering to specific url pattern
+![]({{.StaticRoot}}grafana_loki/loki_drilldown6.png)
+
+We had a bit of errors in caddy, with it we can how we filter to error level of logs only.
+![]({{.StaticRoot}}grafana_loki/loki_drilldown7.png)
+
 ## Dashboards with Loki
 
 Dashboards using Loki is not very good in performance feature and it has problems to work fast enough for horizontally scaled applications having too many logs, it is more last resort thing to grab essential analytics, and it is good to use feature when u need to use values and their precisions that could jut not fit metrics.
@@ -233,5 +239,18 @@ sum(count_over_time({service_name="app-logs"} | json | duration > 0 | url_path!=
 if you output other information like user IPs, useragents, requests incoming body size, of response body size
 you could build then informations of grouping by other parameters, or having shown which URL endpoints use large amount of input or output internet traffic.
 
-That's it for first part of setting up grafana + loki. We will have next article parts, concentrated onto Metrics, Traces and Alerts
+In case u need to see 10% worst requests basic on metric like duration (or using body size or whatever else u have), u can use quantile based dashboards
+```
+quantile_over_time(0.90,{service_name="app-logs"} | json | duration > 0 | unwrap duration [10m]) by (url_pattern)
+```
+![]({{.StaticRoot}}grafana_loki/dashboard_loki4.png)
+similarily if u need just average results, utilize `avg_over_time` without quantile number instead.
+
+Saving it all together, setting Title names, changing units to Seconds for duration based diagrams, optionally changing for some of them look to Bar chart, and having legend in Table mods with showing Last/Mean values we receive a final looking application debugging dashboard looking like this.
+Such look is way easier to navigate then Raw logs, isn't it? :]
+![]({{.StaticRoot}}grafana_loki/dashboard_loki5.png)
+
+That's it for first part of setting up grafana + loki. We will have next article parts, concentrated onto Metrics, Traces and Alerts.
+Try to use Logging drilldown interface and filter by different ways logs, and navigate to different services with it.
+
 

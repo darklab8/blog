@@ -37,7 +37,7 @@ datasources:
           name: traceID
   - name: Alertmanager
     type: alertmanager
-    uid: P7647F508D5F54FCB
+    uid: alertmanager-datasource
     access: proxy
     url: http://localhost:9093
     basicAuth: false

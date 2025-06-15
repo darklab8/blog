@@ -40,7 +40,7 @@ services:
         mode: non-blocking
         max-buffer-size: 500m
     labels:
-      caddy_0: ${GRAFANA_PASSWORD}
+      caddy_0: ${GRAFANA_DOMAIN}
       caddy_0.reverse_proxy: "{{upstreams 3000}}"
   loki:
     build:
