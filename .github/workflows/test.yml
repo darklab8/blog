@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Check out source repository
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Set up Go
         uses: darklab8/infra/.github/actions/install-go@master
