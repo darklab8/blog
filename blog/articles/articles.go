@@ -306,6 +306,8 @@ Configuring with Opentofu(Terraform) or Docker-compose. Examples for Golang, and
 				AlloyLogsDockerfile: article_20250609_grafana.AlloyLogsDockerfile,
 
 				AppLogsDashboard: article_20250609_grafana.AppLogsDashboard,
+
+				HetznerFirewall: article_20250609_grafana.HetznerFirewall,
 			}
 		}),
 		WithTitlePicture(TitlePicture{

@@ -26,7 +26,9 @@ data "external" "secrets" {
 
 module "monitoring" {
   // Relevant for part 1 article setup and logging
-  source                  = "./infra/tf/modules/docker_stack/monitoring"
+  source = "./infra/tf/modules/docker_stack/monitoring"
+  # optionally we can lock ourselves which code to use from external git repo via git source.
+  # source = "git@github.com:darklab8/infra.git//tf/modules/docker_stack/monitoring?ref=28407027ebdaba2b48816b63f627c18acd521f46"
   docker_network_caddy_id = module.caddy.network_id
   grafana_password        = data.external.secrets.result["grafana_password"]
   grafana_domain          = "homelab.dd84ai.com"

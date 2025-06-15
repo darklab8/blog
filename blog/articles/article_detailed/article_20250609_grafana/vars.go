@@ -21,6 +21,8 @@ type Vars struct {
 	AlloyLogsDockerfile string
 
 	AppLogsDashboard string
+
+	HetznerFirewall string
 }
 
 //go:embed code_examples/docker-compose.yaml
@@ -49,3 +51,6 @@ var AlloyLogsDockerfile string
 
 //go:embed code_examples/dashboard_app_logs.json
 var AppLogsDashboard string
+
+//go:embed code_examples/infra/tf/modules/hetzner_server/firewall.tf
+var HetznerFirewall string
