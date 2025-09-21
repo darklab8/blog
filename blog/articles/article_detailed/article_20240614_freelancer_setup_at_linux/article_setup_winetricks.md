@@ -6,7 +6,7 @@ Open Lutris bash console for the current application
 ```
 winetricks msacm32
 winetricks dotnet40
-winetricks dotnet45
+winetricks dotnet48 // previously was dotnet45, but disco got updated
 winetricks directplay
 winetricks webdings
 ```
