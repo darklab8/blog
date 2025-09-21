@@ -5,8 +5,13 @@ Open Lutris bash console for the current application
 
 ```
 winetricks msacm32
-winetricks dotnet40
-winetricks dotnet48 // previously was dotnet45, but disco got updated
+// winetricks dotnet40 // i suspect not needed at all any longer if u install dotnet48, try not to install
+// winetricks dotnet45 // deprecated disco dotnet, no longer needed
+// some level of issues with dotnet48 is present, ensure to deinstall old one dotnet45 first and install new one with --force flag
+// for deinstallation of dotnet45, run `wine deinstaller` in Bash lutris console`, in same console where we input winetricks commands
+// https://github.com/Winetricks/winetricks/issues/2159
+// https://www.reddit.com/r/winehq/comments/eqx1uu/wine_doesnt_see_mscoreedll/
+winetricks --force dotnet48 // latest in use by Discovery Freelancer
 winetricks directplay
 winetricks webdings
 ```
