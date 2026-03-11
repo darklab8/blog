@@ -29,7 +29,7 @@ P.S. Alternatively can be used Virtual Desktop feature.
 Just in case providing copies of all main dependencies, vendored in for this articles, in case they aren't longer downloadable.
 
 - [Lutris 0.5.16]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/vendored_freel_stuff/lutris_0.5.17_all.deb)
-- [Wine 9.0]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/vendored_freel_stuff/wine-9.0-amd64.tar.xz)
+- [Wine 9.0]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/vendored_freel_stuff/wine-proton-10.0-4-amd64.tar.xz)
 - [dxvk2.4 with direct 8 support]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/vendored_freel_stuff/dxvk-2.4.tar.gz)
 
 ## Extra info - possible unexpected dependencies.

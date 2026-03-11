@@ -3,7 +3,9 @@
 There are many wine versions, but this one is the last that keep the UI text from not cutting out
 and also keeps intro video playing nicely with Freelancer Vanilla.
 
-- [Download Wine-9.0](<https://github.com/Kron4ek/Wine-Builds/releases/download/9.0/wine-9.0-amd64.tar.xz>)
+{{ note `According to [Koshi in this msg](https://discoverygc.com/forums/showthread.php?tid=204034&pid=2384005#pid2384005) Ge Proton is the best for free of crashes gaming (at Discovery at least), and we should [install it](https://github.com/GloriousEggroll/proton-ge-custom). I am vague on how to install it and for simplicity go with once again Kron4ek Wine builds and just regular stable latest Proton instead currently` }}
+
+- [Download Proton 10.0-4](<https://github.com/Kron4ek/Wine-Builds/releases/download/proton-10.0-4/wine-proton-10.0-4-amd64.tar.xz>)
 
 ![]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/wine_installing.png)
 
@@ -18,5 +20,5 @@ Relaunch lutris, u should see it in discovered wines
 
 ![]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/wine_expected2.png)
 
-P.S. Known issues for Wine 9.0. For me the keyboard is not available right away at the game entering.
+P.S. Known possible issues (was noticed in Wine 9.0 at least). For me the keyboard is not available right away at the game entering.
 It becomes active only if i alt tab and return. Ensure on game enter, u can open chat by "Enter" before flying from planet! Quick alt tabbing in game helps me to fix it.

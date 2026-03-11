@@ -9,4 +9,6 @@ error will show up at `~wine_prefix/drive_c/users/{user name}/AppData/Local/Free
 
 rename `FX` folder to `fx` name for a fix. You can find this folder in DATA folder of your installed Discovery
 
+## Video rendering options
 
+Disco lancher now has abilities to select video rendering options in "Game Settings". For me worked default Direct 9 (dxwrapper, default) fine at Intel UHD 630. If u have different video driver situation, may be smth else will work better work you.

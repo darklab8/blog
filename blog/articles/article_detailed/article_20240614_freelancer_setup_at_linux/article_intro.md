@@ -9,4 +9,4 @@ We show specifics for Kubuntu 22.04 LTS, but it should be usable for any Linux a
 
 In theory the same guide can be adopted for any Freelancer/mod installation. As well as serve as inspiration to how dockerize its server. There are [wine docker images](<https://hub.docker.com/r/scottyhardy/docker-wine/>), and it would be interesting to make it happen.
 
-The guide was written on 2024.07.14 and last time checked it is all working on 2024.07.14.
+The guide was written on 2024.07.14, updated on 2026.03.11 and last time checked it is all working on 2026.03.11
