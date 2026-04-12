@@ -81,6 +81,16 @@ var ProjectDarkstat *PetProject = NewPetProject(
 	WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/"),
 )
 
+var ProjectDarkmap *PetProject = NewPetProject(
+	"Darkmap - online nav map",
+	"fl-darkmap",
+	WithGithub("https://github.com/darklab8/fl-darkstat/darkmap"),
+	WithLink("forum","https://discoverygc.com/forums/showthread.php?tid=211565&pid=2392632"),
+	WithLink("FLSR","https://darklab8.github.io/fl-data-flsr/map.html"),
+	WithLink("Discovery","https://darklab8.github.io/fl-data-discovery/map.html"),
+	WithLink("Vanilla","https://darklab8.github.io/fl-data-vanilla/map.html"),
+)
+
 var ProjectDarkbot *PetProject = NewPetProject(
 					"Darkbot - Discord bot to track game objects",
 					"fl-darkbot",
@@ -227,6 +237,21 @@ templ PetProjectsT() {
 					At this point of time, darkstat also integrated into itself functionality of viewing trading routes like flcompanion,
 					shows tech compatibility for Discovery Freelancer like the old Mactan Network,
 					and has some previously not seen anywhere information like Missions searching, and Ore mining fields search.
+					</p>
+    			}
+			}
+			<hr/>
+			@PetProjectRender(ProjectDarkmap) {
+                <img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "pet_projects/darkmap_view.png" } />
+				<img style="max-width: 100%;" src={ types.GetCtx(ctx).StaticRoot + "pet_projects/darkmap_galaxy.png" } />
+				@common.TextBlock(){
+					<p>
+					Remake of Space Error's map from scratch in a neat Golang way, eliminated all the dependencies,
+					fully automated turning on with no longer manual actions,
+					also has fixed angles for unusual rotated formula due to proper math formula to project stuff onto 2D,
+					and shows realistic star sizes and specters.
+					For Discovery Freelancer has added visible "Encounter zones", and visible Player Owned Bases.
+					Possibly will be expanded further in features.
 					</p>
     			}
 			}
