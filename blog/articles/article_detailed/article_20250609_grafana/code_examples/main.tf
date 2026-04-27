@@ -64,9 +64,8 @@ provider "grafana" {
 
 // Data sources for all article parts at the same time
 module "datasources" {
-  source = "./datasources"
-
-  # source = "./infra/tf/modules/grafana_stack/datasources"
+  # source = "./datasources"
+  source = "./infra/tf/modules/grafana_stack/datasources"
   # optionally we can lock ourselves which code to use from external git repo via git source.
   # source = "git@github.com:darklab8/infra.git//tf/modules/grafana_stack/datasources?ref=27d0889348b1b526234d6db7ff60cf2793a772ca"
 }
