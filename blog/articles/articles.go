@@ -287,7 +287,7 @@ Including with connecting to already running docker. Written for people wishing 
 		utils_filepath.Join(artcieles_root, "article_20250609_grafana", "grafana_part1_loki.md"),
 		time.Date(2025, time.June, 9, 10, 0, 0, 0, time.UTC),
 		WithDescription(`Configuring Grafana monitoring for homelab or small load companies for Docker.
-Configuring with Opentofu(Terraform) or Docker-compose. For any backend language capable to emit logs in JSON.`),
+ Configuring with Opentofu(Terraform) or Docker-compose. For any backend language capable to emit logs in JSON.`),
 		WithVars(func(ctx context.Context) any {
 			return article_20250609_grafana.Vars{
 				StaticRoot: types.GetCtx(ctx).StaticRoot,
@@ -312,6 +312,31 @@ Configuring with Opentofu(Terraform) or Docker-compose. For any backend language
 		}),
 		WithTitlePicture(TitlePicture{
 			Path: utils_filepath.Join("grafana_loki", "loki_drilldown1.png"),
+		}),
+	),
+	NewArticle(
+		"Grafana monitoring with Docker. Part 2 - Traces with Tempo",
+		"article_grafana_tempo.html",
+		utils_filepath.Join(artcieles_root, "article_20250609_grafana", "grafana_part2_tempo.md"),
+		time.Date(2025, time.June, 16, 10, 0, 0, 0, time.UTC),
+		WithDescription(`Configuring Grafana monitoring for homelab or small load companies for Docker.
+ Integrating Tracing for more in depth view of application performance, span by span, step by step.`),
+		WithVars(func(ctx context.Context) any {
+			return article_20250609_grafana.VarsTempo{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				SiteRoot:   types.GetCtx(ctx).SiteRoot,
+
+				TracingCompose: article_20250609_grafana.TracingCompose,
+				MainTerraform:  article_20250609_grafana.MainTerraform,
+
+				TempoDockerfile:       article_20250609_grafana.TempoDockerfile,
+				TempoConfig:           article_20250609_grafana.TempoConfig,
+				AlloyTracesDockerfile: article_20250609_grafana.AlloyTracesDockerfile,
+				AlloyTracesConfig:     article_20250609_grafana.AlloyTracesConfig,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("grafana_tempo", "tempo1.png"),
 		}),
 	),
 	/*

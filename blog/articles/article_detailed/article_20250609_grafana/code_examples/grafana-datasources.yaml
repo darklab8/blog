@@ -4,7 +4,7 @@ apiVersion: 1
 datasources:
   - name: Loki
     type: loki
-    uid: loki
+    uid: loki-datasource
     access: proxy
     url: http://loki:3100
     isDefault: false
@@ -16,7 +16,7 @@ datasources:
       derivedFields:
         # this part for our future Tracing Tempos system
         # in order to find traces from trace id in logs
-        - datasourceUid: tempo
+        - datasourceUid: tempo-datasource
           matcherRegex: trace_id
           name: trace_id
           url: "${__value.raw}" # one $ or two $$ in yaml format? verify
@@ -24,6 +24,25 @@ datasources:
           matcherType: label
 # To avoid code repetions for Grafana GUI configurations in next articles, we have to fill data sources
 # for following up configurations later in advance
+  - name: Tempo
+    type: tempo
+    uid: tempo-datasource
+    access: proxy
+    url: http://tempo:3200
+    basicAuth: false
+    jsonData:
+      httpMethod: GET
+      serviceMap:
+        datasourceUid: prometheus-datasource
+      tracesToLogsV2:
+        customQuery: false
+        datasourceUid: loki-datasource
+        spanStartTimeShift: "-1h"
+        spanEndTimeShift: "1h"
+        filterByTraceID: true
+      tracesToMetrics:
+        datasourceUid: prometheus-datasource
+        queries: []
   - name: Prometheus
     type: prometheus
     uid: prometheus-datasource
@@ -44,22 +63,3 @@ datasources:
     jsonData:
       implementation: prometheus
       handleGrafanaManagedAlerts: true
-  - name: Tempo
-    type: tempo
-    uid: tempo-datasource
-    access: proxy
-    url: http://tempo:3200
-    basicAuth: false
-    jsonData:
-      httpMethod: GET
-      serviceMap:
-        datasourceUid: prometheus-datasource
-      tracesToLogsV2:
-        customQuery: false
-        datasourceUid: loki-datasource
-        spanStartTimeShift: "-1h"
-        spanEndTimeShift: "1h"
-        filterByTraceID: true
-      tracesToMetrics:
-        datasourceUid: prometheus-datasource
-        queries: []

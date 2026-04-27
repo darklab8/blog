@@ -14,7 +14,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - caddy_data:/data
     logging:
-      driver: json-file # ensures logs from containers will not overfill server
+      driver: json-file
       options:
         mode: non-blocking
         max-buffer-size: 500m
@@ -40,7 +40,7 @@ services:
         mode: non-blocking
         max-buffer-size: 500m
     labels:
-      caddy_0: ${GRAFANA_DOMAIN}
+      caddy_0: demo.dd84ai.com
       caddy_0.reverse_proxy: "{{upstreams 3000}}"
   loki:
     build:

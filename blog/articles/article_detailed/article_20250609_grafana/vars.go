@@ -54,3 +54,31 @@ var AppLogsDashboard string
 
 //go:embed code_examples/infra/tf/modules/hetzner_server/firewall.tf
 var HetznerFirewall string
+
+type VarsTempo struct {
+	StaticRoot string
+	SiteRoot   string
+
+	TracingCompose string
+	MainTerraform  string
+
+	TempoDockerfile       string
+	TempoConfig           string
+	AlloyTracesDockerfile string
+	AlloyTracesConfig     string
+}
+
+//go:embed code_examples/docker-compose.tracing.yaml
+var TracingCompose string
+
+//go:embed code_examples/Dockerfile.tempo
+var TempoDockerfile string
+
+//go:embed code_examples/infra/tf/modules/docker_stack/monitoring/tempo.yaml
+var TempoConfig string
+
+//go:embed code_examples/Dockerfile.alloy.traces
+var AlloyTracesDockerfile string
+
+//go:embed code_examples/infra/tf/modules/docker_stack/monitoring/cfg.traces.alloy
+var AlloyTracesConfig string

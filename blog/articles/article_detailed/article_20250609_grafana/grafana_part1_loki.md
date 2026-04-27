@@ -270,4 +270,8 @@ The final looking dashboard is provided for optional import as JSON code
 That's it for the first part of setting up Grafana + Loki + Alloy. We will have the next article parts, concentrated on Metrics, Traces, and Alerts.
 Try to use the Logging drilldown interface and filter in different ways logs, and navigate to different services with it.
 
-Up-to-date versions of articles with possible fixes and next parts will be possible [to find here]({{.SiteRoot}}articles.html).
+Up-to-date versions of articles with possible fixes and next parts will be possible [to find here]({{.SiteRoot}}articles.html). Check the next part, [configuring Tracing with Tempo.]({{.SiteRoot}}article_grafana_tempo.html)
+
+# 2026 year note to article:
+
+While loki is nice in terms of interface look. Victoria logs connected to Grafana can do the same with 5 times less RAM usage and equally the same less Disk usage. And at the same time not having performance problems

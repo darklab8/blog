@@ -36,13 +36,15 @@ module "monitoring" {
     enabled = true
   }
 
-  // Relevant for next article parts. Turn off if not needing in part 1.
+  // Relevant for part 2 article
   tracing = {
     enabled = true
   }
+  // Relevant for part 3 article
   metrics = {
     enabled = true
   }
+  // Relevant for part 4 article
   alerts = {
     enabled             = true
     discord_webhook_url = data.external.secrets.result["discord_webhook_url"]
@@ -56,37 +58,15 @@ locals {
 
 
 provider "grafana" {
-  url  = "https://homelab.dd84ai.com/"
+  url  = "https://demo.dd84ai.com/"
   auth = local.grafana_creds
 }
 
-locals {
-  loki_uid  = "loki-datasource"
-  tempo_uid = "tempo-datasource"
-}
+// Data sources for all article parts at the same time
+module "datasources" {
+  source = "./datasources"
 
-resource "grafana_data_source" "loki" {
-  type               = "loki"
-  name               = "Loki"
-  uid                = local.loki_uid
-  url                = "http://loki:3100"
-  access_mode        = "proxy"
-  basic_auth_enabled = false
-
-  json_data_encoded = jsonencode({
-    timeout       = 60
-    maxLines      = 5000
-    tlsSkipVerify = true
-    derivedFields = [{
-      datasourceUid = local.tempo_uid
-      matcherRegex  = "trace_id"
-      name          = "trace_id"
-      url : "$${__value.raw}"
-      urlDisplayLabel : "trace_id"
-      matcherType = "label"
-    }]
-  })
-  depends_on = [
-    module.monitoring
-  ]
+  # source = "./infra/tf/modules/grafana_stack/datasources"
+  # optionally we can lock ourselves which code to use from external git repo via git source.
+  # source = "git@github.com:darklab8/infra.git//tf/modules/grafana_stack/datasources?ref=27d0889348b1b526234d6db7ff60cf2793a772ca"
 }

@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  app-traces-go:
+    build:
+      context: ./app_traces_go
+    container_name: app-traces-go
+    restart: always
+    networks:
+      grafana:
+        aliases:
+          - app-traces-go
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://alloy-traces:4318"
+      OTEL_SERVICE_NAME: "app-traces-go"
+      TYPELOG_LOG_JSON: "true"
+    logging:
+      driver: json-file # ensures logs from containers will not overfill server
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+
+networks:
+  grafana:
+    name: grafana
+    external: true

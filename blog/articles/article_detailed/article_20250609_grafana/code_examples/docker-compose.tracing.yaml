@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  tempo:
+    build:
+      dockerfile: ./Dockerfile.tempo
+      context: .
+    container_name: tempo
+    user: root
+    entrypoint: ["sh", "-c"]
+    command: ["/tempo -config.file=/etc/tempo.yaml"]
+    networks:
+      grafana:
+        aliases:
+          - tempo
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+    volumes:
+      - tempo_data:/var/tempo
+    mem_limit: 1000m
+
+  alloy-traces:
+    build:
+      dockerfile: ./Dockerfile.alloy.traces
+      context: .
+    container_name: alloy-traces
+    entrypoint: ["/bin/alloy"]
+    command: ["run","/etc/alloy/config.alloy","--storage.path=/var/lib/alloy/data"]
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        mode: non-blocking
+        max-buffer-size: 500m
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      grafana:
+        aliases:
+          - alloy-traces
+    mem_limit: 1000m
+
+volumes:
+  tempo_data:
+    name: "tempo_data"
+
+networks:
+  grafana:
+    name: grafana
+    external: true
