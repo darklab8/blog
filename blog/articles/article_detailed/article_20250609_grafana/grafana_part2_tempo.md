@@ -6,12 +6,12 @@ in this article we are going through configuring Tracing with Tempo, and we assu
 
 # What is tracing for?
 
-Tracing is your best friend in case you are monitoring backend systems, that have a lot of different networking requests to databases, third party apis, your own other services. Tracing show which exactly SQL query takes the most to execute during them? Or if your code is stuck in common N+1 problem of Django ORM (when you execute SQL query per each row instead of a single one due to forgotten select_related/fetch_related thing).
+Tracing is your best friend in case you are monitoring backend systems, that have a lot of different networking requests to databases, third party apis, your own other services. Tracing show which exactly SQL query takes the most time to execute during them. Or it could show if your code is stuck in common N+1 problem of Django ORM (when you execute SQL query per each row instead of a single one due to forgotten select_related/fetch_related thing).
 
 # What are its properties?
 
 - Tracing is somewhat comparable to Profiling but has big differences. Profiling monitors a single app only and able to show execution time of each function and even memory allocations an dother stuff. Tracing in comparison shows only what was covered in its tracing spans and able to propagate in information shown to other services.
-- Tracing services as an **EASY TO NAVIGATE GLUE** between all monitoring systems, uniting Traces with Logs, Logs to Traces, Traces to Profiles, Metrics to Traces. Everything is joined by Traces! We can find logs by traces, and we can find metrics from traces if very desiring and etc.
+- Tracing serves as an **EASY TO NAVIGATE GLUE** between all monitoring systems, uniting Traces with Logs, Logs to Traces, Traces to Profiles, Metrics to Traces. Everything is joined by Traces! We can find logs by traces, and we can find metrics from traces if very desiring and etc.
 - Tracing can work majorly by zero application code changes, if in your language were already written "auto instrumenting" solutions onto every sneeze that cover all the common libraries with integrations
   - That is the case with Python and [its rich set of autoinstrumenting solutions](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation)
   - Regretfully it is not the case at all with Golang at the moment of writing this article in 2026 year.
@@ -199,7 +199,7 @@ func main() {
 }
 ```
 
-and wee see in its logging its working
+and we see in its logging its working
 ```
 > starting app-traces
 > configured trading
@@ -220,7 +220,7 @@ You will see traces visible in your tracing drilldown interface then!
 ![]({{.StaticRoot}}grafana_tempo/tempo3.png)
 
 In a real world tracing is the most useful for backend applications and the best to turn it on by default for all the network interacting libraries through writing some kind of middleware.
-Then it will be able to answer you that issues you have at specific SQL request, or elastic search query, or specific http request. And since it is distributed tracing, the trace will shown how workload works within the called service too (as you can see on the picture below we have https request propagated to show internals of Opencloak authorization inside of it)! 
+Then it will be able to answer you that issues you have at specific SQL request, or elastic search query, or specific http request. And since it is distributed tracing, the trace will shown how workload works within the called service too (as you can see on the picture below we have https request propagated into Keycloak to show internals of its authorization inside of it)! 
 ![]({{.StaticRoot}}grafana_tempo/tempo_1.png)
 
 Tracing drilldown interface simplifies navigating over them. Clicking blue graph by duration, you can easily find slowest ones. Click errors to find errors. input different filters from "service_name" to kubernetes cluster names and namespaces to filter traces by different places.
