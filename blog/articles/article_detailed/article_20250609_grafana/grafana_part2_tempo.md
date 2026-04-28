@@ -2,16 +2,22 @@
 
 in [a previous article]({{.SiteRoot}}article_grafana_loki.html) we configured Grafana, Loki and Alloy for logs gathering.
 
-in this article we are going through configuring Tracing with Tempo, and we assume that previous configurations of a system were already done from the Part 1 of the article series (like Grafana web gui configuration and Caddy web server at least)
+in this article we are going through configuring Tracing with Tempo, and we assume that previous configurations of a system were already done from the Part 1 of the article series (like Grafana web gui configuration and Caddy web server at least). Our goal remains configuring Tracing for homelab and your pet projects. At the end of an article we mention production grade configuration tips
 
-Tracing answers a question, if we have some long executed processes, how can we easily see which time each step takes? The same answer can be done with Profiling, but Profiling is not controllable and hard to navigate. The tracing is the best for Backend applications with many different network requests (to databases or http requests to apis and other your own services). Tracing has the next properties:
-- Tracing is highly programmatic flexible in its configurations and serves as a glue between Logging, Metrics and Profiling.
-- You can find Logs from Traces, Traces from Logs, Metrics from Traces, Traces from Metrics, Profiles from Traces. Traces link all monitoring for gliding between different perspectives to observe desired data
-- Traces are less noisy than profiles and just have magnitudes better searching mechanism than Profiling to find the necessary data. The best working for debugging networking requests in backend applications
-- As some disadvantage Traces has autoinstrumented enabling for automatic coverage only in specific languages for specific libraries
-    - like in Python we have [instrumentation](https://opentelemetry-python-contrib.readthedocs.io/en/latest/) libs to turn on tracing automatically. Due to python otlp implementation being able to pass context in background by default, implementing high coverage is quite simple in python
-    - Java should be having similar to Python easy propagation mechanics
-    - But not in Golang. In golang we have to manually add Middlewares/handlers to libraries, and manually pass Context around nested functions in order to make that related Spans get connected.
+# What is tracing for?
+
+Tracing is your best friend in case you are monitoring backend systems, that have a lot of different networking requests to databases, third party apis, your own other services. Tracing show which exactly SQL query takes the most to execute during them? Or if your code is stuck in common N+1 problem of Django ORM (when you execute SQL query per each row instead of a single one due to forgotten select_related/fetch_related thing).
+
+# What are its properties?
+
+- Tracing is somewhat comparable to Profiling but has big differences. Profiling monitors a single app only and able to show execution time of each function and even memory allocations an dother stuff. Tracing in comparison shows only what was covered in its tracing spans and able to propagate in information shown to other services.
+- Tracing services as an **EASY TO NAVIGATE GLUE** between all monitoring systems, uniting Traces with Logs, Logs to Traces, Traces to Profiles, Metrics to Traces. Everything is joined by Traces! We can find logs by traces, and we can find metrics from traces if very desiring and etc.
+- Tracing can work majorly by zero application code changes, if in your language were already written "auto instrumenting" solutions onto every sneeze that cover all the common libraries with integrations
+  - That is the case with Python and [its rich set of autoinstrumenting solutions](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation)
+  - Regretfully it is not the case at all with Golang at the moment of writing this article in 2026 year.
+  - How much easy to configure tracing depends on a language essentially.
+
+My best recommendation regarding integrating it in any language... approach problems with Middlewares/universal interceptors of network requests for every network interacting library you use. Make wrappers if necessary that automatically add tracing spans. Your code should be covered with tracing with least amount of effort automatically for all network interacting libs, then tracing is the most useful for backend apps!
 
 {{ note `We have as some weak substistution for instrumentation in Go [epbf based tool](https://github.com/open-telemetry/opentelemetry-go-instrumentation), but it is highly limited, your logs, metrics will not have connections to traces, and it works only for specific sub set of libraries which u can't easily change. We will not be covering this tool usage in this series of article since it is not looking like good method to go by default.`}}
 
@@ -64,12 +70,18 @@ Proceed to apply deployment for raising the tracing stack part
 git clone --recurse-submodules https://github.com/darklab8/blog
 cd blog/articles/article_detailed/article_20250609_grafana/code_examples
 
-# if docker-compose way
 export DOCKER_HOST=ssh://root@homelab
 docker ps
+
+# ONLY if you did not do things from first article part about Loki and follow docker-compose path:
+docker compose up -d caddy # we need it for reverse proxy and automated TLS certs
+docker compose up -d grafana # visualizer where we query traces. Already yaml of provisioned datasources and installed plugin for tracing drilldown interface
+
+# Continue with Tracing article content:
+# if docker-compose way:
 docker compose -f docker-compose.tracing.yaml build
-docker compose -f docker-compose.tracing.yaml up -d tempo
-docker compose -f docker-compose.tracing.yaml up -d alloy-traces
+docker compose -f docker-compose.tracing.yaml up -d tempo # tracing backend
+docker compose -f docker-compose.tracing.yaml up -d alloy-traces # agent collector of traces to which we can send them over network
 
 # if opentofu way
 tofu init
@@ -77,9 +89,9 @@ tofu apply
 
 # after deploy, u need to grant tempo proper rights to be persistent and possible to init
 chmod -R a+rw /var/lib/docker/volumes/tempo_data
+chmod -R a+rw /var/lib/docker/volumes/grafana_data # just in case grant grafana rights too if not granted
 ```
 
-{{ note `We presume "grafana" and "caddy" were raised in the previous part of the article about Loki. If that did not happen, start with it first there https://darklab8.github.io/blog/article_grafana_loki.html . raising grafana and caddy is fairly simple as "docker compose up -d grafana ; docker compose up -d caddy ; chmod -R a+rw /var/lib/docker/volumes/grafana_data. Code for their raising and configs in the same folder as docker-compose.tracing.yaml` }}
 # Demo application to test it.
 
 ```sh
@@ -90,7 +102,7 @@ docker compose -f docker-compose.app-traces.yaml run -it app-traces-go
 
 with the next code is deployed
 ```go
-package app_traces_go
+package main
 
 import (
 	"context"
@@ -172,9 +184,6 @@ func doRun() {
 func main() {
 	fmt.Println("starting app-traces")
 	ctx := context.Background()
-
-  // example how to initialize Tracing itself is copy pasted from https://opentelemetry.io/docs/languages/go/getting-started/
-  // and into https://github.com/darklab8/go-utils/blob/master/otlp/setup.go
 	otelShutdown, err := otlp.SetupOTelSDK(ctx) // Set up OpenTelemetry.
 	if err != nil {
 		fmt.Println("error to initialize tracing, err=", err.Error())
@@ -190,7 +199,7 @@ func main() {
 }
 ```
 
-and wee see in its logging its is working
+and wee see in its logging its working
 ```
 > starting app-traces
 > configured trading
@@ -199,11 +208,11 @@ and wee see in its logging its is working
 ```
 
 If everything is all right and no errors appears at any level in the chain of
-- App works fine
-- Grafana alloy works fine and has no errors regarding sending traces
-- Tempo works fine and has no errors related to issues like unable to init backend because not having sufficient rights to initialize its data folder (to fix which u need to run `chmod -R a+rw /var/lib/docker/volumes/tempo_data/`)
-- Grafana works fine and initialized itself with provisioning data resources
-- Grafana plugin for tracing drilldown works fine as well
+- App works fine (validate with `docker logs app-traces-go`)
+- Grafana alloy works fine and has no errors regarding sending traces (validate with `docker logs alloy-traces`)
+- Tempo works fine (validate with `docker logs tempo`) and has no errors related to issues like unable to init backend because not having sufficient rights to initialize its data folder (to fix which u need to run `chmod -R a+rw /var/lib/docker/volumes/tempo_data/`)
+- Grafana works fine and initialized itself with provisioning data resources (validate with `docker logs grafana`)
+- Grafana plugin for tracing drilldown works fine as well (open tracing drilldown interface in grafana and see if it has any data)
 
 You will see traces visible in your tracing drilldown interface then!
 
@@ -211,6 +220,18 @@ You will see traces visible in your tracing drilldown interface then!
 ![]({{.StaticRoot}}grafana_tempo/tempo3.png)
 
 In a real world tracing is the most useful for backend applications and the best to turn it on by default for all the network interacting libraries through writing some kind of middleware.
-Then it will be able to answer you that issues you have at specific SQL request, or elastic search query, or specific http request. And since it is distributed tracing, the trace will shown how workload works within the called service too!
+Then it will be able to answer you that issues you have at specific SQL request, or elastic search query, or specific http request. And since it is distributed tracing, the trace will shown how workload works within the called service too (as you can see on the picture below we have https request propagated to show internals of Opencloak authorization inside of it)! 
+![]({{.StaticRoot}}grafana_tempo/tempo_1.png)
+
+Tracing drilldown interface simplifies navigating over them. Clicking blue graph by duration, you can easily find slowest ones. Click errors to find errors. input different filters from "service_name" to kubernetes cluster names and namespaces to filter traces by different places.
+![]({{.StaticRoot}}grafana_tempo/tempo4.png)
 
 {{ note `In pet projects Tracing usability is honestly very limited, since it is very doubtful for pet project to have any kind of network interaction long enough requiring tracing debugging. Just because your database will rarely reach the level requiring to debug it. You will benefit in pet projects more from Logging and Metrics monitoring system. At any backend real work though, tracing is the most useful system to have, i would dare to say potentially even more useful than any other type of monitoring.` }}
+
+# Production grade configuration tips.
+
+- It is common deploying horizontally [tempo-distributed helm chart](https://artifacthub.io/packages/helm/grafana/tempo-distributed) in k8s cluster for production grade tempo running if you have some serious workload.
+- As far as i tested so far, Minio still remains the fastest storage backend for it which for some reason works at least 3 times faster than Garage on large volume of traces (600gb in 2 days at 10% sampling rate). Regretfully Minio is deprecated and some replacement eventually would have to be needed found.
+- You can try different storages by running tempos in parallel and try find other storage solutions and compare with them.
+- To make workload more sane for production, you should utilize [sampling fraction](https://grafana.com/docs/alloy/latest/reference/config-blocks/tracing/) at preferably no more than 10% if u have serious workload .
+- [K8S-monitoring helm chart](https://github.com/grafana/k8s-monitoring-helm) remains the most boiler plated way to run it out of the box in kuber. In the rest of cases (like AWS ECS or homelab) easiest to use its Docker based deployment.

@@ -1,4 +1,4 @@
-package app_traces_go
+package main
 
 import (
 	"context"
