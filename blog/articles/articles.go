@@ -245,7 +245,7 @@ var Articles []*Article = []*Article{
 	ArticleAllShortestPaths,
 	ArticleDiscoLinux,
 	ArticleFreelancerVanillaLinux,
-	// ArticleFreelancerHDLinux,
+	ArticleFreelancerHDLinux,
 	NewArticle(
 		"Choosing software engineering pet projects",
 		"choosing_pet_projects.html",
