@@ -108,9 +108,7 @@ If everything was configured correctly, you will be able to open Metrics Drilldo
 
 ![]({{.StaticRoot}}grafana_prometheus/metrics_drilldown.png)
 
-{{ note `If you wish monitoring by metrics something else besides docker and applications in docker, for example postgres, elasticsearch, aws cloudwatch and etc. Check other grafana alloy components for other provided prometheus integrations` }}
-
-[link to other grafana alloy components](https://grafana.com/docs/alloy/latest/reference/components/prometheus/)
+{{ note `If you wish monitoring by metrics something else besides docker and applications in docker, for example postgres, elasticsearch, aws cloudwatch and etc. [Check grafana alloy components](https://grafana.com/docs/alloy/latest/reference/components/prometheus/) for other provided prometheus integrations` }}
 
 ## Dashboards
 
@@ -134,7 +132,7 @@ Node exporter dashboard (about linux server):
 
 {{ critical `if you remain not seeing dashboards properly, take note which grafana version you use. We can be sure it works fine with 11.6 at least` }}
 
-{{ note `grafana side of configurations author of article handles by terraform grafana provider instead of manual actions. https://github.com/darklab8/infra/tree/master/tf/grafana` }}
+{{ note `grafana side of configurations author of article handles by [terraform grafana provider](https://registry.terraform.io/providers/grafana/grafana/latest/docs) instead of manual actions, with the next code used: https://github.com/darklab8/infra/tree/master/tf/grafana` }}
 
 if you what other kind of grafana dashboards, you could browse all choices people release there https://grafana.com/grafana/dashboards/ , of you can make your own.
 

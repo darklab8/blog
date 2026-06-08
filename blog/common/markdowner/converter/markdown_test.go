@@ -1,4 +1,4 @@
-package markdowner
+package converter
 
 import (
 	"os"
