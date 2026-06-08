@@ -110,7 +110,7 @@ If everything was configured correctly, you will be able to open Metrics Drilldo
 
 {{ note `If you wish monitoring by metrics something else besides docker and applications in docker, for example postgres, elasticsearch, aws cloudwatch and etc. [Check grafana alloy components](https://grafana.com/docs/alloy/latest/reference/components/prometheus/) for other provided prometheus integrations` }}
 
-## Dashboards
+## Infrastructure Dashboards
 
 We raised in previous section prometheus and universal metrics metrics scrapper "alloy", which is already configured to scrap unix, docker and app metrics.
 - [Cadvisor alloy component](https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.cadvisor/) for docker metrics
