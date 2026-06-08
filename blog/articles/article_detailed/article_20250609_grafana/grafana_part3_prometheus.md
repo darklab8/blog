@@ -1,15 +1,15 @@
 # Intro
 
-Monitoring with metrics is the most useful because they tell you roughly when and where is the issue. 
-- For example we can see CPU/RAM/disk usage and other general metrics about application running, including when there were potentially reported OOM kills, with history of data in period of for example last month
-- Or we could be seeing detalization, regarding which our endpoints where slow, which percentage of them were slow? At which endpoint web server spent the most sum of time (after we summed time of all processed responses)?
+Monitoring with metrics is the most useful because they tell you roughly when and where the issue is.
+- For example, we can see CPU/RAM/disk usage and other general metrics about an application running, including when there were potentially reported OOM kills, with a history of data in a period of lets say last month.
+- Or we could be seeing detalization, regarding which our endpoints where slow, which percentage of them were slow? At which endpoint web server spend the most sum of time (after we summed time of all processed responses)?
 - Or we could be seeing where our message queue handling workers are stuck, where they error and etc.
 
-Metrics show detalization When, and What. historic data that gives us understanding where is the source of issue or timeframe where to dig for data (by logs and traces) further.
+Metrics show detalization When, and What. historic data that gives us understanding where is the source of the issue or the timeframe where to dig for data (by logs and traces) further.
 
-You no longer need real time watching current values of application usage, you are able monitor historic data and finding clues among the noticed patterns!
+You no longer need real-time watching current values of application usage, you are able to monitor historic data and finding clues among the noticed patterns!
 
-The most important quality of Metrics is that they are HIGHLY PERFORMANT to query and to store. they are taken one time per 1 minute for example, per 1 unit set of labels (application_name, endpoint_name, status_code as example of labels). So when Logging monitoring we can be struggling to have weeks data retention, and tracing is barely affordable to see days of data, we are still able to see **Metrics data for many months even in the most high loaded infrastructure.**
+The most important quality of Metrics is that they are HIGHLY PERFORMANT to query and to store. They are taken one time per 1 minute for example, per 1 unit set of labels (application_name, endpoint_name, status_code as example of labels). So when Logging monitoring, we can be struggling to have weeks of data retention, and tracing is barely affordable to see days of data, we are still able to see **Metrics data for many months even in the most high loaded infrastructure.**
 
 ## The most common issue. High cardinality.
 
@@ -19,8 +19,8 @@ You can debug which metric consumes a lot of space by using query
 topk(20, count by (__name__, job)({__name__=~".+"}))
 ```
 
-optionally if you know specific label in a metric has a lot of values but you have trouble to identify which ones, you can be outputing metric label values grouped by first N characters.
-Here is example we outputed span_name in traces_spanmetrics_latency_count, grouped by first 5 characters.
+optionally, if you know a specific label in a metric has a lot of values but you have trouble to identify which ones, you can be outputing metric label values grouped by first N characters.
+Here is the example we output span_name in traces_spanmetrics_latency_count, grouped by the first 5 characters.
 ```
 sum by (span_prefix) (
   label_replace(
@@ -35,7 +35,7 @@ sum by (span_prefix) (
 
 ##  Raising Prometheus
 
-{{ important `we provide docker-compose way of configuration as demo example because more devs are highly likely familiar and comfortable with docker-compose than with terraform. We utilize terraform for configuration of it and recommend it to use instead of docker-compose if u can. Book "Terraform up and running" is excellent place to start with it.` }}
+{{ important `we provide docker-compose way of configuration as a demo example because more devs are highly likely familiar and comfortable with docker-compose than with terraform. We utilize terraform for configuration of it and recommend it to use instead of docker-compose if u can. Book "Terraform up and running" is an excellent place to start with it.` }}
 
 <div class="code-container">
   <div class="code-tabs">
@@ -59,7 +59,7 @@ Participating configs:
 {{ spoiler_end "" }}
 
 {{ spoiler_start "cfg.metrics.alloy" }}
-{{ code_block_start "yaml" }}
+{{ code_block_start "c" }}
 {{.MetricsAloyConfig}}
 {{ code_block_end "" }}
 {{ spoiler_end "" }}
@@ -108,7 +108,9 @@ If everything was configured correctly, you will be able to open Metrics Drilldo
 
 ![]({{.StaticRoot}}grafana_prometheus/metrics_drilldown.png)
 
-{{ note `If you wish monitoring by metrics something else besides docker and applications in docker, for example postgres, elasticsearch, aws cloudwatch and etc. Check other grafana alloy components ( https://grafana.com/docs/alloy/latest/reference/components/prometheus/ ) for other provided prometheus integrations` }}
+{{ note `If you wish monitoring by metrics something else besides docker and applications in docker, for example postgres, elasticsearch, aws cloudwatch and etc. Check other grafana alloy components for other provided prometheus integrations` }}
+
+[link to other grafana alloy components](https://grafana.com/docs/alloy/latest/reference/components/prometheus/)
 
 ## Dashboards
 
@@ -140,55 +142,55 @@ if you what other kind of grafana dashboards, you could browse all choices peopl
 
 # Application dashboards
 
-Now that we have main infra dashboards handled, we now need to try having some custom application metrics scraped and made into its own dashboard
-- Supported languages for prometheus libraries can be found here https://prometheus.io/docs/instrumenting/clientlibs/
-- Depending on a language, framework, infra element, there can be already existing integrations/exporters for it, which u could find here https://prometheus.io/docs/instrumenting/exporters/ , like there is even Python django prometheus integration and postgresql integrations
-- As mentioned before grafana alloy scraping agent offers plenty of common exporters u could choose to use to get access to more metrics https://grafana.com/docs/alloy/latest/reference/components/prometheus/ . to use them properly u will highly likely need reading their real repository under the hood about necessary extra volumes/settings u need to pass to grafana alloy to make it working depending on what you use
+Now that we have the main infra dashboards handled, we need to try having some custom application metrics scraped and made into its own dashboard
+- Supported languages for Prometheus libraries can be found here https://prometheus.io/docs/instrumenting/clientlibs/
+- Depending on a language, framework, infra element, there can already be existing integrations/exporters for it, which u could find here https://prometheus.io/docs/instrumenting/exporters/ , like there is even Python django prometheus integration and postgresql integrations
+- As mentioned before, grafana alloy scraping agent offers plenty of common exporters u could choose to use to get access to more metrics https://grafana.com/docs/alloy/latest/reference/components/prometheus/ . To use them properly you will highly likely need to read their real repository under the hood about a necessary extra volumes/settings u need to pass to grafana alloy to make it work, depending on what you use
 
-Read throughly metric types existing there https://prometheus.io/docs/concepts/metric_types/ to understand how write your own prometheus metrics. Roughly we can say
-- Counter is good for stuff like request counts, action counts, well any kind of counts most of the time.
-- Gauge for If we need to know "Temperature value" of smth, how many workers we have currently or how many active users are currently if we have access to active sessions. Also gauge is usable for summing up anything.
+Read throughly metric types existing there https://prometheus.io/docs/concepts/metric_types/ to understand how to write your own prometheus metrics. Roughly, we can say
+- Counter is good for stuff like request counts, action counts, and any kind of counts most of the time. Counter is good when we can just “ADD” yet another time counted smth.
+- Gauge for if we need to know "Temperature value" of smth, how many workers we have currently or how many active users are currently if we have access to active sessions. Also, a gauge is usable for summing up anything. Gauge is for when it is good to “SET” the value of smth.
 - Histogram when we need to capture performance of request duration, or any other kind of duration across different "route patterns".
 
 I integrated my pet project with Go lib of Prometheus https://github.com/prometheus/client_golang
-added metrics and registered them in explicit way for ability to add global labels
+added metrics and registered them in an explicit way for ability to add global labels
 https://github.com/darklab8/fl-darkstat/blob/master/darkcore/metrics/metrics.go
 
-Based on that I have for project darkstat detailed performance evaluating dashboard https://grafana.dd84ai.com/d/belbdnu2uqe4gd/app-darkstat?var-interval=2m&orgId=1&from=now-3h&to=now&timezone=browser&var-environment=production
+Based on that, I have for the project darkstat a detailed performance evaluating dashboard https://grafana.dd84ai.com/d/belbdnu2uqe4gd/app-darkstat?var-interval=2m&orgId=1&from=now-3h&to=now&timezone=browser&var-environment=production
 
-- Since it is a web app, i made sure to capture regular stuff of how success/failure rates and duration of responses my web server makes
-- And i had plenty problems with uptime in the past, so i made sure i have uptime dashboard present working through a regular Counter
+- Since it is a web app, I made sure to capture regular stuff of how success/failure rates and duration of responses my web server makes
+- And I had plenty of problems with uptime in the past, so I made sure I have an uptime dashboard present and working through a regular Counter
 
 ![]({{.StaticRoot}}grafana_prometheus/app1.png)
 
-- I took extra notice in worst case scenaries, when worst 50%,25%,10% of responses happen? (P50,P75,P90 metrics)
-- I took notice which page are having large body size and create large network trafic for me. Due to nature of the app it was important for me to look for this metric.
-- I took notice which pattern path take the most time to load to mark then as potential targets for optimization
+- I took extra notice in worst case scenarios, when the worst 50%,25%,10% of responses happen? (P50,P75,P90 metrics)
+- I took notice which page are having large body size and create large network traffic for me. Due to the nature of the app, it was important for me to look for this metric.
+- I took notice of which pattern path takes the most time to load, to mark then as potential targets for optimization
 
 ![]({{.StaticRoot}}grafana_prometheus/app2.png)
 
-- Lastly i keep running for the app public API, so out of curiosity i watch which endpoints are actually in use, with which user agents to evaluate amount of users
-- That information gives me information what is NOT in use and i could consider evaluating to be removed as not necessary.
+- Lastly, I keep running for the app's public API, so out of curiosity, I watch which endpoints are actually in use, with which user agents, to evaluate the number of users
+- That information gives me information on what is NOT in use, and I could consider evaluating to be removed as not necessary.
 
 ![]({{.StaticRoot}}grafana_prometheus/app3.png)
 
 The code of this application dashboard is [provided by link](https://github.com/darklab8/infra/blob/master/tf/grafana/grafana_stack/dashboards_apps/darkstat.json)
 
-What we capture in application dashboards?
+What do we capture in application dashboards?
 
 We capture with metrics what is most important for us to monitor:
-- how responses are given by web server
+- How responses are given by a web server
 - How interactions with databases work inside the app
-- how requests to other applications behave
-- how payments are processed.
-- how message queue workers work
-- how databases run and behave, handling pressure, ram, disk usage
+- How requests to other applications behave
+- How payments are processed.
+- How message queue workers work
+- How databases run and behave, handling pressure, ram, disk usage
 
 The role of dashboard metrics is to tell us WHERE the issues are happening (but they do not have to tell exactly how they are happening, see traces/logs/profiles for more information). Plus metrics are also the most useful to be utilized in Alerts because of their performance efficiency :)
 
 # Dashboards based on logs and traces
 
-if we haven't mentioned it before, we can make dashboards even from logs, but they will not be query performant and their usability is limited to applications with low logging volume. It is way easier to handle prometheus metrics that are emitted fews per minutes than applications with thousands of log lines per minute.
+If we haven’t mentioned it before, we can make dashboards even from logs, but they will not be query performant and their usability is limited to applications with low logging volume. It is way easier to handle prometheus metrics that are emitted fews per minutes than applications with thousands of log lines per minute.
 
 Example of dashboard based on logs can be found [here](https://grafana.dd84ai.com/d/feoxz03mpa39ce/darkstat-uses-logs?orgId=1&from=now-1h&to=now&timezone=browser)  and its [code is here](https://github.com/darklab8/infra/blob/master/tf/grafana/grafana_stack/dashboards_apps/darkstat_from_logs.json)
 
@@ -201,11 +203,11 @@ We can make generic dashboard that works based on metrics generated from traces.
 
 ![]({{.StaticRoot}}grafana_prometheus/app_from_traces.png)
 
-You may found it interesting because u get auto generated dashboard just because your app is connected to tracing. It has strong limitations of needing low cardinality used tracing span names though, if some application breaks this rule, it needs to be excluded from metrics generator usage.
+You may find it interesting because u get auto generated dashboard just because your app is connected to tracing. It has strong limitations of needing low cardinality used tracing span names though, if some application breaks this rule, it needs to be excluded from metrics generator usage.
 
 {{ critical `turn off metrics generator is you are not needing trace apm dashboard, that will save you some used RAM` }}
 
-Additionally dashboard graphs can be even generated from [traceql metrics](https://grafana.com/docs/tempo/latest/metrics-from-traces/metrics-queries/), which can be useful in tricky tracing searches. They aren't again useful for average every day usage because performance demand is too high there. Only Metrics based dashboards are performance efficient to be navigated plentifully.
+Additionally, dashboard graphs can be even generated from [traceql metrics](https://grafana.com/docs/tempo/latest/metrics-from-traces/metrics-queries/), which can be useful in tricky tracing searches. They aren’t again useful for average everyday usage because performance demand is too high there. Only Metrics based dashboards are performance efficient to be navigated plentifully.
 
 # Articles updates
 
@@ -213,10 +215,10 @@ All articles about monitoring configurations, including about prometheus metrics
 
 # Production grade configuration tips.
 
-While prometheus is fine for few hosts of homelab, or very small production:
-- I can highly endorce deploying Mimir if you have serious production in horizontal scaled infrastructure of kubernetes
+While prometheus is fine for a few hosts of homelab, or very small production:
+- I can highly endorse deploying Mimir if you have serious production in horizontal scaled infrastructure of kubernetes
 https://github.com/grafana/mimir/tree/main/operations/helm/charts/mimir-distributed
 The main advantage of it... it is actually horizontally scalable and able to withstand higher workload just because it can distribute RAM workload between its scaled instances.
-- in its turn [k8s monitoring](https://github.com/grafana/k8s-monitoring-helm) helm chart is perfect in scraping metrics from kubernetes. Grafana alloy is perfect for usage in kubernetes, or in dockerized deployments, or in AWS ECS, or even for deployment to linuxes that have all stuff running through systemd, it can work anywhere and scraping everything.
-- To make Mimir working for full power, you could be wishing to learn how to configure [Mimir Rules](https://registry.terraform.io/providers/fgouteroux/mimir/latest/docs/resources/rules). That will unlock you having in Mimir detailedly working dashboards of any kind if u just import the same Prometheus Rules as provided for whatever dashboards.
+- In its turn [k8s monitoring](https://github.com/grafana/k8s-monitoring-helm) helm chart is perfect for scraping metrics from kubernetes. Grafana alloy is perfect for usage in kubernetes, or in dockerized deployments, or in AWS ECS, or even for deployment to linuxes that have all stuff running through systemd, it can work anywhere and scraping everything.
+- To make Mimir work at full power, you could wish to learn how to configure [Mimir Rules](https://registry.terraform.io/providers/fgouteroux/mimir/latest/docs/resources/rules). That will unlock you having in Mimir detailedly working dashboards of any kind if u just import the same Prometheus Rules as provided for whatever dashboards. This can be handled by [terraform mimir provider](https://registry.terraform.io/providers/fgouteroux/mimir/latest/docs/resources/rules)
 - Some people choose Victoria Metrics as alternative. It may be good alternative, but author of the article did not test it on a workload comparable to Mimir to be sure which one choice works better. Since there are no serious complains to Mimir and it works pretty fine and scalable, there was no yet need to switch to Victoria Metrics for the author.

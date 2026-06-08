@@ -59,7 +59,7 @@ Participating configs:
 {{ spoiler_end "" }}
 
 {{ spoiler_start "cfg.traces.alloy" }}
-{{ code_block_start "yaml" }}
+{{ code_block_start "c" }}
 {{.AlloyTracesConfig}}
 {{ code_block_end "" }}
 {{ spoiler_end "" }}
