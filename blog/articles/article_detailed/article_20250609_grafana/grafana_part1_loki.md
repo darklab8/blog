@@ -275,7 +275,3 @@ Up-to-date versions of articles with possible fixes and next parts will be possi
 # Production grade running
 
 While loki is nice in terms of interface look and simple to run.Victoria logs connected to Grafana can do the same with 5 times less RAM usage and equally the same less Disk usage. And at the same time faster query performant in terms of metrics for logging volumes. At the moment of 2026 year Victoria logs has less comfy interface to use it though, but it can change with time.
-
-# 2026 note of update
-
-To make the article about raising loki and tracing drilldown interface working, grafana was updated to grafana/grafana:13.0 docker image version

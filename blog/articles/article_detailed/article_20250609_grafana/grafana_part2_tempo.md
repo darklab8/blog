@@ -235,3 +235,10 @@ Tracing drilldown interface simplifies navigating over them. Clicking blue graph
 - You can try different storages by running tempos in parallel and try find other storage solutions and compare with them.
 - To make workload more sane for production, you should utilize [sampling fraction](https://grafana.com/docs/alloy/latest/reference/config-blocks/tracing/) at preferably no more than 10% if u have serious workload .
 - [K8S-monitoring helm chart](https://github.com/grafana/k8s-monitoring-helm) remains the most boiler plated way to run it out of the box in kuber. In the rest of cases (like AWS ECS or homelab) easiest to use its Docker based deployment.
+
+# 2026 note of update
+
+grafana plugin was fixed to specific version for the article to continue working in 2026 year
+- GF_PLUGINS_PREINSTALL_SYNC=grafana-exploretraces-app@1.4.1@https://grafana.com/api/plugins/grafana-exploretraces-app/versions/1.1.0/download
+
+This choice makes things compatible with article part 3 about dashboards that depend on the same grafana version.
