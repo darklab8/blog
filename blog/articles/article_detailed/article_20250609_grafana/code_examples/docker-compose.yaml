@@ -28,7 +28,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_SECURITY_ADMIN_USER=admin
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
-      - GF_INSTALL_PLUGINS=https://storage.googleapis.com/integration-artifacts/grafana-exploretraces-app/grafana-exploretraces-app-latest.zip;grafana-traces-app
+      - GF_PLUGINS_PREINSTALL_SYNC=grafana-exploretraces-app@1.4.1@https://grafana.com/api/plugins/grafana-exploretraces-app/versions/1.1.0/download
     networks:
       - grafana
       - caddy

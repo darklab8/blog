@@ -318,7 +318,7 @@ Including with connecting to already running docker. Written for people wishing 
 		"Grafana monitoring with Docker. Part 2 - Traces with Tempo",
 		"article_grafana_tempo.html",
 		utils_filepath.Join(artcieles_root, "article_20250609_grafana", "grafana_part2_tempo.md"),
-		time.Date(2025, time.June, 16, 10, 0, 0, 0, time.UTC),
+		time.Date(2026, time.April, 28, 10, 0, 0, 0, time.UTC),
 		WithDescription(`Configuring Grafana monitoring for homelab or small load companies for Docker.
  Integrating Tracing for more in depth view of application performance, span by span, step by step.`),
 		WithVars(func(ctx context.Context) any {
@@ -337,6 +337,31 @@ Including with connecting to already running docker. Written for people wishing 
 		}),
 		WithTitlePicture(TitlePicture{
 			Path: utils_filepath.Join("grafana_tempo", "tempo1.png"),
+		}),
+	),
+	NewArticle(
+		"Grafana monitoring with Docker. Part 3 - Metrics with Prometheus",
+		"article_grafana_prometheus.html",
+		utils_filepath.Join(artcieles_root, "article_20250609_grafana", "grafana_part3_prometheus.md"),
+		time.Date(2026, time.June, 8, 10, 0, 0, 0, time.UTC),
+		WithDescription(`Configuring Grafana monitoring for homelab or small load companies for Docker.
+ Integrating Metrics for Dashboards to server and application metrics. It will be most useful for alerts too.`),
+		WithVars(func(ctx context.Context) any {
+			return article_20250609_grafana.MetricsTempo{
+				StaticRoot: types.GetCtx(ctx).StaticRoot,
+				SiteRoot:   types.GetCtx(ctx).SiteRoot,
+
+				MetricsCompose: article_20250609_grafana.MetricsCompose,
+				MainTerraform:  article_20250609_grafana.MainTerraform,
+
+				MetricsConfig:          article_20250609_grafana.MetricsConfig,
+				MetricsAloyConfig:      article_20250609_grafana.MetricsAlloyConfig,
+				MetricsDockerfile:      article_20250609_grafana.MetricsDockerfile,
+				MetricsAlloyDockerfile: article_20250609_grafana.MetricsAlloyDockerfile,
+			}
+		}),
+		WithTitlePicture(TitlePicture{
+			Path: utils_filepath.Join("grafana_prometheus", "logo.png"),
 		}),
 	),
 	/*

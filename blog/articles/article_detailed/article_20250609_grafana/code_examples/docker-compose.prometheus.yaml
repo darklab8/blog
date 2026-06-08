@@ -1,0 +1,63 @@
+services:
+  prometheus:
+    build:
+      dockerfile: ./Dockerfile.prometheus
+      context: .
+    container_name: prometheus
+    restart: always
+    entrypoint: ["/bin/prometheus"]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-remote-write-receiver
+      - --enable-feature=exemplar-storage 
+      - --storage.tsdb.retention.time=30d
+      - --storage.tsdb.retention.size=10GB
+    networks:
+      grafana:
+        aliases:
+          - prometheus
+    volumes:
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    mem_limit: 1000m
+
+  alloy-metrics:
+    build:
+      dockerfile: ./Dockerfile.alloy.metrics
+      context: .
+    container_name: alloy-metrics
+    restart: always
+    privileged: true
+    entrypoint: ["/bin/alloy"]
+    command:
+      - run
+      - /etc/alloy/config.alloy
+      - --storage.path=/var/lib/alloy/data
+    logging:
+      driver: "json-file"
+      options:
+        mode: "non-blocking"
+        max-buffer-size: "500m"
+    networks:
+      grafana:
+        aliases:
+          - alloy-metrics
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /cgroup:/cgroup:ro
+      - /:/rootfs:ro
+      - /proc:/host/proc:ro
+      - /sys:/sys:ro
+      - /var/run:/var/run:rw
+      - /dev/disk:/dev/disk:ro
+      - /etc:/host/etc:ro
+    mem_limit: 1000m
+
+networks:
+  grafana:
+    external: true
+
+volumes:
+  prometheus_data:
+    name: prometheus_data

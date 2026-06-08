@@ -82,3 +82,31 @@ var AlloyTracesDockerfile string
 
 //go:embed code_examples/infra/tf/modules/docker_stack/monitoring/cfg.traces.alloy
 var AlloyTracesConfig string
+
+type MetricsTempo struct {
+	StaticRoot string
+	SiteRoot   string
+
+	MetricsCompose string
+	MainTerraform  string
+
+	MetricsDockerfile      string
+	MetricsConfig          string
+	MetricsAlloyDockerfile string
+	MetricsAloyConfig      string
+}
+
+//go:embed code_examples/docker-compose.prometheus.yaml
+var MetricsCompose string // :x:
+
+//go:embed code_examples/Dockerfile.prometheus
+var MetricsDockerfile string // :x:
+
+//go:embed code_examples/infra/tf/modules/docker_stack/monitoring/prometheus.yaml
+var MetricsConfig string
+
+//go:embed code_examples/Dockerfile.alloy.metrics
+var MetricsAlloyDockerfile string // :x:
+
+//go:embed code_examples/infra/tf/modules/docker_stack/monitoring/cfg.metrics.alloy
+var MetricsAlloyConfig string
