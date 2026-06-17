@@ -42,8 +42,7 @@ module "node_darklab_cax21" {
 ```
 Which utilizes code from this folder https://github.com/darklab8/infra/tree/master/tf/modules/hetzner_server
 
-{{ critical `I highly encourage you to attach Hetzner's firewall to the server as it is configured according to this code
-https://github.com/darklab8/infra/blob/master/tf/modules/hetzner_server/firewall.tf .
+{{ critical `I highly encourage you to attach Hetzner's firewall to the server as it is configured according to [this code](https://github.com/darklab8/infra/blob/master/tf/modules/hetzner_server/firewall.tf) .
 And allow only traffic for 80 and 443 udp and tcp (for our caddy web reverse server), 22(tcp for ssh), and icmp for ping ports.
 
 The configured cloud-level firewall ensures that in case you forget something about docker security, you have a nice fallback protecting your containers.
@@ -103,7 +102,7 @@ We configure with Docker-compose
 
 {{ note `For the convenience of working with some of the services running as docker swarm services for easy rotation of their image from CI, we utilize some swarm docker network (overlay) which requires running "docker swarm init" at your server.` }}
 
-{{ tip `you can check Opentofu(Terraform) configuration in addition at next address: https://github.com/darklab8/infra/blob/master/tf/modules/docker_stack/monitoring.tf`}}
+{{ tip `you can check Opentofu(Terraform) configuration in addition at [the next address](https://github.com/darklab8/infra/blob/master/tf/modules/docker_stack/monitoring.tf)`}}
 
 {{ important `we provide docker-compose way of configuration as demo example because more devs are highly likely familiar and comfortable with docker-compose than with terraform. We utilize terraform for configuration of it and recommend it to use instead of docker-compose if u can. Book "Terraform up and running" is excellent place to start with it.` }}
 
