@@ -24,6 +24,19 @@ It should make alt-tab working reliably.
 
 P.S. Alternatively can be used Virtual Desktop feature.
 
+## Extra info - Fonts being cut off!
+
+{{ critical `if you experience the issue with fonts in game not fitting the screen, then utilize the next advice of Error:
+
+In case anybody else runs into issues with text rendered in Agency FB being cut off [like this](https://imgur.com/a/9Fdy0BW): Replacing Agency FB in fonts.ini, fonts4k.ini and rich_fonts.ini in <Discovery install folder>/DATA/FONTS with the name of a font you've got installed in drive_c/windows/Fonts should fix this.
+
+I'd currently recommend [Agdasima](https://fonts.google.com/specimen/Agdasima), as it was made to be a fallback font for Agency FB. The style isn't quite the same, but it's fairly neutral. [Rationale](https://fonts.google.com/specimen/Rationale) is another decent alternate font if you want something slightly different from Agency FB, but it does not have the exact same shape and size as Agency FB and thus won't fit quite right everywhere (at least not without further adjustments in the font .ini files).
+
+I'm not sure exactly what it is about Agency FB that makes this happen yet; tried four different copies the font from various sources, five different versions of Wine and quite a few other tweaks with no luck. All of them get cut off in the exact same way.
+` }}
+
+
+
 ## Extra info - vendoring dependencies
 
 Just in case providing copies of all main dependencies, vendored in for this articles, in case they aren't longer downloadable.
