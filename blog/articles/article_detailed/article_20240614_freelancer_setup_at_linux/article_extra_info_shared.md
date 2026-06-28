@@ -26,6 +26,8 @@ P.S. Alternatively can be used Virtual Desktop feature.
 
 ## Extra info - Fonts being cut off!
 
+![]({{.StaticRoot}}article_20240614_freelancer_setup_at_linux/font_cut_off.png)
+
 {{ critical `if you experience the issue with fonts in game not fitting the screen, then utilize the next advice of Error:
 
 In case anybody else runs into issues with text rendered in Agency FB being cut off [like this](https://imgur.com/a/9Fdy0BW): Replacing Agency FB in fonts.ini, fonts4k.ini and rich_fonts.ini in <Discovery install folder>/DATA/FONTS with the name of a font you've got installed in drive_c/windows/Fonts should fix this.
