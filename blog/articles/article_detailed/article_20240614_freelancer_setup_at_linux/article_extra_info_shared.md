@@ -35,8 +35,6 @@ I'd currently recommend [Agdasima](https://fonts.google.com/specimen/Agdasima), 
 I'm not sure exactly what it is about Agency FB that makes this happen yet; tried four different copies the font from various sources, five different versions of Wine and quite a few other tweaks with no luck. All of them get cut off in the exact same way.
 ` }}
 
-
-
 ## Extra info - vendoring dependencies
 
 Just in case providing copies of all main dependencies, vendored in for this articles, in case they aren't longer downloadable.
