@@ -6,7 +6,6 @@ Go to your dedicated wine prefix created for this Freelancer vanilla or mod (We 
 - `cd drive_c/users/steamuser`
 - `rm Documents ; mkdir Documents && chmod a+rw Documents`
 
-WARNING: if you crash with weird errors 000c22fe, 000c21de on New Game, that can be because your "My Games" is still symlinked to single place. Rename/delete existing ones to ensure u stat a fresh one not touched by other Freelancer mods. Or use advice above and delete symlink and create Documents folder as recommended
-
+{{ critical `if you crash with weird errors 000c22fe, 000c21de on New Game, that can be because your "My Games" is still symlinked to single place. Rename/delete existing ones to ensure u stat a fresh one not touched by other Freelancer mods. Or use advice above and delete symlink and create Documents folder as recommended` }}
 
 
