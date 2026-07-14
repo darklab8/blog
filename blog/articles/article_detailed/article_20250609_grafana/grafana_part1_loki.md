@@ -273,4 +273,4 @@ Up-to-date versions of articles with possible fixes and next parts will be possi
 
 # Production grade running
 
-Update for 2026 year: Victoria logs connected to Grafana can do the same with 5 times less RAM usage and has 5 times less Disk usage. And at the same time faster query performant in terms of metrics for logging volumes. in around the first part of 2026 year Victoria Logs integration with grafana received powerful update making GUI interface very easy to use and feature rich. For serious production in horizontal scaled infrastructure best to pick Victoria logs today.
+Update for 2026 year: Victoria logs connected to Grafana can do the same with 5 times less RAM usage and has 5 times less Disk usage. And at the same time faster query performant in terms of metrics for logging volumes. in around the first part of 2026 year Victoria Logs integration with grafana received powerful update making GUI interface very easy to use and feature rich. For serious production in horizontal scaled infrastructure best to pick Victoria logs today. It has Loki push endpoints to serve as drop in replacement for intake purposes.
