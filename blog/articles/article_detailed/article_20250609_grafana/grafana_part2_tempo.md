@@ -235,6 +235,7 @@ Tracing drilldown interface simplifies navigating over them. Clicking blue graph
 - You can try different storages by running tempos in parallel and try find other storage solutions and compare with them.
 - To make workload more sane for production, you should utilize [sampling fraction](https://grafana.com/docs/alloy/latest/reference/config-blocks/tracing/) at preferably no more than 10% if u have serious workload .
 - [K8S-monitoring helm chart](https://github.com/grafana/k8s-monitoring-helm) remains the most boiler plated way to run it out of the box in kuber. In the rest of cases (like AWS ECS or homelab) easiest to use its Docker based deployment.
+- Update: Newly discovered information shows that Victoria Tracing is 10 times more RAM/CPU/disk efficient than Tempo (20 times in RAM, 4 times in CPU, and 10 times in Disk if to be exact). And it offers [drop in replacement to function for tracing drilldown interface](<https://docs.victoriametrics.com/victoriatraces/querying/grafana/#grafana-traces-drilldown>) in Grafana. Victoria Tracing is the best pick for real high loaded production.
 
 # 2026 note of update
 
